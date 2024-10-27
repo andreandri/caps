@@ -1,0 +1,97 @@
+*{
+    box-sizing: border-box;
+}
+
+/* Basic CSS styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e0f2e9;
+    margin: 0;
+    padding: 0;
+}
+.navbar {
+    background-color: #707070;
+    padding: 15px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar h1 {
+    font-size: 20px;
+    margin: 0;
+}
+.navbar .menu {
+    display: flex;
+    gap: 15px;
+}
+.navbar .menu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #bdbdbd;
+}
+
+
+
+.container {
+    padding: 20px;
+    max-width: 1000px;
+}
+
+.back-button {
+    background-color: #9e9e9e;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    top: 15px;
+    left: 0; /* Menempelkan ke ujung kiri halaman */
+    margin: 1rem;
+    width: 5%;
+}
+
+.container h2 {
+    text-align: center; /* Pusatkan teks Judul "Jadwal Keberangkatan" */
+    margin-top: 50px; /* Beri jarak di atas agar tidak bertabrakan dengan tombol Back */
+}
+.schedule {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dua kolom per baris */
+    column-gap: 50px; /* Meningkatkan jarak antar elemen sebaris */
+    row-gap: 40px; /* Jarak antar elemen vertikal */
+    margin: 1rem;
+}
+.schedule-item {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Lebar penuh */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Memberi efek bayangan */
+    margin: 10px 68%; /* Memisahkan elemen secara vertikal */
+}
+.schedule-item h3 {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+}
+.schedule-item p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: gray;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+}
+.schedule-item .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 0.5px;
+    margin-left: 20px; /* Jarak antara teks dan harga */
+}
+

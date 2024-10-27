@@ -1,0 +1,82 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #35A29F;
+  }
+  
+  main {
+    display: flex;
+    margin: 2.5rem;
+    gap: 2rem;
+  }
+  
+  .bus {
+    background-color: #97FEED;
+    width: 60%;
+    padding: 3rem 1rem;
+  
+    border: 1px;
+    border-radius: 1rem;
+  
+    text-align: center;
+  }
+  .bus p {
+    font-size: 1.5rem;
+  }
+  .bus h1 {
+    font-size: 2.5rem;
+  }
+  .bus img {
+    width: 60%;
+  }
+  
+  .busbus {
+    width: 40%;
+    display: grid;
+  }
+  
+  .buss {
+    background-color: #97FEED;
+    border: 1px;
+    border-radius: 1rem;
+  
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+  
+    display: grid;
+  }
+  .buss h1 {
+    font-size: 2rem;
+  }
+  .buss p {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .buss span {
+    color: red;
+  }
+  
+  .buss a {
+    text-decoration: none;
+    font-weight: bold;
+  
+    background-color: #071952; 
+    color: #ffffff;
+    border-radius: 1rem;
+  
+    margin-bottom: 1rem;
+    padding: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+  
+    place-self: end;
+  }
+  
+  .buss a:hover {
+    background-color: #3A6D8C;
+  }
