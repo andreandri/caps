@@ -21,7 +21,7 @@
         <label for="gender" tabindex="0"></label>
           <select id="gender" aria-label="Pilih Salah Satu" tabindex="0">
             <option value="">Pilih Gender</option>
-            <option value="Tuan">Tuan</option>
+            <option value="Laki-Laki">Laki-laki</option>
             <option value="Perempuan">Perempuan</option>
           </select>
       </div>
