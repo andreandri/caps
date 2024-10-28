@@ -102,7 +102,7 @@ class BarApp extends HTMLElement {
           <li><a href="tampilan.php" class="link" tabindex="0">Home</a></li>
           <li><a href="profile.php" class="link" tabindex="0">Profile</a></li>
           <li><a href="#" class="link" tabindex="0">History</a></li>
-          <li><a href="about-us.html" class="link" tabindex="0">About Us</a></li>
+          <li><a href="about-us.php" class="link" tabindex="0">About Us</a></li>
         </ul>
       </nav>
       
