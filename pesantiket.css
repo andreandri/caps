@@ -1,89 +1,125 @@
-* {
-    box-sizing: border-box;
+/* Body Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #eaf8e6;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main Content Styling */
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+/* Back Button Styling */
+.Kembali a {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #007bff;
+  color: white;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.Kembali a:hover {
+  background-color: #0056b3;
+}
+
+/* Form Styling */
+form {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 900px;
+  margin: 2rem auto;
+}
+
+select, input[type="date"], button {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Card Styling for Search Results */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.card-content h2 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.card-content p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.card-content .harga {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #007bff;
+  margin-top: auto;
+}
+
+/* Responsive Design for Small Devices */
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-columns: 1fr;
   }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    background-color: #35A29F;
-  }
-  
-  main {
-    display: grid;
-    margin: 1rem;
-  }
-  
-  .Kembali {
-    margin: 1rem;
-  }
-  
-  .Kembali a {
-    text-decoration: none;
-    background-color: #ffffff;
-    padding: 1rem;
-    border-radius: 1.5rem;
-  }
-  
-  form {
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 1rem;
-    width: 60%;
-    padding: 2rem;
-    place-self: center;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-  
-  .opsi {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-  
-  .form-asal, .to-tujuan {
-    flex: 1;
-    margin-right: 1rem;
-  }
-  
-  .to-tujuan {
-    margin-right: 0;
-  }
-  
-  select {
-    width: 100%;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    border: 1px solid #ccc;
-  }
-  
-  .opsiopsi {
-    display: flex;
-  }
-  
-  .date {
-    margin-top: 1rem;
-    width: 100%;
-  }
-  
-  .search {
-    margin: 3rem 0 0;
-  }
-  
-  .search a {
-    text-decoration: none;
-    background-color: #ffffff;
-    border-radius: 1.5rem;
-    padding: 1rem;
-  }
-  
-  input[type="date"] {
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    border: 1px solid #ccc;
-  }
-  
+}
+
+/* Adjust the look of the clickable card link */
+.card a {
+  text-decoration: none;
+  color: inherit;
+}
