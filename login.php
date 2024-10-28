@@ -30,7 +30,7 @@ if (isset($_POST['login'])) {
         $_SESSION['username'] = $row['username'];
         $_SESSION['email'] = $row['email']; // Tambahkan email ke session
 
-        // Redirect ke halaman selamat datang setelah login berhasil
+        // Redirect ke halaman profil setelah login berhasil
         header("Location: tampilan.php");
         exit;
     } else {
