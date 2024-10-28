@@ -1,19 +1,10 @@
 <?php
 session_start();
+include 'koneksi.php';
 
-// Set default values untuk menampilkan pesan jika pengguna belum login
-$username = "Not logged in";
-$email = "Not logged in";
-
-// Cek apakah pengguna sudah login
-if (isset($_SESSION['username']) && isset($_SESSION['email'])) {
-    $username = $_SESSION['username'];
-    $email = $_SESSION['email'];
-} else {
-    // Redirect ke halaman login jika belum login
-    header("Location: login.php");
-    exit();
-}
+// Ambil data pengguna dari session
+$username = $_SESSION['username'];
+$email = $_SESSION['email'];
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +13,6 @@ if (isset($_SESSION['username']) && isset($_SESSION['email'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <script type="module" src="scripts/index.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -48,7 +38,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['email'])) {
             <p><a href="#">&#x1F4D3; Kebijakan Privasi</a></p>
         </section>
 
-        <button class="logout">Logout</button>
+        <button class="logout" onclick="window.location.href='logout.php'">Logout</button>
     </main>
 </body>
 </html>
