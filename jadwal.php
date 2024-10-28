@@ -5,25 +5,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jadwal Keberangkatan</title>
-    <link rel="stylesheet" href="jadwal.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jadwal Keberangkatan</title>
+
+  <script type="module" src="scripts/index.js"></script>
+
+  <link rel="stylesheet" href="jadwal.css">
 </head>
 <body>
 
-    <div class="navbar">
-        <h1>[LOGO] [Nama Web]</h1>
-        <div class="menu">
-            <a href="#">Home</a>
-            <a href="#">Profile</a>
-            <a href="#">History</a>
-            <a href="#">About Us</a>
-        </div>
-    </div>
-
-    <div class="back-button">
-        <a href="login.php"> Back</a>
+  <header>
+    <bar-app></bar-app>
+  </header>
+    
+  <main>
+    <div class="Kembali">
+      <a href="tampilan.php">Kembali</a>
     </div>
 
     <!-- Container -->
@@ -69,6 +67,7 @@
             ?>
         </div>
     </div>
+  </main> 
 
 </body>
 </html>
