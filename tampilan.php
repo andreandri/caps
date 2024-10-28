@@ -37,7 +37,7 @@
             <article class="buss" id="populer">
               <h1>Rute</h1>
               <p>Palangka Raya - Sampit - Pangkalan Bun</p>
-              <a href="jadwal.html">Cek Jadwal</a>
+              <a href="jadwal.php">Cek Jadwal</a>
             </article>
         </aside>
     </main>
