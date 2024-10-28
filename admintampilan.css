@@ -1,0 +1,76 @@
+/* Global Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #d1e7d1; /* Background warna hijau */
+}
+
+.dashboard {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    background-color: #d4dcd4; /* Warna sidebar hijau muda */
+    width: 20%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar h1 {
+    font-size: 2rem;
+    color: #000000; /* Warna teks hitam */
+    margin-bottom: 30px;
+}
+
+.menu {
+    list-style-type: none;
+}
+
+.menu li {
+    margin-bottom: 15px;
+}
+
+.menu li a {
+    display: block;
+    text-decoration: none;
+    background-color: #f0e8ff; /* Warna ungu muda */
+    color: #333333;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.menu li a:hover {
+    background-color: #e0d6f0; /* Warna hover sedikit lebih gelap */
+}
+
+.logout {
+    background-color: #643939; /* Warna coklat untuk tombol logout */
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+
+.logout:hover {
+    background-color: #503030; /* Warna hover lebih gelap */
+}
+
+.main-content {
+    flex-grow: 1;
+    background-color: #b7d3b7; /* Warna hijau terang untuk konten utama */
+    padding: 20px;
+}
