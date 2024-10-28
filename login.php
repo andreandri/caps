@@ -31,7 +31,7 @@ if (isset($_POST['login'])) {
         $_SESSION['username'] = $row['username'];
 
         // Redirect ke halaman selamat datang setelah login berhasil
-        header("Location: jadwal.php");
+        header("Location: tampilan.php");
         exit; // Penting untuk menghentikan eksekusi setelah melakukan redirect
     } else {
         // Jika data tidak ditemukan, set pesan kesalahan dalam session
