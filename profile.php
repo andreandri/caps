@@ -1,63 +1,21 @@
 <?php
-// Mulai sesi di awal skrip
+
 session_start();
 
-// Sertakan file koneksi database
-include 'koneksi.php';
+// Set default values
+$username = "Not logged in";
+$email = "Not logged in";
 
-// Tangkap data dari form login jika form telah disubmit
-if (isset($_POST['login'])) {
-    // Tangkap nilai dari input username/email dan password yang dikirim melalui POST
-    $username_or_email = isset($_POST['username_or_email']) ? $_POST['username_or_email'] : '';
-    $password = isset($_POST['password']) ? $_POST['password'] : '';
-
-    // Periksa apakah input username/email dan password tidak kosong
-    if (!empty($username_or_email) && !empty($password)) {
-        // Query untuk mencocokkan baik username maupun email menggunakan prepared statement
-        $query = "SELECT * FROM users WHERE (username=? OR email=?)";
-        $stmt = $koneksi->prepare($query);
-
-        // Bind parameter ke statement
-        $stmt->bind_param("ss", $username_or_email, $username_or_email);
-
-        // Eksekusi statement
-        $stmt->execute();
-
-        // Ambil hasil dari eksekusi statement
-        $result = $stmt->get_result();
-
-        // Periksa apakah data ditemukan berdasarkan username atau email
-        if ($result->num_rows > 0) {
-            // Ambil data pengguna
-            $row = $result->fetch_assoc();
-
-            // Verifikasi password dengan `password_verify()`
-            if (password_verify($password, $row['password'])) {
-                // Jika password benar, set session untuk menandai bahwa pengguna sudah login
-                $_SESSION['username'] = $row['username'];
-
-                // Redirect ke halaman jadwal setelah login berhasil
-                header("Location: jadwal.php");
-                exit;
-            } else {
-                // Jika password salah, set pesan kesalahan dalam session
-                $_SESSION['error_message'] = "Password salah.";
-            }
-        } else {
-            // Jika data tidak ditemukan, set pesan kesalahan dalam session
-            $_SESSION['error_message'] = "Username atau email tidak ditemukan.";
-        }
-
-        // Tutup statement
-        $stmt->close();
-    } else {
-        // Set pesan kesalahan jika username/email atau password kosong
-        $_SESSION['error_message'] = "Username/email dan password harus diisi.";
-    }
+//cek apakah penggunba sudah login
+if (isset($_SESSION['username']) && isset($_SESSION['email'])) {
+    //mengembalikan nilai username dan password
+    $username = $_SESSION['username'];
+    $email = $_SESSION['email'];
+} else {
+    //Kembasli ke menu login
+    header("Location: login.php");
+    exit();
 }
-
-// Tutup koneksi database
-$koneksi->close();
 ?>
 
 <!DOCTYPE html>
@@ -65,36 +23,34 @@ $koneksi->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script src="script.js" defer></script>
+    <title>User Profile</title>
+    <script type="module" src="scripts/index.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="wrapper">
-        <form action="login.php" method="post">
-            <h1>Login</h1>  
-            <?php
-            // Memeriksa apakah pesan error ditemukan dalam session
-            if (isset($_SESSION['error_message'])) {
-                // Tampilkan pesan error dan hapus dari session
-                echo "<div class='error'>" . $_SESSION['error_message'] . "</div>";
-                unset($_SESSION['error_message']);
-            }
-            ?>
-            <div class="input-box">
-                <label for="username"><i class='bx bxs-user'></i></label>
-                <input type="text" id="username" name="username_or_email" placeholder="Username or Email" required>
-            </div>
-            <div class="input-box">
-                <label for="password"><i class='bx bxs-lock-alt'></i></label>
-                <input type="password" id="password" name="password" placeholder="Password" required>
-            </div>
-            <button type="submit" class="btn" name="login">Login</button>
-            <div class="register-link">
-                <p>Don't have an account? <a href="register.php">Register</a></p>
-            </div>
-        </form>
-    </div>
+    <header>
+        <bar-app></bar-app>
+    </header>
+    <main>
+        <section class="profile">
+            <h2>Informasi Pribadi</h2>
+            <div class="avatar"></div>
+            <p>Username: <?php echo htmlspecialchars($username); ?> <a href="#">&#x270E;</a></p>
+            <p>Email: <?php echo htmlspecialchars($email); ?> <a href="#">&#x270E;</a></p>
+        </section>
+        
+        <section class="security">
+            <h3>Keamanan</h3>
+            <p><a href="#">&#x1F512; Ganti Password</a></p>
+        </section>
+        
+        <section class="support">
+            <h3>Bantuan</h3>
+            <p><a href="#">&#x1F4AC; Pertanyaan</a></p>
+            <p><a href="#">&#x1F4D3; Kebijakan Privasi</a></p>
+        </section>
+
+        <button class="logout">Logout</button>
+    </main>
 </body>
 </html>
