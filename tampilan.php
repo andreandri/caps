@@ -17,8 +17,7 @@
     <header>
       <bar-app></bar-app>
     </header>
-    
-
+  
     <main>
         <div class="bus">
             <article>
