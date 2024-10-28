@@ -1,12 +1,6 @@
 <?php
 session_start();
-
-// Cek apakah pengguna sudah login
-if (!isset($_SESSION['username']) || !isset($_SESSION['email'])) {
-    // Redirect ke halaman login jika pengguna belum login
-    header("Location: login.php");
-    exit;
-}
+include 'koneksi.php';
 
 // Ambil data pengguna dari session
 $username = $_SESSION['username'];
