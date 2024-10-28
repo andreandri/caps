@@ -13,8 +13,8 @@ if (isset($_SESSION['username']) && isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
 } else {
     //Kembasli ke menu login
-    header("Location: login.php");
-    exit();
+    //header("Location: login.php");
+   // exit();
 }
 ?>
 
