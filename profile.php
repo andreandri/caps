@@ -1,18 +1,16 @@
 <?php
-
 session_start();
 
-// Set default values
+// Set default values untuk menampilkan pesan jika pengguna belum login
 $username = "Not logged in";
 $email = "Not logged in";
 
-//cek apakah penggunba sudah login
+// Cek apakah pengguna sudah login
 if (isset($_SESSION['username']) && isset($_SESSION['email'])) {
-    //mengembalikan nilai username dan password
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
 } else {
-    //Kembasli ke menu login
+    // Redirect ke halaman login jika belum login
     header("Location: login.php");
     exit();
 }
