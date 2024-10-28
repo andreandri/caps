@@ -2,6 +2,8 @@
 // Sertakan file koneksi database
 include 'koneksi.php';
 
+session_start(); // Mulai session di bagian atas
+
 // Tangkap data dari form login jika form telah disubmit
 if (isset($_POST['login'])) {
     // Tangkap nilai dari input username atau email dan password yang dikirimkan melalui POST
@@ -9,7 +11,6 @@ if (isset($_POST['login'])) {
     $password = $_POST['password'];
 
     // Lindungi dari serangan SQL Injection dengan menggunakan prepared statement
-    // Ubah query untuk mencocokkan baik username maupun email
     $query = "SELECT * FROM users WHERE (username=? OR email=?) AND password=?";
     $stmt = $koneksi->prepare($query);
 
@@ -24,27 +25,23 @@ if (isset($_POST['login'])) {
 
     // Periksa apakah data ditemukan berdasarkan username atau email dan password
     if ($result->num_rows > 0) {
-        // Jika data ditemukan, set session untuk menandai bahwa pengguna sudah login
-        session_start();
-        // Ambil username dari hasil query
+        // Ambil username dan email dari hasil query
         $row = $result->fetch_assoc();
         $_SESSION['username'] = $row['username'];
+        $_SESSION['email'] = $row['email']; // Tambahkan email ke session
 
         // Redirect ke halaman selamat datang setelah login berhasil
         header("Location: tampilan.php");
-        exit; // Penting untuk menghentikan eksekusi setelah melakukan redirect
+        exit;
     } else {
         // Jika data tidak ditemukan, set pesan kesalahan dalam session
-        session_start();
         $_SESSION['error_message'] = "Username atau email atau password salah.";
     }
 
-    // Tutup statement
+    // Tutup statement dan koneksi database
     $stmt->close();
+    $koneksi->close();
 }
-
-// Tutup koneksi database
-$koneksi->close();
 ?>
 
 <!DOCTYPE html>
@@ -62,9 +59,7 @@ $koneksi->close();
         <form action="login.php" method="post">
             <h1>Login</h1>  
             <?php
-            // Memeriksa apakah pesan error ditemukan dalam session
             if (isset($_SESSION['error_message'])) {
-                // Tampilkan pesan error dan hapus dari session
                 echo "<div class='error'>" . $_SESSION['error_message'] . "</div>";
                 unset($_SESSION['error_message']);
             }
