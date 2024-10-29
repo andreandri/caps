@@ -9,14 +9,18 @@
 <body>
     <div class="dashboard">
         <div class="sidebar">
+            <div>
             <h1>Dashboard Admin</h1>
             <ul class="menu">
                 <li><a href="#">Rute</a></li>
                 <li><a href="#">Jadwal</a></li>
                 <li><a href="#">Daftar Pesanan</a></li>
                 <li><a href="#">Rekap Pendapatan</a></li>
-            </ul>
-            <button class="logout">Logout</button>
+            </ul>  
+            </div>
+            <div>
+                <button class="logout">Logout</button>
+            </div>
         </div>
         <div class="main-content">
             <!-- Konten utama akan ditampilkan di sini -->

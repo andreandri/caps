@@ -4,13 +4,15 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #F3F3E0;
+  background-color: #35A29F;
   margin: 0;
   padding: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .Kembali {
-  margin: 1rem 1rem 0 0;
+  margin: 2rem 1rem;
 }
 
 .Kembali a {
@@ -21,20 +23,19 @@ body {
 }
 
 .container {
-  padding: 20px;
+  padding: 1rem;
   max-width: 1000px;
   margin: 0 auto;
 }
 
 .container h2 {
   text-align: center;
-  margin-top: 50px;
 }
 
 .schedule {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 40px 50px;
+  gap: 1.3rem;
   margin: 1rem;
 }
 
@@ -70,4 +71,12 @@ body {
   color: #333;
   letter-spacing: 0.5px;
   margin-left: 20px;
+}
+
+@media screen and (max-width: 1180px) {
+  .schedule {
+    display : grid;
+    grid-template-columns: 1fr;
+    gap : 1rem;
+  }  
 }
