@@ -21,9 +21,15 @@ body {
 }
 
 .navbar h1 {
-    font-size: 2rem;
+    text-align: center;
+    font-size: 3rem;
     color: #000000; /* Teks hitam */
     margin-bottom: 30px;
+}
+
+.navbar img {
+    margin: 2rem 0;
+    width: 100%;
 }
 
 .menu {

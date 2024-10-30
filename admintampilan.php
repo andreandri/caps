@@ -15,7 +15,8 @@
                 <li><a href="#">Jadwal</a></li>
                 <li><a href="#">Daftar Pesanan</a></li>
                 <li><a href="#">Rekap Pendapatan</a></li>
-            </ul>  
+            </ul> 
+            <img src="img/bus.png" alt=""> 
         </div>
             <div>
                 <a href="fungsi/logout.php" class="logout">Logout</a>
