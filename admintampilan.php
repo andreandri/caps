@@ -8,8 +8,7 @@
 </head>
 <body>
     <div class="dashboard">
-        <div class="sidebar">
-            <div>
+        <div class="navbar">
             <h1>Dashboard Admin</h1>
             <ul class="menu">
                 <li><a href="#">Rute</a></li>
@@ -17,9 +16,9 @@
                 <li><a href="#">Daftar Pesanan</a></li>
                 <li><a href="#">Rekap Pendapatan</a></li>
             </ul>  
-            </div>
+        </div>
             <div>
-                <button class="logout">Logout</button>
+                <a href="fungsi/logout.php" class="logout">Logout</a>
             </div>
         </div>
         <div class="main-content">

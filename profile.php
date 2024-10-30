@@ -38,7 +38,7 @@ $email = $_SESSION['email'];
             <p><a href="#">&#x1F4D3; Kebijakan Privasi</a></p>
         </section>
 
-        <button class="logout" onclick="window.location.href='logout.php'">Logout</button>
+        <button class="logout" onclick="window.location.href='fungsi/logout.php'">Logout</button>
     </main>
 </body>
 </html>
