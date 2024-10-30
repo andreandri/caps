@@ -3,8 +3,8 @@ session_start();
 include 'koneksi.php';
 
 // Ambil data pengguna dari session
-$username = $_SESSION['username'];
-$email = $_SESSION['email'];
+$username = $_SESSION['Username'];
+$email = $_SESSION['Email'];
 ?>
 
 <!DOCTYPE html>

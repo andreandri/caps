@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Periksa password (gunakan password_verify jika password di-hash)
         if ($password === $row['Password']) {  // atau `password_verify($password, $row['Password'])` jika di-hash
             $_SESSION['Username'] = $row['Username'];
+            $_SESSION['Email'] = $row['Email'];
             $_SESSION['role'] = $row["role"];
 
             // Redirect berdasarkan role
