@@ -21,12 +21,12 @@ session_start();
             }
             ?>
             <div class="input-box">
-                <label for="username">Username or Email</label>
-                <input type="text" id="username" name="username_or_email" placeholder="Username or Email" required>
+                <label for="username">username or email</label>
+                <input type="text" id="username" name="username_or_email" placeholder="username or email" required>
             </div>
             <div class="input-box">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Password" required>
+                <label for="sandi">sandi</label>
+                <input type="sandi" id="sandi" name="sandi" placeholder="sandi" required>
             </div>
             <button type="submit" class="btn" name="login">Login</button>
             <div class="register-link">

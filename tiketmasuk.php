@@ -21,8 +21,13 @@
       <div class="label">
         <label for="gender" tabindex="0">Pilih Gender</label>
           <select id="gender" aria-label="Pilih Salah Satu" tabindex="0">
+<<<<<<< Updated upstream
             <option value="">Jenis Kelamin</option>
             <option value="Laki-laki">Laki-laki</option>
+=======
+            <option value="">Pilih Gender</option>
+            <option value="Tuan">Tuan</option>
+>>>>>>> Stashed changes
             <option value="Perempuan">Perempuan</option>
           </select>
       </div>

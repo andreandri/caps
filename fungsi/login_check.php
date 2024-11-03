@@ -4,10 +4,10 @@ include("../koneksi.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username_or_email = $_POST['username_or_email'];
-    $password = $_POST['password'];
+    $sandi = $_POST['sandi'];
 
     // Query untuk mencari pengguna berdasarkan username atau email
-    $sql = "SELECT * FROM users WHERE (Username = ? OR Email = ?)";
+    $sql = "SELECT * FROM users WHERE (username = ? OR Email = ?)";
     $stmt = $koneksi->prepare($sql);
     $stmt->bind_param("ss", $username_or_email, $username_or_email);
     $stmt->execute();
@@ -15,10 +15,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $row = $result->fetch_assoc();
 
     if ($row) {
-        // Periksa password (gunakan password_verify jika password di-hash)
-        if ($password === $row['Password']) {  // atau `password_verify($password, $row['Password'])` jika di-hash
-            $_SESSION['Username'] = $row['Username'];
-            $_SESSION['Email'] = $row['Email'];
+        // Periksa sandi (gunakan sandi_verify jika sandi di-hash)
+        if ($sandi === $row['sandi']) {  // atau `sandi_verify($sandi, $row['sandi'])` jika di-hash
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['email'] = $row['email'];
             $_SESSION['role'] = $row["role"];
 
             // Redirect berdasarkan role
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit();
             }
         } else {
-            $_SESSION['loginMessage'] = "Password tidak cocok!";
+            $_SESSION['loginMessage'] = "sandi tidak cocok!";
             header("Location: ../login.php");
             exit();
         }
