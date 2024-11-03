@@ -12,71 +12,89 @@
   
   main {
     display: flex;
-    margin: 2.5rem;
+    flex-direction: column;
     gap: 2rem;
-  }
-  
-  .bus {
+    margin: 2.5rem;
+}
+
+.tampilsatu {
+    display: flex;
+    gap: 2rem;
+}
+
+.bus {
+    display: flex;
+    flex-direction: column;
     background-color: #97FEED;
-    width: 60%;
-    padding: 3rem 1rem;
-  
-    border: 1px;
+    width: 65%;
+    padding: 2rem;
     border-radius: 1rem;
-  
     text-align: center;
-  }
-  .bus p {
-    font-size: 1.5rem;
-  }
-  .bus h1 {
-    font-size: 2.5rem;
-  }
-  .bus img {
-    width: 60%;
-  }
-  
-  .busbus {
-    width: 40%;
-    display: grid;
-  }
-  
-  .buss {
+}
+
+.bus img {
+  width: 50%;
+}
+
+aside {
+    width: 35%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 8px;
+}
+
+.buss {
     background-color: #97FEED;
-    border: 1px;
-    border-radius: 1rem;
-  
-    margin-bottom: 2rem;
-    padding: 0 1rem;
-  
-    display: grid;
-  }
-  .buss h1 {
-    font-size: 2rem;
-  }
-  .buss p {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  .buss span {
-    color: red;
-  }
-  
-  .buss a {
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.buss h1 {
+    font-size: 20px;
+    color: #2C7873;
+    margin-bottom: 6px;
+}
+
+.buss p {
+    font-size: 16px;
+    color: #555;
+}
+
+.buss a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #2C7873;
+    color: #fff;
+    border-radius: 4px;
     text-decoration: none;
     font-weight: bold;
-  
-    background-color: #071952; 
-    color: #ffffff;
-    border-radius: 1rem;
-  
-    margin-bottom: 1rem;
+}
+
+.buss a:hover {
+    background-color: #35A29F;
+}
+
+.tampildua {
+    display: flex;
+    gap: 1rem;
+    background-color: #fff;
     padding: 1rem;
-    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
-  
-    place-self: end;
-  }
-  
-  .buss a:hover {
-    background-color: #3A6D8C;
-  }
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tampildua article {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tampildua img {
+    width: 100%;
+    max-width: 100px; /* adjust based on image size */
+    border-radius: 8px;
+}
