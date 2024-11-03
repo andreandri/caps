@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sandi = $_POST['sandi'];
 
     // Query untuk mencari pengguna berdasarkan username atau email
-    $sql = "SELECT * FROM users WHERE (Username = ? OR Email = ?)";
+    $sql = "SELECT * FROM users WHERE (username = ? OR Email = ?)";
     $stmt = $koneksi->prepare($sql);
     $stmt->bind_param("ss", $username_or_email, $username_or_email);
     $stmt->execute();
@@ -17,8 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($row) {
         // Periksa sandi (gunakan sandi_verify jika sandi di-hash)
         if ($sandi === $row['sandi']) {  // atau `sandi_verify($sandi, $row['sandi'])` jika di-hash
-            $_SESSION['Username'] = $row['Username'];
-            $_SESSION['Email'] = $row['Email'];
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['email'] = $row['email'];
             $_SESSION['role'] = $row["role"];
 
             // Redirect berdasarkan role

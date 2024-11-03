@@ -11,27 +11,27 @@ if (isset($_POST['register'])) {
     $role = 'user';
 
     // Cek apakah email sudah terdaftar
-    $check_email_query = "SELECT * FROM users WHERE Email = ?";
+    $check_email_query = "SELECT * FROM users WHERE email = ?";
     $stmt_email = $koneksi->prepare($check_email_query);
     $stmt_email->bind_param("s", $email);
     $stmt_email->execute();
     $result_email = $stmt_email->get_result();
 
     if ($result_email->num_rows > 0) {
-        $error_message = "Email sudah terdaftar.";
+        $error_message = "email sudah terdaftar.";
     } else {
         // Cek apakah username sudah digunakan
-        $check_username_query = "SELECT * FROM users WHERE Username = ?";
+        $check_username_query = "SELECT * FROM users WHERE username = ?";
         $stmt_username = $koneksi->prepare($check_username_query);
         $stmt_username->bind_param("s", $username);
         $stmt_username->execute();
         $result_username = $stmt_username->get_result();
 
         if ($result_username->num_rows > 0) {
-            $error_message = "Username telah digunakan.";
+            $error_message = "username telah digunakan.";
         } else {
             // Menyimpan data pengguna baru ke database
-            $insert_query = "INSERT INTO users (Username, Email, sandi, role) VALUES (?, ?, ?, ?)";
+            $insert_query = "INSERT INTO users (username, email, sandi, role) VALUES (?, ?, ?, ?)";
             $stmt_insert = $koneksi->prepare($insert_query);
             $stmt_insert->bind_param("ssss", $username, $email, $sandi, $role);
             $stmt_insert->execute();
@@ -59,12 +59,12 @@ if (isset($_POST['register'])) {
             }
             ?>
             <div class="input-box">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Username" required>
+                <label for="username">username</label>
+                <input type="text" id="username" name="username" placeholder="username" required>
             </div>
             <div class="input-box">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Email" required>
+                <label for="email">email</label>
+                <input type="email" id="email" name="email" placeholder="email" required>
             </div>
             <div class="input-box">
                 <label for="sandi">sandi</label>

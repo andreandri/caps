@@ -3,8 +3,8 @@ session_start();
 include 'koneksi.php';
 
 // Ambil data pengguna dari session
-$username = $_SESSION['Username'];
-$email = $_SESSION['Email'];
+$username = $_SESSION['username'];
+$email = $_SESSION['email'];
 ?>
 
 <!DOCTYPE html>
@@ -23,8 +23,8 @@ $email = $_SESSION['Email'];
         <section class="profile">
             <h2>Informasi Pribadi</h2>
             <div class="avatar"></div>
-            <p>Username: <?php echo htmlspecialchars($username); ?> <a href="#">&#x270E;</a></p>
-            <p>Email: <?php echo htmlspecialchars($email); ?> <a href="#">&#x270E;</a></p>
+            <p>username: <?php echo htmlspecialchars($username); ?> <a href="#">&#x270E;</a></p>
+            <p>email: <?php echo htmlspecialchars($email); ?> <a href="#">&#x270E;</a></p>
         </section>
         
         <section class="security">
