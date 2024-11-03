@@ -29,7 +29,7 @@ $email = $_SESSION['Email'];
         
         <section class="security">
             <h3>Keamanan</h3>
-            <p><a href="#">&#x1F512; Ganti Password</a></p>
+            <p><a href="reset_password.php">&#x1F512; Ganti Password</a></p>
         </section>
         
         <section class="support">

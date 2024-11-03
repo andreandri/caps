@@ -7,7 +7,7 @@ $success_message = ""; // Variabel untuk pesan sukses
 if (isset($_POST['register'])) {
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $sandi = $_POST['sandi'];
     $role = 'user';
 
     // Cek apakah email sudah terdaftar
@@ -31,9 +31,9 @@ if (isset($_POST['register'])) {
             $error_message = "Username telah digunakan.";
         } else {
             // Menyimpan data pengguna baru ke database
-            $insert_query = "INSERT INTO users (Username, Email, Password, role) VALUES (?, ?, ?, ?)";
+            $insert_query = "INSERT INTO users (Username, Email, sandi, role) VALUES (?, ?, ?, ?)";
             $stmt_insert = $koneksi->prepare($insert_query);
-            $stmt_insert->bind_param("ssss", $username, $email, $password, $role);
+            $stmt_insert->bind_param("ssss", $username, $email, $sandi, $role);
             $stmt_insert->execute();
 
             $success_message = "Registrasi berhasil! Anda akan diarahkan ke halaman login.";
@@ -67,8 +67,8 @@ if (isset($_POST['register'])) {
                 <input type="email" id="email" name="email" placeholder="Email" required>
             </div>
             <div class="input-box">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Password" required>
+                <label for="sandi">sandi</label>
+                <input type="sandi" id="sandi" name="sandi" placeholder="sandi" required>
             </div>
             <button type="submit" class="btn" name="register">Register</button>
         </form>
