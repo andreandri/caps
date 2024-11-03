@@ -3,7 +3,7 @@
             $host = 'localhost';
             $user = 'root';
             $password = '';
-            $database = 'easybustix1';
+            $database = 'easybustix';
 
             $koneksi = new mysqli($host, $user, $password, $database);
 
