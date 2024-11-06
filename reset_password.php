@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $new_password = $_POST['new_password'];
 
     // Query untuk mencari pengguna berdasarkan username
-    $sql = "SELECT * FROM users WHERE username = ?";
+    $sql = "SELECT * FROM tb_users WHERE username = ?";
     $stmt = $koneksi->prepare($sql);
     $stmt->bind_param("s", $username);
     $stmt->execute();
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verifikasi password lama
         if ($old_password === $row['sandi']) { // Ganti dengan sandi_verify jika password di-hash
             // Update password baru
-            $update_query = "UPDATE users SET sandi = ? WHERE username = ?";
+            $update_query = "UPDATE tb_users SET sandi = ? WHERE username = ?";
             $stmt_update = $koneksi->prepare($update_query);
             $stmt_update->bind_param("ss", $new_password, $username);
             $stmt_update->execute();
