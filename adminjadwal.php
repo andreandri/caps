@@ -2,6 +2,21 @@
 // Include the database connection
 require 'koneksi.php';
 
+// Handle delete request
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
+    $delete_id = $_POST['delete_id'];
+    $deleteQuery = "DELETE FROM tb_jadwal WHERE id_jadwal = ?";
+    $stmt = $koneksi->prepare($deleteQuery);
+    $stmt->bind_param("i", $delete_id);
+    if ($stmt->execute()) {
+        // Show success pop-up notification
+        echo "<script>alert('Jadwal dengan ID $delete_id berhasil dihapus.'); window.location.href='adminjadwal.php';</script>";
+        exit;
+    } else {
+        echo "<p>Error: " . $koneksi->error . "</p>";
+    }
+}
+
 // Fetch schedule data from tb_jadwal
 $query = "SELECT j.id_jadwal, r.kota_asal, r.kota_tujuan, j.tgl_keberangkatan, j.jam_keberangkatan, j.harga
           FROM tb_jadwal j
@@ -30,7 +45,7 @@ if (!$result) {
             <h1>Dashboard Admin</h1>
             <button onclick="location.href='adminrute.php'">Rute</button>
             <button onclick="location.href='adminjadwal.php'">Jadwal</button>
-            <button>Daftar Pesanan</button>
+            <button onclick="location.href='adminpesanan.php'">Daftar Pesanan</button>
             <button>Rekap Pendapatan</button>
             <button class="logout" onclick="location.href='fungsi/logout.php'">Logout</button>
         </div>
@@ -57,14 +72,17 @@ if (!$result) {
                             <td><?= $row['jam_keberangkatan']; ?></td>
                             <td><?= $row['harga']; ?></td>
                             <td class="action-buttons">
-                                <button class="edit-button">Edit</button>
-                                <button class="delete-button">Hapus</button>
+                                <button class="edit-button" onclick="location.href='editjadwal.php?id_jadwal=<?= $row['id_jadwal']; ?>'">Edit</button>
+                                <form method="POST" style="display:inline;">
+                                    <input type="hidden" name="delete_id" value="<?= $row['id_jadwal']; ?>">
+                                    <button type="submit" class="delete-button" onclick="return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')">Hapus</button>
+                                </form>
                             </td>
                         </tr>
                     <?php } ?>
                 </tbody>
             </table>
-            <button class="add-schedule">Tambah Jadwal</button>
+            <button onclick="location.href='tambahjadwal.php'">Tambah Jadwal</button>
         </div>
     </div>
 </body>
