@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sandi = $_POST['sandi'];
 
     // Query untuk mencari pengguna berdasarkan username atau email
-    $sql = "SELECT * FROM users WHERE (username = ? OR Email = ?)";
+    $sql = "SELECT * FROM tb_users WHERE (username = ? OR Email = ?)";
     $stmt = $koneksi->prepare($sql);
     $stmt->bind_param("ss", $username_or_email, $username_or_email);
     $stmt->execute();
