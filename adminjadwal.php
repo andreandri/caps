@@ -43,13 +43,11 @@ if (!$result) {
     <header>
         <div class="sidebar">
             <h1>Dashboard Admin</h1>
-            <ul>
-                <li><a href="adminrute.php">Rute</a></li>
-                <li><a href="adminjadwal.php">Jadwal</a></li>
-                <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
-                <li><a href="#">Rekap Pendapatan</a></li>
-                <li><a href="fungsi/logout.php" class="logout">Logout</a></li>
-            </ul>
+            <button onclick="location.href='adminrute.php'">Rute</button>
+            <button onclick="location.href='adminjadwal.php'">Jadwal</button>
+            <button onclick="location.href='adminpesanan.php'">Daftar Pesanan</button>
+            <button>Rekap Pendapatan</button>
+            <button class="logout" onclick="location.href='fungsi/logout.php'">Logout</button>
         </div>
     </header>
     
