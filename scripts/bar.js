@@ -13,82 +13,86 @@ class BarApp extends HTMLElement {
 
   updateStyle() {
     this._style.textContent = `
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+     .navbar{ 
+        background-color: #7AB2D3;
 
-      .navbar {
         display: flex;
-        align-items: center;
         justify-content: space-between;
-        padding: 1rem;
-        background-color: #333;
-        color: white;
-        font-family: Arial, sans-serif;
+        align-items: center;
+        padding: 0 1.5rem;
       }
 
-      .navbar img {
-        height: 40px;
+      .link:hover{
+        font-weight: bold;
       }
 
-      .logo {
-        font-size: 1.5rem;
-        margin-left: 1rem;
+      .navlogo{
+        display: flex;
+      }
+
+      .navlogo img{
+        width: 5rem;
+      }
+
+      .navbar .logo{
+        font-size: 1.5em;
+      }
+
+      .navbar .navbar-nav{
+        list-style-type: none;
+        padding-inline: 0;
+        display: flex;
+        font-size: 1.5em;
+
+        gap: 3rem;
+      }
+
+      .navbar :focus{
+        outline: 4px dashed #243642;
+      }
+
+      a {
+        text-decoration: none;
+        min-width: 44px;
+        min-height: 44px;
+        padding: 1rem 0;
+      }
+
+      .navbar , .logo, .link{
+        color: #021526;
       }
 
       .header__menu {
-        font-size: 1.5rem;
+        font-size: 2rem;
+        display: none;
+        cursor: pointer;
         background: none;
         border: none;
-        color: white;
-        cursor: pointer;
-        display: none;
+        min-width: 44px;
+        min-height: 44px;
+        padding: 0.5rem 0.7rem;
       }
 
-      .navbar-nav {
-        list-style: none;
-        display: flex;
-      }
-
-      .navbar-nav li {
-        margin-left: 1rem;
-      }
-
-      .navbar-nav .link {
-        color: white;
-        text-decoration: none;
-        font-size: 1rem;
-      }
-
-      .navbar-nav .link:hover {
-        text-decoration: underline;
-      }
-
-      @media (max-width: 768px) {
-        .header__menu {
-          display: block;
-        }
-
-        .navbar-nav {
-          position: absolute;
-          top: 100%;
-          right: 0;
-          background-color: #333;
-          flex-direction: column;
-          width: 100%;
+      @media screen and (max-width: 768px) {
+        .navbar .navbar-nav {
           display: none;
+          flex-direction: column;
+          gap: 1rem;
+          background-color: #fff;
+          position: absolute;
+          top: 50px;
+          right: 0;
+          width: 100%;
+          padding: 1rem;
+          text-align: center;
         }
 
-        .navbar-nav.open {
+        .navbar .navbar-nav.open {
           display: flex;
         }
-
-        .navbar-nav li {
-          margin: 0;
-          text-align: center;
-          padding: 0.5rem 0;
+          
+        .header__menu {
+          display: block;
         }
       }
     `;
@@ -100,8 +104,10 @@ class BarApp extends HTMLElement {
     this.shadowRoot.innerHTML = `
       ${this._style.outerHTML}
       <nav class="navbar">
-        <img src="../img/EasyBusTix.png" alt="Logo EasyBusTix">
+        <div class="navlogo">
+        <img src="img/EasyBusTix.png" alt="Logo EasyBusTix" >
         <h3 class="logo" tabindex="0">EasyBusTix</h3>
+        </div>
         <button id="menu" class="header__menu" aria-label="Menu Navigasi" tabindex="0">☰</button>
         <ul class="navbar-nav">
           <li><a href="tampilan.php" class="link" tabindex="0">Home</a></li>
