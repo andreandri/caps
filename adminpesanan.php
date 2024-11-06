@@ -75,7 +75,7 @@ if (!$result) {
             <button onclick="location.href='adminrute.php'">Rute</button>
             <button onclick="location.href='adminjadwal.php'">Jadwal</button>
             <button onclick="location.href='adminpesanan.php'">Daftar Pesanan</button>
-            <button>Rekap Pendapatan</button>
+            <button onclick="location.href='adminrekap.php'">Rekapan Pendapatan</button>
             <button class="logout" onclick="location.href='fungsi/logout.php'">Logout</button>
         </div>
         <div class="main-content">
