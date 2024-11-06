@@ -19,28 +19,43 @@ $result = mysqli_query($koneksi, $query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Rekap Pendapatan</title>
+
+    <link rel="stylesheet" href="adminjadwal.css">
 </head>
 <body>
-    <h1>Rekap Pendapatan Bulanan</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Bulan</th>
-                <th>Pendapatan</th>
-                <th>Detail</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php while ($row = mysqli_fetch_assoc($result)): ?>
+    <header class="sidebar">
+        <h1>Dashboard Admin</h1>
+        <ul>
+            <li><a href="adminrute.php">Rute</a></li>
+            <li><a href="adminjadwal.php">Jadwal</a></li>
+            <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
+            <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+            <li><a href="fungsi/logout.php" class="logout">Logout</a></li>
+        </ul>
+    </header>
+
+    <main>
+        <h1>Rekap Pendapatan Bulanan</h1>
+        <table border="1">
+            <thead>
                 <tr>
-                    <td><?php echo $row['bulan']; ?></td>
-                    <td><?php echo number_format($row['pendapatan'], 0, ',', '.'); ?></td>
-                    <td>
-                        <a href="detailrekap.php?bulan=<?php echo $row['bulan']; ?>">Detail</a>
-                    </td>
+                    <th>Bulan</th>
+                    <th>Pendapatan</th>
+                    <th>Detail</th>
                 </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                    <tr>
+                        <td><?php echo $row['bulan']; ?></td>
+                        <td><?php echo number_format($row['pendapatan'], 0, ',', '.'); ?></td>
+                        <td>
+                            <a href="detailrekap.php?bulan=<?php echo $row['bulan']; ?>">Detail</a>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>    
+    </main>
 </body>
 </html>
