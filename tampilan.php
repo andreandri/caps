@@ -1,6 +1,6 @@
-    <?php
+<?php
     include 'koneksi.php';
-    ?>
+?>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -32,16 +32,23 @@
             </div>
             
             <aside>
-                <article class="buss">
-                    <h1>Bersama EasyBusTix Mempermudah Urusan Perjalananmu!</h1>
-                    <a href="pesantiket.php">Cek Tiket</a>
-                </article>
+                <div class="bussart">
+                    <article class="buss">
+                        <h1>Bersama EasyBusTix Mempermudah Urusan Perjalananmu!</h1>
+                        <a href="pesantiket.php">Cek Tiket</a>
+                    </article>
+                </div>
+                    <article class="buss" id="populer">
+                        <h1>Rute Perjalanan Yang Tersedia :</h1>
+                        <p>Palangka Raya - Sampit</p>
+                        <p>Palangka Raya - Pangkalan Bun</p>
+                        <p>Sampit - Pangkalan Bun</p>
+                        <p>Sampit - Palangka Raya</p>
+                        <p>Pangkalan Bun - Sampit - Pangkalan Bun</p>
+                        <p>Pangkalan Bun - Palangka Raya</p>
+                        <a href="jadwal.php">Cek Jadwal</a>
+                    </article>
 
-                <article class="buss" id="populer">
-                    <h1>Rute</h1>
-                    <p>Palangka Raya - Sampit - Pangkalan Bun</p>
-                    <a href="jadwal.php">Cek Jadwal</a>
-                </article>
             </aside>
         </section>
 
