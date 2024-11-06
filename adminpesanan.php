@@ -42,31 +42,6 @@ if (!$result) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Pesanan - Dashboard Admin</title>
     <link rel="stylesheet" href="adminpesanan.css">
-    <style>
-        /* Example CSS styling */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-        .action-buttons button {
-            margin: 5px;
-        }
-        .delete-button {
-            background-color: red;
-            color: white;
-        }
-        .edit-button {
-            background-color: blue;
-            color: white;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
