@@ -36,30 +36,31 @@
                 <tbody>
                     <?php
                     // Menghubungkan ke database
-                    include("koneksi.php");
-                    $bus_query = "SELECT * FROM tb_bus";
-                    $bus_result = mysqli_query($koneksi, $bus_query);
+                include("koneksi.php");
+            $bus_query = "SELECT * FROM tb_bus";
+            $bus_result = mysqli_query($koneksi, $bus_query);
 
-                    if ($bus_result) {
-                        while ($row = mysqli_fetch_assoc($bus_result)) {
-                            echo "<tr>
-                                <td>{$row['id_bus']}</td>
-                                <td>{$row['no_plat']}</td>
-                                <td>{$row['nama_sopir']}</td>
-                                <td>{$row['kapasitas']}</td>
-                                <td class='action-buttons'>
-                                    <a href='edit_bus.php?id_bus={$row['id_bus']}'><button class='edit-button'>Edit</button></a>
-                                    <button class='delete-button' onclick='confirmDelete({$row['id_bus']})'>Hapus</button>
-                                </td>
-                            </tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='5'>Data bus tidak dapat diambil. Error: " . mysqli_error($koneksi) . "</td></tr>";
-                    }
-                    ?>
+            if ($bus_result) {
+                while ($row = mysqli_fetch_assoc($bus_result)) {
+                    echo "<tr>
+                        <td>{$row['id_bus']}</td>
+                        <td>{$row['no_plat']}</td>
+                        <td>{$row['nama_sopir']}</td>
+                        <td>{$row['kapasitas']}</td>
+                        <td>
+                            <a href='edit_bus.php?id_bus={$row['id_bus']}'><button class='edit'>Edit</button></a>
+                            <button class='hapus'>Hapus</button>
+                        </td>
+                    </tr>";
+                }
+            } else {
+                echo "<tr><td colspan='5'>Data bus tidak dapat diambil. Error: " . mysqli_error($koneksi) . "</td></tr>";
+            }
+            ?>
+      
                 </tbody>
             </table>
-            <button class="add-schedule" onclick="location.href='tambah_bus.php'">Tambah Bus</button>
+            <button class="tambah-bus">Tambah Bus</button>
         </div>
 
         <!-- Tabel Rute -->
@@ -72,14 +73,16 @@
                         <th>Asal</th>
                         <th>Tujuan</th>
                         <th>Harga</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
+                    include("koneksi.php");
+                    
+                    // Query untuk mengambil data rute dan menggabungkan harga dari tb_jadwal
                     $route_query = "SELECT tb_rute.id_rute, tb_rute.kota_asal, tb_rute.kota_tujuan, tb_jadwal.harga
                                     FROM tb_rute
-                                    JOIN tb_jadwal ON tb_rute.id_rute = tb_jadwal.id_rute";
+                                    JOIN tb_jadwal ON tb_rute.id_rute = tb_jadwal.id_rute"; // Pastikan id_rute ada di tb_jadwal
                     
                     $route_result = mysqli_query($koneksi, $route_query);
                     
@@ -90,9 +93,9 @@
                                 <td>{$row['kota_asal']}</td>
                                 <td>{$row['kota_tujuan']}</td>
                                 <td>{$row['harga']}</td>
-                                <td class='action-buttons'>
-                                    <button class='edit-button'>Edit</button>
-                                    <button class='delete-button' onclick='confirmDelete({$row['id_rute']})'>Hapus</button>
+                                <td>
+                                    <button class='edit'>Edit</button>
+                                    <button class='hapus'>Hapus</button>
                                 </td>
                             </tr>";
                         }
@@ -102,17 +105,8 @@
                     ?>
                 </tbody>
             </table>
-            <button class="add-schedule" onclick="location.href='tambah_rute.php'">Tambah Rute</button>
+            <button class="tambah-rute">Tambah Rute</button>
         </div>
-    </main>
-
-    <script>
-        // Fungsi konfirmasi penghapusan
-        function confirmDelete(id) {
-            if (confirm("Apakah Anda yakin ingin menghapus item ini?")) {
-                window.location.href = 'delete.php?id=' + id;
-            }
-        }
-    </script>
+    </div>
 </body>
 </html>
