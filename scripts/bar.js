@@ -14,7 +14,7 @@ class BarApp extends HTMLElement {
   updateStyle() {
     this._style.textContent = `
      .navbar{ 
-        background-color: #7AB2D3;
+        background-color: rgba(83, 144, 166, 0.8);
 
         display: flex;
         justify-content: space-between;
