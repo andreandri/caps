@@ -8,8 +8,10 @@ body {
     background-color: #f0f0f0;
 }
 
-.container {
+/* Container layout */
+header, main {
     display: flex;
+    height: 100vh;
     width: 100%;
 }
 
@@ -28,27 +30,43 @@ body {
 .sidebar h1 {
     font-size: 24px;
     margin-bottom: 20px;
+    color: #fff;
 }
 
-.sidebar button {
+/* Navigation styling */
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
     width: 100%;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.sidebar ul li a {
+    display: block;
     padding: 10px;
-    margin: 5px 0;
     background-color: #444;
     color: #fff;
-    border: none;
-    cursor: pointer;
+    text-decoration: none;
     font-size: 16px;
     text-align: left;
+    border-radius: 4px;
 }
 
-.sidebar button:hover {
+.sidebar ul li a:hover {
     background-color: #555;
 }
 
-.sidebar .logout {
-    margin-top: auto;
+.sidebar ul li a.logout {
     background-color: #d9534f;
+}
+
+.sidebar ul li a.logout:hover {
+    background-color: #c9302c;
 }
 
 /* Main content styling */
@@ -58,6 +76,7 @@ body {
     box-sizing: border-box;
 }
 
+/* Table styling */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -79,12 +98,14 @@ table td {
     background-color: #fff;
 }
 
+/* Action buttons styling */
 .action-buttons button {
     padding: 5px 10px;
     margin: 0 5px;
     border: none;
     cursor: pointer;
     color: #fff;
+    border-radius: 4px;
 }
 
 .edit-button {
@@ -95,10 +116,21 @@ table td {
     background-color: #d9534f;
 }
 
-.add-schedule {
+.delete-button:hover {
+    background-color: #c9302c;
+}
+
+/* Add Schedule button styling */
+button.add-schedule {
     padding: 10px 15px;
     background-color: #5cb85c;
     color: #fff;
     border: none;
     cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button.add-schedule:hover {
+    background-color: #4cae4c;
 }

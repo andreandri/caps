@@ -8,6 +8,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #d1e7d1; /* Background hijau */
+    display: flex;
 }
 
 .dashboard {
@@ -76,10 +77,4 @@ body {
 
 .logout:hover {
     background-color: #503030; 
-}
-
-.main-content {
-    flex-grow: 1;
-    background-color: #b7d3b7; /* Hijau terang */
-    padding: 20px;
 }

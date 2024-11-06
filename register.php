@@ -11,7 +11,7 @@ if (isset($_POST['register'])) {
     $role = 'user';
 
     // Cek apakah email sudah terdaftar
-    $check_email_query = "SELECT * FROM users WHERE email = ?";
+    $check_email_query = "SELECT * FROM tb_users WHERE email = ?";
     $stmt_email = $koneksi->prepare($check_email_query);
     $stmt_email->bind_param("s", $email);
     $stmt_email->execute();
@@ -21,7 +21,7 @@ if (isset($_POST['register'])) {
         $error_message = "email sudah terdaftar.";
     } else {
         // Cek apakah username sudah digunakan
-        $check_username_query = "SELECT * FROM users WHERE username = ?";
+        $check_username_query = "SELECT * FROM tb_users WHERE username = ?";
         $stmt_username = $koneksi->prepare($check_username_query);
         $stmt_username->bind_param("s", $username);
         $stmt_username->execute();
@@ -31,7 +31,7 @@ if (isset($_POST['register'])) {
             $error_message = "username telah digunakan.";
         } else {
             // Menyimpan data pengguna baru ke database
-            $insert_query = "INSERT INTO users (username, email, sandi, role) VALUES (?, ?, ?, ?)";
+            $insert_query = "INSERT INTO tb_users (username, email, sandi, role) VALUES (?, ?, ?, ?)";
             $stmt_insert = $koneksi->prepare($insert_query);
             $stmt_insert->bind_param("ssss", $username, $email, $sandi, $role);
             $stmt_insert->execute();
@@ -48,6 +48,8 @@ if (isset($_POST['register'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Form</title>
+
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
     <div class="wrapper">
