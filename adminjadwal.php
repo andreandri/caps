@@ -82,7 +82,7 @@ if (!$result) {
                     <?php } ?>
                 </tbody>
             </table>
-            <button class="add-schedule">Tambah Jadwal</button>
+            <button onclick="location.href='tambahjadwal.php'">Tambah Jadwal</button>
         </div>
     </div>
 </body>
