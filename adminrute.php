@@ -13,7 +13,7 @@
             <ul class="menu">
                 <li><a href="#">Rute</a></li>
                 <li><a href="adminjadwal.php">Jadwal</a></li>
-                <li><a href="#">Daftar Pesanan</a></li>
+                <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
                 <li><a href="#">Rekap Pendapatan</a></li>
             </ul> 
             <img src="img/bus.png" alt=""> 
