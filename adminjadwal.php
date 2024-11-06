@@ -46,7 +46,7 @@ if (!$result) {
             <li><a href="adminrute.php">Rute</a></li>
             <li><a href="adminjadwal.php">Jadwal</a></li>
             <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
-            <li><a href="#">Rekap Pendapatan</a></li>
+            <li><a href="#adminrekap.php">Rekap Pendapatan</a></li>
             <li><a href="fungsi/logout.php" class="logout">Logout</a></li>
         </ul>
     </header>
