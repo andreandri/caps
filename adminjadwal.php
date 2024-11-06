@@ -45,7 +45,7 @@ if (!$result) {
             <h1>Dashboard Admin</h1>
             <button onclick="location.href='adminrute.php'">Rute</button>
             <button onclick="location.href='adminjadwal.php'">Jadwal</button>
-            <button>Daftar Pesanan</button>
+            <button onclick="location.href='adminpesanan.php'">Daftar Pesanan</button>
             <button>Rekap Pendapatan</button>
             <button class="logout" onclick="location.href='fungsi/logout.php'">Logout</button>
         </div>
