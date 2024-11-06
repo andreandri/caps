@@ -11,7 +11,7 @@
         <div class="navbar">
             <h1>Dashboard Admin</h1>
             <ul class="menu">
-                <li><a href="#">Rute</a></li>
+                <li><a href="adminrute.php">Rute</a></li>
                 <li><a href="#">Jadwal</a></li>
                 <li><a href="#">Daftar Pesanan</a></li>
                 <li><a href="#">Rekap Pendapatan</a></li>
