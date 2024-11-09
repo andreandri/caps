@@ -33,9 +33,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Bus</title>
+
+    <link rel="stylesheet" href="adminjadwal.css">
 </head>
 <body>
+  <header class="dashboard">
+    <div class="navbar">
+      <h1>Dashboard Admin</h1>
+        <ul class="menu">
+          <li><a href="adminrute.php">Rute</a></li>
+          <li><a href="adminjadwal.php">Jadwal</a></li>
+          <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
+          <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+        </ul> 
+      <img src="img/EasyBusTix.png" alt=""> 
+    </div>
     <div>
+      <a href="fungsi/logout.php" class="logout">Logout</a>
+    </div>
+  </header>
+    
+  <main class="add">
+    <h1>Tambah Bus Baru</h1>
         <form action="tambah_bus.php" method="POST">
             <label for="no_plat">No. Plat</label>
             <input type="text" id="no_plat" name="no_plat" placeholder="Masukan Nomor Kendaraan Bus" required>
@@ -51,6 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button type="submit">Tambah Bus</button>
             </div>
         </form>
-    </div>
+    </main>
 </body>
 </html>

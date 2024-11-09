@@ -40,16 +40,21 @@ if (!$result) {
     </style>
 </head>
 <body>
-    <header class="sidebar">
-        <h1>Dashboard Admin</h1>
-        <ul>
-            <li><a href="adminrute.php">Rute</a></li>
-            <li><a href="adminjadwal.php">Jadwal</a></li>
-            <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
-            <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
-            <li><a href="fungsi/logout.php" class="logout">Logout</a></li>
-        </ul>
-    </header>
+  <header class="dashboard">
+    <div class="navbar">
+      <h1>Dashboard Admin</h1>
+        <ul class="menu">
+          <li><a href="adminrute.php">Rute</a></li>
+          <li><a href="adminjadwal.php">Jadwal</a></li>
+          <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
+          <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+        </ul> 
+      <img src="img/EasyBusTix.png" alt=""> 
+    </div>
+    <div>
+      <a href="fungsi/logout.php" class="logout">Logout</a>
+    </div>
+  </header>
     
     <main>
     <div class="main-content">

@@ -38,19 +38,26 @@ if (!$routeResult) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Jadwal</title>
-    <link rel="stylesheet" href="tambahjadwal.css">
+    <link rel="stylesheet" href="adminjadwal.css">
 </head>
 <body>
-    <div class="container">
-        <div class="sidebar">
-            <h1>Dashboard Admin</h1>
-            <button onclick="location.href='adminrute.php'">Rute</button>
-            <button onclick="location.href='adminjadwal.php'">Jadwal</button>
-            <button>Daftar Pesanan</button>
-            <button>Rekap Pendapatan</button>
-            <button class="logout" onclick="location.href='fungsi/logout.php'">Logout</button>
-        </div>
-        <div class="main-content">
+<header class="dashboard">
+    <div class="navbar">
+      <h1>Dashboard Admin</h1>
+        <ul class="menu">
+          <li><a href="adminrute.php">Rute</a></li>
+          <li><a href="adminjadwal.php">Jadwal</a></li>
+          <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
+          <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+        </ul> 
+      <img src="img/EasyBusTix.png" alt=""> 
+    </div>
+    <div>
+      <a href="fungsi/logout.php" class="logout">Logout</a>
+    </div>
+  </header>
+
+        <main class="add">
             <h1>Tambah Jadwal Keberangkatan</h1>
             <form method="POST">
                 <label for="id_rute">Rute:</label>
@@ -73,8 +80,7 @@ if (!$routeResult) {
                 <button type="submit">Tambah Jadwal</button>
                 <button type="button" onclick="location.href='adminjadwal.php'">Batal</button>
             </form>
-        </div>
-    </div>
+        </main>
 </body>
 </html>
 
