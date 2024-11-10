@@ -11,7 +11,7 @@
 
   <script type="module" src="scripts/index.js"></script>
 
-  <link rel="stylesheet" href="jadwal.css">
+  <link rel="stylesheet" href="pesantiket-jadwal.css">
 </head>
 <body>
 

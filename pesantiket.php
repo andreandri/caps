@@ -6,7 +6,7 @@
   <title>Tiket User</title>
 
   <script type="module" src="scripts/index.js"></script>
-  <link rel="stylesheet" href="pesantiket.css">
+  <link rel="stylesheet" href="pesantiket-jadwal.css">
 </head>
 <body>
   <header>

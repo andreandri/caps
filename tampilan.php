@@ -52,21 +52,24 @@
             </aside>
         </section>
 
-        <section class="tampildua">
-            <article>
-                <img src="img/bus2.png" alt="">
-                <h1>2 Unit</h1>
-            </article>
+        <section class="daftarbus">
+            <h1>Daftar Tampilan Unit Bus yang Tersedia</h1>
+            <div class="tampildua">
+                <article>
+                    <img src="img/bus2.png" alt="">
+                    <h1>2 Unit</h1>
+                </article>
 
-            <article>
-                <img src="img/bus1.png" alt="">
-                <h1>2 Unit</h1>
-            </article>
+                <article>
+                    <img src="img/bus1.png" alt="">
+                    <h1>2 Unit</h1>
+                </article>
 
-            <article>
-                <img src="img/bus.png" alt="">
-                <h1>2 Unit</h1>
-            </article>
+                <article>
+                    <img src="img/bus.png" alt="">
+                    <h1>2 Unit</h1>
+                </article>
+            </div>
         </section>
     </main>
 

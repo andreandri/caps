@@ -87,14 +87,21 @@ aside {
     background-color: #35A29F;
 }
 
+.daftarbus {
+    background-color: #B9E5E8;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.daftarbus h1 {
+    text-align: center;
+}
+
 .tampildua {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
-    background-color: #B9E5E8;
     padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     justify-items: center;
     align-items: center;
 }
