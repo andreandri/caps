@@ -54,15 +54,18 @@
 
         <section class="tampildua">
             <article>
-                <img src="img/bus1.png" alt="">
-            </article>
-
-            <article>
                 <img src="img/bus2.png" alt="">
+                <h1>2 Unit</h1>
             </article>
 
             <article>
-                <img src="img/bus3.png" alt="">
+                <img src="img/bus1.png" alt="">
+                <h1>2 Unit</h1>
+            </article>
+
+            <article>
+                <img src="img/bus.png" alt="">
+                <h1>2 Unit</h1>
             </article>
         </section>
     </main>

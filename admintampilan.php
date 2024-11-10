@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Admin</title>
-    <link rel="stylesheet" href="admintampilan.css">
+    <link rel="stylesheet" href="adminjadwal.css">
 </head>
 <body>
   <header class="dashboard">
@@ -16,7 +16,7 @@
           <li><a href="#">Daftar Pesanan</a></li>
           <li><a href="#">Rekap Pendapatan</a></li>
         </ul> 
-      <img src="img/bus.png" alt=""> 
+      <img src="img/EasyBusTix.png" alt=""> 
     </div>
     <div>
       <a href="fungsi/logout.php" class="logout">Logout</a>
