@@ -86,7 +86,7 @@ $koneksi->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Pesanan - Dashboard Admin</title>
-    <link rel="stylesheet" href="adminpesanan.css">
+    <link rel="stylesheet" href="adminjadwal.css">
 </head>
 <body>
     <div class="container">

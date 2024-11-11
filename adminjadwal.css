@@ -192,6 +192,9 @@ button.add-schedule:hover {
   font-size: 16px;
 }
 
+a{
+  text-decoration: none;
+}
 /* Form layout styling */
 
 .add {

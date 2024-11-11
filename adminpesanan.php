@@ -41,45 +41,27 @@ if (!$result) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Pesanan - Dashboard Admin</title>
-    <link rel="stylesheet" href="adminpesanan.css">
-    <style>
-        /* Example CSS styling */
-        table {
             width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-        .action-buttons button {
-            margin: 5px;
-        }
-        .delete-button {
-            background-color: red;
-            color: white;
-        }
-        .edit-button {
-            background-color: blue;
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="adminjadwal.css">
 </head>
 <body>
-    <div class="container">
-        <div class="sidebar">
+    <header class="dashboard">
+        <div class="navbar">
             <h1>Dashboard Admin</h1>
-            <button onclick="location.href='adminrute.php'">Rute</button>
-            <button onclick="location.href='adminjadwal.php'">Jadwal</button>
-            <button onclick="location.href='adminpesanan.php'">Daftar Pesanan</button>
-            <button>Rekap Pendapatan</button>
-            <button onclick="location.href='adminrekap.php'">Rekapan Pendapatan</button>
-            <button class="logout" onclick="location.href='fungsi/logout.php'">Logout</button>
+                <ul class="menu">
+                <li><a href="adminrute.php">Rute</a></li>
+                <li><a href="adminjadwal.php">Jadwal</a></li>
+                <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
+                <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+                </ul> 
+            <img src="img/EasyBusTix.png" alt=""> 
+            </div>
+            <div>
+            <a href="fungsi/logout.php" class="logout">Logout</a>
         </div>
-        <div class="main-content">
+    </header>
+    
+        <main class="main-content">
             <h1>Daftar Pesanan</h1>
             <table>
                 <thead>
@@ -115,7 +97,6 @@ if (!$result) {
                     <?php } ?>
                 </tbody>
             </table>
-        </div>
-    </div>
+        </main>
 </body>
 </html>

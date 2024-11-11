@@ -56,8 +56,8 @@ if (!$result) {
     </div>
   </header>
     
-    <main>
-    <div class="main-content">
+    <main class="main-content">
+        <div>
             <table>
                 <thead>
                     <tr>

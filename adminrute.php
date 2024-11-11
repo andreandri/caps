@@ -25,7 +25,7 @@
 
     <main class="main-content">
         <!-- Tabel Bus -->
-        <div class="table-section">
+        <div>
             <h2>Bus</h2>
             <table>
                 <thead>
@@ -63,7 +63,7 @@
             ?>
                 </tbody>
             </table>
-            <a href="tambah_bus.php" class="tambah-rute"><button>Tambah Bus</button></a>
+            <a href="tambah_bus.php" class="tambah-rute">Tambah Bus</a>
             </div>
 
         <!-- Tabel Rute -->
@@ -123,8 +123,9 @@
             ?>
         </tbody>
     </table>
-    <a href="tambah_rute.php" class="tambah-rute"><button>Tambah Rute</button></a>
+    <a href="tambah_rute.php" class="tambah-rute">Tambah Rute</a>
         </div>
     </div>
+    </main>
 </body>
 </html>
