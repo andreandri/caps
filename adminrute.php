@@ -40,7 +40,7 @@
                 <tbody>
                     <?php
                     // Menghubungkan ke database
-                include("koneksi.php");
+            include("koneksi.php");
             $bus_query = "SELECT * FROM tb_bus";
             $bus_result = mysqli_query($koneksi, $bus_query);
 
@@ -61,11 +61,10 @@
                 echo "<tr><td colspan='5'>Data bus tidak dapat diambil. Error: " . mysqli_error($koneksi) . "</td></tr>";
             }
             ?>
-      
                 </tbody>
             </table>
-            <button class="tambah-bus">Tambah Bus</button>
-        </div>
+            <a href="tambah_bus.php" class="tambah-rute"><button>Tambah Bus</button></a>
+            </div>
 
         <!-- Tabel Rute -->
         <div class="table-section">
@@ -125,8 +124,7 @@
         </tbody>
     </table>
     <a href="tambah_rute.php" class="tambah-rute"><button>Tambah Rute</button></a>
-</div>
-
+        </div>
     </div>
 </body>
 </html>
