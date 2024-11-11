@@ -11,6 +11,10 @@ session_start();
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
+    <div class="image">
+         <img src="img/EasyBusTix.png" alt="logo aplikasi">
+    </div>
+
     <div class="wrapper">
         <form action="fungsi/login_check.php" method="post">
             <h1>Login</h1>

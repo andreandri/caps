@@ -52,6 +52,10 @@ if (isset($_POST['register'])) {
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
+    <div class="image">
+         <img src="img/EasyBusTix.png" alt="logo aplikasi">
+    </div>
+
     <div class="wrapper">
         <form action="register.php" method="post">
             <h1>Register</h1>
