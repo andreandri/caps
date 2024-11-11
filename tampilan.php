@@ -38,6 +38,7 @@
                         <a href="pesantiket.php">Cek Tiket</a>
                     </article>
                 </div>
+                
                     <article class="buss" id="populer">
                         <h1>Rute Perjalanan Yang Tersedia :</h1>
                         <p>Palangka Raya - Sampit</p>
@@ -48,7 +49,6 @@
                         <p>Pangkalan Bun - Palangka Raya</p>
                         <a href="jadwal.php">Cek Jadwal</a>
                     </article>
-
             </aside>
         </section>
 
