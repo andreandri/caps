@@ -44,7 +44,7 @@
                         <p>Palangka Raya - Pangkalan Bun</p>
                         <p>Sampit - Pangkalan Bun</p>
                         <p>Sampit - Palangka Raya</p>
-                        <p>Pangkalan Bun - Sampit - Pangkalan Bun</p>
+                        <p>Pangkalan Bun - Sampit</p>
                         <p>Pangkalan Bun - Palangka Raya</p>
                         <a href="jadwal.php">Cek Jadwal</a>
                     </article>
