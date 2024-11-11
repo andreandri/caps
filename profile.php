@@ -25,7 +25,7 @@ $email = $_SESSION['email'];
         <section class="profile">
             <h2>Informasi Pribadi</h2>
             <div class="avatar"></div>
-            <p>username: <?php echo htmlspecialchars($username); ?> <a href="#">&#x270E;</a></p>
+            <p>username: <?php echo htmlspecialchars($username); ?> <a href="change_username.php">&#x270E;</a></p>
             <p>email: <?php echo htmlspecialchars($email); ?> <a href="#">&#x270E;</a></p>
         </section>
         
