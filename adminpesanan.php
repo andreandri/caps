@@ -104,7 +104,7 @@ if (!$result) {
                             <td><?= $row['jam_keberangkatan']; ?></td>
                             <td class="action-buttons">
                                 <!-- Edit Button -->
-                                <button class="edit-button" onclick="location.href='editpesanan.php?id_pemesanan=<?= $row['id_pemesanan']; ?>'">Edit</button>
+                                <a href="editpesanan.php?id_pemesanan=<?= $row['id_pemesanan']; ?>" class="edit-button">Edit</a>
                                 <!-- Delete Form -->
                                 <form method="POST" style="display:inline;">
                                     <input type="hidden" name="delete_id" value="<?= $row['id_pemesanan']; ?>">
