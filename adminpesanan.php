@@ -77,7 +77,7 @@ if (!$result) {
                             <td><?= $row['jam_keberangkatan']; ?></td>
                             <td><?= $row['harga']; ?></td>
                             <td class="action-buttons">
-                                <button class="edit-button" onclick="location.href='editjadwal.php?id_jadwal=<?= $row['id_jadwal']; ?>'">Edit</button>
+                                <a href="editjadwal.php?id_jadwal=<?= $row['id_jadwal']; ?>" class="edit-button">Edit</a>
                                 <form method="POST" style="display:inline;">
                                     <input type="hidden" name="delete_id" value="<?= $row['id_jadwal']; ?>">
                                     <button type="submit" class="delete-button" onclick="return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')">Hapus</button>
