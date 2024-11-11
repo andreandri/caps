@@ -1,3 +1,7 @@
+<?php
+$selectedSeats = isset($_GET['seats']) ? htmlspecialchars($_GET['seats']) : 'Tidak ada kursi yang dipilih';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,34 +20,32 @@
   
   <main>
     <h1>Pesan Kursi</h1>
-    <form action="" class="form">
-      <h2>Tiket A1, A3</h2>
+    <form action="cetak_tiket.php" method="POST" class="form">
+      <h2>Tiket: <?php echo $selectedSeats; ?></h2> <!-- Menampilkan kursi yang dipilih -->
+      
+      <input type="hidden" name="selectedSeats" value="<?php echo $selectedSeats; ?>"> <!-- Menyimpan kursi yang dipilih ke dalam form -->
+
       <div class="label">
         <label for="gender" tabindex="0">Pilih Gender</label>
-          <select id="gender" aria-label="Pilih Salah Satu" tabindex="0">
-<<<<<<< Updated upstream
-            <option value="">Jenis Kelamin</option>
-            <option value="Laki-laki">Laki-laki</option>
-=======
-            <option value="">Pilih Gender</option>
-            <option value="Tuan">Tuan</option>
->>>>>>> Stashed changes
-            <option value="Perempuan">Perempuan</option>
-          </select>
+        <select id="gender" name="gender" aria-label="Pilih Salah Satu" tabindex="0" required>
+          <option value="">Pilih Gender</option>
+          <option value="Tuan">Tuan</option>
+          <option value="Perempuan">Perempuan</option>
+        </select>
       </div>
 
       <div class="label">
         <label for="name">Nama</label>
-        <input type="text" id="name" name="name" placeholder="Masukkan Nama Anda">
+        <input type="text" id="name" name="name" placeholder="Masukkan Nama Anda" required>
       </div>
 
       <div class="label">
         <label for="nomor">No HP</label>
-        <input type="number" id="nomor" name="nomor" placeholder="Masukkan Nomor Hp Anda">
+        <input type="number" id="nomor" name="nomor" placeholder="Masukkan Nomor Hp Anda" required>
       </div>
 
       <div class="search">
-        <button type="submit">lanjut</button>
+        <button type="submit" class="lanjut">Lanjut</button> <!-- Mengubah button menjadi submit -->
       </div>
     </form>
   </main>
