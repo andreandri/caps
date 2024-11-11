@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="number" id="kapasitas" name="kapasitas" placeholder="Masukan Kapasitas Bus" required>
 
             <div>
-                <button type="button" onclick="window.location.href='tambah_bus.php';">Kembali</button>
+                <button type="button" onclick="window.location.href='adminrute.php';">Kembali</button>
                 <button type="submit">Tambah Bus</button>
             </div>
         </form>
