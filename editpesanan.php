@@ -86,18 +86,26 @@ $koneksi->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Pesanan - Dashboard Admin</title>
-    <link rel="stylesheet" href="adminjadwal.css">
+    <link rel="stylesheet" href="admin-edit-detail.css">
 </head>
 <body>
-    <div class="container">
-        <div class="sidebar">
-            <h1>Dashboard Admin</h1>
-            <button onclick="location.href='adminrute.php'">Rute</button>
-            <button onclick="location.href='adminjadwal.php'">Jadwal</button>
-            <button onclick="location.href='adminpesanan.php'">Daftar Pesanan</button>
-            <button>Rekap Pendapatan</button>
-            <button class="logout" onclick="location.href='fungsi/logout.php'">Logout</button>
-        </div>
+<header class="dashboard">
+    <div class="navbar">
+      <h1>Dashboard Admin</h1>
+        <ul class="menu">
+          <li><a href="adminrute.php" style="background-color: #C8ACD6;">Rute</a></li>
+          <li><a href="adminjadwal.php">Jadwal</a></li>
+          <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
+          <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+        </ul> 
+      <img src="img/EasyBusTix.png" alt=""> 
+    </div>
+    <div>
+      <a href="fungsi/logout.php" class="logout">Logout</a>
+    </div>
+  </header>
+
+    <main>
         <div class="main-content">
             <h1>Edit Pesanan</h1>
             <form action="editpesanan.php?id_pemesanan=<?= $row['id_pemesanan']; ?>" method="POST">
@@ -126,6 +134,6 @@ $koneksi->close();
                 <button type="submit">Update Pesanan</button>
             </form>
         </div>
-    </div>
+    </main>
 </body>
 </html>

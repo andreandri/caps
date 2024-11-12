@@ -55,7 +55,7 @@ if (isset($_GET['id_bus'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Bus</title>
-    <link rel="stylesheet" href="admintampilan.css">
+    <link rel="stylesheet" href="admin-edit-detail.css">
     <style>
         /* Style untuk Pop-up */
         .popup {
@@ -92,24 +92,24 @@ if (isset($_GET['id_bus'])) {
     </style>
 </head>
 <body>
-    <header>
-    <div class="dashboard">
-        <div class="navbar">
-            <h1>Edit Bus</h1>
-            <ul class="menu">
-                <li><a href="adminrute.php">Rute</a></li>
-                <li><a href="adminjadwal.php">Jadwal</a></li>
-                <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
-                <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
-            </ul>
-            <div class="logout-container">
-                <a href="fungsi/logout.php" class="logout">Logout</a>
-            </div>
-        </div>
-    </header>
+  <header class="dashboard">
+    <div class="navbar">
+      <h1>Dashboard Admin</h1>
+        <ul class="menu">
+          <li><a href="adminrute.php" style="background-color: #C8ACD6;">Rute</a></li>
+          <li><a href="adminjadwal.php">Jadwal</a></li>
+          <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
+          <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+        </ul> 
+      <img src="img/EasyBusTix.png" alt=""> 
+    </div>
+    <div>
+      <a href="fungsi/logout.php" class="logout">Logout</a>
+    </div>
+  </header>
    
-        <main> 
-        <div class="main-content">
+
+        <main class="main-content">
             <div class="form-container">
                 <form action="edit_bus.php?id_bus=<?= $id_bus ?>" method="POST">
                     <label for="no_plat">No. Plat</label>
@@ -127,7 +127,6 @@ if (isset($_GET['id_bus'])) {
                     </div>
                 </form>
             </div>
-        </div>
         </main>
         
     </div>

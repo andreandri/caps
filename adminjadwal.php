@@ -45,7 +45,7 @@ if (!$result) {
       <h1>Dashboard Admin</h1>
         <ul class="menu">
           <li><a href="adminrute.php">Rute</a></li>
-          <li><a href="adminjadwal.php">Jadwal</a></li>
+          <li><a href="adminjadwal.php" style="background-color: #C8ACD6;">Jadwal</a></li>
           <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
           <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
         </ul> 
@@ -81,16 +81,16 @@ if (!$result) {
                             <td><?= $row['harga']; ?></td>
                             <td class="action-buttons">
                                 <a href="editjadwal.php?id_jadwal=<?= $row['id_jadwal']; ?>" class="edit-button">Edit</a>
-                                <form method="POST" style="display:inline;">
+                                <div>
                                     <input type="hidden" name="delete_id" value="<?= $row['id_jadwal']; ?>">
                                     <button type="submit" class="delete-button" onclick="return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')">Hapus</button>
-                                </form>
+                                </div>
                             </td>
                         </tr>
                     <?php } ?>
                 </tbody>
             </table>
-            <button onclick="location.href='tambahjadwal.php'">Tambah Jadwal</button>
+            <a href="tambahjadwal.php" class="tambah-rute">Tambah Rute</a>
         </div>
     </main>
 

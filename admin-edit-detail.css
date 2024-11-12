@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  height: 100vh;
+  background-color: #C4E1F6;
+}
+
+/* Container layout */
+header, main {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  z-index: 1000; /* Agar header tetap di atas elemen lain */
+  height: 120px; /* Sesuaikan dengan tinggi header */
+}
+
+main {
+  margin-left: 16%; /* Sesuaikan dengan lebar sidebar */
+  padding-top: 120px; /* Sesuaikan dengan tinggi header */
+  width: 84%; /* Sisa ruang setelah dikurangi sidebar */
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  width: 16%;
+  padding: 20px;
+  background-color: rgba(83, 144, 166, 0.8);
+  height: 100vh;
+  justify-content: space-between;
+}
+
+.navbar h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #000000; /* Teks hitam */
+  margin-bottom: 30px;
+}
+
+.navbar img {
+  justify-content: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.menu {
+  list-style-type: none;
+}
+
+.menu li {
+  margin-bottom: 15px;
+}
+
+.menu li a {
+  display: block;
+  text-decoration: none;
+  background-color: #f0e8ff; /* Ungu muda */
+  color: #333333;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.menu li a:hover {
+  background-color: #e0d6f0; /* Hover lebih gelap */
+}
+
+.logout-container {
+  text-align: center;
+}
+
+.logout {
+  background-color: #643939;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+}
+
+.logout:hover {
+  background-color: #503030; 
+}

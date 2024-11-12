@@ -30,7 +30,7 @@ $result = mysqli_query($koneksi, $query);
           <li><a href="adminrute.php">Rute</a></li>
           <li><a href="adminjadwal.php">Jadwal</a></li>
           <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
-          <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+          <li><a href="adminrekap.php" style="background-color: #C8ACD6;">Rekap Pendapatan</a></li>
         </ul> 
       <img src="img/EasyBusTix.png" alt=""> 
     </div>
@@ -54,7 +54,7 @@ $result = mysqli_query($koneksi, $query);
                     <tr>
                         <td><?php echo $row['bulan']; ?></td>
                         <td><?php echo number_format($row['pendapatan'], 0, ',', '.'); ?></td>
-                        <td>
+                        <td class="rekap">
                             <a href="detailrekap.php?bulan=<?php echo $row['bulan']; ?>">Detail</a>
                         </td>
                     </tr>

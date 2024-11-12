@@ -51,10 +51,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Jadwal</title>
-    <link rel="stylesheet" href="editjadwal.css">
+    <link rel="stylesheet" href="admin-edit-detail.css">
 </head>
 <body>
-    <div class="container">
+
+<header class="dashboard">
+    <div class="navbar">
+      <h1>Dashboard Admin</h1>
+        <ul class="menu">
+          <li><a href="adminrute.php" style="background-color: #C8ACD6;">Rute</a></li>
+          <li><a href="adminjadwal.php">Jadwal</a></li>
+          <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
+          <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+        </ul> 
+      <img src="img/EasyBusTix.png" alt=""> 
+    </div>
+    <div>
+      <a href="fungsi/logout.php" class="logout">Logout</a>
+    </div>
+  </header>
+  
+    <main class="container">
         <h1>Edit Jadwal Keberangkatan</h1>
         <form method="POST">
             <label for="id_rute">Rute:</label>
@@ -73,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <button type="button" onclick="location.href='adminjadwal.php'">Batal</button>
             <button type="button" onclick="location.href='adminjadwal.php'">Kembali</button>
         </form>
-    </div>
+    </main>
 </body>
 </html>
 

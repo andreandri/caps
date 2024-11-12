@@ -74,9 +74,28 @@ if ($result_tujuan) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Rute</title>
+
+    <link rel="stylesheet" href="admin-edit-detail.css">
 </head>
 <body>
+
+<header class="dashboard">
+    <div class="navbar">
+      <h1>Dashboard Admin</h1>
+        <ul class="menu">
+          <li><a href="adminrute.php" style="background-color: #C8ACD6;">Rute</a></li>
+          <li><a href="adminjadwal.php">Jadwal</a></li>
+          <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
+          <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+        </ul> 
+      <img src="img/EasyBusTix.png" alt=""> 
+    </div>
     <div>
+      <a href="fungsi/logout.php" class="logout">Logout</a>
+    </div>
+  </header>
+
+    <main>
         <form action="edit_rute.php?id_rute=<?= $id_rute ?>" method="POST">
             <label for="kota_asal">Kota Asal</label>
             <select id="kota_asal" name="kota_asal" required>
@@ -107,6 +126,6 @@ if ($result_tujuan) {
                 <button type="submit">Update Rute</button>
             </div>
         </form>
-    </div>
+    </main>
 </body>
 </html>

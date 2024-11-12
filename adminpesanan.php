@@ -50,7 +50,7 @@ if (!$result) {
                 <ul class="menu">
                 <li><a href="adminrute.php">Rute</a></li>
                 <li><a href="adminjadwal.php">Jadwal</a></li>
-                <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
+                <li><a href="adminpesanan.php" style="background-color: #C8ACD6;">Daftar Pesanan</a></li>
                 <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
                 </ul> 
             <img src="img/EasyBusTix.png" alt=""> 
@@ -85,12 +85,12 @@ if (!$result) {
                             <td><?= $row['jam_keberangkatan']; ?></td>
                             <td class="action-buttons">
                                 <!-- Edit Button -->
-                                <a href="editpesanan.php?id_pemesanan=<?= $row['id_pemesanan']; ?>" class="edit-button">Edit</a>
+                                <a href="editpesanan.php?id_pemesanan=<?= $row['id_pemesanan']; ?>">Edit</a>
                                 <!-- Delete Form -->
-                                <form method="POST" style="display:inline;">
+                                 <div>
                                     <input type="hidden" name="delete_id" value="<?= $row['id_pemesanan']; ?>">
                                     <button type="submit" class="delete-button" onclick="return confirm('Apakah Anda yakin ingin menghapus pesanan ini?')">Hapus</button>
-                                </form>
+                                 </div>
                             </td>
                         </tr>
                     <?php } ?>

@@ -18,6 +18,21 @@ header, main {
   width: 100%;
 }
 
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  z-index: 1000; /* Agar header tetap di atas elemen lain */
+  height: 120px; /* Sesuaikan dengan tinggi header */
+}
+
+main {
+  margin-left: 16%; /* Sesuaikan dengan lebar sidebar */
+  padding-top: 120px; /* Sesuaikan dengan tinggi header */
+  width: 84%; /* Sisa ruang setelah dikurangi sidebar */
+}
+
 .dashboard {
   display: flex;
   flex-direction: column;
@@ -146,26 +161,61 @@ td .hapus:hover {
 }
 
 /* Action buttons styling */
+/* Action buttons container */
+.action-buttons {
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+  gap: 5px; /* Jarak antar tombol */
+}
+
+/* Style for action buttons */
 .action-buttons button {
-    padding: 5px 10px;
-    margin: 0 5px;
+    padding: 8px 12px;
     border: none;
     cursor: pointer;
     color: #fff;
     border-radius: 4px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
 }
 
-.edit-button {
-    background-color: #5bc0de;
+/* Edit button style */
+.action-buttons a {
+    background-color: #5bc0de; /* Biru muda */
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1rem;
+  }
+
+.action-buttons a:hover {
+    background-color: #31b0d5; /* Biru muda lebih gelap saat hover */
 }
 
+/* Delete button style */
 .delete-button {
-    background-color: #d9534f;
+    background-color: #d9534f; /* Merah */
 }
 
 .delete-button:hover {
-    background-color: #c9302c;
+    background-color: #c9302c; /* Merah lebih gelap saat hover */
 }
+
+.rekap a{
+  background-color: #5bc0de; /* Biru muda */
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.rekap a:hover {
+  background-color: #31b0d5; /* Biru muda lebih gelap saat hover */
+}
+
 
 /* Add Schedule button styling */
 button.add-schedule {

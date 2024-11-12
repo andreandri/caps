@@ -28,8 +28,27 @@ $result = mysqli_query($koneksi, $query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Pemesanan - Bulan <?php echo $bulan; ?></title>
+
+    <link rel="stylesheet" href="admin-edit-detail.css">
 </head>
 <body>
+
+<header class="dashboard">
+    <div class="navbar">
+      <h1>Dashboard Admin</h1>
+        <ul class="menu">
+          <li><a href="adminrute.php" style="background-color: #C8ACD6;">Rute</a></li>
+          <li><a href="adminjadwal.php">Jadwal</a></li>
+          <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
+          <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+        </ul> 
+      <img src="img/EasyBusTix.png" alt=""> 
+    </div>
+    <div>
+      <a href="fungsi/logout.php" class="logout">Logout</a>
+    </div>
+  </header>
+
     <h1>Detail Pemesanan Bulan <?php echo $bulan; ?></h1>
 
     <!-- Tombol Back -->
