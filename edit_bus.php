@@ -57,7 +57,6 @@ if (isset($_GET['id_bus'])) {
     <title>Edit Bus</title>
     <link rel="stylesheet" href="admin-edit-detail.css">
     <style>
-        /* Style untuk Pop-up */
         .popup {
             display: none;
             position: fixed;
@@ -92,81 +91,77 @@ if (isset($_GET['id_bus'])) {
     </style>
 </head>
 <body>
-  <header class="dashboard">
+<header class="dashboard">
     <div class="navbar">
-      <h1>Dashboard Admin</h1>
+        <h1>Dashboard Admin</h1>
         <ul class="menu">
-          <li><a href="adminrute.php" style="background-color: #C8ACD6;">Rute</a></li>
-          <li><a href="adminjadwal.php">Jadwal</a></li>
-          <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
-          <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
-        </ul> 
-      <img src="img/EasyBusTix.png" alt=""> 
+            <li><a href="adminrute.php" style="background-color: #C8ACD6;">Rute</a></li>
+            <li><a href="adminjadwal.php">Jadwal</a></li>
+            <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
+            <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+        </ul>
+        <img src="img/EasyBusTix.png" alt="">
     </div>
     <div>
-      <a href="fungsi/logout.php" class="logout">Logout</a>
+        <a href="fungsi/logout.php" class="logout">Logout</a>
     </div>
-  </header>
-   
+</header>
 
-        <main class="main-content">
-            <div class="form-container">
-                <form action="edit_bus.php?id_bus=<?= $id_bus ?>" method="POST">
-                    <label for="no_plat">No. Plat</label>
-                    <input type="text" id="no_plat" name="no_plat" value="<?= $bus['no_plat'] ?? '' ?>" required>
+<main class="main-content">
+    <div class="form-container">
+        <form action="edit_bus.php?id_bus=<?= $id_bus ?>" method="POST">
+            <label for="no_plat">No. Plat</label>
+            <input type="text" id="no_plat" name="no_plat" value="<?= $bus['no_plat'] ?? '' ?>" required>
 
-                    <label for="nama_sopir">Nama Sopir</label>
-                    <input type="text" id="nama_sopir" name="nama_sopir" value="<?= $bus['nama_sopir'] ?? '' ?>" required>
+            <label for="nama_sopir">Nama Sopir</label>
+            <input type="text" id="nama_sopir" name="nama_sopir" value="<?= $bus['nama_sopir'] ?? '' ?>" required>
 
-                    <label for="kapasitas">Kapasitas</label>
-                    <input type="number" id="kapasitas" name="kapasitas" value="<?= $bus['kapasitas'] ?? '' ?>" required>
+            <label for="kapasitas">Kapasitas</label>
+            <input type="number" id="kapasitas" name="kapasitas" value="<?= $bus['kapasitas'] ?? '' ?>" required>
 
-                    <div class="button-container">
-                        <a href="adminrute.php" class="btn back">Kembali</a>
-                        <button type="submit" class="btn edit">Edit Bus</button>
-                    </div>
-                </form>
+            <div class="button-container">
+                <button type="submit" class="btn edit">Edit Bus</button>
             </div>
-        </main>
-        
+        </form>
     </div>
+</main>
 
-    <!-- Pop-up untuk sukses -->
+<!-- Pop-up untuk sukses -->
+<?php if (isset($success_message)): ?>
+    <div id="popup-success" class="popup">
+        <div class="popup-content">
+            <h3><?= $success_message ?></h3>
+            <button onclick="redirectToRoute()">Tutup</button>
+        </div>
+    </div>
+<?php endif; ?>
+
+<!-- Pop-up untuk error -->
+<?php if (isset($error_message)): ?>
+    <div id="popup-error" class="popup">
+        <div class="popup-content">
+            <h3><?= $error_message ?></h3>
+            <button onclick="closePopup()">Tutup</button>
+        </div>
+    </div>
+<?php endif; ?>
+
+<script>
+    function closePopup() {
+        document.getElementById('popup-error').style.display = 'none';
+    }
+
+    function redirectToRoute() {
+        window.location.href = 'adminrute.php'; // Redirect ke halaman adminrute
+    }
+
     <?php if (isset($success_message)): ?>
-        <div id="popup-success" class="popup">
-            <div class="popup-content">
-                <h3><?= $success_message ?></h3>
-                <button onclick="closePopup()">Tutup</button>
-            </div>
-        </div>
+        document.getElementById('popup-success').style.display = 'flex';
     <?php endif; ?>
 
-    <!-- Pop-up untuk error -->
     <?php if (isset($error_message)): ?>
-        <div id="popup-error" class="popup">
-            <div class="popup-content">
-                <h3><?= $error_message ?></h3>
-                <button onclick="closePopup()">Tutup</button>
-            </div>
-        </div>
+        document.getElementById('popup-error').style.display = 'flex';
     <?php endif; ?>
-
-    <script>
-        // Fungsi untuk menutup pop-up
-        function closePopup() {
-            document.getElementById('popup-success').style.display = 'none';
-            document.getElementById('popup-error').style.display = 'none';
-        }
-
-        // Menampilkan pop-up jika berhasil update
-        <?php if (isset($success_message)): ?>
-            document.getElementById('popup-success').style.display = 'flex';
-        <?php endif; ?>
-
-        // Menampilkan pop-up jika ada error
-        <?php if (isset($error_message)): ?>
-            document.getElementById('popup-error').style.display = 'flex';
-        <?php endif; ?>
-    </script>
+</script>
 </body>
 </html>
