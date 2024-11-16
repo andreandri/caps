@@ -1,0 +1,130 @@
+/* General styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #E0E0E0;
+  font-family: "Poppins", sans-serif;
+}
+
+.Kembali {
+  margin: 1rem;
+}
+
+/* Back Button Styling */
+.Kembali a {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #007bff;
+  color: white;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.Kembali a:hover {
+  background-color: #0056b3;
+}
+
+main {
+  background-color: #ffffff;
+  width: 50%;
+  max-width: 600px;
+  padding: 2rem;
+  margin: 2rem auto;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+main h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+form input {
+  margin-bottom: 1.5rem;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+form input:focus {
+  border-color: #608BC1;
+  outline: none;
+}
+
+form button {
+  background-color: #608BC1;
+  color: #fff;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background-color: #4a6b98;
+}
+
+a {
+  display: block;
+  margin: 1rem auto;
+  text-align: center;
+  color: #608BC1;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #4a6b98;
+}
+
+/* Responsive Design for Mobile */
+@media screen and (max-width: 768px) {
+  main {
+      width: 90%; /* Lebar menyesuaikan layar kecil */
+      padding: 1.5rem;
+      margin: 1.5rem auto;
+  }
+
+  main h2 {
+      font-size: 1.6rem; /* Sesuaikan ukuran teks */
+  }
+
+  form label {
+      font-size: 0.9rem;
+  }
+
+  form input, 
+  form button {
+      font-size: 0.9rem;
+      padding: 0.6rem;
+  }
+
+  a {
+      font-size: 0.9rem;
+  }
+}

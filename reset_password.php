@@ -47,32 +47,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ganti Password</title>
     <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="change_username.css">
+    <script type="module" src="scripts/index.js"></script>
 </head>
 <body>
     <header>
         <bar-app></bar-app>
     </header>
+
+    <section class="Kembali">
+      <a href="profile.php">Kembali</a>
+    </section>
+
     <main>
         <section class="reset-password">
             <h2>Ganti Password</h2>
             <form action="reset_password.php" method="post">
-                <div class="input-box">
-                    <label for="old_password">Password Lama</label>
-                    <input type="password" id="old_password" name="old_password" placeholder="Password Lama" required>
-                </div>
-                <div class="input-box">
-                    <label for="new_password">Password Baru</label>
-                    <input type="password" id="new_password" name="new_password" placeholder="Password Baru" required>
-                </div>
-                <button type="submit" class="btn">Ganti Password</button>
-            </form>
-            <?php
-            if ($message) {
-                echo "<div class='message'>$message</div>";
-            }
-            ?>
+
+                <label for="old_password">Password Lama</label>
+                <input type="password" id="old_password" name="old_password" placeholder="Password Lama" required>
+
+                <label for="new_password">Password Baru</label>
+                <input type="password" id="new_password" name="new_password" placeholder="Password Baru" required>
+                
+            <button type="submit" class="btn">Ganti Password</button>
+        </form>
+        <?php
+        if ($message) {
+            echo "<div class='message'>$message</div>";
+        }
+        ?>
         </section>
-        <button class="logout" onclick="window.location.href='fungsi/logout.php'">Logout</button>
     </main>
 </body>
 </html>

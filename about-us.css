@@ -7,7 +7,7 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
-  background-color: #fbfbfb;
+  background-color: #E0E0E0;
 }
 
 main {
@@ -92,4 +92,54 @@ main {
 
 .pengembang img:hover {
   transform: scale(1.2);
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    margin: 0.5rem;
+  }
+
+  .about {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .about h1 {
+    font-size: 1.8rem;
+  }
+
+  .about p {
+    font-size: 1rem;
+  }
+
+  .daftar-pengembang {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .daftar-pengembang h1 {
+    font-size: 1.5rem;
+  }
+
+  .pengembang-web {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .pengembang {
+    padding: 0.8rem;
+  }
+
+  .pengembang h2 {
+    font-size: 1rem;
+  }
+
+  .pengembang h3 {
+    font-size: 0.9rem;
+  }
+
+  .pengembang img {
+    max-width: 100px;
+    margin: 0.5rem 0;
+  }
 }

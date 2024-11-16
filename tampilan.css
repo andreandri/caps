@@ -7,7 +7,7 @@
     padding: 0;
     height: 100%;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #E0E0E0;
   }
   
   main {
@@ -131,3 +131,71 @@ aside {
     margin-top: 0.5rem;
 }
 
+@media screen and (max-width: 768px) {
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  
+    main {
+      margin: 1rem;
+      gap: 1.5rem;
+    }
+  
+    .tampilsatu {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  
+    .bus {
+      width: 100%;
+      padding: 1.5rem 1.5rem 0;
+    }
+  
+    .bus img {
+      width: 70%;
+    }
+  
+    aside {
+      width: 100%;
+    }
+  
+    .buss {
+      padding: 1rem;
+    }
+  
+    .buss h1 {
+      font-size: 1.5rem;
+    }
+  
+    .buss p {
+      font-size: 14px;
+    }
+  
+    .buss a {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+  
+    .daftarbus {
+      padding: 1rem;
+    }
+  
+    .daftarbus h1 {
+      font-size: 1.5rem;
+    }
+  
+    .tampildua {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.5rem;
+    }
+  
+    .tampildua img {
+      max-width: 100%;
+    }
+  
+    .tampildua h1 {
+      font-size: 1rem;
+    }
+  }
+  

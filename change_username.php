@@ -45,21 +45,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ganti Username</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="change_username.css">
+    <script type="module" src="scripts/index.js"></script>
+
 </head>
 <body>
+    <header>
+        <bar-app></bar-app>
+    </header>
+
+    <section class="Kembali">
+      <a href="profile.php">Kembali</a>
+    </section>
+
     <main>
         <h2>Ganti Username</h2>
         <form method="POST" action="change_username.php">
             <label for="new_username">Username Baru:</label>
-            <input type="text" id="new_username" name="new_username" required>
+            <input type="text" id="new_username" name="new_username" placeholder="Masukkan Username Baru" required>
 
             <label for="sandi">Sandi Saat Ini:</label>
-            <input type="password" id="sandi" name="sandi" required>
+            <input type="password" id="sandi" name="sandi" placeholder="Sandi Username Baru" required>
 
             <button type="submit">Ganti Username</button>
         </form>
-        <button onclick="window.location.href='profile.php'">Kembali ke Profil</button>
     </main>
 </body>
 </html>

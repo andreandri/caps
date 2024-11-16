@@ -11,6 +11,7 @@
     align-items: center;
     height: 100%;
     width: 100%;
+    background-color: #E0E0E0;
   }
 
   .image img{
@@ -99,5 +100,43 @@
   .register-link p a:hover,
   .login-link p a:hover {
     text-decoration: underline;
+  }
+  
+  @media screen and (max-width: 768px) {
+    body {
+      padding: 0 1rem;
+    }
+  
+    .wrapper {
+      width: 100%; /* Sesuaikan lebar dengan layar */
+      padding: 20px 25px;
+    }
+  
+    .wrapper h1 {
+      font-size: 28px; /* Perkecil ukuran teks */
+    }
+  
+    .wrapper .input-box {
+      margin: 20px 0; /* Kurangi jarak antar elemen */
+    }
+  
+    .input-box input {
+      font-size: 14px;
+      padding: 15px 35px 15px 15px; /* Kurangi padding */
+    }
+  
+    .wrapper .btn {
+      height: 40px; /* Sesuaikan tinggi tombol */
+      font-size: 14px;
+    }
+  
+    .register-link p,
+    .login-link p {
+      font-size: 12px; /* Perkecil ukuran teks */
+    }
+  
+    .image img {
+      width: 200px; /* Sesuaikan ukuran logo */
+    }
   }
   

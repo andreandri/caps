@@ -7,7 +7,7 @@
 body {
   height: 100%;
   width: 100%;
-  background-color: #FBFBFB;
+  background-color: #E0E0E0;
 }
 
 .Kembali {
@@ -50,7 +50,7 @@ body {
 
 /* Item styling */
 .schedule-item {
-  background-color: #fff;
+  background-color: #ffffff;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 15px;

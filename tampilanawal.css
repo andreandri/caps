@@ -7,11 +7,11 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
-  background-color: #35A29F;
+  background-color: #E0E0E0;
 }
 
 .navbar{ 
-  background-color: #0B666A;
+  background-color: rgba(83, 144, 166, 0.8);
 
   display: flex;
   justify-content: space-between;
@@ -21,6 +21,14 @@ body {
 
 .link:hover{
   font-weight: bold;
+}
+
+.navlogo{
+  display: flex;
+}
+
+.navlogo img{
+  width: 5rem;
 }
 
 .navbar .logo{
@@ -85,73 +93,219 @@ a {
   }
 }
 
+@media screen and (max-width: 768px) {
+  .navbar .navbar-nav {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #fff;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .navbar .navbar-nav.open {
+    display: flex;
+  }
+    
+  .header__menu {
+    display: block;
+  }
+}
+
 main {
   display: flex;
+  flex-direction: column;
+  gap: 2rem;
   margin: 2.5rem;
+}
+
+.tampilsatu {
+  display: flex;
   gap: 2rem;
 }
 
 .bus {
-  background-color: #97FEED;
-  width: 60%;
-  padding: 3rem 1rem;
-
-  border: 1px;
+  display: flex;
+  flex-direction: column;
+  background-color: #B9E5E8;
+  width: 65%;
+  padding: 2rem 3rem 0;
   border-radius: 1rem;
-
   text-align: center;
-}
-.bus p {
-  font-size: 1.5rem;
-}
-.bus h1 {
-  font-size: 2.5rem;
-}
-.bus img {
-  width: 60%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.busbus {
-  width: 40%;
-  display: grid;
+.bus img {
+width: 50%;
+}
+
+.bus p {
+  font-size: 1.3rem;
+}
+
+.bus h1 {
+  font-size: 2rem;
+}
+
+aside {
+  width: 35%;
+}
+
+.bussart {
+  margin-bottom: 2rem;
 }
 
 .buss {
-  background-color: #97FEED;
-  border: 1px;
+  background-color: #B9E5E8;
   border-radius: 1rem;
 
-  margin-bottom: 2rem;
-  padding: 0 1rem;
+  padding: 1px 1rem 1.2rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
 
-  display: grid;
-}
 .buss h1 {
-  font-size: 2rem;
+  font-size: 20px;
+  color: #2C7873;
 }
+
 .buss p {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-.buss span {
-  color: red;
+  font-size: 16px;
+  color: #555;
 }
 
 .buss a {
+  display: block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #2C7873;
+  color: #fff;
+  border-radius: 1rem;
   text-decoration: none;
   font-weight: bold;
-
-  background-color: #071952; 
-  color: #ffffff;
-  border-radius: 1rem;
-
-  margin-bottom: 1rem;
-  padding: 1rem;
-  transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
-
-  place-self: end;
+  text-align: center;
 }
 
 .buss a:hover {
-  background-color: #3A6D8C;
+  background-color: #35A29F;
+}
+
+.daftarbus {
+  background-color: #B9E5E8;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.daftarbus h1 {
+  text-align: center;
+}
+
+.tampildua {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.tampildua article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.tampildua img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.tampildua img:hover {
+  transform: scale(1.2);
+}
+
+.tampildua h1 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-top: 0.5rem;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(83, 144, 166, 0.8);
+  color: white;
+  padding: 20px;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-section h3 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+}
+
+.footer-section a {
+  text-decoration: none;
+  color: white;
+  margin: 2px 0;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
+.footer-img img {
+  display: block;
+  margin: 0 auto;
+  max-width: 200px;
+}
+
+.footer-center p {
+  font-size: 0.9rem;
+  margin: 5px 0;
+  text-align: center;
+}
+
+.footer-contact h3 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+}
+
+.footer-contact p {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+.footer-contact a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-contact a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column; /* Elemen ditumpuk di layar kecil */
+    align-items: center;
+  }
+  .footer-section, .footer-center, .footer-contact {
+    flex: 1 1 100%;
+  }
+  .footer-img img {
+    max-width: 120px; /* Logo lebih kecil untuk layar kecil */
+  }
 }

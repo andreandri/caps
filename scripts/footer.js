@@ -19,60 +19,94 @@ class FooterApp extends HTMLElement {
         color: white;
         padding: 20px;
       }
-
+  
       .footer-section {
         display: flex;
         flex-direction: column;
+        align-items: center;
       }
-
+  
       .footer-section h3 {
         margin: 0 0 10px;
         font-size: 1.5rem;
+        text-align: center;
       }
-
+  
       .footer-section a {
         text-decoration: none;
         color: white;
         margin: 2px 0;
+        text-align: center;
       }
-
+  
       .footer-section a:hover {
         text-decoration: underline;
       }
-
+  
       .footer-img img {
         display: block;
-        margin: 0 auto;
-        max-width: 150px; /* Sesuaikan ukuran logo */
+        margin: 10px auto;
+        max-width: 150px;
       }
-
+  
       .footer-center p {
         font-size: 0.9rem;
         margin: 5px 0;
         text-align: center;
       }
-
+  
       .footer-contact h3 {
         margin: 0 0 10px;
         font-size: 1.5rem;
+        text-align: center;
       }
-
+  
       .footer-contact p {
         margin: 5px 0;
         font-size: 1rem;
+        text-align: center;
       }
-
+  
       .footer-contact a {
         color: white;
         text-decoration: none;
       }
-
+  
       .footer-contact a:hover {
         text-decoration: underline;
       }
+  
+      /* Media Queries for Mobile */
+      @media screen and (max-width: 768px) {
+        .footer-container {
+          flex-direction: column;
+          gap: 20px;
+          text-align: center;
+        }
+  
+        .footer-section h3 {
+          font-size: 1.2rem;
+        }
+  
+        .footer-section a {
+          font-size: 0.9rem;
+        }
+  
+        .footer-img img {
+          max-width: 100px;
+        }
+  
+        .footer-contact h3 {
+          font-size: 1.2rem;
+        }
+  
+        .footer-contact p {
+          font-size: 0.9rem;
+        }
+      }
     `;
   }
-
+  
   render() {
     this.updateStyle();
 
@@ -102,4 +136,4 @@ class FooterApp extends HTMLElement {
   }
 }
 
-customElements.define("footer-app", FooterApp);
+customElements.define("footer-app", FooterApp); 
