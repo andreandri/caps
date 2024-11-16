@@ -33,14 +33,14 @@ if (isset($_GET['id_rute'])) {
             $stmt->bind_param("ssi", $kota_asal, $kota_tujuan, $id_rute);
 
             if ($stmt->execute()) {
-                echo "<script>alert('Rute berhasil diperbarui.'); window.location.href = 'adminrute.php';</script>";
+                $success_message = "Rute berhasil diperbarui."; // Pesan sukses
             } else {
-                echo "<script>alert('Gagal memperbarui rute: " . $stmt->error . "');</script>";
+                $error_message = "Gagal memperbarui rute: " . $stmt->error; // Pesan error
             }
 
             $stmt->close();
         } else {
-            echo "<script>alert('Harap isi semua field.');</script>";
+            $error_message = "Harap isi semua field."; // Pesan error jika form kosong
         }
     }
 } else {
@@ -76,6 +76,42 @@ if ($result_tujuan) {
     <title>Edit Rute</title>
 
     <link rel="stylesheet" href="admin-edit-detail.css">
+
+    <style>
+        /* Style untuk Pop-up */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        .popup button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .popup button:hover {
+            background-color: #45a049;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -95,37 +131,76 @@ if ($result_tujuan) {
     </div>
   </header>
 
-    <main>
-        <form action="edit_rute.php?id_rute=<?= $id_rute ?>" method="POST">
-            <label for="kota_asal">Kota Asal</label>
-            <select id="kota_asal" name="kota_asal" required>
-                <option value="">Pilih Kota Asal</option>
-                <?php
-                // Menampilkan pilihan kota asal dari ENUM
-                foreach ($kota_asal_enum as $kota) {
-                    $selected = ($rute['kota_asal'] == $kota) ? 'selected' : '';
-                    echo "<option value=\"$kota\" $selected>$kota</option>";
-                }
-                ?>
-            </select>
+<main>
+    <form action="edit_rute.php?id_rute=<?= $id_rute ?>" method="POST">
+        <label for="kota_asal">Kota Asal</label>
+        <select id="kota_asal" name="kota_asal" required>
+            <option value="">Pilih Kota Asal</option>
+            <?php
+            // Menampilkan pilihan kota asal dari ENUM
+            foreach ($kota_asal_enum as $kota) {
+                $selected = ($rute['kota_asal'] == $kota) ? 'selected' : '';
+                echo "<option value=\"$kota\" $selected>$kota</option>";
+            }
+            ?>
+        </select>
 
-            <label for="kota_tujuan">Kota Tujuan</label>
-            <select id="kota_tujuan" name="kota_tujuan" required>
-                <option value="">Pilih Kota Tujuan</option>
-                <?php
-                // Menampilkan pilihan kota tujuan dari ENUM
-                foreach ($kota_tujuan_enum as $kota) {
-                    $selected = ($rute['kota_tujuan'] == $kota) ? 'selected' : '';
-                    echo "<option value=\"$kota\" $selected>$kota</option>";
-                }
-                ?>
-            </select>
+        <label for="kota_tujuan">Kota Tujuan</label>
+        <select id="kota_tujuan" name="kota_tujuan" required>
+            <option value="">Pilih Kota Tujuan</option>
+            <?php
+            // Menampilkan pilihan kota tujuan dari ENUM
+            foreach ($kota_tujuan_enum as $kota) {
+                $selected = ($rute['kota_tujuan'] == $kota) ? 'selected' : '';
+                echo "<option value=\"$kota\" $selected>$kota</option>";
+            }
+            ?>
+        </select>
 
-            <div>
-                <button type="button" onclick="window.location.href='adminrute.php';">Kembali</button>
-                <button type="submit">Update Rute</button>
-            </div>
-        </form>
-    </main>
+        <div>
+            <button type="button" onclick="window.location.href='adminrute.php';">Kembali</button>
+            <button type="submit">Update Rute</button>
+        </div>
+    </form>
+</main>
+
+<!-- Pop-up untuk sukses -->
+<?php if (isset($success_message)): ?>
+    <div id="popup-success" class="popup">
+        <div class="popup-content">
+            <h3><?= $success_message ?></h3>
+            <button onclick="closePopup()">Tutup</button>
+        </div>
+    </div>
+<?php endif; ?>
+
+<!-- Pop-up untuk error -->
+<?php if (isset($error_message)): ?>
+    <div id="popup-error" class="popup">
+        <div class="popup-content">
+            <h3><?= $error_message ?></h3>
+            <button onclick="closePopup()">Tutup</button>
+        </div>
+    </div>
+<?php endif; ?>
+
+<script>
+    // Fungsi untuk menutup pop-up
+    function closePopup() {
+        document.getElementById('popup-success').style.display = 'none';
+        document.getElementById('popup-error').style.display = 'none';
+    }
+
+    // Menampilkan pop-up jika berhasil update
+    <?php if (isset($success_message)): ?>
+        document.getElementById('popup-success').style.display = 'flex';
+    <?php endif; ?>
+
+    // Menampilkan pop-up jika ada error
+    <?php if (isset($error_message)): ?>
+        document.getElementById('popup-error').style.display = 'flex';
+    <?php endif; ?>
+</script>
+
 </body>
 </html>

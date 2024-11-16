@@ -3,7 +3,7 @@
 include("koneksi.php");
 
 // Logika untuk Hapus Bus
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_bus_id'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_bus_id']) && !empty($_POST['delete_bus_id'])) {
     $id_bus = $_POST['delete_bus_id'];
 
     $delete_query = "DELETE FROM tb_bus WHERE id_bus = ?";
@@ -11,16 +11,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_bus_id'])) {
     $stmt->bind_param("i", $id_bus);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Bus berhasil dihapus.'); window.location.href = 'adminrute.php';</script>";
+        header("Location: adminrute.php");
+        exit;
     } else {
-        echo "<script>alert('Gagal menghapus bus.'); window.location.href = 'adminrute.php';</script>";
+        header("Location: adminrute.php");
+        exit;
     }
 
     $stmt->close();
 }
 
 // Logika untuk Hapus Rute
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id']) && !empty($_POST['delete_route_id'])) {
     $id_rute = $_POST['delete_route_id'];
 
     $delete_query = "DELETE FROM tb_rute WHERE id_rute = ?";
@@ -28,9 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id'])) {
     $stmt->bind_param("i", $id_rute);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Rute berhasil dihapus.'); window.location.href = 'adminrute.php';</script>";
+        header("Location: adminrute.php");
+        exit;
     } else {
-        echo "<script>alert('Gagal menghapus rute.'); window.location.href = 'adminrute.php';</script>";
+        header("Location: adminrute.php");
+        exit;
     }
 
     $stmt->close();
@@ -43,8 +47,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Admin</title>
     <link rel="stylesheet" href="adminjadwal.css">
+
+    <style>
+        /* Style untuk Pop-up */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        .popup button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .popup button:hover {
+            background-color: #45a049;
+        }
+        .popup-danger button {
+            background-color: #f44336;
+        }
+        .popup-danger button:hover {
+            background-color: #e53935;
+        }
+    </style>
 </head>
 <body>
+
 <header class="dashboard">
     <div class="navbar">
         <h1>Dashboard Admin</h1>
@@ -89,10 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id'])) {
                         <td><?= $row['kapasitas']; ?></td>
                         <td>
                             <a href="edit_bus.php?id_bus=<?= $row['id_bus']; ?>"><button class="edit">Edit</button></a>
-                            <form method="POST" action="" style="display:inline;">
-                                <input type="hidden" name="delete_bus_id" value="<?= $row['id_bus']; ?>">
-                                <button type="submit" class="hapus" onclick="return confirm('Apakah Anda yakin ingin menghapus bus ini?')">Hapus</button>
-                            </form>
+                            <button class="hapus" onclick="showDeletePopup('bus', <?= $row['id_bus']; ?>)">Hapus</button>
                         </td>
                     </tr>
                 <?php }
@@ -130,10 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id'])) {
                         <td><?= $row['kota_tujuan']; ?></td>
                         <td>
                             <a href="edit_rute.php?id_rute=<?= $row['id_rute']; ?>"><button class="edit">Edit</button></a>
-                            <form method="POST" action="" style="display:inline;">
-                                <input type="hidden" name="delete_route_id" value="<?= $row['id_rute']; ?>">
-                                <button type="submit" class="hapus" onclick="return confirm('Apakah Anda yakin ingin menghapus rute ini?')">Hapus</button>
-                            </form>
+                            <button class="hapus" onclick="showDeletePopup('route', <?= $row['id_rute']; ?>)">Hapus</button>
                         </td>
                     </tr>
                 <?php }
@@ -146,5 +186,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id'])) {
         <a href="tambah_rute.php" class="tambah-rute">Tambah Rute</a>
     </div>
 </main>
+
+<!-- Pop-up konfirmasi hapus -->
+<div id="popup-delete" class="popup">
+    <div class="popup-content popup-danger">
+        <h3 id="popup-message">Apakah Anda yakin ingin menghapus?</h3>
+        <form method="POST" id="delete-form" style="display: inline;">
+            <!-- Input untuk ID Bus atau Rute -->
+            <input type="hidden" name="delete_bus_id" id="delete_bus_id" value="">
+            <input type="hidden" name="delete_route_id" id="delete_route_id" value="">
+            <button type="submit" id="confirm-delete">Ya, Hapus</button>
+        </form>
+        <button onclick="closePopup()">Tidak, Kembali</button>
+    </div>
+</div>
+
+<script>
+    // Menampilkan pop-up konfirmasi hapus
+    function showDeletePopup(type, id) {
+        // Set ID yang sesuai berdasarkan tipe
+        if (type === 'bus') {
+            document.getElementById('delete_bus_id').value = id;
+            document.getElementById('delete_route_id').value = ''; // Kosongkan id_rute
+            document.getElementById('popup-message').innerText = 'Apakah Anda yakin ingin menghapus bus ini?';
+        } else if (type === 'route') {
+            document.getElementById('delete_route_id').value = id;
+            document.getElementById('delete_bus_id').value = ''; // Kosongkan id_bus
+            document.getElementById('popup-message').innerText = 'Apakah Anda yakin ingin menghapus rute ini?';
+        }
+        document.getElementById('popup-delete').style.display = 'flex';
+    }
+
+    // Menutup pop-up
+    function closePopup() {
+        document.getElementById('popup-delete').style.display = 'none';
+    }
+</script>
+
 </body>
 </html>
