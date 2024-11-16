@@ -30,6 +30,10 @@ if ($result->num_rows === 0) {
 
 $row = $result->fetch_assoc();
 
+// Variable untuk pesan
+$success_message = "";
+$error_message = "";
+
 // Check if form is submitted to update data
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Ambil data dari form
@@ -48,15 +52,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("issdi", $id_rute, $tgl_keberangkatan, $jam_keberangkatan, $harga, $id_jadwal);
 
         if ($stmt->execute()) {
-            echo "<p>Data jadwal berhasil diupdate!</p>";
-            // Redirect untuk mencegah pengisian ulang form
-            header("Location: adminjadwal.php");
-            exit;
+            $success_message = "Data jadwal berhasil diperbarui!";
         } else {
-            echo "<p>Error: " . $stmt->error . "</p>";
+            $error_message = "Error: " . $stmt->error;
         }
     } else {
-        echo "<p>Semua field harus diisi dengan benar!</p>";
+        $error_message = "Semua field harus diisi dengan benar!";
     }
 }
 ?>
@@ -68,6 +69,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Jadwal</title>
     <link rel="stylesheet" href="admin-edit-detail.css">
+    <style>
+        /* Style untuk pop-up */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        .popup button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .popup button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
 
@@ -75,8 +110,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="navbar">
         <h1>Dashboard Admin</h1>
         <ul class="menu">
-            <li><a href="adminrute.php" style="background-color: #C8ACD6;">Rute</a></li>
-            <li><a href="adminjadwal.php">Jadwal</a></li>
+            <li><a href="adminrute.php">Rute</a></li>
+            <li><a href="adminjadwal.php" style="background-color: #C8ACD6;">Jadwal</a></li>
             <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
             <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
         </ul> 
@@ -106,6 +141,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="button" onclick="location.href='adminjadwal.php'">Batal</button>
     </form>
 </main>
+
+<!-- Pop-up sukses -->
+<?php if (!empty($success_message)): ?>
+    <div id="popup-success" class="popup">
+        <div class="popup-content">
+            <h3><?= $success_message ?></h3>
+            <button onclick="redirectToSchedule()">Tutup</button>
+        </div>
+    </div>
+<?php endif; ?>
+
+<!-- Pop-up error -->
+<?php if (!empty($error_message)): ?>
+    <div id="popup-error" class="popup">
+        <div class="popup-content">
+            <h3><?= $error_message ?></h3>
+            <button onclick="closePopup()">Tutup</button>
+        </div>
+    </div>
+<?php endif; ?>
+
+<script>
+    // Fungsi untuk menutup pop-up
+    function closePopup() {
+        document.getElementById('popup-error').style.display = 'none';
+    }
+
+    // Fungsi untuk redirect setelah pop-up sukses ditutup
+    function redirectToSchedule() {
+        document.getElementById('popup-success').style.display = 'none';
+        window.location.href = 'adminjadwal.php'; // Redirect ke halaman jadwal
+    }
+
+    // Tampilkan pop-up jika ada pesan
+    <?php if (!empty($success_message)): ?>
+        document.getElementById('popup-success').style.display = 'flex';
+    <?php endif; ?>
+
+    <?php if (!empty($error_message)): ?>
+        document.getElementById('popup-error').style.display = 'flex';
+    <?php endif; ?>
+</script>
 </body>
 </html>
 
