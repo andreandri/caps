@@ -121,7 +121,10 @@ if (isset($_GET['id_bus'])) {
                     <label for="kapasitas">Kapasitas</label>
                     <input type="number" id="kapasitas" name="kapasitas" value="<?= $bus['kapasitas'] ?? '' ?>" required>
 
-                    <button type="submit" class="btn edit">Edit Bus</button>
+                    <div class="button-container">
+                        <a href="adminrute.php" class="btn back">Kembali</a>
+                        <button type="submit" class="btn edit">Edit Bus</button>
+                    </div>
                 </form>
             </div>
         </main>
