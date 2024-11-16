@@ -29,7 +29,7 @@ $result = mysqli_query($koneksi, $query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Pemesanan - Bulan <?php echo $bulan; ?></title>
 
-    <link rel="stylesheet" href="admin-edit-detail.css">
+    <link rel="stylesheet" href="detailrekap.css">
 </head>
 <body>
 
@@ -49,28 +49,28 @@ $result = mysqli_query($koneksi, $query);
     </div>
   </header>
 
-    <h1>Detail Pemesanan Bulan <?php echo $bulan; ?></h1>
-
-    <!-- Tombol Back -->
-    <button onclick="window.history.back();">Kembali</button>
-
-    <table border="1">
-        <thead>
+    <main class="detail-rekap">
+      <div>
+      <h1>Detail Pesanan</h1>
+        <table border="1">
+          <thead>
             <tr>
-                <th>Tanggal Keberangkatan</th>
-                <th>Rute</th>
-                <th>Pendapatan</th>
+              <th>Tanggal Keberangkatan</th>
+              <th>Rute</th>
+              <th>Pendapatan</th>
             </tr>
-        </thead>
-        <tbody>
-            <?php while ($row = mysqli_fetch_assoc($result)): ?>
+          </thead>
+            <tbody>
+              <?php while ($row = mysqli_fetch_assoc($result)): ?>
                 <tr>
-                    <td><?php echo $row['tgl_keberangkatan']; ?></td>
-                    <td><?php echo $row['kota_asal'] . ' - ' . $row['kota_tujuan']; ?></td>
-                    <td><?php echo number_format($row['pendapatan'], 0, ',', '.'); ?></td>
+                  <td><?php echo $row['tgl_keberangkatan']; ?></td>
+                  <td><?php echo $row['kota_asal'] . ' - ' . $row['kota_tujuan']; ?></td>
+                  <td><?php echo number_format($row['pendapatan'], 0, ',', '.'); ?></td>
                 </tr>
             <?php endwhile; ?>
-        </tbody>
-    </table>
+          </tbody>
+        </table>
+      </div>
+    </main>
 </body>
 </html>
