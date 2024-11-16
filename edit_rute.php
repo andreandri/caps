@@ -121,10 +121,9 @@ if ($result_tujuan) {
                 ?>
             </select>
 
-            <div>
-                <button type="button" onclick="window.location.href='adminrute.php';">Kembali</button>
+
                 <button type="submit">Update Rute</button>
-            </div>
+
         </form>
     </main>
 </body>
