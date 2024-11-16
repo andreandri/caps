@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("ssi", $no_plat, $nama_sopir, $kapasitas);
 
         if ($stmt->execute()) {
-            echo "<script>alert('Data bus berhasil ditambahkan.'); window.location.href = 'index.php';</script>";
+            echo "<script>alert('Data bus berhasil ditambahkan.'); window.location.href = 'adminrute.php';</script>";
         } else {
             echo "<script>alert('Gagal menambahkan data: " . $stmt->error . "');</script>";
         }
