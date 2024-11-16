@@ -64,7 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Fetch the list of available bus schedules for the dropdown
 // Fetch the list of available bus schedules for the dropdown, now using `tb_jadwal` for the date and time columns
 $busjadwal_query = "SELECT bj.id_busjadwal, j.tgl_keberangkatan, j.jam_keberangkatan 
                     FROM tb_busjadwal bj
