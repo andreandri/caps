@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Bus</title>
 
-    <link rel="stylesheet" href="adminjadwal.css">
+    <link rel="stylesheet" href="tambah.css">
 </head>
 <body>
   <header class="dashboard">
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="number" id="kapasitas" name="kapasitas" placeholder="Masukan Kapasitas Bus" required>
 
             <div>
-                <button type="button" onclick="window.location.href='adminrute.php';">Kembali</button>
+                <a href="adminrute.php">Kembali</a>
                 <button type="submit">Tambah Bus</button>
             </div>
         </form>

@@ -38,7 +38,7 @@ if (!$routeResult) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Jadwal</title>
-    <link rel="stylesheet" href="adminjadwal.css">
+    <link rel="stylesheet" href="tambah.css">
 </head>
 <body>
 <header class="dashboard">
@@ -77,8 +77,9 @@ if (!$routeResult) {
                 <label for="harga">Harga:</label>
                 <input type="number" id="harga" name="harga" required>
 
+                <a href="adminjadwal.php">Kembali</a>
                 <button type="submit">Tambah Jadwal</button>
-                <button type="button" onclick="location.href='adminjadwal.php'">Batal</button>
+            
             </form>
         </main>
 </body>

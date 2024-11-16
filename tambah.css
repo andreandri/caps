@@ -1,0 +1,219 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  height: 100vh;
+  background-color: #C4E1F6;
+}
+
+/* Container layout */
+header, main {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  z-index: 1000; /* Agar header tetap di atas elemen lain */
+  height: 120px; /* Sesuaikan dengan tinggi header */
+}
+
+main {
+  margin-left: 16%; /* Sesuaikan dengan lebar sidebar */
+  padding-top: 120px; /* Sesuaikan dengan tinggi header */
+  width: 84%; /* Sisa ruang setelah dikurangi sidebar */
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  width: 16%;
+  padding: 20px;
+  background-color: rgba(83, 144, 166, 0.8);
+  height: 100vh;
+  justify-content: space-between;
+}
+
+.navbar h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #000000; /* Teks hitam */
+  margin-bottom: 30px;
+}
+
+.navbar img {
+  justify-content: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.menu {
+  list-style-type: none;
+}
+
+.menu li {
+  margin-bottom: 15px;
+}
+
+.menu li a {
+  display: block;
+  text-decoration: none;
+  background-color: #f0e8ff; /* Ungu muda */
+  color: #333333;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.menu li a:hover {
+  background-color: #e0d6f0; /* Hover lebih gelap */
+}
+
+.logout-container {
+  text-align: center;
+}
+
+.logout {
+  background-color: #643939;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+}
+
+.logout:hover {
+  background-color: #503030; 
+}
+
+.add {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  place-self: center;
+}
+
+form label {
+  font-weight: bold;
+  color: #333;
+}
+
+form select,
+form input[type="text"],
+form input[type="number"],
+form input[type="date"],
+form input[type="time"] {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+}
+
+form button[type="submit"] {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #ffffff;
+  margin-top: 10px;
+  text-decoration: none;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+form a {
+  padding: 13px 19px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #ffffff;
+  margin-top: 10px;
+  text-decoration: none;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+form button[type="submit"] {
+  background-color: #5cb85c; /* Hijau untuk tombol submit */
+}
+
+form button[type="submit"]:hover {
+  background-color: #4cae4c;
+}
+
+form a {
+  background-color: #d9534f; /* Merah untuk tombol kembali atau batal */
+}
+
+form a:hover {
+  background-color: #c9302c;
+}
+
+/* Main title styling */
+.add h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Dropdown select styling */
+form select {
+  appearance: none;
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+/* General button styling */
+button {
+  transition: background-color 0.3s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  header .dashboard {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .menu li a {
+    padding: 8px;
+    font-size: 1rem;
+  }
+
+  form {
+    width: 90%;
+    padding: 15px;
+  }
+
+  form button[type="submit"],
+  form button[type="button"] {
+    width: 100%;
+  }
+}

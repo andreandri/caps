@@ -53,7 +53,7 @@ if ($result_tujuan) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Rute</title>
 
-    <link rel="stylesheet" href="adminjadwal.css">
+    <link rel="stylesheet" href="tambah.css">
 </head>
 <body>
 <header class="dashboard">
@@ -98,7 +98,7 @@ if ($result_tujuan) {
             </select>
 
             <div>
-                <button type="button" onclick="window.location.href='adminrute.php';">Kembali</button>
+                <a href="adminrute.php">Kembali</a>
                 <button type="submit">Tambah Rute</button>
             </div>
         </form>
