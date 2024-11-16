@@ -108,6 +108,7 @@ if (isset($_GET['id_bus'])) {
 </header>
 
 <main class="main-content">
+    <h1>Edit Bus</h1>
     <div class="form-container">
         <form action="edit_bus.php?id_bus=<?= $id_bus ?>" method="POST">
             <label for="no_plat">No. Plat</label>
@@ -118,10 +119,9 @@ if (isset($_GET['id_bus'])) {
 
             <label for="kapasitas">Kapasitas</label>
             <input type="number" id="kapasitas" name="kapasitas" value="<?= $bus['kapasitas'] ?? '' ?>" required>
-
-            <div class="button-container">
-                <button type="submit" class="btn edit">Edit Bus</button>
-            </div>
+            
+            <a href="adminrute.php">Kembali</a>
+            <button type="submit">Edit Bus</button>
         </form>
     </div>
 </main>

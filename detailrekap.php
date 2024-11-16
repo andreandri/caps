@@ -49,9 +49,14 @@ $result = mysqli_query($koneksi, $query);
     </div>
   </header>
 
-    <main class="detail-rekap">
-      <div>
-      <h1>Detail Pesanan</h1>
+  <main class="detail-rekap">
+    <div>
+    <h1>Detail Pesanan</h1>
+
+    <section class="Kembali">
+      <a href="adminrekap.php">Kembali</a>
+    </section>
+        
         <table border="1">
           <thead>
             <tr>

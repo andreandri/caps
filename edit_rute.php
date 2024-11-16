@@ -128,28 +128,32 @@ if ($result_tujuan) {
     </div>
 </header>
 
-<main>
-    <form action="edit_rute.php?id_rute=<?= $id_rute ?>" method="POST">
-        <label for="kota_asal">Kota Asal</label>
-        <select id="kota_asal" name="kota_asal" required>
-            <option value="">Pilih Kota Asal</option>
-            <?php foreach ($kota_asal_enum as $kota): ?>
-                <option value="<?= $kota ?>" <?= ($rute['kota_asal'] == $kota) ? 'selected' : '' ?>><?= $kota ?></option>
-            <?php endforeach; ?>
-        </select>
+<main class="main-content">
+<h1>Edit Rute Keberangkatan</h1>
+    <div class="form-container">
+      <form action="edit_rute.php?id_rute=<?= $id_rute ?>" method="POST">
+          <label for="kota_asal">Kota Asal</label>
+          <select id="kota_asal" name="kota_asal" required>
+              <option value="">Pilih Kota Asal</option>
+              <?php foreach ($kota_asal_enum as $kota): ?>
+                  <option value="<?= $kota ?>" <?= ($rute['kota_asal'] == $kota) ? 'selected' : '' ?>><?= $kota ?></option>
+              <?php endforeach; ?>
+          </select>
 
-        <label for="kota_tujuan">Kota Tujuan</label>
-        <select id="kota_tujuan" name="kota_tujuan" required>
-            <option value="">Pilih Kota Tujuan</option>
-            <?php foreach ($kota_tujuan_enum as $kota): ?>
-                <option value="<?= $kota ?>" <?= ($rute['kota_tujuan'] == $kota) ? 'selected' : '' ?>><?= $kota ?></option>
-            <?php endforeach; ?>
-        </select>
+          <label for="kota_tujuan">Kota Tujuan</label>
+          <select id="kota_tujuan" name="kota_tujuan" required>
+              <option value="">Pilih Kota Tujuan</option>
+              <?php foreach ($kota_tujuan_enum as $kota): ?>
+                  <option value="<?= $kota ?>" <?= ($rute['kota_tujuan'] == $kota) ? 'selected' : '' ?>><?= $kota ?></option>
+              <?php endforeach; ?>
+          </select>
 
-        <div>
+          <div>
+            <a href="adminrute.php">Kembali</a>
             <button type="submit">Update Rute</button>
-        </div>
-    </form>
+          </div>
+      </form>
+    </div>
 </main>
 
 <!-- Pop-up untuk sukses -->

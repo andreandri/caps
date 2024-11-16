@@ -62,85 +62,87 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Jadwal</title>
-    <link rel="stylesheet" href="admin-edit-detail.css">
-    <style>
-        /* Style untuk pop-up */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
-        .popup-content {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            text-align: center;
-            max-width: 400px;
-            width: 100%;
-        }
-        .popup button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 20px;
-        }
-        .popup button:hover {
-            background-color: #45a049;
-        }
-    </style>
-</head>
-<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Edit Jadwal</title>
+        <link rel="stylesheet" href="admin-edit-detail.css">
+        <style>
+            /* Style untuk pop-up */
+            .popup {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                justify-content: center;
+                align-items: center;
+            }
+            .popup-content {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 5px;
+                text-align: center;
+                max-width: 400px;
+                width: 100%;
+            }
+            .popup button {
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                font-size: 16px;
+                margin-top: 20px;
+            }
+            .popup button:hover {
+                background-color: #45a049;
+            }
+        </style>
+    </head>
+    <body>
 
-<header class="dashboard">
-    <div class="navbar">
-        <h1>Dashboard Admin</h1>
-        <ul class="menu">
-            <li><a href="adminrute.php">Rute</a></li>
-            <li><a href="adminjadwal.php" style="background-color: #C8ACD6;">Jadwal</a></li>
-            <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
-            <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
-        </ul> 
-        <img src="img/EasyBusTix.png" alt=""> 
-    </div>
-    <div>
-        <a href="fungsi/logout.php" class="logout">Logout</a>
-    </div>
-</header>
-  
-<main class="container">
-    <h1>Edit Jadwal Keberangkatan</h1>
-    <form method="POST">
-        <label for="id_rute">Rute:</label>
-        <input type="text" id="id_rute" name="id_rute" value="<?= htmlspecialchars($row['id_rute']); ?>" required>
+    <header class="dashboard">
+        <div class="navbar">
+            <h1>Dashboard Admin</h1>
+            <ul class="menu">
+                <li><a href="adminrute.php">Rute</a></li>
+                <li><a href="adminjadwal.php" style="background-color: #C8ACD6;">Jadwal</a></li>
+                <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
+                <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+            </ul> 
+            <img src="img/EasyBusTix.png" alt=""> 
+        </div>
+        <div>
+            <a href="fungsi/logout.php" class="logout">Logout</a>
+        </div>
+    </header>
+    
+    <main class="main-content">
+        <h1>Edit Jadwal Keberangkatan</h1>
+        <div class="form-container">
+        <form method="POST">
+            <label for="id_rute">Rute:</label>
+            <input type="text" id="id_rute" name="id_rute" value="<?= htmlspecialchars($row['id_rute']); ?>" required>
 
-        <label for="tgl_keberangkatan">Tanggal Keberangkatan:</label>
-        <input type="date" id="tgl_keberangkatan" name="tgl_keberangkatan" value="<?= htmlspecialchars($row['tgl_keberangkatan']); ?>" required>
+            <label for="tgl_keberangkatan">Tanggal Keberangkatan:</label>
+            <input type="date" id="tgl_keberangkatan" name="tgl_keberangkatan" value="<?= htmlspecialchars($row['tgl_keberangkatan']); ?>" required>
 
-        <label for="jam_keberangkatan">Jam Keberangkatan:</label>
-        <input type="time" id="jam_keberangkatan" name="jam_keberangkatan" value="<?= htmlspecialchars($row['jam_keberangkatan']); ?>" required>
+            <label for="jam_keberangkatan">Jam Keberangkatan:</label>
+            <input type="time" id="jam_keberangkatan" name="jam_keberangkatan" value="<?= htmlspecialchars($row['jam_keberangkatan']); ?>" required>
 
-        <label for="harga">Harga:</label>
-        <input type="number" id="harga" name="harga" value="<?= htmlspecialchars($row['harga']); ?>" required>
+            <label for="harga">Harga:</label>
+            <input type="number" id="harga" name="harga" value="<?= htmlspecialchars($row['harga']); ?>" required>
 
-        <button type="submit">Update Jadwal</button>
-        <button type="button" onclick="location.href='adminjadwal.php'">Batal</button>
-    </form>
-</main>
+            <a href="adminjadwal.php">Kembali</a>
+            <button type="submit">Update Jadwal</button>
+        </form>
+        </div>
+    </main>
 
 <!-- Pop-up sukses -->
 <?php if (!empty($success_message)): ?>

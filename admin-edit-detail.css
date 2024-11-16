@@ -101,3 +101,98 @@ main {
 .logout:hover {
   background-color: #503030; 
 }
+
+.main-content {
+  flex-grow: 1;
+  flex-direction: column;
+  padding: 1rem;
+  box-sizing: border-box;
+  gap: 2rem;
+}
+
+.main-content h1 {
+  text-align: center;
+}
+/* Styling untuk container form */
+.form-container {
+  background-color: #ffffff; /* Latar belakang putih untuk form */
+  padding: 20px; /* Padding dalam form */
+  border-radius: 8px; /* Sudut membulat */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Bayangan untuk memberi efek 3D */
+  width: 100%;
+  max-width: 500px; /* Lebar maksimal form */
+  margin: 5px auto; /* Pusatkan form secara horizontal */
+}
+
+/* Styling untuk label form */
+label {
+  display: block; /* Agar label tampil di atas input */
+  font-weight: bold; /* Tebalkan teks label */
+  margin-bottom: 5px; /* Jarak bawah label ke input */
+  color: #333333; /* Warna teks label */
+}
+
+/* Styling untuk input form */
+input[type="text"],
+input[type="date"],
+input[type="time"],
+input[type="number"] {
+  width: 100%; /* Input selebar container */
+  padding: 10px; /* Padding dalam input */
+  margin-bottom: 15px; /* Jarak antar input */
+  border: 1px solid #ccc; /* Border abu-abu terang */
+  border-radius: 5px; /* Sudut input membulat */
+  font-size: 1rem; /* Ukuran font input */
+}
+
+/* Styling untuk tombol */
+button[type="submit"] {
+  background-color: #4CAF50; /* Warna hijau untuk tombol submit */
+  color: white; /* Warna teks putih */
+  border: none; /* Hilangkan border */
+  padding: 10px 20px; /* Padding tombol */
+  font-size: 1rem; /* Ukuran font tombol */
+  border-radius: 5px; /* Sudut tombol membulat */
+  cursor: pointer; /* Pointer saat hover */
+  width: 100%; /* Tombol memenuhi lebar container */
+  max-width: 200px; /* Lebar maksimal tombol */
+  margin: 10px 0; /* Jarak vertikal tombol */
+}
+
+/* Hover effect pada tombol */
+button[type="submit"]:hover {
+  background-color: #45a049; /* Warna hijau lebih gelap saat hover */
+}
+
+/* Styling untuk link 'Kembali' */
+a {
+  display: inline-block; /* Agar tampil seperti tombol */
+  text-decoration: none; /* Hilangkan garis bawah */
+  background-color: #6a5acd; /* Warna biru-ungu */
+  color: white; /* Teks putih */
+  padding: 10px 20px; /* Padding dalam tombol */
+  border-radius: 5px; /* Sudut tombol membulat */
+  font-size: 1rem; /* Ukuran font */
+  text-align: center; /* Teks rata tengah */
+  margin: 10px 0; /* Jarak vertikal tombol */
+}
+
+a:hover {
+  background-color: #5a4bbd; /* Warna lebih gelap saat hover */
+}
+
+select {
+  width: 100%; /* Select selebar container */
+  padding: 10px; /* Padding dalam select */
+  margin-bottom: 15px; /* Jarak antar input */
+  border: 1px solid #ccc; /* Border abu-abu terang */
+  border-radius: 5px; /* Sudut select membulat */
+  font-size: 1rem; /* Ukuran font select */
+  background-color: #f9f9f9; /* Warna latar belakang select */
+  cursor: pointer; /* Tampilkan pointer saat hover */
+}
+
+/* Hover effect untuk select */
+select:hover {
+  border-color: #888; /* Ubah warna border saat hover */
+}

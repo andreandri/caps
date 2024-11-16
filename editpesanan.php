@@ -140,9 +140,9 @@ $koneksi->close();
     </div>
 </header>
 
-<main>
-    <div class="main-content">
-        <h1>Edit Pesanan</h1>
+<main class="main-content">
+<h1>Edit Pesanan</h1>
+    <div class="form-container">
         <form action="editpesanan.php?id_pemesanan=<?= $row['id_pemesanan']; ?>" method="POST">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" value="<?= $row['username']; ?>" required><br>
