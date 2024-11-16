@@ -76,9 +76,7 @@ if ($result_tujuan) {
     <title>Edit Rute</title>
 
     <link rel="stylesheet" href="admin-edit-detail.css">
-
     <style>
-        /* Style untuk Pop-up */
         .popup {
             display: none;
             position: fixed;
@@ -111,54 +109,44 @@ if ($result_tujuan) {
             background-color: #45a049;
         }
     </style>
-
 </head>
 <body>
 
 <header class="dashboard">
     <div class="navbar">
-      <h1>Dashboard Admin</h1>
+        <h1>Dashboard Admin</h1>
         <ul class="menu">
-          <li><a href="adminrute.php" style="background-color: #C8ACD6;">Rute</a></li>
-          <li><a href="adminjadwal.php">Jadwal</a></li>
-          <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
-          <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
-        </ul> 
-      <img src="img/EasyBusTix.png" alt=""> 
+            <li><a href="adminrute.php" style="background-color: #C8ACD6;">Rute</a></li>
+            <li><a href="adminjadwal.php">Jadwal</a></li>
+            <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
+            <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+        </ul>
+        <img src="img/EasyBusTix.png" alt="">
     </div>
     <div>
-      <a href="fungsi/logout.php" class="logout">Logout</a>
+        <a href="fungsi/logout.php" class="logout">Logout</a>
     </div>
-  </header>
+</header>
 
 <main>
     <form action="edit_rute.php?id_rute=<?= $id_rute ?>" method="POST">
         <label for="kota_asal">Kota Asal</label>
         <select id="kota_asal" name="kota_asal" required>
             <option value="">Pilih Kota Asal</option>
-            <?php
-            // Menampilkan pilihan kota asal dari ENUM
-            foreach ($kota_asal_enum as $kota) {
-                $selected = ($rute['kota_asal'] == $kota) ? 'selected' : '';
-                echo "<option value=\"$kota\" $selected>$kota</option>";
-            }
-            ?>
+            <?php foreach ($kota_asal_enum as $kota): ?>
+                <option value="<?= $kota ?>" <?= ($rute['kota_asal'] == $kota) ? 'selected' : '' ?>><?= $kota ?></option>
+            <?php endforeach; ?>
         </select>
 
         <label for="kota_tujuan">Kota Tujuan</label>
         <select id="kota_tujuan" name="kota_tujuan" required>
             <option value="">Pilih Kota Tujuan</option>
-            <?php
-            // Menampilkan pilihan kota tujuan dari ENUM
-            foreach ($kota_tujuan_enum as $kota) {
-                $selected = ($rute['kota_tujuan'] == $kota) ? 'selected' : '';
-                echo "<option value=\"$kota\" $selected>$kota</option>";
-            }
-            ?>
+            <?php foreach ($kota_tujuan_enum as $kota): ?>
+                <option value="<?= $kota ?>" <?= ($rute['kota_tujuan'] == $kota) ? 'selected' : '' ?>><?= $kota ?></option>
+            <?php endforeach; ?>
         </select>
 
         <div>
-            <button type="button" onclick="window.location.href='adminrute.php';">Kembali</button>
             <button type="submit">Update Rute</button>
         </div>
     </form>
@@ -169,7 +157,7 @@ if ($result_tujuan) {
     <div id="popup-success" class="popup">
         <div class="popup-content">
             <h3><?= $success_message ?></h3>
-            <button onclick="closePopup()">Tutup</button>
+            <button onclick="redirectToRoute()">Tutup</button>
         </div>
     </div>
 <?php endif; ?>
@@ -185,18 +173,18 @@ if ($result_tujuan) {
 <?php endif; ?>
 
 <script>
-    // Fungsi untuk menutup pop-up
     function closePopup() {
-        document.getElementById('popup-success').style.display = 'none';
         document.getElementById('popup-error').style.display = 'none';
     }
 
-    // Menampilkan pop-up jika berhasil update
+    function redirectToRoute() {
+        window.location.href = 'adminrute.php';
+    }
+
     <?php if (isset($success_message)): ?>
         document.getElementById('popup-success').style.display = 'flex';
     <?php endif; ?>
 
-    // Menampilkan pop-up jika ada error
     <?php if (isset($error_message)): ?>
         document.getElementById('popup-error').style.display = 'flex';
     <?php endif; ?>
