@@ -26,7 +26,7 @@
     <main class="main-content">
         <!-- Tabel Bus -->
         <div>
-            <h2>Bus</h2>
+            <h1>Data Bus</h1>
             <table>
                 <thead>
                     <tr>
@@ -68,7 +68,7 @@
 
         <!-- Tabel Rute -->
         <div class="table-section">
-    <h2>Rute</h2>
+    <h1>Data Rute</h1>
     <table>
         <thead>
             <tr>

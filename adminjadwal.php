@@ -58,6 +58,7 @@ if (!$result) {
     
     <main class="main-content">
         <div>
+            <h1>Data Jadwal</h1>
             <table>
                 <thead>
                     <tr>
