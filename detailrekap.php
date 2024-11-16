@@ -37,10 +37,10 @@ $result = mysqli_query($koneksi, $query);
     <div class="navbar">
       <h1>Dashboard Admin</h1>
         <ul class="menu">
-          <li><a href="adminrute.php" style="background-color: #C8ACD6;">Rute</a></li>
+          <li><a href="adminrute.php">Rute</a></li>
           <li><a href="adminjadwal.php">Jadwal</a></li>
           <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
-          <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+          <li><a href="adminrekap.php" style="background-color: #C8ACD6;">Rekap Pendapatan</a></li>
         </ul> 
       <img src="img/EasyBusTix.png" alt=""> 
     </div>
