@@ -59,6 +59,7 @@
 include ("koneksi.php");
 session_start();
 $username = $_SESSION['username'];
+
 // Handle the form submission and display the available schedules
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
     // Get the search parameters
@@ -66,41 +67,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
     $tujuan = $_POST['tujuan'];
     $tanggal = $_POST['date'];
 
-    // Query to find schedules
-    $sql = "SELECT tb_jadwal.id_jadwal, tb_rute.kota_asal, tb_rute.kota_tujuan, 
-                   tb_jadwal.tgl_keberangkatan, tb_jadwal.jam_keberangkatan, tb_jadwal.harga 
-            FROM tb_jadwal
-            INNER JOIN tb_rute ON tb_jadwal.id_rute = tb_rute.id_rute 
-            WHERE tb_rute.kota_asal = ? 
-              AND tb_rute.kota_tujuan = ? 
-              AND tb_jadwal.tgl_keberangkatan = ?";
+    // Query to find schedules with conditions based on user input
+    $sql = "SELECT 
+            r.kota_asal, 
+            r.kota_tujuan, 
+            j.id_jadwal, 
+            j.tgl_keberangkatan, 
+            j.jam_keberangkatan, 
+            b.no_plat, 
+            b.id_bus,  -- Tambahkan kolom ini
+            j.harga
+        FROM tb_busjadwal bj
+        JOIN tb_jadwal j ON bj.id_jadwal = j.id_jadwal
+        JOIN tb_bus b ON bj.id_bus = b.id_bus
+        JOIN tb_rute r ON j.id_rute = r.id_rute
+        WHERE 1";
 
-    $stmt = $koneksi->prepare($sql);
-    $stmt->bind_param("sss", $asal, $tujuan, $tanggal);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    // Filter by 'asal' if it's provided
+    if (!empty($asal)) {
+        $sql .= " AND r.kota_asal = '$asal'";
+    }
+
+    // Filter by 'tujuan' if it's provided
+    if (!empty($tujuan)) {
+        $sql .= " AND r.kota_tujuan = '$tujuan'";
+    }
+
+    // Filter by 'tanggal' if it's provided
+    if (!empty($tanggal)) {
+        $sql .= " AND j.tgl_keberangkatan = '$tanggal'";
+    }
+
+    // Execute the query
+    $result = $koneksi->query($sql);
 
     if ($result->num_rows > 0) {
         echo "<div class='card-container'>";
         while ($row = $result->fetch_assoc()) {
-            $id_jadwal = $row['id_jadwal'];  // Get the schedule ID
-            echo "<a href='index.php?id_jadwal={$id_jadwal}' class='card'>
+            // Get the schedule data
+            $id_jadwal = $row['id_jadwal'];
+            $id_bus = $row['id_bus'];  // Get the bus ID
+            echo "<a href='index.php?id_bus={$id_bus}' class='card'>
                     <div class='card-content'>
                         <h2>{$row['kota_asal']} - {$row['kota_tujuan']}</h2>
                         <p>Tanggal Keberangkatan : " . date("d F Y", strtotime($row['tgl_keberangkatan'])) . "</p>
                         <p>Jam Keberangkatan : " . date("H.i", strtotime($row['jam_keberangkatan'])) . " WIB</p>
+                        <p>Nomor Plat Bus : {$row['no_plat']}</p>
                         <span class='harga'>IDR " . number_format($row['harga'], 0, ',', '.') . "</span>
                     </div>
                   </a>";
         }
         echo "</div>";
     } else {
+        // No schedules found matching the input
         echo "<p style='color: red; text-align: center;'>Keberangkatan bus tidak ada</p>";
     }
 
-    $stmt->close();
+    $koneksi->close();
 }
 ?>
+
 
       </main>
 </body>
