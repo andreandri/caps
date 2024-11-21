@@ -26,15 +26,6 @@ $selectedSeats = isset($_GET['seats']) ? htmlspecialchars($_GET['seats']) : 'Tid
       <input type="hidden" name="selectedSeats" value="<?php echo $selectedSeats; ?>"> <!-- Menyimpan kursi yang dipilih ke dalam form -->
 
       <div class="label">
-        <label for="gender" tabindex="0">Pilih Gender</label>
-        <select id="gender" name="gender" aria-label="Pilih Salah Satu" tabindex="0" required>
-          <option value="">Pilih Gender</option>
-          <option value="Tuan">Tuan</option>
-          <option value="Perempuan">Perempuan</option>
-        </select>
-      </div>
-
-      <div class="label">
         <label for="name">Nama</label>
         <input type="text" id="name" name="name" placeholder="Masukkan Nama Anda" required>
       </div>
