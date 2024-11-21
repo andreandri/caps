@@ -129,7 +129,7 @@ class FooterApp extends HTMLElement {
         <div class="footer-contact">
           <h3>Informasi Kontak</h3>
           <p>📞 +62 812 4567 8910</p>
-          <p>✉️ <a href="mailto:capstoneteam@gmail.com">capstoneteam@gmail.com</a></p>
+          <p>✉️ <a href="mailto:easybustix@gmail.com">easybustix@gmail.com</a></p>
         </div>
       </footer>
     `;
