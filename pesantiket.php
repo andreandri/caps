@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
         echo "<div class='card-container'>";
         while ($row = $result->fetch_assoc()) {
             $id_jadwal = $row['id_jadwal'];  // Get the schedule ID
-            echo "<a href='tiketmasuk.php?id_jadwal={$id_jadwal}' class='card'>
+            echo "<a href='index.php?id_jadwal={$id_jadwal}' class='card'>
                     <div class='card-content'>
                         <h2>{$row['kota_asal']} - {$row['kota_tujuan']}</h2>
                         <p>Tanggal Keberangkatan : " . date("d F Y", strtotime($row['tgl_keberangkatan'])) . "</p>
