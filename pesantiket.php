@@ -57,6 +57,9 @@
     <?php
 // Mengimpor file koneksi
 include 'koneksi.php';
+session_start();
+// Ambil username pengguna dari sesi
+$username = $_SESSION['username'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Mengambil input dari form
@@ -87,7 +90,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result->num_rows > 0) {
         echo "<div class='card-container'>";
         while ($row = $result->fetch_assoc()) {
-            echo "<a href='index.php?id_jadwal={$row['id_jadwal']}' class='card'>
+            $id_jadwal = $row['id_jadwal'];  // Ambil id_jadwal dari hasil query
+            echo "<a href='index.php?id_jadwal={$id_jadwal}' class='card'>
                     <div class='card-content'>
                         <h2>{$row['kota_asal']} - {$row['kota_tujuan']}</h2>
                         <p>Tanggal Keberangkatan : " . date("d F Y", strtotime($row['tgl_keberangkatan'])) . "</p>
@@ -97,6 +101,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   </a>";
         }
         echo "</div>";
+
+        // Menyimpan pemesanan ke dalam tabel tb_pemesanan
+        $sql_insert = "INSERT INTO tb_pemesanan (username, id_busjadwal) VALUES (?, ?)";
+        $stmt_insert = $koneksi->prepare($sql_insert);
+        $stmt_insert->bind_param("si", $username, $id_jadwal);
+
+        if (!$stmt_insert->execute()) {
+            echo "<p style='color: red;'>Gagal menyimpan pemesanan.</p>";
+        }
+
+        $stmt_insert->close();
     } else {
         echo "<p style='color: red; text-align: center;'>Keberangkatan bus tidak ada</p>";
     }
