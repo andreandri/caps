@@ -1,5 +1,34 @@
 <?php
-$selectedSeats = isset($_GET['seats']) ? htmlspecialchars($_GET['seats']) : 'Tidak ada kursi yang dipilih';
+include ("koneksi.php");
+session_start();
+// Ambil username pengguna dari sesi
+$username = $_SESSION['username'];
+
+// Ambil id_jadwal yang dipilih
+$id_busjadwal = isset($_GET['id_jadwal']) ? $_GET['id_jadwal'] : 0;
+
+// Cek jika form sudah disubmit
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Ambil data dari form
+    $nama_penumpang = $_POST['name'];
+    $no_hp = $_POST['nomor'];
+    $selectedSeats = $_POST['selectedSeats'];
+
+    // Koneksi ke database
+    include('koneksi.php');
+
+    // Query untuk memasukkan data ke tabel tb_pemesanan
+    $query = "INSERT INTO tb_pemesanan (username, id_busjadwal, nama_penumpang, no_wa) 
+              VALUES ('$username', '$id_busjadwal', '$nama_penumpang', '$no_hp')";
+
+    if (mysqli_query($koneksi, $query)) {
+        // Redirect atau pesan sukses
+        header('Location: cetak-tiket.php');
+    } else {
+        // Pesan error jika gagal memasukkan data
+        echo "Error: " . $query . "<br>" . mysqli_error($koneksi);
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +49,7 @@ $selectedSeats = isset($_GET['seats']) ? htmlspecialchars($_GET['seats']) : 'Tid
   
   <main>
     <h1>Pesan Kursi</h1>
-    <form action="cetak-tiket.php" method="POST" class="form">
+    <form action="tiketmasuk.php?id_jadwal=<?php echo $id_busjadwal; ?>" method="POST" class="form">
       <h2>Tiket: <?php echo $selectedSeats; ?></h2> <!-- Menampilkan kursi yang dipilih -->
       
       <input type="hidden" name="selectedSeats" value="<?php echo $selectedSeats; ?>"> <!-- Menyimpan kursi yang dipilih ke dalam form -->

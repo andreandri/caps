@@ -19,52 +19,54 @@
     </div>
 
     <!-- Form Pencarian Jadwal -->
-    <form action="pesantiket.php" method="POST">
-      <div class="opsi">
+    <!-- Form Pencarian Jadwal -->
+<form action="pesantiket.php" method="POST">
+    <div class="opsi">
         <div class="form-asal">
-          <label for="asal">Form/Asal</label>
-          <select id="asal" name="asal">
-            <option value="">Pilih Kota</option>
-            <option value="Palangka Raya">Palangka Raya</option>
-            <option value="Sampit">Sampit</option>
-            <option value="Pangkalan Bun">Pangkalan Bun</option>
-          </select>
+            <label for="asal">Form/Asal</label>
+            <select id="asal" name="asal">
+                <option value="">Pilih Kota</option>
+                <option value="Palangka Raya">Palangka Raya</option>
+                <option value="Sampit">Sampit</option>
+                <option value="Pangkalan Bun">Pangkalan Bun</option>
+            </select>
         </div>
-        
+
         <div class="to-tujuan">
-          <label for="tujuan">To/Tujuan</label>
-          <select id="tujuan" name="tujuan">
-            <option value="">Pilih Kota</option>
-            <option value="Palangka Raya">Palangka Raya</option>
-            <option value="Sampit">Sampit</option>
-            <option value="Pangkalan Bun">Pangkalan Bun</option>
-          </select>
+            <label for="tujuan">To/Tujuan</label>
+            <select id="tujuan" name="tujuan">
+                <option value="">Pilih Kota</option>
+                <option value="Palangka Raya">Palangka Raya</option>
+                <option value="Sampit">Sampit</option>
+                <option value="Pangkalan Bun">Pangkalan Bun</option>
+            </select>
         </div>
-      </div>
+    </div>
 
-      <div class="opsiopsi">
+    <div class="opsiopsi">
         <div class="date">
-          <label for="date">Pilih Tanggal</label>
-          <input type="date" id="date" name="date">
+            <label for="date">Pilih Tanggal</label>
+            <input type="date" id="date" name="date">
         </div>
-  
+
         <div class="search">
-          <button type="submit" name="search">Search</button>
+            <button type="submit" name="search">Search</button>
         </div>
-      </div>
-    </form>
+    </div>
+</form>
 
-    <?php
-// Mengimpor file koneksi
-include 'koneksi.php';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Mengambil input dari form
+<?php
+include ("koneksi.php");
+session_start();
+$username = $_SESSION['username'];
+// Handle the form submission and display the available schedules
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
+    // Get the search parameters
     $asal = $_POST['asal'];
     $tujuan = $_POST['tujuan'];
     $tanggal = $_POST['date'];
 
-    // Query untuk mencari jadwal sesuai input
+    // Query to find schedules
     $sql = "SELECT tb_jadwal.id_jadwal, tb_rute.kota_asal, tb_rute.kota_tujuan, 
                    tb_jadwal.tgl_keberangkatan, tb_jadwal.jam_keberangkatan, tb_jadwal.harga 
             FROM tb_jadwal
@@ -73,13 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               AND tb_rute.kota_tujuan = ? 
               AND tb_jadwal.tgl_keberangkatan = ?";
 
-    // Siapkan statement
     $stmt = $koneksi->prepare($sql);
-
-    if (!$stmt) {
-        die("Query gagal dipersiapkan: " . $koneksi->error);
-    }
-
     $stmt->bind_param("sss", $asal, $tujuan, $tanggal);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -87,7 +83,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result->num_rows > 0) {
         echo "<div class='card-container'>";
         while ($row = $result->fetch_assoc()) {
-            echo "<a href='index.php?id_jadwal={$row['id_jadwal']}' class='card'>
+            $id_jadwal = $row['id_jadwal'];  // Get the schedule ID
+            echo "<a href='tiketmasuk.php?id_jadwal={$id_jadwal}' class='card'>
                     <div class='card-content'>
                         <h2>{$row['kota_asal']} - {$row['kota_tujuan']}</h2>
                         <p>Tanggal Keberangkatan : " . date("d F Y", strtotime($row['tgl_keberangkatan'])) . "</p>
@@ -104,6 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
 }
 ?>
+
       </main>
 </body>
 </html>
