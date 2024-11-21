@@ -150,18 +150,22 @@ $seatsData = json_decode($db->retrieve("busSeats"), true);
         const selectedSeats = [];
 
         function selectSeat(seat) {
-            const seatElement = document.querySelector(`[data-seat='${seat}']`);
-            if (seatElement.classList.contains('booked') || seatElement.classList.contains('driver')) {
-                alert('Seat is not available for selection!');
-                return;
-            }
+        const seatElement = document.querySelector(`[data-seat='${seat}']`);
+        if (seatElement.classList.contains('booked') || seatElement.classList.contains('driver')) {
+            alert('Seat is not available for selection!');
+            return;
+        }
 
-            seatElement.classList.toggle('selected');
-            if (selectedSeats.includes(seat)) {
-                selectedSeats.splice(selectedSeats.indexOf(seat), 1); // Remove seat from selectedSeats
-            } else {
-                selectedSeats.push(seat); // Add seat to selectedSeats
-            }
+        seatElement.classList.toggle('selected');
+        if (selectedSeats.includes(seat)) {
+            selectedSeats.splice(selectedSeats.indexOf(seat), 1);
+        } else {
+            selectedSeats.push(seat);
+        }
+
+        // Update status in Firebase
+        const seatStatus = seatElement.classList.contains('selected') ? 'selected' : 'available';
+        db.update('busSeats', seat, { status: seatStatus });
         }
 
         function confirmSeats() {
