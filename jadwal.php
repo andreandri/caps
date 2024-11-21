@@ -14,12 +14,6 @@
   <link rel="stylesheet" href="pesantiket-jadwal.css">
 </head>
 <body>
-
-  <header>
-    <bar-app></bar-app>
-  </header>
-    
-  <main>
     <section class="Kembali">
       <a href="tampilan.php">Kembali</a>
     </section>
@@ -68,6 +62,5 @@
         </div>
       </div>
     </section>
-  </main> 
 </body>
 </html>
