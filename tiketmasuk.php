@@ -20,7 +20,7 @@ $selectedSeats = isset($_GET['seats']) ? htmlspecialchars($_GET['seats']) : 'Tid
   
   <main>
     <h1>Pesan Kursi</h1>
-    <form action="cetak_tiket.php" method="POST" class="form">
+    <form action="cetak-tiket.php" method="POST" class="form">
       <h2>Tiket: <?php echo $selectedSeats; ?></h2> <!-- Menampilkan kursi yang dipilih -->
       
       <input type="hidden" name="selectedSeats" value="<?php echo $selectedSeats; ?>"> <!-- Menyimpan kursi yang dipilih ke dalam form -->
