@@ -52,33 +52,30 @@ if (isset($_POST['register'])) {
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <div class="image">
-         <img src="img/EasyBusTix.png" alt="logo aplikasi">
-    </div>
-
     <div class="wrapper">
+        <h1>Create your account</h1>
+        <h2>Start your journey with us</h2>
+        <div class="image">
+            <img src="img/EasyBusTix.png" alt="logo aplikasi">
+        </div>
         <form action="register.php" method="post">
-            <h1>Register</h1>
             <?php
             if (isset($error_message)) {
                 echo "<div class='error'>$error_message</div>";
             }
             ?>
             <div class="input-box">
-                <label for="username">username</label>
-                <input type="text" id="username" name="username" placeholder="username" required>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
             </div>
             <div class="input-box">
-                <label for="email">email</label>
-                <input type="email" id="email" name="email" placeholder="email" required>
+                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
             </div>
             <div class="input-box">
-                <label for="sandi">sandi</label>
-                <input type="sandi" id="sandi" name="sandi" placeholder="sandi" required>
+                <input type="sandi" id="sandi" name="sandi" placeholder="Enter your password" required>
             </div>
             <button type="submit" class="btn" name="register">Register</button>
         </form>
-        <div class="login-link">
+        <div class="register-link">
             <p>Already have an account? <a href="login.php">Login</a></p>
         </div>
     </div>

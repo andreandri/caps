@@ -1,142 +1,103 @@
+/* Global Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-  }
-  
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    background-color: #E0E0E0;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
 
-  .image img{
-    width: 250px;
-  }
-  
-  .wrapper {
-    width: 420px;
-    background-color: #608BC1;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(9px);
-    color: #fff;
-    border-radius: 12px;
-    padding: 30px 40px;
-  }
-  
-  .wrapper h1 {
-    font-size: 36px;
-    text-align: center;
-  }
-  
-  .wrapper h1 {
-    margin-bottom: 20px;
-  }
-  
-  .wrapper .input-box {
-    position: relative;
-    width: 100%;
-    height: 50px;
-    margin: 30px 0;
-  }
-  
-  .input-box input {
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border: none;
-    outline: none;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 40px;
-    font-size: 16px;
-    color: #fff;
-    padding: 20px 45px 20px 20px;
-  }
-  
-  .input-box input::placeholder {
-    color: #fff;
-  }
-  
-  .input-box i {
-    position: absolute;
-    right: 20px;
-    top: 30%;
-    transform: translate(-50%);
-    font-size: 20px;
-  }
-  
-  .wrapper .btn {
-    width: 100%;
-    height: 45px;
-    background: #fff;
-    border: none;
-    outline: none;
-    border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    font-size: 16px;
-    color: #333;
-    font-weight: 600;
-  }
-  
-  .wrapper .register-link,
-  .wrapper .login-link {
-    font-size: 14.5px;
-    text-align: center;
-    margin: 20px 0 15px;
-  }
-  
-  .register-link p a,
-  .login-link p a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-  }
-  
-  .register-link p a:hover,
-  .login-link p a:hover {
-    text-decoration: underline;
-  }
-  
-  @media screen and (max-width: 768px) {
-    body {
-      padding: 0 1rem;
-    }
-  
-    .wrapper {
-      width: 100%; /* Sesuaikan lebar dengan layar */
-      padding: 20px 25px;
-    }
-  
-    .wrapper h1 {
-      font-size: 28px; /* Perkecil ukuran teks */
-    }
-  
-    .wrapper .input-box {
-      margin: 20px 0; /* Kurangi jarak antar elemen */
-    }
-  
-    .input-box input {
-      font-size: 14px;
-      padding: 15px 35px 15px 15px; /* Kurangi padding */
-    }
-  
-    .wrapper .btn {
-      height: 40px; /* Sesuaikan tinggi tombol */
-      font-size: 14px;
-    }
-  
-    .register-link p,
-    .login-link p {
-      font-size: 12px; /* Perkecil ukuran teks */
-    }
-  
-    .image img {
-      width: 200px; /* Sesuaikan ukuran logo */
-    }
-  }
-  
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.wrapper {
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 40px 20px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.image img {
+  width: 250px;
+  margin: 0 auto 20px;
+}
+
+h1 {
+  font-size: 1.3rem;
+  color: #333;
+  text-align: left;
+  margin-bottom: 10px;
+}
+h2 {
+  font-size: 1rem;
+  color: #ddd;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-box {
+  position: relative;
+  margin: 20px 0;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 12px 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+}
+
+.input-box input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 15px 0;
+}
+
+.btn:hover {
+  background: #0056b3;
+}
+
+.register-link {
+  font-size: 14px;
+  color: #555;
+}
+
+.register-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  text-align: center;
+}

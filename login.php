@@ -11,32 +11,31 @@ session_start();
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <div class="image">
-         <img src="img/EasyBusTix.png" alt="logo aplikasi">
-    </div>
-
     <div class="wrapper">
+        <h1>Welcome Back</h1>
+        <h2>Log in now to continue</h2>
+        <div class="image">
+            <img src="img/EasyBusTix.png" alt="illustration" />
+        </div>
         <form action="fungsi/login_check.php" method="post">
-            <h1>Login</h1>
             <?php
             if (isset($_SESSION['loginMessage'])) {
                 echo $_SESSION['loginMessage'];
-                unset($_SESSION['loginMessage']); // Hapus pesan setelah ditampilkan
+                unset($_SESSION['loginMessage']);
             }
             ?>
             <div class="input-box">
-                <label for="username">username or email</label>
-                <input type="text" id="username" name="username_or_email" placeholder="username or email" required>
+                <input type="text" id="username" name="username_or_email" placeholder="Enter your username or email " reuired>
             </div>
             <div class="input-box">
-                <label for="sandi">sandi</label>
-                <input type="sandi" id="sandi" name="sandi" placeholder="sandi" required>
+                <input type="sandi" id="sandi" name="sandi" placeholder="Enter your password" required>
             </div>
             <button type="submit" class="btn" name="login">Login</button>
             <div class="register-link">
-                <p>Don't have an account? <a href="register.php">Register</a></p>
+                <p>Don't have an account? <a href="register.php">Sign Up</a></p>
             </div>
         </form>
     </div>
 </body>
 </html>
+
