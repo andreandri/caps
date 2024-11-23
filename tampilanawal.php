@@ -129,8 +129,8 @@
         </div>
         <div class="manage">
           <h4>Manage:</h4>
-          <p><a href="#">Kebijakan Privasi</a></p>
-          <p><a href="#">Syarat dan Ketentuan</a></p>
+          <p><a href="kebijakanawal.php">Kebijakan Privasi</a></p>
+          <p><a href="kebijakanawal.php">Syarat dan Ketentuan</a></p>
         </div>
       </div>
       <div class="footer-bottom">
