@@ -1,12 +1,45 @@
 <?php
 include 'koneksi.php';
 
-// Query untuk mengambil data dari view
-$sql = "SELECT * FROM v_pemesanan_rute_jadwal";
-$result = $koneksi->query($sql);
+$id_pemesanan = $_GET['id_pemesanan'] ?? null;
 
-// Ambil data dari query
-$data = $result->fetch_assoc();
+if ($id_pemesanan) {
+    $sql = $koneksi->prepare("SELECT p.id_pemesanan, p.nama_penumpang, p.no_wa, p.total, j.harga, 
+                                       r.kota_asal, r.kota_tujuan, j.tgl_keberangkatan, j.jam_keberangkatan
+                              FROM tb_pemesanan p
+                              JOIN tb_busjadwal bj ON p.id_busjadwal = bj.id_busjadwal  
+                              JOIN tb_jadwal j ON bj.id_jadwal = j.id_jadwal  
+                              JOIN tb_rute r ON j.id_rute = r.id_rute
+                              WHERE p.id_pemesanan = ?");
+    $sql->bind_param("i", $id_pemesanan);  
+    $sql->execute();
+    $result = $sql->get_result();
+
+    if ($result->num_rows > 0) {
+        $data = $result->fetch_assoc();
+
+        $kursi_sql = $koneksi->prepare("SELECT k.nomor_kursi
+                                        FROM tb_pemesanan_kursi pk
+                                        JOIN tb_kursi k ON pk.id_kursi = k.id_kursi
+                                        WHERE pk.id_pemesanan = ?");
+        $kursi_sql->bind_param("i", $id_pemesanan); 
+        $kursi_sql->execute();
+        $kursi_result = $kursi_sql->get_result();
+
+        $kursi_list = [];
+        while ($kursi = $kursi_result->fetch_assoc()) {
+            $kursi_list[] = $kursi['nomor_kursi'];
+        }
+
+        $jumlah_tiket = count($kursi_list);
+    } else {
+        echo "Pemesanan tidak ditemukan.";
+        exit;
+    }
+} else {
+    echo "ID Pemesanan tidak diberikan.";
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -86,14 +119,14 @@ $data = $result->fetch_assoc();
     <bar-app></bar-app>
   </header>
   <main>
-  <div class="card">
+    <div class="card">
         <h1>Detail Pemesanan</h1>
-        <p>No. Kursi: <?= $data['no_kursi'] ?? '-' ?></p>
-        <p>Nama: <?= $data['nama_penumpang'] ?? '-' ?></p>
-        <p>No HP: <?= $data['no_wa'] ?? '-' ?></p>
-        <p>Tiket: <?= $data['jumlah_tiket'] ?? '-' ?></p>
-        <p>Tujuan: <?= ($data['kota_asal'] ?? '-') . ' - ' . ($data['kota_tujuan'] ?? '-') ?></p>
-        <p>Keberangkatan: <?= ($data['tgl_keberangkatan'] ?? '-') . ', ' . ($data['jam_keberangkatan'] ?? '-') ?></p>
+        <p>No. Kursi: <?= !empty($kursi_list) ? implode(", ", $kursi_list) : '-' ?></p>
+        <p>Nama: <?= htmlspecialchars($data['nama_penumpang'] ?? '-') ?></p>
+        <p>No HP: <?= htmlspecialchars($data['no_wa'] ?? '-') ?></p>
+        <p>Tiket: <?= $jumlah_tiket ?? '-' ?></p>
+        <p>Tujuan: <?= htmlspecialchars($data['kota_asal'] ?? '-') . ' - ' . htmlspecialchars($data['kota_tujuan'] ?? '-') ?></p>
+        <p>Keberangkatan: <?= htmlspecialchars($data['tgl_keberangkatan'] ?? '-') . ', ' . htmlspecialchars($data['jam_keberangkatan'] ?? '-') ?></p>
         <p class="total">Total: Rp <?= number_format($data['total'] ?? 0, 0, ',', '.') ?></p>
         <button>Bayar</button>
     </div>
