@@ -12,6 +12,7 @@ if (isset($_GET['id_kursi'])) {
         // Arahkan ke tiketmasuk.php dengan membawa id_kursi dan id_busjadwal
         header("Location: tiketmasuk.php?id_kursi=$id_kursi&id_busjadwal=$id_busjadwal");
         exit();
+
     } else {
         echo "<p>Gagal memproses pemesanan. Coba lagi nanti.</p>";
     }

@@ -2,31 +2,40 @@
 include("koneksi.php");
 session_start();
 // Ambil username pengguna dari sesi
-$username = $_SESSION['username'];
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : null;
 
 // Ambil id_jadwal yang dipilih
+$id_kursi = isset($_GET['id_kursi']) ? $_GET['id_kursi'] : null;
 $id_busjadwal = isset($_GET['id_jadwal']) ? $_GET['id_jadwal'] : 0;
 
+// Inisialisasi variabel $selectedSeats untuk menghindari error
+$selectedSeats = isset($_POST['selectedSeats']) ? $_POST['selectedSeats'] : '';
+
+$nomor_kursi = '';
+if ($id_kursi) {
+  $query_kursi = "SELECT nomor_kursi FROM tb_kursi WHERE id_kursi = '$id_kursi'";
+  $result_kursi = $koneksi->query($query_kursi);
+
+  if ($result_kursi->num_rows > 0) {
+      $row = $result_kursi->fetch_assoc();
+      $nomor_kursi = $row['nomor_kursi'];
+  }
+}
 // Cek jika form sudah disubmit
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Ambil data dari form
     $nama_penumpang = $_POST['name'];
     $no_hp = $_POST['nomor'];
-    $selectedSeats = $_POST['selectedSeats'];
-
-    // Koneksi ke database
-    include('koneksi.php');
 
     // Query untuk memasukkan data ke tabel tb_pemesanan
     $query = "INSERT INTO tb_pemesanan (username, id_busjadwal, nama_penumpang, no_wa) 
               VALUES ('$username', '$id_busjadwal', '$nama_penumpang', '$no_hp')";
 
-    if (mysqli_query($koneksi, $query)) {
-            // Redirect atau pesan sukses
-        header('Location: cetak-tiket.php');
+    if ($koneksi->query($query)) {
+      header('Location: cetak-tiket.php');
+      exit();
     } else {
-        // Pesan error jika gagal memasukkan data
-        echo "Error: " . $query . "<br>" . mysqli_error($koneksi);
+      echo "Error: " . $query . "<br>" . $koneksi->error;
     }
 }
 ?>
@@ -49,10 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <main>
     <h1>Pesan Kursi</h1>
-    <form action="tiketmasuk.php?id_jadwal=<?php echo $id_busjadwal; ?>" method="POST" class="form">
-      <h2>Tiket: <?php echo $selectedSeats; ?></h2> <!-- Menampilkan kursi yang dipilih -->
+    <form action="tiketmasuk.php?id_kursi=<?php echo $id_kursi; ?>&id_busjadwal=<?php echo $id_busjadwal; ?>" method="POST" class="form">
+      <h2>Kursi: <?php echo htmlspecialchars($nomor_kursi); ?></h2> <!-- Menampilkan nomor kursi -->
 
-      <input type="hidden" name="selectedSeats" value="<?php echo $selectedSeats; ?>"> <!-- Menyimpan kursi yang dipilih ke dalam form -->
+      <input type="hidden" name="selectedSeats" value="<?php echo htmlspecialchars($selectedSeats); ?>"> <!-- Menyimpan kursi yang dipilih ke dalam form -->
 
       <div class="label">
         <label for="name">Nama</label>
