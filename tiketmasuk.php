@@ -1,24 +1,11 @@
 <?php
 include("koneksi.php");
 session_start();
-
 // Ambil username pengguna dari sesi
 $username = $_SESSION['username'];
 
-// Ambil id_kursi dan id_busjadwal dari URL
-$id_kursi = isset($_GET['id_kursi']) ? $_GET['id_kursi'] : 0;
-$id_busjadwal = isset($_GET['id_busjadwal']) ? $_GET['id_busjadwal'] : 0;
-
-// Ambil nomor kursi berdasarkan id_kursi
-$nomor_kursi = '';
-if ($id_kursi != 0) {
-    $query_kursi = "SELECT nomor_kursi FROM tb_kursi WHERE id_kursi = '$id_kursi'";
-    $result_kursi = mysqli_query($koneksi, $query_kursi);
-    if ($result_kursi && mysqli_num_rows($result_kursi) > 0) {
-        $row_kursi = mysqli_fetch_assoc($result_kursi);
-        $nomor_kursi = $row_kursi['nomor_kursi'];
-    }
-}
+// Ambil id_jadwal yang dipilih
+$id_busjadwal = isset($_GET['id_jadwal']) ? $_GET['id_jadwal'] : 0;
 
 // Cek jika form sudah disubmit
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -31,25 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include('koneksi.php');
 
     // Query untuk memasukkan data ke tabel tb_pemesanan
-    $query = "INSERT INTO tb_pemesanan (username, id_busjadwal, nama_penumpang, no_wa, jumlah_tiket, total) 
-              VALUES ('$username', '$id_busjadwal', '$nama_penumpang', '$no_hp', 1, 0)";
+    $query = "INSERT INTO tb_pemesanan (username, id_busjadwal, nama_penumpang, no_wa) 
+              VALUES ('$username', '$id_busjadwal', '$nama_penumpang', '$no_hp')";
 
     if (mysqli_query($koneksi, $query)) {
-        // Mendapatkan id_pemesanan yang baru saja dimasukkan
-        $id_pemesanan = mysqli_insert_id($koneksi);
-
-        // Query untuk memasukkan data ke tabel tb_pemesanan_kursi
-        $query_kursi = "INSERT INTO tb_pemesanan_kursi (id_pemesanan, id_kursi, id_bus, nomor_kursi) 
-                        VALUES ('$id_pemesanan', '$id_kursi', '$id_busjadwal', '$selectedSeats')";
-
-        if (mysqli_query($koneksi, $query_kursi)) {
             // Redirect atau pesan sukses
-            header('Location: cetak-tiket.php?id_pemesanan=' . $id_pemesanan);
-            exit();
-        } else {
-            echo "Error: " . $query_kursi . "<br>" . mysqli_error($koneksi);
-        }
+        header('Location: cetak-tiket.php');
     } else {
+        // Pesan error jika gagal memasukkan data
         echo "Error: " . $query . "<br>" . mysqli_error($koneksi);
     }
 }
@@ -73,10 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <main>
     <h1>Pesan Kursi</h1>
-    <form action="tiketmasuk.php?id_kursi=<?php echo $id_kursi; ?>&id_busjadwal=<?php echo $id_busjadwal; ?>" method="POST" class="form">
-      <h2>Tiket: <?php echo $nomor_kursi; ?></h2> <!-- Menampilkan nomor kursi yang dipilih -->
+    <form action="tiketmasuk.php?id_jadwal=<?php echo $id_busjadwal; ?>" method="POST" class="form">
+      <h2>Tiket: <?php echo $selectedSeats; ?></h2> <!-- Menampilkan kursi yang dipilih -->
 
-      <input type="hidden" name="selectedSeats" value="<?php echo $id_kursi; ?>"> <!-- Menyimpan kursi yang dipilih ke dalam form -->
+      <input type="hidden" name="selectedSeats" value="<?php echo $selectedSeats; ?>"> <!-- Menyimpan kursi yang dipilih ke dalam form -->
 
       <div class="label">
         <label for="name">Nama</label>
@@ -89,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
 
       <div class="search">
-        <button type="submit" class="lanjut">Lanjut</button>
+        <button type="submit" class="lanjut">Lanjut</button> <!-- Mengubah button menjadi submit -->
       </div>
     </form>
   </main>
