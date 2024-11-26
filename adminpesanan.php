@@ -28,6 +28,7 @@ $query = "SELECT p.id_pemesanan, p.username, p.nama_penumpang, p.jumlah_tiket, p
           JOIN tb_busjadwal bj ON p.id_busjadwal = bj.id_busjadwal
           JOIN tb_jadwal j ON bj.id_jadwal = j.id_jadwal
           JOIN tb_rute r ON j.id_rute = r.id_rute";
+
 $result = $koneksi->query($query);
 
 if (!$result) {
@@ -107,6 +108,8 @@ if (!$result) {
                 <tr>
                     <th>ID Pemesanan</th>
                     <th>Username</th>
+                    <th>Nama Pemesanan</th>
+                    <th>Jumlah Tiket</th>
                     <th>Kota Asal</th>
                     <th>Kota Tujuan</th>
                     <th>Tanggal Keberangkatan</th>
@@ -119,6 +122,8 @@ if (!$result) {
                     <tr>
                         <td><?= $row['id_pemesanan']; ?></td>
                         <td><?= $row['username']; ?></td>
+                        <td><?= $row['nama_penumpang']; ?></td> 
+                        <td><?= $row['jumlah_tiket']; ?></td>
                         <td><?= $row['kota_asal']; ?></td>
                         <td><?= $row['kota_tujuan']; ?></td>
                         <td><?= $row['tgl_keberangkatan']; ?></td>

@@ -32,32 +32,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $koneksi->begin_transaction();
 
         try {
-            $query = $koneksi->prepare("INSERT INTO tb_pemesanan (username, id_busjadwal, nama_penumpang, no_wa, jumlah_tiket, total) 
-                                        VALUES (?, ?, ?, ?, ?, ?)");
-            $query->bind_param("sissii", $username, $id_busjadwal, $nama_penumpang, $no_hp, $jumlah_tiket, $total);
-            if ($query->execute()) {
-                $id_pemesanan = $koneksi->insert_id;
-                $query_kursi = $koneksi->prepare("INSERT INTO tb_pemesanan_kursi (id_pemesanan, id_kursi) VALUES (?, ?)");
+          $query = $koneksi->prepare("INSERT INTO tb_pemesanan (username, id_busjadwal, nama_penumpang, no_wa, jumlah_tiket, total) 
+                                      VALUES (?, ?, ?, ?, ?, ?)");
+          $query->bind_param("sissii", $username, $id_busjadwal, $nama_penumpang, $no_hp, $jumlah_tiket, $total);
+          if ($query->execute()) {
+              $id_pemesanan = $koneksi->insert_id;
+              $query_kursi = $koneksi->prepare("INSERT INTO tb_pemesanan_kursi (id_pemesanan, id_kursi) VALUES (?, ?)");
 
-                foreach ($kursi as $k) {
-                    $query_kursi->bind_param("ii", $id_pemesanan, $k);
-                    $query_kursi->execute();
-                }
+              foreach ($kursi as $k) {
+                  $query_kursi->bind_param("ii", $id_pemesanan, $k);
+                  $query_kursi->execute();
 
-                $koneksi->commit();
-                header('Location: cetak-tiket.php?id_pemesanan=' . $id_pemesanan);
-                exit();
-            } else {
-                $koneksi->rollback();
-                echo "Error: " . $query->error;
-            }
-        } catch (Exception $e) {
-            $koneksi->rollback();
-            echo "Error: " . $e->getMessage();
-        }
-    } else {
-        echo "Nama dan nomor WA harus diisi!";
-    }
+                  // Update status kursi menjadi 'booked'
+                  $query_update = $koneksi->prepare("UPDATE tb_kursi SET status = 'booked' WHERE id_kursi = ?");
+                  $query_update->bind_param("i", $k);
+                  $query_update->execute();
+              }
+
+              $koneksi->commit();
+              header('Location: cetak-tiket.php?id_pemesanan=' . $id_pemesanan);
+              exit();
+          } else {
+              $koneksi->rollback();
+              echo "Error: " . $query->error;
+          }
+      } catch (Exception $e) {
+          $koneksi->rollback();
+          echo "Error: " . $e->getMessage();
+      }
+  } else {
+      echo "Nama dan nomor WA harus diisi!";
+  }
 }
 ?>
 

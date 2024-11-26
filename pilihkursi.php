@@ -4,7 +4,6 @@ session_start();
 
 $id_busjadwal = isset($_GET['id_busjadwal']) ? intval($_GET['id_busjadwal']) : 0;
 
-// Ambil semua data kursi untuk bus tertentu
 $sql = "SELECT id_kursi, nomor_kursi, status 
         FROM tb_kursi 
         WHERE id_bus = (SELECT id_bus FROM tb_busjadwal WHERE id_busjadwal = ?)";
@@ -13,7 +12,6 @@ $stmt->bind_param("i", $id_busjadwal);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Array untuk menyimpan posisi kursi
 $kursi_posisi = [
     ["A1", "B1", "", "C1", "D1"], 
     ["A2", "B2", "", "C2", "D2"], 
@@ -23,10 +21,9 @@ $kursi_posisi = [
     ["", "", "", "C6", "D6"]
 ];
 
-// Proses ketika kursi dikonfirmasi
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi'])) {
-    $kursi = $_POST['kursi'];
-    $update_kursi = $koneksi->prepare("UPDATE tb_kursi SET status = 'booked' WHERE id_kursi = ?");
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
+    $kursi = json_decode($_POST['kursi_terpilih'], true);
+    $update_kursi = $koneksi->prepare("UPDATE tb_kursi SET status = 'selected' WHERE id_kursi = ?");
 
     $koneksi->begin_transaction(); // Mulai transaksi
     try {
@@ -81,37 +78,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi'])) {
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-        /* Kursi kosong */
         .seat.available {
             background-color: #bbb;
         }
 
-        /* Kursi sudah dipesan */
         .seat.booked {
             background-color: #ff4d4d;
             cursor: not-allowed;
         }
 
-        /* Kursi yang dipilih */
         .seat.selected {
             background-color: #4CAF50;
             transform: scale(1.1);
         }
 
-        /* Kursi yang baru diklik */
-        .seat-clicked {
-            background-color: #2196F3;
-            transform: scale(1.2);
-        }
-
-        /* Hover efek untuk kursi */
         .seat:hover {
-            background-color: #ffcc00; /* Ganti dengan warna hover sesuai keinginan */
-            transform: scale(1.05); /* Efek sedikit membesar saat hover */
+            background-color: #ffcc00;
+            transform: scale(1.05);
         }
 
-        .seat input {
-            display: none;
+        .seat.sopir {
+            background-color: #333;
+            color: #fff;
         }
 
         button {
@@ -132,8 +120,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi'])) {
 </head>
 <body>
     <h2>Pilih Kursi</h2>
-    <form action="" method="POST">
-        <input type="hidden" name="id_busjadwal" value="<?php echo $id_busjadwal; ?>">
+    <form action="" method="POST" id="seatForm">
+        <input type="hidden" name="kursi_terpilih" id="kursiTerpilih">
         <div class="seat-container">
             <?php
             // PHP Loop untuk menampilkan kursi
@@ -141,11 +129,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi'])) {
                 foreach ($baris as $posisi) {
                     // Mengambil status kursi dari database
                     $status_class = '';
-                    $disabled = '';
                     $kursi_id = null;
                     $kursi_nomor = $posisi;
 
-                    if ($posisi != " " && $posisi != "SOPIR") {
+                    if ($posisi != "" && $posisi != "SOPIR") {
                         // Cek jika kursi ada di database
                         $sql_kursi = "SELECT id_kursi, status FROM tb_kursi WHERE nomor_kursi = ? AND id_bus = (SELECT id_bus FROM tb_busjadwal WHERE id_busjadwal = ?)";
                         $stmt_kursi = $koneksi->prepare($sql_kursi);
@@ -156,17 +143,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi'])) {
 
                         if ($row) {
                             $kursi_id = $row['id_kursi'];
-                            $status_class = $row['status'] === 'booked' ? 'booked' : 'available';
-                            $disabled = $row['status'] === 'booked' ? 'disabled' : '';
+                            $status_class = $row['status'] === 'booked' || $row['status'] === 'selected' ? 'booked' : 'available';
                         }
                     }
 
                     // Tampilkan kursi jika ada
                     if ($posisi != "SOPIR") {
-                        echo "<label class='seat $status_class'>
-                                <input type='checkbox' name='kursi[]' value='$kursi_id' $disabled>
-                                $kursi_nomor
-                              </label>";
+                        echo "<div class='seat $status_class' data-id='$kursi_id' data-nomor='$kursi_nomor'>$kursi_nomor</div>";
                     } else {
                         // Tampilkan "SOPIR" jika posisi adalah sopir
                         echo "<div class='seat sopir'>$posisi</div>";
@@ -179,33 +162,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi'])) {
     </form>
 
     <script>
-document.addEventListener('DOMContentLoaded', () => {
-    // Seleksi semua kursi yang tersedia dan yang sudah dipilih
-    const seats = document.querySelectorAll('.seat.available, .seat.selected');
+        document.addEventListener('DOMContentLoaded', () => {
+            const selectedSeats = new Set();
+            const seatElements = document.querySelectorAll('.seat.available');
+            const seatForm = document.getElementById('seatForm');
+            const kursiTerpilih = document.getElementById('kursiTerpilih');
 
-    seats.forEach(seat => {
-        seat.addEventListener('click', () => {
-            const checkbox = seat.querySelector('input[type="checkbox"]');
-            
-            if (seat.classList.contains('selected')) {
-                // Jika kursi sudah dipilih, batalkan pilihan dan kembalikan warna kursi
-                seat.classList.remove('selected');
-                seat.classList.add('available'); // Mengubah kelas ke "available"
-                checkbox.checked = false; // Reset checkbox (kursi dibatalkan)
-            } else if (seat.classList.contains('available')) {
-                // Jika kursi belum dipilih, pilih kursi dan beri animasi klik
-                seat.classList.add('seat-clicked');
-                setTimeout(() => {
-                    seat.classList.remove('seat-clicked');
-                    seat.classList.add('selected');
-                    checkbox.checked = true; // Set checkbox ke true (kursi dipilih)
-                }, 300); // Durasi animasi sama dengan CSS transition
-            }
+            seatElements.forEach(seat => {
+                seat.addEventListener('click', () => {
+                    const seatId = seat.dataset.id;
+
+                    if (selectedSeats.has(seatId)) {
+                        selectedSeats.delete(seatId);
+                        seat.classList.remove('selected');
+                        seat.classList.add('available');
+                    } else {
+                        selectedSeats.add(seatId);
+                        seat.classList.remove('available');
+                        seat.classList.add('selected');
+                    }
+                });
+            });
+
+            seatForm.addEventListener('submit', (e) => {
+                kursiTerpilih.value = JSON.stringify([...selectedSeats]);
+            });
         });
-    });
-});
-
-
     </script>
 </body>
 </html>

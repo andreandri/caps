@@ -17,10 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
     }
 }
 
-// Fetch schedule data from tb_jadwal
-$query = "SELECT j.id_jadwal, r.kota_asal, r.kota_tujuan, j.tgl_keberangkatan, j.jam_keberangkatan, j.harga
+$query = "SELECT j.id_jadwal, r.kota_asal, r.kota_tujuan, j.tgl_keberangkatan, j.jam_keberangkatan, j.harga, 
+          bj.id_bus
           FROM tb_jadwal j
-          JOIN tb_rute r ON j.id_rute = r.id_rute";
+          JOIN tb_rute r ON j.id_rute = r.id_rute
+          LEFT JOIN tb_busjadwal bj ON bj.id_jadwal = j.id_jadwal";
+
 $result = $koneksi->query($query);
 
 if (!$result) {
@@ -101,6 +103,7 @@ if (!$result) {
             <thead>
                 <tr>
                     <th>Id Jadwal</th>
+                    <th>Id Bus</th>
                     <th>Kota Asal</th>
                     <th>Kota Tujuan</th>
                     <th>Tanggal Keberangkatan</th>
@@ -113,6 +116,7 @@ if (!$result) {
                 <?php while($row = $result->fetch_assoc()) { ?>
                     <tr>
                         <td><?= $row['id_jadwal']; ?></td>
+                        <td><?= $row['id_bus']; ?></td>
                         <td><?= $row['kota_asal']; ?></td>
                         <td><?= $row['kota_tujuan']; ?></td>
                         <td><?= $row['tgl_keberangkatan']; ?></td>
