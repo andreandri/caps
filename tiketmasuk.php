@@ -1,68 +1,57 @@
 <?php
 include("koneksi.php");
 session_start();
-$username = $_SESSION['username'];
 
-// Mendapatkan id_busjadwal dan kursi yang dipilih dari URL atau POST
-$id_busjadwal = $_GET['id_busjadwal'] ?? $_POST['id_busjadwal']; 
-$kursi = $_POST['kursi'] ?? []; // Kursi yang dipilih sebelumnya
+$username = $_SESSION['username'];
+$id_busjadwal = $_GET['id_busjadwal'] ?? $_POST['id_busjadwal'];
+
+// Ambil kursi dari session
+$kursi = $_SESSION['kursi_terpilih'] ?? [];
+
+// Validasi: jika kursi belum dipilih, redirect ke pilihkursi.php
+if (empty($kursi)) {
+    header("Location: pilihkursi.php?id_busjadwal=$id_busjadwal");
+    exit();
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Pastikan form tidak kosong
     if (!empty($_POST['name']) && !empty($_POST['nomor'])) {
         $nama_penumpang = $_POST['name'];
         $no_hp = $_POST['nomor'];
-        $jumlah_tiket = count($kursi); // Menghitung jumlah tiket yang dipilih
+        $jumlah_tiket = count($kursi);
 
-        // Mengambil harga tiket dari tabel tb_jadwal
+        // Harga tiket
         $query_harga = $koneksi->prepare("SELECT harga FROM tb_jadwal WHERE id_jadwal = ?");
         $query_harga->bind_param("i", $id_busjadwal);
         $query_harga->execute();
         $result_harga = $query_harga->get_result();
         $row_harga = $result_harga->fetch_assoc();
         $harga_tiket = $row_harga['harga'];
-
-        // Menghitung total harga tiket
         $total = $harga_tiket * $jumlah_tiket;
 
-        // Mulai transaksi
         $koneksi->begin_transaction();
 
         try {
-            // Query untuk memasukkan data ke tabel tb_pemesanan
             $query = $koneksi->prepare("INSERT INTO tb_pemesanan (username, id_busjadwal, nama_penumpang, no_wa, jumlah_tiket, total) 
                                         VALUES (?, ?, ?, ?, ?, ?)");
             $query->bind_param("sissii", $username, $id_busjadwal, $nama_penumpang, $no_hp, $jumlah_tiket, $total);
             if ($query->execute()) {
                 $id_pemesanan = $koneksi->insert_id;
-
-                // Insert kursi yang dipilih ke tb_pemesanan_kursi
                 $query_kursi = $koneksi->prepare("INSERT INTO tb_pemesanan_kursi (id_pemesanan, id_kursi) VALUES (?, ?)");
-                $update_kursi = $koneksi->prepare("UPDATE tb_kursi SET status = 'booked' WHERE id_kursi = ?");
 
                 foreach ($kursi as $k) {
-                    // Insert kursi yang dipilih
                     $query_kursi->bind_param("ii", $id_pemesanan, $k);
                     $query_kursi->execute();
-                    
-                    // Update status kursi menjadi 'booked'
-                    $update_kursi->bind_param("i", $k);
-                    $update_kursi->execute();
                 }
 
-                // Commit transaksi
                 $koneksi->commit();
-
-                // Redirect ke halaman cetak tiket
                 header('Location: cetak-tiket.php?id_pemesanan=' . $id_pemesanan);
-                exit();  // Pastikan ada exit setelah redirect untuk menghentikan eksekusi lebih lanjut
+                exit();
             } else {
-                // Rollback jika terjadi error pada query
                 $koneksi->rollback();
                 echo "Error: " . $query->error;
             }
         } catch (Exception $e) {
-            // Rollback jika terjadi exception
             $koneksi->rollback();
             echo "Error: " . $e->getMessage();
         }
