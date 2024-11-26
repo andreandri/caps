@@ -3,8 +3,8 @@
 namespace Midtrans;
 
 require_once dirname(__FILE__) . '/../../Midtrans.php';
-Config::$serverKey = 'SB-Mid-server-ZwVxKRABKeqWj-jebaE_OvA3'; 
-Config::$clientKey = 'SB-Mid-client-0EXZ4KcHAlgRlBle';
+Config::$serverKey = ''; 
+Config::$clientKey = '';
 Config::$isProduction = false;
 Config::$isSanitized = Config::$is3ds = true;
 
