@@ -128,7 +128,7 @@ if ($id_pemesanan) {
         <p>Tujuan: <?= htmlspecialchars($data['kota_asal'] ?? '-') . ' - ' . htmlspecialchars($data['kota_tujuan'] ?? '-') ?></p>
         <p>Keberangkatan: <?= htmlspecialchars($data['tgl_keberangkatan'] ?? '-') . ', ' . htmlspecialchars($data['jam_keberangkatan'] ?? '-') ?></p>
         <p class="total">Total: Rp <?= number_format($data['total'] ?? 0, 0, ',', '.') ?></p>
-        <button>Bayar</button>
+        <button onclick="window.location.href='./midtrans/examples/snap/checkout-process-simple-version.php?id_pemesanan=<?= $id_pemesanan ?>'">Bayar</button>
     </div>
   </main>
 </body>
