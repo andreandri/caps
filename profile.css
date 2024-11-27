@@ -9,6 +9,21 @@ body {
   color: #333;
 }
 
+.avatar {
+  width: 150px; /* Sesuaikan ukuran */
+  height: 150px; /* Sesuaikan ukuran */
+  border-radius: 50%; /* Membuat lingkaran */
+  background-color: #f0f0f0; /* Warna latar default jika gambar tidak ada */
+  background-position: center; /* Menempatkan gambar di tengah */
+  background-size: cover; /* Memastikan gambar memenuhi lingkaran */
+  background-repeat: no-repeat; /* Mencegah pengulangan gambar */
+  margin: 0 auto; /* Memposisikan elemen avatar di tengah */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Memberikan bayangan */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 main {
   width: 90%;
   max-width: 600px;
