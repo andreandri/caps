@@ -1,6 +1,6 @@
 <?php
 // Include the database connection
-require 'koneksi.php';
+require '../koneksi.php';
 
 // Check if the 'id_pemesanan' is passed in the URL
 if (isset($_GET['id_pemesanan'])) {
@@ -87,7 +87,7 @@ $koneksi->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Pesanan - Dashboard Admin</title>
-    <link rel="stylesheet" href="admin-edit-detail.css">
+    <link rel="stylesheet" href="styles/admin-edit-detail.css">
     <style>
         /* Pop-up styling */
         .popup {
@@ -136,7 +136,7 @@ $koneksi->close();
       <img src="img/EasyBusTix.png" alt=""> 
     </div>
     <div>
-        <a href="fungsi/logout.php" class="logout">Logout</a>
+        <a href="../fungsi/logout.php" class="logout">Logout</a>
     </div>
 </header>
 

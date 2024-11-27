@@ -1,6 +1,6 @@
 <?php
 // Include the database connection
-require 'koneksi.php';
+require '../koneksi.php';
 
 // Variable to store pop-up messages
 $success_message = '';
@@ -41,7 +41,7 @@ if (!$routeResult) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Jadwal</title>
-    <link rel="stylesheet" href="tambah.css">
+    <link rel="stylesheet" href="styles/tambah.css">
     <style>
         .popup {
             display: none;
@@ -89,7 +89,7 @@ if (!$routeResult) {
         <img src="img/EasyBusTix.png" alt=""> 
     </div>
     <div>
-        <a href="fungsi/logout.php" class="logout">Logout</a>
+        <a href="../fungsi/logout.php" class="logout">Logout</a>
     </div>
 </header>
 

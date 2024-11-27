@@ -1,6 +1,6 @@
 <?php
 // Menghubungkan ke database
-include("koneksi.php");
+include("../koneksi.php");
 
 // Logika untuk Hapus Bus
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_bus_id']) && !empty($_POST['delete_bus_id'])) {
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id']) &&
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Admin</title>
-    <link rel="stylesheet" href="adminjadwal.css">
+    <link rel="stylesheet" href="styles/adminjadwal.css">
 
     <style>
         /* Style untuk Pop-up */
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id']) &&
         <img src="img/EasyBusTix.png" alt="">
     </div>
     <div>
-        <a href="fungsi/logout.php" class="logout">Logout</a>
+        <a href="../fungsi/logout.php" class="logout">Logout</a>
     </div>
 </header>
 

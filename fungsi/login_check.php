@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: ../tampilan.php");
                 exit();
             } elseif ($row["role"] == "admin") {
-                header("Location: ../admintampilan.php");
+                header("Location: ../halaman-admin/admintampilan.php");
                 exit();
             }
         } else {

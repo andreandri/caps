@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Admin</title>
-    <link rel="stylesheet" href="adminjadwal.css">
+    <link rel="stylesheet" href="styles/adminjadwal.css">
 </head>
 <body>
   <header class="dashboard">
@@ -19,7 +19,7 @@
       <img src="img/EasyBusTix.png" alt=""> 
     </div>
     <div>
-      <a href="fungsi/logout.php" class="logout">Logout</a>
+      <a href="../fungsi/logout.php" class="logout">Logout</a>
     </div>
   </header>
   <div class="main-content">

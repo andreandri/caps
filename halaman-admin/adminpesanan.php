@@ -1,6 +1,6 @@
 <?php
 // Include the database connection
-require 'koneksi.php';
+require '../koneksi.php';
 
 // Handle delete request
 if (isset($_POST['delete_id'])) {
@@ -42,7 +42,7 @@ if (!$result) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Pesanan - Dashboard Admin</title>
-    <link rel="stylesheet" href="adminjadwal.css">
+    <link rel="stylesheet" href="styles/adminjadwal.css">
     <style>
         /* Style for pop-up confirmation */
         .popup {
@@ -97,7 +97,7 @@ if (!$result) {
             <img src="img/EasyBusTix.png" alt=""> 
         </div>
         <div>
-            <a href="fungsi/logout.php" class="logout">Logout</a>
+            <a href="../fungsi/logout.php" class="logout">Logout</a>
         </div>
     </header>
 

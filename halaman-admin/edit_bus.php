@@ -1,5 +1,5 @@
 <?php
-include 'koneksi.php'; // memastikan koneksi ke database
+include '../koneksi.php'; // memastikan koneksi ke database
 
 // Memastikan id_bus ada dalam URL
 if (isset($_GET['id_bus'])) {
@@ -55,7 +55,7 @@ if (isset($_GET['id_bus'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Bus</title>
-    <link rel="stylesheet" href="admin-edit-detail.css">
+    <link rel="stylesheet" href="styles/admin-edit-detail.css">
     <style>
         .popup {
             display: none;
@@ -103,7 +103,7 @@ if (isset($_GET['id_bus'])) {
         <img src="img/EasyBusTix.png" alt="">
     </div>
     <div>
-        <a href="fungsi/logout.php" class="logout">Logout</a>
+        <a href="../fungsi/logout.php" class="logout">Logout</a>
     </div>
 </header>
 
