@@ -58,12 +58,15 @@
         $tanggal = $_POST['date'];
 
         $sql = "SELECT r.kota_asal, r.kota_tujuan, j.id_jadwal, j.tgl_keberangkatan, 
-                       j.jam_keberangkatan, b.no_plat, b.id_bus, j.harga
+                    j.jam_keberangkatan, b.no_plat, b.id_bus, j.harga
                 FROM tb_busjadwal bj
                 JOIN tb_jadwal j ON bj.id_jadwal = j.id_jadwal
                 JOIN tb_bus b ON bj.id_bus = b.id_bus
                 JOIN tb_rute r ON j.id_rute = r.id_rute
-                WHERE 1";
+                WHERE CONCAT(j.tgl_keberangkatan, ' ', j.jam_keberangkatan) >= NOW()";
+
+
+        $sql .= " AND CONCAT(j.tgl_keberangkatan, ' ', j.jam_keberangkatan) >= NOW()";
 
         if (!empty($asal)) {
             $sql .= " AND r.kota_asal = '$asal'";
@@ -74,6 +77,7 @@
         if (!empty($tanggal)) {
             $sql .= " AND j.tgl_keberangkatan = '$tanggal'";
         }
+
 
         $result = $koneksi->query($sql);
         if ($result->num_rows > 0) {

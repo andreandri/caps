@@ -34,9 +34,13 @@
                     tb_jadwal j
                 JOIN 
                     tb_rute r ON j.id_rute = r.id_rute
+                WHERE 
+                    j.status_jadwal = 'aktif'
                 ORDER BY 
                     j.tgl_keberangkatan, j.jam_keberangkatan
             ";
+
+
 
             $result = $koneksi->query($sql);
 

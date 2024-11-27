@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
 }
 
 $query = "SELECT j.id_jadwal, r.kota_asal, r.kota_tujuan, j.tgl_keberangkatan, j.jam_keberangkatan, j.harga, 
-          bj.id_bus
+          bj.id_bus, j.status_jadwal
           FROM tb_jadwal j
           JOIN tb_rute r ON j.id_rute = r.id_rute
           LEFT JOIN tb_busjadwal bj ON bj.id_jadwal = j.id_jadwal";
@@ -109,6 +109,7 @@ if (!$result) {
                     <th>Tanggal Keberangkatan</th>
                     <th>Jam Keberangkatan</th>
                     <th>Harga</th>
+                    <th>Status Jadwal</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -122,6 +123,13 @@ if (!$result) {
                         <td><?= $row['tgl_keberangkatan']; ?></td>
                         <td><?= $row['jam_keberangkatan']; ?></td>
                         <td><?= $row['harga']; ?></td>
+                        <td>
+    <?php if ($row['status_jadwal'] == 'aktif') { ?>
+        <span style="color: green; font-weight: bold;">Aktif</span>
+    <?php } else { ?>
+        <span style="color: red; font-weight: bold;">Tidak Aktif</span>
+    <?php } ?>
+</td>
                         <td class="action-buttons">
                             <a href="editjadwal.php?id_jadwal=<?= $row['id_jadwal']; ?>" class="edit-button">Edit</a>
                             <button class="delete-button" onclick="showDeletePopup(<?= $row['id_jadwal']; ?>)">Hapus</button>
