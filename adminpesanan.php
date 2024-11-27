@@ -6,21 +6,21 @@ require 'koneksi.php';
 if (isset($_POST['delete_id'])) {
     $delete_id = $_POST['delete_id'];
 
-    // Delete the order from the tb_pemesanan table
-    $delete_query = "DELETE FROM tb_pemesanan WHERE id_pemesanan = ?";
+    // Panggil stored procedure untuk menghapus pemesanan
+    $delete_query = "CALL hapusPemesanan(?)";
     $stmt = $koneksi->prepare($delete_query);
     $stmt->bind_param("i", $delete_id);
 
     if ($stmt->execute()) {
-        // If the deletion is successful, redirect to the list of orders
         header("Location: adminpesanan.php");
-        exit(); // Make sure to call exit after header redirect
+        exit();
     } else {
-        echo "Error deleting record: " . $koneksi->error;
+        echo "Error executing procedure: " . $stmt->error;
     }
 
     $stmt->close();
 }
+
 
 // Fetch the orders data from tb_pemesanan, along with related schedule and user data
 $query = "SELECT p.id_pemesanan, p.username, p.nama_penumpang, p.jumlah_tiket, p.total, j.tgl_keberangkatan, j.jam_keberangkatan, r.kota_asal, r.kota_tujuan
