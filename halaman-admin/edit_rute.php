@@ -1,5 +1,5 @@
 <?php
-include("koneksi.php");
+include("../koneksi.php");
 
 // Pastikan id_rute ada dalam URL
 if (isset($_GET['id_rute'])) {
@@ -75,7 +75,7 @@ if ($result_tujuan) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Rute</title>
 
-    <link rel="stylesheet" href="admin-edit-detail.css">
+    <link rel="stylesheet" href="styles/admin-edit-detail.css">
     <style>
         .popup {
             display: none;
@@ -124,7 +124,7 @@ if ($result_tujuan) {
         <img src="img/EasyBusTix.png" alt="">
     </div>
     <div>
-        <a href="fungsi/logout.php" class="logout">Logout</a>
+        <a href="../fungsi/logout.php" class="logout">Logout</a>
     </div>
 </header>
 

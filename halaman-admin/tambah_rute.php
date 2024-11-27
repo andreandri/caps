@@ -1,5 +1,5 @@
 <?php
-include("koneksi.php");
+include("../koneksi.php");
 
 // Proses penyimpanan data jika form disubmit
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -51,7 +51,7 @@ if ($result_tujuan) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Rute</title>
-    <link rel="stylesheet" href="tambah.css">
+    <link rel="stylesheet" href="styles/tambah.css">
     <style>
         .popup {
             display: none;
@@ -99,7 +99,7 @@ if ($result_tujuan) {
         <img src="img/EasyBusTix.png" alt="">
     </div>
     <div>
-        <a href="fungsi/logout.php" class="logout">Logout</a>
+        <a href="../fungsi/logout.php" class="logout">Logout</a>
     </div>
 </header>
 <main class="add">

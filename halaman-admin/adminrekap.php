@@ -1,6 +1,6 @@
 <?php
 // Koneksi ke database
-include 'koneksi.php';
+include '../koneksi.php';
 
 // Query untuk mengambil bulan dan total pendapatan
 $query = "SELECT DATE_FORMAT(j.tgl_keberangkatan, '%Y-%m') AS bulan, SUM(p.total) AS pendapatan
@@ -20,7 +20,7 @@ $result = mysqli_query($koneksi, $query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Rekap Pendapatan</title>
 
-    <link rel="stylesheet" href="adminjadwal.css">
+    <link rel="stylesheet" href="styles/adminjadwal.css">
 </head>
 <body>
   <header class="dashboard">
@@ -35,7 +35,7 @@ $result = mysqli_query($koneksi, $query);
       <img src="img/EasyBusTix.png" alt=""> 
     </div>
     <div>
-      <a href="fungsi/logout.php" class="logout">Logout</a>
+      <a href="../fungsi/logout.php" class="logout">Logout</a>
     </div>
   </header>
 

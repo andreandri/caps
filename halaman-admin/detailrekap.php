@@ -1,6 +1,6 @@
 <?php
 // Koneksi ke database
-include 'koneksi.php';
+include '../koneksi.php';
 
 // Mendapatkan bulan dari URL
 $bulan = $_GET['bulan'];
@@ -29,7 +29,7 @@ $result = mysqli_query($koneksi, $query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Pemesanan - Bulan <?php echo $bulan; ?></title>
 
-    <link rel="stylesheet" href="detailrekap.css">
+    <link rel="stylesheet" href="styles/detailrekap.css">
 </head>
 <body>
 
@@ -45,7 +45,7 @@ $result = mysqli_query($koneksi, $query);
       <img src="img/EasyBusTix.png" alt=""> 
     </div>
     <div>
-      <a href="fungsi/logout.php" class="logout">Logout</a>
+      <a href="../fungsi/logout.php" class="logout">Logout</a>
     </div>
   </header>
 
