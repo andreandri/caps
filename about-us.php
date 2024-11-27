@@ -82,6 +82,9 @@
         </div>
       </section>
     </main>
-  </main>
+    
+    <footer>
+        <footer-app></footer-app>
+    </footer>
 </body>
 </html>

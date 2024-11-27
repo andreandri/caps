@@ -9,13 +9,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jadwal Keberangkatan</title>
 
-  <script type="module" src="scripts/index.js"></script>
-
   <link rel="stylesheet" href="pesantiket-jadwal.css">
 </head>
 <body>
     <section class="Kembali">
-      <a href="tampilan.php">Kembali</a>
+      <a href="tampilan.php">Back</a>
     </section>
 
     <!-- Container -->

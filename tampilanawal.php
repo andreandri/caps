@@ -5,20 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EasyBusTix - Home</title>
     <link rel="stylesheet" href="tampilanawal.css">
+    <script type="module" src="scripts/index.js"></script>
 </head>
 <body>
     <!-- Header -->
-    <header class="navbar">
-        <div class="logo">
-            <h2>EasyBusTix</h2>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#team">Team</a></li>
-            </ul>
-        </nav>
+    <header>
+      <bar-awal-app></bar-awal-app>
     </header>
 
     <main>
@@ -104,41 +96,8 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-content">
-        <div class="footer-logo">
-          <img src="img/EasyBusTix.png" alt="EasyBusTix Logo">
-          <p>PEKAN MUDAH, PERJALANAN NYAMAN</p>
-        </div>
-        <div class="social-media">
-          <h4>Sosial Media Kami:</h4>
-          <a href="https://facebook.com/easybustix" target="_blank" aria-label="Facebook">
-            <img src="img/fb.png" alt="Facebook">
-          </a>
-          <a href="https://twitter.com/easybustix" target="_blank" aria-label="Twitter">
-            <img src="img/tw.png" alt="Twitter">
-          </a>
-          <a href="https://instagram.com/easybustix" target="_blank" aria-label="Instagram">
-            <img src="img/ig.png" alt="Instagram">
-          </a>
-        </div>
-        <div class="contact">
-          <h4>Contact:</h4>
-          <p>Email: <a href="mailto:support@easybustix.com">support@easybustix.com</a></p>
-          <p>No kontak: <a href="tel:+6281254986462">+62 812-5498-6462</a></p>
-        </div>
-        <div class="manage">
-          <h4>Manage:</h4>
-          <p><a href="kebijakanawal.php">Kebijakan Privasi</a></p>
-          <p><a href="kebijakanawal.php">Syarat dan Ketentuan</a></p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2024 EasyBusTix. All rights reserved.</p>
-      </div>
+    <footer>
+      <footerawal-app></footerawal-app>
     </footer>
-
-
-
 </body>
 </html>

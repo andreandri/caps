@@ -4,17 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tiket User</title>
-  <script type="module" src="scripts/index.js"></script>
   <link rel="stylesheet" href="pesantiket-jadwal.css">
 </head>
 <body>
-  <header>
-    <bar-app></bar-app>
-  </header>
-  
   <main>
     <div class="Kembali">
-      <a href="tampilan.php">Kembali</a>
+      <a href="tampilan.php">Back</a>
     </div>
 
     <form action="pesantiket.php" method="POST">

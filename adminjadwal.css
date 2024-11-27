@@ -50,6 +50,24 @@ main {
   margin-bottom: 30px;
 }
 
+@media (max-width: 1500px) {
+  .navbar h1 {
+    font-size: 2rem;
+  }
+  .menu li a {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .navbar h1 {
+    font-size: 1.5rem;
+  }
+  .menu li a {
+    font-size: 1rem;
+  }
+}
+
 .navbar img {
   justify-content: center;
   width: 100%;
@@ -245,3 +263,4 @@ button.add-schedule:hover {
 a{
   text-decoration: none;
 }
+
