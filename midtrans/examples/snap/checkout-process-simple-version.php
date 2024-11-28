@@ -10,15 +10,29 @@ Config::$isSanitized = Config::$is3ds = true;
 
 // Include koneksi ke database
 include "../../../koneksi.php";
+session_start();
 
 // Validasi ID Pemesanan
 $id_pemesanan = $_GET['id_pemesanan'] ?? null;
 
 if ($id_pemesanan) {
-    // Query untuk mendapatkan data pemesanan
-    $query = $koneksi->prepare("SELECT p.id_pemesanan, p.nama_penumpang, p.total, p.no_wa 
-                                FROM tb_pemesanan p 
-                                WHERE p.id_pemesanan = ?");
+    // Query untuk mendapatkan data pemesanan dan email pengguna
+    $query = $koneksi->prepare("
+        SELECT 
+            p.id_pemesanan, 
+            p.nama_penumpang, 
+            p.total, 
+            p.no_wa, 
+            u.email 
+        FROM 
+            tb_pemesanan p 
+        JOIN 
+            tb_users u 
+        ON 
+            p.username = u.username
+        WHERE 
+            p.id_pemesanan = ?
+    ");
     $query->bind_param("i", $id_pemesanan);
     $query->execute();
     $result = $query->get_result();
@@ -26,13 +40,16 @@ if ($id_pemesanan) {
     if ($result->num_rows > 0) {
         $data = $result->fetch_assoc();
 
+        // Validasi email
+        $email = $data['email'] ?? null;
+
         // Detail transaksi
         $transaction_details = array(
-            'order_id' => 'ORDER_' . $id_pemesanan, // Use order_id instead of id_pemesanan
+            'order_id' => 'ORDER_' . $id_pemesanan, // ID unik untuk transaksi
             'gross_amount' => $data['total'], // Total harga tiket
         );
 
-        // Item detail (opsional)
+        // Detail item (opsional)
         $item_details = array(
             array(
                 'id' => 'TIKET_' . $id_pemesanan,
@@ -46,7 +63,7 @@ if ($id_pemesanan) {
         $customer_details = array(
             'first_name' => $data['nama_penumpang'],
             'last_name' => '',
-            'email' => null,  // Set to null if no email
+            'email' => $email,
             'phone' => $data['no_wa'],
         );
 
