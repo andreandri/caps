@@ -52,32 +52,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
         <bar-app></bar-app>
     </header>
     <main>
-        <section class="profile">
-            <h2>Informasi Pribadi</h2>
-            <form action="" method="post" enctype="multipart/form-data">
-                <div class="avatar" style="background-image: url('uploads/<?php echo htmlspecialchars($image); ?>');"></div>
-                <label for="image" class="edit-avatar">&#x270E;</label>
-                <input type="file" id="image" name="image" accept="image/*" style="display: none;">
-                <button type="submit" name="upload">Unggah Foto</button>
-            </form>
-            <?php if (isset($_SESSION['message'])): ?>
-                <p style="color: green;"><?php echo $_SESSION['message']; unset($_SESSION['message']); ?></p>
-            <?php elseif (isset($_SESSION['error'])): ?>
-                <p style="color: red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
-            <?php endif; ?>
-            <p>username: <?php echo htmlspecialchars($username); ?> <a href="change_username.php">&#x270E;</a></p>
-            <p>email: <?php echo htmlspecialchars($email); ?></p>
-        </section>
-        <section class="security">
-            <h3>Keamanan</h3>
-            <p><a href="reset_password.php">&#x1F512; Ganti Password</a></p>
-        </section>
-        <section class="support">
-            <h3>Bantuan</h3>
-            <p><a href="https://wa.me/6281254986462" target="_blank" rel="noopener noreferrer">&#x1F4AC; Pertanyaan</a></p>
-            <p><a href="kebijakan.php">&#x1F4D3; Kebijakan Privasi</a></p>
-        </section>
-        <button class="logout" onclick="window.location.href='fungsi/logout.php'">Logout</button>
+      <section class="profile">
+        <h2>Informasi Pribadi</h2>
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="avatar" style="background-image: url('uploads/<?php echo htmlspecialchars($image); ?>');"></div>
+            <label for="image" class="edit-avatar">&#x270E;</label>
+            <input type="file" id="image" name="image" accept="image/*" style="display: none;">
+          <button type="submit" name="upload">Unggah Foto</button>
+        </form>
+        <?php if (isset($_SESSION['message'])): ?>
+          <p style="color: green;"><?php echo $_SESSION['message']; unset($_SESSION['message']); ?></p>
+        <?php elseif (isset($_SESSION['error'])): ?>
+          <p style="color: red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
+        <?php endif; ?>
+        <p>username: <?php echo htmlspecialchars($username); ?> <a href="change_username.php">&#x270E;</a></p>
+        <p>email: <?php echo htmlspecialchars($email); ?></p>
+      </section>
+      <section class="security">
+        <h3>Keamanan</h3>
+        <p><a href="reset_password.php">&#x1F512; Ganti Password</a></p>
+      </section>
+      <section class="support">
+        <h3>Bantuan</h3>
+        <p><a href="https://wa.me/6281254986462" target="_blank" rel="noopener noreferrer">&#x1F4AC; Pertanyaan</a></p>
+        <p><a href="kebijakan.php">&#x1F4D3; Kebijakan Privasi</a></p>
+      </section>
+      <button class="logout" onclick="window.location.href='fungsi/logout.php'">Logout</button>
     </main>
+
+    <footer>
+      <footer-app></footer-app>
+    </footer>
 </body>
 </html>

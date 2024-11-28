@@ -11,6 +11,7 @@
 
         <script type="module" src="scripts/index.js"></script>
         <link rel="stylesheet" href="tampilan.css">
+
     </head>
     <body>
         <header>
