@@ -43,9 +43,12 @@ if ($id_pemesanan) {
         // Validasi email
         $email = $data['email'] ?? null;
 
+        // Generate a random order_id
+        $order_id = 'ORDER_' . $id_pemesanan . '_' . bin2hex(random_bytes(5)) . time();
+
         // Detail transaksi
         $transaction_details = array(
-            'order_id' => 'ORDER_' . $id_pemesanan, // ID unik untuk transaksi
+            'order_id' => $order_id, // ID unik untuk transaksi
             'gross_amount' => $data['total'], // Total harga tiket
         );
 
