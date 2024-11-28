@@ -6,7 +6,26 @@ session_start();
 $username = $_SESSION['username']; // Ambil username dari sesi login
 
 // Query untuk mengambil data berdasarkan username
-$query = "SELECT id_busjadwal, nama_penumpang, no_wa, jumlah_tiket, total FROM tb_pemesanan WHERE username = '$username'";
+$query = "
+    SELECT 
+        p.id_busjadwal, 
+        p.nama_penumpang, 
+        p.no_wa, 
+        p.jumlah_tiket, 
+        p.total, 
+        r.kota_asal, 
+        r.kota_tujuan, 
+        GROUP_CONCAT(k.nomor_kursi SEPARATOR ', ') AS nomor_kursi,
+        GROUP_CONCAT(k.status SEPARATOR ', ') AS status_kursi
+    FROM tb_pemesanan p
+    INNER JOIN tb_busjadwal b ON p.id_busjadwal = b.id_busjadwal
+    INNER JOIN tb_jadwal j ON b.id_jadwal = j.id_jadwal
+    INNER JOIN tb_rute r ON j.id_rute = r.id_rute
+    INNER JOIN tb_pemesanan_kursi pk ON p.id_pemesanan = pk.id_pemesanan
+    INNER JOIN tb_kursi k ON pk.id_kursi = k.id_kursi
+    WHERE p.username = '$username'
+    GROUP BY p.id_pemesanan
+";
 $result = mysqli_query($koneksi, $query);
 ?>
 
@@ -16,65 +35,10 @@ $result = mysqli_query($koneksi, $query);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>History Pemesanan</title>
-
+  <link rel="stylesheet" href="history.css">
   <script type="module" src="scripts/index.js"></script>
-    <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        font-family: Arial, sans-serif;
-        height: 100%;
-        width: 100%;
-        background-color: #f5f5f5;
-      }
-
-      main {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-      }
-
-      header {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      }
-      
-      .container {
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        max-width: 400px;
-        width: 100%;
-        text-align: center;
-      }
-
-      .container h2 {
-        margin-bottom: 20px;
-        color: black;
-      }
-
-      .detail {
-        text-align: left;
-        margin-bottom: 20px;
-        color: #333;
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 10px;
-      }
-
-      .detail b {
-        display: block;
-        margin-top: 10px;
-      }
-    </style>
 </head>
+
 <body>
   <header>
     <bar-app></bar-app>
@@ -86,13 +50,15 @@ $result = mysqli_query($koneksi, $query);
       <?php if (mysqli_num_rows($result) > 0): ?>
         <?php while ($row = mysqli_fetch_assoc($result)): ?>
           <div class="detail">
-            <b>ID Jadwal Bus:</b> <?= htmlspecialchars($row['id_busjadwal']); ?>
+            <b>Rute:</b> <?= htmlspecialchars($row['kota_asal'] . " - " . $row['kota_tujuan']); ?>
             <b>Nama Penumpang:</b> <?= htmlspecialchars($row['nama_penumpang']); ?>
             <b>No WA:</b> <?= htmlspecialchars($row['no_wa']); ?>
             <b>Jumlah Tiket:</b> <?= htmlspecialchars($row['jumlah_tiket']); ?>
+            <b>Nomor Kursi:</b> <?= htmlspecialchars($row['nomor_kursi']); ?>
+            <b>Status Kursi:</b> <?= htmlspecialchars($row['status_kursi']); ?>
             <b>Total:</b> Rp <?= number_format($row['total'], 0, ',', '.'); ?>
-          </div>
-        <?php endwhile; ?>
+            <div class="status berhasil">BERHASIL</div>
+            <?php endwhile; ?>
       <?php else: ?>
       <p>Tidak ada data pemesanan.</p>
       <?php endif; ?>
