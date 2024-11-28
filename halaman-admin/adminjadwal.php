@@ -27,6 +27,23 @@ $result = $koneksi->query($query);
 if (!$result) {
     die("Query Error: " . $koneksi->error);
 }
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_bus_schedule_id']) && !empty($_POST['delete_bus_schedule_id'])) {
+    $id_busjadwal = $_POST['delete_bus_schedule_id'];
+
+    $delete_query = "DELETE FROM tb_busjadwal WHERE id_busjadwal = ?";
+    $stmt = $koneksi->prepare($delete_query);
+    $stmt->bind_param("i", $id_busjadwal);
+
+    if ($stmt->execute()) {
+        header("Location: adminjadwal.php");
+        exit;
+    } else {
+        header("Location: adminjadwal.php?error=delete_failed");
+        exit;
+    }
+
+    $stmt->close();
+}
 ?>
 
 <!DOCTYPE html>
@@ -136,6 +153,38 @@ if (!$result) {
             </tbody>
         </table>
         <a href="tambahjadwal.php" class="tambah-rute">Tambah Jadwal</a>
+    </div>
+
+    <div>
+        <h1>Data Bus Jadwal</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Id Bus Jadwal</th>
+                    <th>Id Bus</th>
+                    <th>Id Jadwal</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+            $bus_schedule_query = "SELECT * FROM tb_busjadwal";
+            $bus_schedule_result = mysqli_query($koneksi, $bus_schedule_query);
+
+            if ($bus_schedule_result) {
+                while ($row = mysqli_fetch_assoc($bus_schedule_result)) { ?>
+                    <tr>
+                        <td><?= $row['id_busjadwal']; ?></td>
+                        <td><?= $row['id_bus']; ?></td>
+                        <td><?= $row['id_jadwal']; ?></td>
+                        <td>
+                            <button onclick="showDeletePopup('bus_schedule', <?= $row['id_busjadwal']; ?>)">Hapus</button>
+                        </td>
+                    </tr>
+                <?php }
+            } ?>
+            </tbody>
+        </table>
     </div>
 </main>
 
