@@ -17,8 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
     }
 }
 
-$query = "SELECT j.id_jadwal, r.kota_asal, r.kota_tujuan, j.tgl_keberangkatan, j.jam_keberangkatan, j.harga, 
-          bj.id_bus, j.status_jadwal
+$query = "SELECT j.id_jadwal, r.kota_asal, r.kota_tujuan, j.tgl_keberangkatan, j.jam_keberangkatan, j.harga, j.status_jadwal
           FROM tb_jadwal j
           JOIN tb_rute r ON j.id_rute = r.id_rute
           LEFT JOIN tb_busjadwal bj ON bj.id_jadwal = j.id_jadwal";
@@ -103,7 +102,6 @@ if (!$result) {
             <thead>
                 <tr>
                     <th>Id Jadwal</th>
-                    <th>Id Bus</th>
                     <th>Kota Asal</th>
                     <th>Kota Tujuan</th>
                     <th>Tanggal Keberangkatan</th>
@@ -117,7 +115,6 @@ if (!$result) {
                 <?php while($row = $result->fetch_assoc()) { ?>
                     <tr>
                         <td><?= $row['id_jadwal']; ?></td>
-                        <td><?= $row['id_bus']; ?></td>
                         <td><?= $row['kota_asal']; ?></td>
                         <td><?= $row['kota_tujuan']; ?></td>
                         <td><?= $row['tgl_keberangkatan']; ?></td>
@@ -138,7 +135,7 @@ if (!$result) {
                 <?php } ?>
             </tbody>
         </table>
-        <a href="tambahjadwal.php" class="tambah-rute">Tambah Rute</a>
+        <a href="tambahjadwal.php" class="tambah-rute">Tambah Jadwal</a>
     </div>
 </main>
 
