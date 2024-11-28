@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="kapasitas">Kapasitas</label>
         <input type="number" id="kapasitas" name="kapasitas" placeholder="Masukan Kapasitas Bus" required>
 
-        <div>
+        <div class="tombol">
             <a href="adminrute.php">Kembali</a>
             <button type="submit">Tambah Bus</button>
         </div>

@@ -13,20 +13,31 @@ $result = mysqli_query($koneksi, $query);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>History Pemesanan</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>History Pemesanan</title>
+
+  <script type="module" src="scripts/index.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #e0e0e0;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        height: 100%;
+        width: 100%;
+        background-color: #f5f5f5;
+      }
+
+      main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
         .container {
             background-color: white;
             border-radius: 10px;
@@ -54,21 +65,28 @@ $result = mysqli_query($koneksi, $query);
     </style>
 </head>
 <body>
+  <header>
+    <bar-app></bar-app>
+  </header>
+
+  <main>
     <div class="container">
-        <h2>History Pemesanan</h2>
-        <?php if (mysqli_num_rows($result) > 0): ?>
-            <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                <div class="detail">
-                    <b>ID Jadwal Bus:</b> <?= htmlspecialchars($row['id_busjadwal']); ?>
-                    <b>Nama Penumpang:</b> <?= htmlspecialchars($row['nama_penumpang']); ?>
-                    <b>No WA:</b> <?= htmlspecialchars($row['no_wa']); ?>
-                    <b>Jumlah Tiket:</b> <?= htmlspecialchars($row['jumlah_tiket']); ?>
-                    <b>Total:</b> Rp <?= number_format($row['total'], 0, ',', '.'); ?>
-                </div>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <p>Tidak ada data pemesanan.</p>
-        <?php endif; ?>
+      <h2>History Pemesanan</h2>
+      <?php if (mysqli_num_rows($result) > 0): ?>
+        <?php while ($row = mysqli_fetch_assoc($result)): ?>
+          <div class="detail">
+            <b>ID Jadwal Bus:</b> <?= htmlspecialchars($row['id_busjadwal']); ?>
+            <b>Nama Penumpang:</b> <?= htmlspecialchars($row['nama_penumpang']); ?>
+            <b>No WA:</b> <?= htmlspecialchars($row['no_wa']); ?>
+            <b>Jumlah Tiket:</b> <?= htmlspecialchars($row['jumlah_tiket']); ?>
+            <b>Total:</b> Rp <?= number_format($row['total'], 0, ',', '.'); ?>
+          </div>
+        <?php endwhile; ?>
+      <?php else: ?>
+      <p>Tidak ada data pemesanan.</p>
+      <?php endif; ?>
     </div>
+  </main>  
+
 </body>
 </html>

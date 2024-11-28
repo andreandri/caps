@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
         </section>
         <section class="support">
             <h3>Bantuan</h3>
-            <p><a href="tel:+6281254986462">&#x1F4AC; Pertanyaan</a></p>
+            <p><a href="https://wa.me/6281254986462" target="_blank" rel="noopener noreferrer">&#x1F4AC; Pertanyaan</a></p>
             <p><a href="kebijakan.php">&#x1F4D3; Kebijakan Privasi</a></p>
         </section>
         <button class="logout" onclick="window.location.href='fungsi/logout.php'">Logout</button>

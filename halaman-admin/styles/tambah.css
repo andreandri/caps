@@ -9,6 +9,7 @@ body {
   display: flex;
   height: 100vh;
   background-color: #C4E1F6;
+  line-height: 1.6;
 }
 
 /* Container layout */
@@ -107,6 +108,7 @@ main {
   flex-direction: column;
   padding: 1rem;
 }
+
 form {
   background-color: #ffffff;
   padding: 20px;
@@ -119,6 +121,7 @@ form {
 form label {
   font-weight: bold;
   color: #333;
+  padding: 1rem 0;
 }
 
 form select,
@@ -193,6 +196,12 @@ form select {
 /* General button styling */
 button {
   transition: background-color 0.3s;
+}
+
+.tombol {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 /* Responsive adjustments */
