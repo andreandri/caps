@@ -2,6 +2,8 @@
 include("koneksi.php");
 session_start();
 
+$username = $_SESSION['username'];
+
 $id_busjadwal = isset($_GET['id_busjadwal']) ? intval($_GET['id_busjadwal']) : 0;
 
 $sql = "SELECT id_kursi, nomor_kursi, status 
