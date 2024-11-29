@@ -15,7 +15,6 @@
   </header>
 
   <main>
-    <!-- About Us Section -->
     <section id="about" class="about-us">
         <div>
           <img src="img/EasyBusTix.png" alt="EasyBusTix Logo">
@@ -34,7 +33,6 @@
         </div>
       </section>
 
-      <!-- Features -->
       <section class="features">
           <h2>Kenapa Memilih EasyBusTix?</h2>
           <div class="features-grid">
@@ -53,34 +51,74 @@
           </div>
       </section>
 
-      <!-- Team Section -->
       <section id="team" class="team">
       <h2>Tim Pengembang Kami</h2>
-      <div class="team-grid">
+        <div class="team-grid">
           <div class="team-member">
-              <img src="img/amel.png" alt="Rahmat Wijaya">
-              <h3>Amelia Frenety Perdi</h3>
-              <p>Developer</p>
+            <div class="image-container">
+              <img src="img/amel.png" alt="Amelia Frenety Perdi">
+              <div class="overlay">
+                <a href="https://github.com/amel" target="_blank">
+                  <img src="img/github.png" alt="GitHub">
+                </a>
+                <a href="https://ind-link.com/amel" target="_blank">
+                  <img src="img/linkedin.png" alt="Personal Link">
+                </a>
+              </div>
+            </div>
+            <h3>Amelia Frenety Perdi</h3>
+            <p>Developer</p>
           </div>
           <div class="team-member">
-              <img src="img/andre.png" alt="Siti Aisyah">
-              <h3>Andre Andrianus</h3>
-              <p>Developer</p>
-          </div>
-      </div>
-      <div class="team-grid">
-          <div class="team-member">
-              <img src="img/imam.png" alt="Andi Nugraha">
-              <h3>Imam Syahrohim</h3>
-              <p>Developer</p>
-          </div>
-          <div class="team-member">
-              <img src="img/oyong.png" alt="Maya Putri">
-              <h3>Natalio Valentino</h3>
-              <p>Developer</p>
+            <div class="image-container">
+              <img src="img/andre.png" alt="Andre Andrianus">
+              <div class="overlay">
+                <a href="https://github.com/andre" target="_blank">
+                  <img src="img/github.png" alt="GitHub">
+                </a>
+                <a href="https://ind-link.com/andre" target="_blank">
+                  <img src="img/linkedin.png" alt="Personal Link">
+                </a>
+              </div>
+            </div>
+            <h3>Andre Andrianus</h3>
+            <p>Developer</p>
           </div>
         </div>
-      </section>
+
+        <div class="team-grid">
+          <div class="team-member">
+            <div class="image-container">
+              <img src="img/imam.png" alt="Imam Syahrohim">
+              <div class="overlay">
+                <a href="https://github.com/amel" target="_blank">
+                  <img src="img/github.png" alt="GitHub">
+                </a>
+                <a href="https://ind-link.com/amel" target="_blank">
+                  <img src="img/linkedin.png" alt="Personal Link">
+                </a>
+              </div>
+            </div>
+            <h3>Imam Syahrohim</h3>
+            <p>Developer</p>
+          </div>
+          <div class="team-member">
+            <div class="image-container">
+              <img src="img/oyong.png" alt="Natalio Valentino">
+              <div class="overlay">
+                <a href="https://github.com/andre" target="_blank">
+                  <img src="img/github.png" alt="GitHub">
+                </a>
+                <a href="https://ind-link.com/andre" target="_blank">
+                  <img src="img/linkedin.png" alt="Personal Link">
+                </a>
+              </div>
+            </div>
+            <h3>Natalio Valentino</h3>
+            <p>Developer</p>
+          </div>
+        </div>
+    </section>
     </main>
     
     <footer>
