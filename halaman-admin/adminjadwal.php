@@ -2,8 +2,8 @@
 // Include the database connection
 require '../koneksi.php';
 
-// Handle delete request
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
+// Handle delete request for Jadwal
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
     $delete_id = $_POST['delete_id'];
     $deleteQuery = "DELETE FROM tb_jadwal WHERE id_jadwal = ?";
     $stmt = $koneksi->prepare($deleteQuery);
@@ -17,16 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_id'])) {
     }
 }
 
-$query = "SELECT j.id_jadwal, r.kota_asal, r.kota_tujuan, j.tgl_keberangkatan, j.jam_keberangkatan, j.harga, j.status_jadwal
-          FROM tb_jadwal j
-          JOIN tb_rute r ON j.id_rute = r.id_rute
-          LEFT JOIN tb_busjadwal bj ON bj.id_jadwal = j.id_jadwal";
-
-$result = $koneksi->query($query);
-
-if (!$result) {
-    die("Query Error: " . $koneksi->error);
-}
+// Handle delete request for Bus Jadwal
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_bus_schedule_id']) && !empty($_POST['delete_bus_schedule_id'])) {
     $id_busjadwal = $_POST['delete_bus_schedule_id'];
 
@@ -43,6 +34,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_bus_schedule_i
     }
 
     $stmt->close();
+}
+
+// Query for Jadwal
+$query = "SELECT j.id_jadwal, r.kota_asal, r.kota_tujuan, j.tgl_keberangkatan, j.jam_keberangkatan, j.harga, j.status_jadwal
+          FROM tb_jadwal j
+          JOIN tb_rute r ON j.id_rute = r.id_rute
+          LEFT JOIN tb_busjadwal bj ON bj.id_jadwal = j.id_jadwal";
+
+$result = $koneksi->query($query);
+
+if (!$result) {
+    die("Query Error: " . $koneksi->error);
 }
 ?>
 
@@ -138,12 +141,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_bus_schedule_i
                         <td><?= $row['jam_keberangkatan']; ?></td>
                         <td><?= $row['harga']; ?></td>
                         <td>
-    <?php if ($row['status_jadwal'] == 'aktif') { ?>
-        <span style="color: green; font-weight: bold;">Aktif</span>
-    <?php } else { ?>
-        <span style="color: red; font-weight: bold;">Tidak Aktif</span>
-    <?php } ?>
-</td>
+                        <?php if ($row['status_jadwal'] == 'aktif') { ?>
+                            <span style="color: green; font-weight: bold;">Aktif</span>
+                        <?php } else { ?>
+                            <span style="color: red; font-weight: bold;">Tidak Aktif</span>
+                        <?php } ?>
+                    </td>
                         <td class="action-buttons">
                             <a href="editjadwal.php?id_jadwal=<?= $row['id_jadwal']; ?>" class="edit-button">Edit</a>
                             <button class="delete-button" onclick="showDeletePopup(<?= $row['id_jadwal']; ?>)">Hapus</button>
@@ -153,6 +156,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_bus_schedule_i
             </tbody>
         </table>
         <a href="tambahjadwal.php" class="tambah-rute">Tambah Jadwal</a>
+
+        <!-- Pop-up konfirmasi hapus Jadwal -->
+        <div id="popup-delete" class="popup">
+            <div class="popup-content popup-danger">
+                <h3>Apakah Anda yakin ingin menghapus jadwal ini?</h3>
+                <form method="POST" id="delete-form">
+                    <input type="hidden" name="delete_id" id="delete_id" value="">
+                    <button type="submit">Ya, Hapus</button>
+                </form>
+                <button onclick="closePopup()">Tidak, Kembali</button>
+            </div>
+        </div>
     </div>
 
     <div>
@@ -177,46 +192,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_bus_schedule_i
                         <td><?= $row['id_busjadwal']; ?></td>
                         <td><?= $row['id_bus']; ?></td>
                         <td><?= $row['id_jadwal']; ?></td>
-                        <td>
-                            <button onclick="showDeletePopup('bus_schedule', <?= $row['id_busjadwal']; ?>)">Hapus</button>
+                        <td class="action-buttons">
+                            <a href="editjadwalbus.php?id_busjadwal=<?= $row['id_busjadwal']; ?>" class="edit-button">Edit</a>
+                            <button class="delete-button" onclick="showDeleteBusPopup(<?= $row['id_busjadwal']; ?>)">Hapus</button>
                         </td>
                     </tr>
                 <?php }
             } ?>
             </tbody>
         </table>
+        <a href="tambahjadwalbus.php" class="tambah-rute">Tambah Jadwal</a>
+
+        <!-- Pop-up konfirmasi hapus Bus Jadwal -->
+        <div id="popup-delete-bus" class="popup">
+            <div class="popup-content popup-danger">
+                <h3>Apakah Anda yakin ingin menghapus data bus jadwal ini?</h3>
+                <form method="POST" id="delete-bus-form">
+                    <input type="hidden" name="delete_bus_schedule_id" id="delete_bus_schedule_id" value="">
+                    <button type="submit">Ya, Hapus</button>
+                </form>
+                <button onclick="closeBusPopup()">Tidak, Kembali</button>
+            </div>
+        </div>
     </div>
 </main>
 
-<!-- Pop-up konfirmasi hapus -->
-<div id="popup-delete" class="popup">
-    <div class="popup-content popup-danger">
-        <h3>Apakah Anda yakin ingin menghapus jadwal ini?</h3>
-        <form method="POST" id="delete-form">
-            <input type="hidden" name="delete_id" id="delete_id" value="">
-            <button type="submit">Ya, Hapus</button>
-        </form>
-        <button onclick="closePopup()">Tidak, Kembali</button>
-    </div>
-</div>
-
 <script>
-    // Fungsi untuk menampilkan pop-up
+    // Fungsi untuk menampilkan pop-up Jadwal
     function showDeletePopup(id_jadwal) {
         document.getElementById('delete_id').value = id_jadwal;
         document.getElementById('popup-delete').style.display = 'flex';
     }
 
-    // Fungsi untuk menutup pop-up
+    // Fungsi untuk menutup pop-up Jadwal
     function closePopup() {
         document.getElementById('popup-delete').style.display = 'none';
     }
-</script>
 
+    // Fungsi untuk menampilkan pop-up Bus Jadwal
+    function showDeleteBusPopup(id_busjadwal) {
+        document.getElementById('delete_bus_schedule_id').value = id_busjadwal;
+        document.getElementById('popup-delete-bus').style.display = 'flex';
+    }
+
+    // Fungsi untuk menutup pop-up Bus Jadwal
+    function closeBusPopup() {
+        document.getElementById('popup-delete-bus').style.display = 'none';
+    }
+</script>
 </body>
 </html>
-
-<?php
-// Close the database connection
-$koneksi->close();
-?>
