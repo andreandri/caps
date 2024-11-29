@@ -7,7 +7,7 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
-  background-color: #E0E0E0;
+  background-color: #f5f5f5;
 }
 
 h1 {
@@ -15,7 +15,8 @@ h1 {
 }
 
 .form {
-  background-color: #B9E5E8;
+  background-color: #80C4E9;
+  border: 2px solid #000000;
   border-radius: 1rem;
   place-self: center;
 

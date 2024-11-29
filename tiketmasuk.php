@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
   <header>
-    <bar-app></bar-app>
+    <bar-user-app></bar-user-app>
   </header>
 
   <main>
