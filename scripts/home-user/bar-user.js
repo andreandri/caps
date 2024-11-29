@@ -48,7 +48,7 @@ class BarUserApp extends HTMLElement {
       }
 
       .navbar :focus{
-        outline: 4px dashed #243642;
+        outline: 1px solid #243642;
       }
 
       a {
@@ -74,26 +74,7 @@ class BarUserApp extends HTMLElement {
       }
 
       @media screen and (max-width: 768px) {
-        .navbar .navbar-nav {
-          display: none;
-          flex-direction: column;
-          gap: 1rem;
-          background-color: #fff;
-          position: absolute;
-          top: 50px;
-          right: 0;
-          width: 100%;
-          padding: 1rem;
-          text-align: center;
-        }
-
-        .navbar .navbar-nav.open {
-          display: flex;
-        }
-          
-        .header__menu {
-          display: block;
-        }
+        
       }
     `;
   }
@@ -105,35 +86,12 @@ class BarUserApp extends HTMLElement {
       ${this._style.outerHTML}
       <nav class="navbar">
         <div class="navlogo">
-        <img src="img/EasyBusTix.png" alt="Logo EasyBusTix" >
+        <img src="img/EasyBusTix.png" alt="Logo EasyBusTix" tabindex="0">
         <h3 class="logo" tabindex="0">EasyBusTix</h3>
-        </div>
-        <button id="menu" class="header__menu" aria-label="Menu Navigasi" tabindex="0">☰</button>
-        <ul class="navbar-nav">
-          <li><a href="tampilan.php" class="link" tabindex="0"></a></li>
-          <li><a href="profile.php" class="link" tabindex="0"></a></li>
-          <li><a href="history.php" class="link" tabindex="0"></a></li>
-          <li><a href="about-us.php" class="link" tabindex="0"></a></li>
-        </ul>
       </nav>
     `;
   }
 
-  addEventListener() {
-    const menu = this.shadowRoot.querySelector("#menu");
-    const navBar = this.shadowRoot.querySelector(".navbar-nav");
-
-    menu.addEventListener("click", (event) => {
-      navBar.classList.toggle("open");
-      event.stopPropagation();
-    });
-
-    document.addEventListener("click", (event) => {
-      if (!menu.contains(event.target) && !navBar.contains(event.target)) {
-        navBar.classList.remove("open");
-      }
-    });
-  }
 }
 
 customElements.define("bar-user-app", BarUserApp);

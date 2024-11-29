@@ -45,92 +45,166 @@ if ($id_pemesanan) {
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Pemesanan</title>
-    <style>
-        * {
-          box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Pemesanan</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            background-color: #E0E0E0;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #f5f5f5;
+    }
 
-        header {
-          margin-bottom: 4rem;
-        }
+    header {
+       margin-bottom: 4rem;
+    }
 
-        main {
-          color: #fff;
-            display: flex;
-            justify-content: center;
-            margin: 0;
-        }
+    main {
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+    }
 
-        .card {
-            background-color: #fff;
-            color: #000;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 40%;
-            font-size: 16px;
-        }
-        .card h1 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .card p {
-            margin: 5px 0;
-        }
-        .card .total {
-            font-weight: bold;
-            font-size: 18px;
-        }
-        .card button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-top: 20px;
-            background-color: #4caf50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .card button:hover {
-            background-color: #45a049;
-        }
-    </style>
+    .card {
+      background-color: #fff;
+      color: #000;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 40%;
+      font-size: 16px;
+    }
+    .card h1 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .card p {
+      margin: 5px 0;
+      text-align: right;
+    }
+    .card .total {
+      font-weight: bold;
+      font-size: 18px;
+    }
 
-    <script type="module" src="scripts/index.js"></script>
+    .total {
+      padding-top: 8px;
+    }
+    .card button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-top: 20px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .card button:hover {
+      background-color: #45a049;
+    }
+
+    .cetak td {
+      padding: 8px 2px 5px ;
+      border-bottom: 1px solid #ddd;
+    }
+
+    @media (max-width: 1100px) {
+      .card {
+        padding: 15px;
+        width: 60%;
+        font-size: 15px;
+      }
+      .card .total {
+        font-size: 17px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        padding: 12px;
+        width: 80%;
+        font-size: 14px;
+      }
+      .card .total {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 534px) {
+      .card {
+        padding: 9px;
+        width: 90%;
+        font-size: 14px;
+      }
+      .card .total {
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 323px) {
+      .card {
+        padding: 6px;
+        width: 95%;
+        font-size: 12px;
+      }
+      .card .total {
+        font-size: 14px;
+      }
+    }
+  </style>
+  <script type="module" src="scripts/index.js"></script>
 </head>
 <body>
-
   <header>
-    <bar-app></bar-app>
+    <bar-user-app></bar-user-app>
   </header>
+
   <main>
     <div class="card">
         <h1>Detail Pemesanan</h1>
-        <p>No. Kursi: <?= !empty($kursi_list) ? implode(", ", $kursi_list) : '-' ?></p>
-        <p>Nama: <?= htmlspecialchars($data['nama_penumpang'] ?? '-') ?></p>
-        <p>No HP: <?= htmlspecialchars($data['no_wa'] ?? '-') ?></p>
-        <p>Tiket: <?= $jumlah_tiket ?? '-' ?></p>
-        <p>Tujuan: <?= htmlspecialchars($data['kota_asal'] ?? '-') . ' - ' . htmlspecialchars($data['kota_tujuan'] ?? '-') ?></p>
-        <p>Keberangkatan: <?= htmlspecialchars($data['tgl_keberangkatan'] ?? '-') . ', ' . htmlspecialchars($data['jam_keberangkatan'] ?? '-') ?></p>
+        <table class="cetak">
+            <tr>
+                <td>No. Kursi</td>
+                <td> : <?= !empty($kursi_list) ? implode(", ", $kursi_list) : '-' ?></td>
+            </tr>
+            <tr>
+                <td>Nama</td>
+                <td> : <?= htmlspecialchars($data['nama_penumpang'] ?? '-') ?></td>
+            </tr>
+            <tr>
+                <td>No HP</td>
+                <td> : <?= htmlspecialchars($data['no_wa'] ?? '-') ?></td>
+            </tr>
+            <tr>
+                <td>Tiket</td>
+                <td> : <?= $jumlah_tiket ?? '-' ?></td>
+            </tr>
+            <tr>
+                <td>Tujuan:</td>
+                <td> : <?= htmlspecialchars($data['kota_asal'] ?? '-') . ' - ' . htmlspecialchars($data['kota_tujuan'] ?? '-') ?></td>
+            </tr>
+            <tr>
+                <td>Keberangkatan</td>
+                <td> : <?= htmlspecialchars($data['tgl_keberangkatan'] ?? '-') . ', ' . htmlspecialchars($data['jam_keberangkatan'] ?? '-') ?></td>
+            </tr>
+        </table>
         <p class="total">Total: Rp <?= number_format($data['total'] ?? 0, 0, ',', '.') ?></p>
         <button onclick="window.location.href='./midtrans/examples/snap/checkout-process-simple-version.php?id_pemesanan=<?= $id_pemesanan ?>'">Bayar</button>
     </div>
-  </main>
+</main>
+
 </body>
 </html>
 

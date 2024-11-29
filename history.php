@@ -50,24 +50,45 @@ $result = mysqli_query($koneksi, $query);
       <?php if (mysqli_num_rows($result) > 0): ?>
         <?php while ($row = mysqli_fetch_assoc($result)): ?>
           <div class="detail">
-            <b>Rute:</b> <?= htmlspecialchars($row['kota_asal'] . " - " . $row['kota_tujuan']); ?>
-            <b>Nama Penumpang:</b> <?= htmlspecialchars($row['nama_penumpang']); ?>
-            <b>No WA:</b> <?= htmlspecialchars($row['no_wa']); ?>
-            <b>Jumlah Tiket:</b> <?= htmlspecialchars($row['jumlah_tiket']); ?>
-            <b>Nomor Kursi:</b> <?= htmlspecialchars($row['nomor_kursi']); ?>
-            <b>Status Kursi:</b> <?= htmlspecialchars($row['status_kursi']); ?>
-            <b>Total:</b> Rp <?= number_format($row['total'], 0, ',', '.'); ?>
+          <div class="detail-item">
+            <table>
+              <tr>
+                <th>Rute</th>
+                <td>: <?= htmlspecialchars($row['kota_asal'] . " - " . $row['kota_tujuan']); ?></td>
+              </tr>
+              <tr>
+                <th>Nama</th>
+                <td>: <?= htmlspecialchars($row['nama_penumpang']); ?></td>
+              </tr>
+              <tr>
+                <th>No WA</th>
+                <td>: <?= htmlspecialchars($row['no_wa']); ?></td>
+              </tr>
+              <tr>
+                <th>Jumlah Tiket</th>
+                <td>: <?= htmlspecialchars($row['jumlah_tiket']); ?></td>
+              </tr>
+              <tr>
+                <th>Nomor Kursi</th>
+                <td>: <?= htmlspecialchars($row['nomor_kursi']); ?></td>
+              </tr>
+              <tr>
+                <th>Status Kursi</th>
+                <td>: <?= htmlspecialchars($row['status_kursi']); ?></td>
+              </tr>
+              <tr>
+                <th>Total</th>
+                <td>: Rp <?= number_format($row['total'], 0, ',', '.'); ?></td>
+              </tr>
+            </table>
             <div class="status berhasil">BERHASIL</div>
+          </div>
             <?php endwhile; ?>
       <?php else: ?>
       <p>Tidak ada data pemesanan.</p>
       <?php endif; ?>
     </div>
+    </div>
   </main>  
-
-  <footer>
-    <footer-app></footer-app>
-  </footer>
-
 </body>
 </html>
