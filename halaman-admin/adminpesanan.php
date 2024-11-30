@@ -23,7 +23,7 @@ if (isset($_POST['delete_id'])) {
 
 
 // Fetch the orders data from tb_pemesanan, along with related schedule and user data
-$query = "SELECT p.id_pemesanan, p.username, p.nama_penumpang, p.jumlah_tiket, p.total, j.tgl_keberangkatan, j.jam_keberangkatan, r.kota_asal, r.kota_tujuan
+$query = "SELECT p.id_pemesanan, p.username, p.nama_penumpang, p.jumlah_tiket, p.total, p.status_pembayaran, j.tgl_keberangkatan, j.jam_keberangkatan, r.kota_asal, r.kota_tujuan
           FROM tb_pemesanan p
           JOIN tb_busjadwal bj ON p.id_busjadwal = bj.id_busjadwal
           JOIN tb_jadwal j ON bj.id_jadwal = j.id_jadwal
@@ -114,6 +114,7 @@ if (!$result) {
                     <th>Kota Tujuan</th>
                     <th>Tanggal Keberangkatan</th>
                     <th>Jam Keberangkatan</th>
+                    <th>Status Pembayaran</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -128,6 +129,7 @@ if (!$result) {
                         <td><?= $row['kota_tujuan']; ?></td>
                         <td><?= $row['tgl_keberangkatan']; ?></td>
                         <td><?= $row['jam_keberangkatan']; ?></td>
+                        <td><?= $row['status_pembayaran']; ?></td>
                         <td class="action-buttons">
                             <!-- Edit Button -->
                             <a href="editpesanan.php?id_pemesanan=<?= $row['id_pemesanan']; ?>">Edit</a>
