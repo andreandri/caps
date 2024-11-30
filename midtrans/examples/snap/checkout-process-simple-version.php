@@ -111,6 +111,113 @@ if ($id_pemesanan) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkout Pembayaran</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+  <script type="module" src="bar.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100%;
+      width: 100%;
+      background-color: #f5f5f5;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 400px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .card-body h5 {
+      margin-bottom: 20px;
+      font-size: 1.25rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .pembayaran td, .pembayaran th {
+      padding: 10px 5px 10px 0;
+      font-size: 1rem;
+    }
+
+    .pembayaran tr {
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px; 
+    }
+
+    .btn-primary {
+      width: 100%;
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 1.1rem;
+      background-color: #4caf50;
+      border: none;
+    }
+
+    .card-body button:hover {
+      background-color: #45a049;
+    }
+
+    .total {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 576px) {
+      .container {
+        display: block;
+        height: 80vh;
+      }
+
+      .card {
+        width: 90%;
+        max-width: none;
+        place-self: center;
+      }
+
+      .card-body h5 {
+        font-size: 1.1rem;
+      }
+
+      .btn-primary {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 350px) {
+      .card {
+        width: 98%;
+      }
+
+      .card-body h5 {
+        font-size: 1rem;
+      }
+
+      .btn-primary {
+        padding: 6px;
+        font-size: 1rem;
+      }
+        
+      .pembayaran td, .pembayaran th {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>

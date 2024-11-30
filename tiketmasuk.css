@@ -8,65 +8,100 @@ body {
   height: 100%;
   width: 100%;
   background-color: #f5f5f5;
+  color: #333;
 }
 
-h1 {
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+main {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
   text-align: center;
 }
 
-.form {
-  background-color: #80C4E9;
-  border: 2px solid #000000;
-  border-radius: 1rem;
-  place-self: center;
-
-  padding: 1rem;
-  width: 50%;
+h1, h2, h3 {
+  margin: 0;
 }
 
-.form h2 {
-  text-align: right;
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .label {
   display: flex;
   flex-direction: column;
-  margin: 1rem 0;
 }
 
 .label label {
   font-weight: bold;
-  margin-bottom: 0.5rem;
+  margin-bottom: 5px;
 }
 
-.label select,
-.label input[type="text"],
-.label input[type="number"] {
-  padding: 0.8rem;
-  font-size: 1rem;
+.label input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.label input:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  background: #f1f1f1;
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 5px;
   border: 1px solid #ddd;
-  border-radius: 0.7rem;
 }
 
-
-/* Gaya tombol */
 .search {
   display: flex;
-  justify-content: right;
-  margin-top: 1rem;
+  justify-content: flex-end;
 }
 
-.search button {
-  background-color: #007bff;
-  color: #fff;
-  padding: 0.8rem 1.5rem;
+.search .lanjut {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #4caf50;
   border: none;
-  border-radius: 4px;
-  font-size: 1rem;
+  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.search button:hover {
-  background-color: #0056b3;
+.search .lanjut:hover {
+  background-color: #45a049;
+}
+
+@media screen and (max-width: 600px) {
+  main {
+      padding: 15px;
+  }
+
+  .search .lanjut {
+      width: 100%;
+  }
 }

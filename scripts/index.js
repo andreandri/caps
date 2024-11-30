@@ -1,3 +1,4 @@
+import './loading.js';
 import './home-user/bar.js';
 import './home-user/footer.js';
 import './home-awal/footer-awal.js';
