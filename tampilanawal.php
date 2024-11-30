@@ -138,3 +138,143 @@
     </footer>
 </body>
 </html>
+
+* {
+    box-sizing: border-box;
+  }
+  
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+}
+  
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 2.5rem;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.tampilsatu {
+  display: flex;
+  gap: 2rem;
+}
+
+.bus {
+  display: flex;
+  flex-direction: column;
+  background-color: #B9E5E8;
+  width: 65%;
+  padding: 2rem 3rem 0;
+  border-radius: 1rem;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.bus img {
+  width: 50%;
+}
+
+.bus p {
+  font-size: 1.3rem;
+}
+
+.bus h1 {
+  font-size: 2rem;
+}
+
+aside {
+  width: 35%;
+}
+
+.bussart {
+  margin-bottom: 2rem;
+}
+
+.buss {
+  background-color: #B9E5E8;
+  border-radius: 1rem;
+
+  padding: 1px 1rem 1.2rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.buss h1 {
+  font-size: 20px;
+  color: #2C7873;
+}
+
+.buss p {
+  font-size: 16px;
+  color: #555;
+}
+
+.buss a {
+  display: block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #2C7873;
+  color: #fff;
+  border-radius: 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+}
+
+.buss a:hover {
+  background-color: #35A29F;
+}
+
+.daftarbus {
+  background-color: #B9E5E8;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.daftarbus h1 {
+  text-align: center;
+}
+
+.tampildua {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.tampildua article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.tampildua img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.tampildua img:hover {
+  transform: scale(1.2);
+}
+
+.tampildua h1 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-top: 0.5rem;
+}
