@@ -1,70 +1,42 @@
 <?php
-// This is just for very basic implementation reference, in production, you should validate the incoming requests and implement your backend more securely.
-// Please refer to this docs for sample HTTP notifications:
-// https://docs.midtrans.com/en/after-payment/http-notification?id=sample-of-different-payment-channels
-
 namespace Midtrans;
 
-require_once dirname(__FILE__) . '/../Midtrans.php';
+require_once dirname(__FILE__) . '/../../Midtrans.php';
+Config::$serverKey = 'SB-Mid-server-ZwVxKRABKeqWj-jebaE_OvA3';
 Config::$isProduction = false;
-Config::$serverKey = '<SB-Mid-server-ZwVxKRABKeqWj-jebaE_OvA3';
+Config::$isSanitized = Config::$is3ds = true;
 
-// non-relevant function only used for demo/example purpose
-printExampleWarningMessage();
+include "../../../koneksi.php";
 
-try {
-    $notif = new Notification();
-}
-catch (\Exception $e) {
-    exit($e->getMessage());
-}
+// Ambil notifikasi JSON dari Midtrans
+$input = file_get_contents("php://input");
+$notification = json_decode($input, true);
 
-$notif = $notif->getResponse();
-$transaction = $notif->transaction_status;
-$type = $notif->payment_type;
-$order_id = $notif->order_id;
-$fraud = $notif->fraud_status;
+$order_id = $notification['order_id'];
+$transaction_status = $notification['transaction_status'];
 
-if ($transaction == 'capture') {
-    // For credit card transaction, we need to check whether transaction is challenge by FDS or not
-    if ($type == 'credit_card') {
-        if ($fraud == 'challenge') {
-            // TODO set payment status in merchant's database to 'Challenge by FDS'
-            // TODO merchant should decide whether this transaction is authorized or not in MAP
-            echo "Transaction order_id: " . $order_id ." is challenged by FDS";
-        } else {
-            // TODO set payment status in merchant's database to 'Success'
-            echo "Transaction order_id: " . $order_id ." successfully captured using " . $type;
-        }
+if ($transaction_status === 'settlement' || $transaction_status === 'capture') {
+    // Pembayaran berhasil, ubah status pembayaran menjadi lunas
+    $id_pemesanan = explode('_', $order_id)[1]; // Ekstrak ID Pemesanan dari order_id
+    
+    $query = $koneksi->prepare("UPDATE tb_pemesanan SET status_pembayaran = 'lunas' WHERE id_pemesanan = ?");
+    $query->bind_param("i", $id_pemesanan);
+    if ($query->execute()) {
+        http_response_code(200); // Beri respons sukses ke Midtrans
+        echo "OK";
+    } else {
+        http_response_code(500); // Jika gagal
+        echo "Database update error.";
     }
-} else if ($transaction == 'settlement') {
-    // TODO set payment status in merchant's database to 'Settlement'
-    echo "Transaction order_id: " . $order_id ." successfully transfered using " . $type;
-} else if ($transaction == 'pending') {
-    // TODO set payment status in merchant's database to 'Pending'
-    echo "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
-} else if ($transaction == 'deny') {
-    // TODO set payment status in merchant's database to 'Denied'
-    echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
-} else if ($transaction == 'expire') {
-    // TODO set payment status in merchant's database to 'expire'
-    echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is expired.";
-} else if ($transaction == 'cancel') {
-    // TODO set payment status in merchant's database to 'Denied'
-    echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is canceled.";
-}
-
-function printExampleWarningMessage() {
-    if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-        echo 'Notification-handler are not meant to be opened via browser / GET HTTP method. It is used to handle Midtrans HTTP POST notification / webhook.';
-    }
-    if (strpos(Config::$serverKey, 'your ') != false ) {
-        echo "<code>";
-        echo "<h4>Please set your server key from sandbox</h4>";
-        echo "In file: " . __FILE__;
-        echo "<br>";
-        echo "<br>";
-        echo htmlspecialchars('Config::$serverKey = \'<your server key>\';');
-        die();
-    }   
+} elseif ($transaction_status === 'cancel' || $transaction_status === 'expire') {
+    // Pembayaran dibatalkan atau kedaluwarsa
+    $id_pemesanan = explode('_', $order_id)[1];
+    $query = $koneksi->prepare("UPDATE tb_pemesanan SET status_pembayaran = 'dibatalkan' WHERE id_pemesanan = ?");
+    $query->bind_param("i", $id_pemesanan);
+    $query->execute();
+    http_response_code(200);
+    echo "OK";
+} else {
+    http_response_code(200); // Status lain
+    echo "Unhandled status.";
 }
