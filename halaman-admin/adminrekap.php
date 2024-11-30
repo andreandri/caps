@@ -7,6 +7,7 @@ $query = "SELECT DATE_FORMAT(j.tgl_keberangkatan, '%Y-%m') AS bulan, SUM(p.total
           FROM tb_pemesanan p
           JOIN tb_busjadwal bj ON p.id_busjadwal = bj.id_busjadwal
           JOIN tb_jadwal j ON bj.id_jadwal = j.id_jadwal
+          WHERE p.status_pembayaran = 'lunas'  -- Filter untuk status lunas
           GROUP BY bulan
           ORDER BY bulan DESC";
 

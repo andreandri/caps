@@ -66,12 +66,12 @@
         <div class="team-grid">
           <div class="team-member">
             <div class="image-container">
-              <img src="img/amel.png" alt="Amelia Frenety Perdi">
+              <img src="img/amel.jpg" alt="Amelia Frenety Perdi">
               <div class="overlay">
-                <a href="https://github.com/amel" target="_blank">
+                <a href="https://github.com/ameliafrty28" target="_blank">
                   <img src="img/github.png" alt="GitHub">
                 </a>
-                <a href="https://ind-link.com/amel" target="_blank">
+                <a href="https://www.linkedin.com/in/Amelia-FrenetyPerdi/" target="_blank">
                   <img src="img/linkedin.png" alt="Personal Link">
                 </a>
               </div>
@@ -83,10 +83,10 @@
             <div class="image-container">
               <img src="img/andre.png" alt="Andre Andrianus">
               <div class="overlay">
-                <a href="https://github.com/andre" target="_blank">
+                <a href="https://github.com/andreandri" target="_blank">
                   <img src="img/github.png" alt="GitHub">
                 </a>
-                <a href="https://ind-link.com/andre" target="_blank">
+                <a href="https://www.linkedin.com/in/andre-andrianus02/" target="_blank">
                   <img src="img/linkedin.png" alt="Personal Link">
                 </a>
               </div>
@@ -101,10 +101,10 @@
             <div class="image-container">
               <img src="img/imam.png" alt="Imam Syahrohim">
               <div class="overlay">
-                <a href="https://github.com/amel" target="_blank">
+                <a href="https://github.com/Malter17" target="_blank">
                   <img src="img/github.png" alt="GitHub">
                 </a>
-                <a href="https://ind-link.com/amel" target="_blank">
+                <a href="https://www.linkedin.com/in/imam-syahrohim/" target="_blank">
                   <img src="img/linkedin.png" alt="Personal Link">
                 </a>
               </div>
@@ -116,10 +116,10 @@
             <div class="image-container">
               <img src="img/oyong.png" alt="Natalio Valentino">
               <div class="overlay">
-                <a href="https://github.com/andre" target="_blank">
+                <a href="https://github.com/Natalio2512" target="_blank">
                   <img src="img/github.png" alt="GitHub">
                 </a>
-                <a href="https://ind-link.com/andre" target="_blank">
+                <a href="https://www.linkedin.com/in/natalio-valentino-a87818312/" target="_blank">
                   <img src="img/linkedin.png" alt="Personal Link">
                 </a>
               </div>
