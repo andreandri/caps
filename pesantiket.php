@@ -9,40 +9,40 @@
 <body>
   <main>
     <div class="Kembali">
-      <a href="tampilan.php">Back</a>
+      <a tabindex="0" href="tampilan.php">Back</a>
     </div>
 
     <form action="pesantiket.php" method="POST">
         <div class="opsi">
             <div class="form-asal">
-                <label for="asal">Form/Asal</label>
+                <label tabindex="0" for="asal">Form/Asal</label>
                 <select id="asal" name="asal">
-                    <option value="">Pilih Kota</option>
-                    <option value="Palangka Raya">Palangka Raya</option>
-                    <option value="Sampit">Sampit</option>
-                    <option value="Pangkalan Bun">Pangkalan Bun</option>
+                    <option tabindex="0" value="">Pilih Kota</option>
+                    <option tabindex="0" value="Palangka Raya">Palangka Raya</option>
+                    <option tabindex="0" value="Sampit">Sampit</option>
+                    <option tabindex="0" value="Pangkalan Bun">Pangkalan Bun</option>
                 </select>
             </div>
 
             <div class="to-tujuan">
-                <label for="tujuan">To/Tujuan</label>
+                <label tabindex="0" for="tujuan">To/Tujuan</label>
                 <select id="tujuan" name="tujuan">
-                    <option value="">Pilih Kota</option>
-                    <option value="Palangka Raya">Palangka Raya</option>
-                    <option value="Sampit">Sampit</option>
-                    <option value="Pangkalan Bun">Pangkalan Bun</option>
+                    <option tabindex="0" value="">Pilih Kota</option>
+                    <option tabindex="0" value="Palangka Raya">Palangka Raya</option>
+                    <option tabindex="0" value="Sampit">Sampit</option>
+                    <option tabindex="0" value="Pangkalan Bun">Pangkalan Bun</option>
                 </select>
             </div>
         </div>
 
         <div class="opsiopsi">
             <div class="date">
-                <label for="date">Pilih Tanggal</label>
-                <input type="date" id="date" name="date">
+                <label tabindex="0" for="date">Pilih Tanggal</label>
+                <input tabindex="0" type="date" id="date" name="date">
             </div>
 
             <div class="search">
-                <button type="submit" name="search">Search</button>
+                <button tabindex="0" type="submit" name="search">Search</button>
             </div>
         </div>
     </form>
@@ -97,23 +97,23 @@
             }
             echo "</div>";
         } else {
-            echo "<p style='color: red; text-align: center;'>Keberangkatan bus tidak ada</p>";
+            echo "<p style='color: red; text-align: center; padding: 2rem; margin: 1rem 0; font-weight: bold;'>Keberangkatan bus tidak ada</p>";
         }
         $koneksi->close();
     }
     ?>
     <section class="map">
       <div class="map-item">
-        <h3>Lokasi Terminal Bus di Palangka Raya</h3>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.680872302818!2d113.90657089999999!3d-2.2723635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2de34d716132e6d3%3A0x17a6c002897a84df!2sterminal%20bus%20palangka%20raya!5e0!3m2!1sid!2sid!4v1732897767395!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <h3 tabindex="0">Lokasi Terminal Bus di Palangka Raya</h3>
+        <iframe tabindex="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.680872302818!2d113.90657089999999!3d-2.2723635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2de34d716132e6d3%3A0x17a6c002897a84df!2sterminal%20bus%20palangka%20raya!5e0!3m2!1sid!2sid!4v1732897767395!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
       <div class="map-item">
-        <h3>Lokasi Terminal Bus di Sampit</h3>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3985.8956154606135!2d112.95063321085388!3d-2.54091113827444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2de2be354be62cad%3A0x92223b4fa28b8a80!2sTerminal%20Bus%20Sampit!5e0!3m2!1sid!2sid!4v1732898127391!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <h3 tabindex="0">Lokasi Terminal Bus di Sampit</h3>
+        <iframe tabindex="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3985.8956154606135!2d112.95063321085388!3d-2.54091113827444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2de2be354be62cad%3A0x92223b4fa28b8a80!2sTerminal%20Bus%20Sampit!5e0!3m2!1sid!2sid!4v1732898127391!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
       <div class="map-item">
-        <h3>Lokasi Terminal Bus di Pangkalan Bun</h3>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3985.4828236423396!2d111.65357417420705!3d-2.671282597306318!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e08ee1996460431%3A0xd6700ff9c0470fff!2sTerminal%20Natai%20Suka!5e0!3m2!1sid!2sid!4v1732898073660!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <h3 tabindex="0">Lokasi Terminal Bus di Pangkalan Bun</h3>
+        <iframe tabindex="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3985.4828236423396!2d111.65357417420705!3d-2.671282597306318!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e08ee1996460431%3A0xd6700ff9c0470fff!2sTerminal%20Natai%20Suka!5e0!3m2!1sid!2sid!4v1732898073660!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </section>
   </main>

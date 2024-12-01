@@ -87,54 +87,52 @@ if (!$result) {
 <body>
     <header class="dashboard">
         <div class="navbar">
-            <h1>Dashboard Admin</h1>
+            <h1 tabindex="0">Dashboard Admin</h1>
             <ul class="menu">
-                <li><a href="adminrute.php">Rute</a></li>
-                <li><a href="adminjadwal.php">Jadwal</a></li>
-                <li><a href="adminpesanan.php" style="background-color: #C8ACD6;">Daftar Pesanan</a></li>
-                <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+                <li><a tabindex="0" href="adminrute.php">Rute</a></li>
+                <li><a tabindex="0" href="adminjadwal.php">Jadwal</a></li>
+                <li><a tabindex="0" href="adminpesanan.php" style="background-color: #C8ACD6;">Daftar Pesanan</a></li>
+                <li><a tabindex="0" href="adminrekap.php">Rekap Pendapatan</a></li>
             </ul> 
-            <img src="img/EasyBusTix.png" alt=""> 
+            <img tabindex="0" src="../img/EasyBusTix.png" alt="Logo EasyBusTix"> 
         </div>
         <div>
-            <a href="../fungsi/logout.php" class="logout">Logout</a>
+            <a tabindex="0" href="../fungsi/logout.php" class="logout">Logout</a>
         </div>
     </header>
 
     <main class="main-content">
-        <h1>Daftar Pesanan</h1>
+        <h1 tabindex="0">Daftar Pesanan</h1>
         <table>
             <thead>
                 <tr>
-                    <th>ID Pemesanan</th>
-                    <th>Username</th>
-                    <th>Nama Pemesanan</th>
-                    <th>Jumlah Tiket</th>
-                    <th>Kota Asal</th>
-                    <th>Kota Tujuan</th>
-                    <th>Tanggal Keberangkatan</th>
-                    <th>Jam Keberangkatan</th>
-                    <th>Status Pembayaran</th>
-                    <th>Aksi</th>
+                    <th tabindex="0">ID Pemesanan</th>
+                    <th tabindex="0">Username</th>
+                    <th tabindex="0">Nama Pemesanan</th>
+                    <th tabindex="0">Jumlah Tiket</th>
+                    <th tabindex="0">Kota Asal</th>
+                    <th tabindex="0">Kota Tujuan</th>
+                    <th tabindex="0">Tanggal Keberangkatan</th>
+                    <th tabindex="0">Jam Keberangkatan</th>
+                    <th tabindex="0">Status Pembayaran</th>
+                    <th tabindex="0">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 <?php while($row = $result->fetch_assoc()) { ?>
                     <tr>
-                        <td><?= $row['id_pemesanan']; ?></td>
-                        <td><?= $row['username']; ?></td>
-                        <td><?= $row['nama_penumpang']; ?></td> 
-                        <td><?= $row['jumlah_tiket']; ?></td>
-                        <td><?= $row['kota_asal']; ?></td>
-                        <td><?= $row['kota_tujuan']; ?></td>
-                        <td><?= $row['tgl_keberangkatan']; ?></td>
-                        <td><?= $row['jam_keberangkatan']; ?></td>
-                        <td><?= $row['status_pembayaran']; ?></td>
-                        <td class="action-buttons">
-                            <!-- Edit Button -->
-                            <a href="editpesanan.php?id_pemesanan=<?= $row['id_pemesanan']; ?>">Edit</a>
-                            <!-- Delete Button -->
-                            <button class="delete-button" onclick="showDeletePopup(<?= $row['id_pemesanan']; ?>)">Hapus</button>
+                        <td tabindex="0"><?= $row['id_pemesanan']; ?></td>
+                        <td tabindex="0"><?= $row['username']; ?></td>
+                        <td tabindex="0"><?= $row['nama_penumpang']; ?></td> 
+                        <td tabindex="0"><?= $row['jumlah_tiket']; ?></td>
+                        <td tabindex="0"><?= $row['kota_asal']; ?></td>
+                        <td tabindex="0"><?= $row['kota_tujuan']; ?></td>
+                        <td tabindex="0"><?= $row['tgl_keberangkatan']; ?></td>
+                        <td tabindex="0"><?= $row['jam_keberangkatan']; ?></td>
+                        <td tabindex="0"><?= $row['status_pembayaran']; ?></td>
+                        <td tabindex="0" class="action-buttons">
+                            <a tabindex="0" href="editpesanan.php?id_pemesanan=<?= $row['id_pemesanan']; ?>">Edit</a>
+                            <button tabindex="0" class="delete-button" onclick="showDeletePopup(<?= $row['id_pemesanan']; ?>)">Hapus</button>
                         </td>
                     </tr>
                 <?php } ?>
@@ -145,12 +143,12 @@ if (!$result) {
     <!-- Pop-up konfirmasi hapus -->
     <div id="popup-delete" class="popup">
         <div class="popup-content popup-danger">
-            <h3>Apakah Anda yakin ingin menghapus pesanan ini?</h3>
+            <h3 tabindex="0">Apakah Anda yakin ingin menghapus pesanan ini?</h3>
             <form method="POST" id="delete-form">
-                <input type="hidden" name="delete_id" id="delete_id" value="">
-                <button type="submit">Ya, Hapus</button>
+                <input tabindex="0" type="hidden" name="delete_id" id="delete_id" value="">
+                <button tabindex="0" type="submit">Ya, Hapus</button>
             </form>
-            <button onclick="closePopup()">Tidak, Kembali</button>
+            <button tabindex="0" onclick="closePopup()">Tidak, Kembali</button>
         </div>
     </div>
 

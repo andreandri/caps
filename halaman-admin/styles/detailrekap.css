@@ -4,14 +4,18 @@
   box-sizing: border-box;
 }
 
+[tabindex="0"]:focus {
+  outline: 2px solid #243642;
+  border-radius: 0.4rem;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   display: flex;
   height: 100vh;
   background-color: #C4E1F6;
 }
 
-/* Container layout */
 header, main {
   display: flex;
   height: 100vh;
@@ -23,21 +27,20 @@ header {
   top: 0;
   width: 100%;
   display: flex;
-  z-index: 1000; /* Agar header tetap di atas elemen lain */
-  height: 120px; /* Sesuaikan dengan tinggi header */
+  z-index: 1000; 
+  height: 120px;
 }
 
 main {
-  margin-left: 16%; /* Sesuaikan dengan lebar sidebar */
-  padding-top: 120px; /* Sesuaikan dengan tinggi header */
-  width: 84%; /* Sisa ruang setelah dikurangi sidebar */
+  margin-left: 16%;
+  padding-top: 120px;
+  width: 84%;
 }
 
 .Kembali {
   margin: 1rem 0;
 }
 
-/* Back Button Styling */
 .Kembali a {
   display: inline-block;
   padding: 0.75rem 1.5rem;
@@ -65,7 +68,7 @@ main {
 .navbar h1 {
   text-align: center;
   font-size: 2.5rem;
-  color: #000000; /* Teks hitam */
+  color: #000000;
   margin-bottom: 30px;
 }
 
@@ -86,7 +89,7 @@ main {
 .menu li a {
   display: block;
   text-decoration: none;
-  background-color: #f0e8ff; /* Ungu muda */
+  background-color: #f0e8ff;
   color: #333333;
   padding: 10px;
   border-radius: 10px;
@@ -95,7 +98,7 @@ main {
 }
 
 .menu li a:hover {
-  background-color: #e0d6f0; /* Hover lebih gelap */
+  background-color: #e0d6f0;
 }
 
 .logout-container {
@@ -146,17 +149,17 @@ table td {
 }
 
 table th {
-  background-color: #333; /* Warna biru untuk header tabel */
+  background-color: #333;
   color: #ffffff;
   font-weight: bold;
 }
 
 table tr:nth-child(even) {
-  background-color: #f9f9f9; /* Warna latar untuk baris genap */
+  background-color: #f9f9f9;
 }
 
 table tr:hover {
-  background-color: #f1f1f1; /* Warna hover untuk baris */
+  background-color: #f1f1f1;
 }
 
 

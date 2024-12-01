@@ -108,38 +108,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <header class="dashboard">
         <div class="navbar">
-            <h1>Dashboard Admin</h1>
+            <h1 tabindex="0">Dashboard Admin</h1>
             <ul class="menu">
-                <li><a href="adminrute.php">Rute</a></li>
-                <li><a href="adminjadwal.php" style="background-color: #C8ACD6;">Jadwal</a></li>
-                <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
-                <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+                <li><a tabindex="0" href="adminrute.php">Rute</a></li>
+                <li><a tabindex="0" href="adminjadwal.php" style="background-color: #C8ACD6;">Jadwal</a></li>
+                <li><a tabindex="0" href="adminpesanan.php">Daftar Pesanan</a></li>
+                <li><a tabindex="0" href="adminrekap.php">Rekap Pendapatan</a></li>
             </ul> 
-            <img src="img/EasyBusTix.png" alt=""> 
+            <img tabindex="0" src="../img/EasyBusTix.png" alt="Logo EasyBusTix"> 
         </div>
         <div>
-            <a href="../fungsi/logout.php" class="logout">Logout</a>
+            <a tabindex="0" href="../fungsi/logout.php" class="logout">Logout</a>
         </div>
     </header>
     
     <main class="main-content">
-        <h1>Edit Jadwal Keberangkatan</h1>
+        <h1 tabindex="0">Edit Jadwal Keberangkatan</h1>
         <div class="form-container">
         <form method="POST">
-            <label for="id_rute">Rute:</label>
-            <input type="text" id="id_rute" name="id_rute" value="<?= htmlspecialchars($row['id_rute']); ?>" required>
+            <label tabindex="0" for="id_rute">Rute:</label>
+            <input tabindex="0" type="text" id="id_rute" name="id_rute" value="<?= htmlspecialchars($row['id_rute']); ?>" required>
 
-            <label for="tgl_keberangkatan">Tanggal Keberangkatan:</label>
-            <input type="date" id="tgl_keberangkatan" name="tgl_keberangkatan" value="<?= htmlspecialchars($row['tgl_keberangkatan']); ?>" required>
+            <label tabindex="0" for="tgl_keberangkatan">Tanggal Keberangkatan:</label>
+            <input tabindex="0" type="date" id="tgl_keberangkatan" name="tgl_keberangkatan" value="<?= htmlspecialchars($row['tgl_keberangkatan']); ?>" required>
 
-            <label for="jam_keberangkatan">Jam Keberangkatan:</label>
-            <input type="time" id="jam_keberangkatan" name="jam_keberangkatan" value="<?= htmlspecialchars($row['jam_keberangkatan']); ?>" required>
+            <label tabindex="0" for="jam_keberangkatan">Jam Keberangkatan:</label>
+            <input tabindex="0" type="time" id="jam_keberangkatan" name="jam_keberangkatan" value="<?= htmlspecialchars($row['jam_keberangkatan']); ?>" required>
 
-            <label for="harga">Harga:</label>
-            <input type="number" id="harga" name="harga" value="<?= htmlspecialchars($row['harga']); ?>" required>
+            <label tabindex="0" for="harga">Harga:</label>
+            <input tabindex="0" type="number" id="harga" name="harga" value="<?= htmlspecialchars($row['harga']); ?>" required>
 
-            <a href="adminjadwal.php">Kembali</a>
-            <button type="submit">Update Jadwal</button>
+            <a tabindex="0" href="adminjadwal.php">Kembali</a>
+            <button tabindex="0" type="submit">Update Jadwal</button>
         </form>
         </div>
     </main>
@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id="popup-success" class="popup">
         <div class="popup-content">
             <h3><?= $success_message ?></h3>
-            <button onclick="redirectToSchedule()">Tutup</button>
+            <button tabindex="0" onclick="redirectToSchedule()">Tutup</button>
         </div>
     </div>
 <?php endif; ?>
@@ -159,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id="popup-error" class="popup">
         <div class="popup-content">
             <h3><?= $error_message ?></h3>
-            <button onclick="closePopup()">Tutup</button>
+            <button tabindex="0" onclick="closePopup()">Tutup</button>
         </div>
     </div>
 <?php endif; ?>

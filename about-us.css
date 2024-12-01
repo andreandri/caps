@@ -2,12 +2,18 @@
   border-box: box-sizing;
 }
 
+[tabindex="0"]:focus {
+  outline: 2px solid #243642;
+  border-radius: 0.4rem;
+}
+
 body {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
   background-color: #f5f5f5;
+  font-family: 'Poppins', sans-serif;
 }
 
 main {

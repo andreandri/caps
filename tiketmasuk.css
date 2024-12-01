@@ -2,6 +2,36 @@
   box-sizing: border-box;
 }
 
+[tabindex="0"]:focus {
+  outline: 2px solid #243642;
+  border-radius: 0.4rem;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  background-color: #bf1722;
+  color: white;
+  z-index: 100;
+  min-width: 44px;
+  min-height: 44px;
+  clip-path: inset(0 0 0 0); 
+}
+
+.skip-link:focus {
+  top: 20px;
+  left: 0;
+  outline: 4px dashed #243642;
+  background-color: #fff;
+  color: #bf1722;
+}
+
+section[id] {
+  scroll-margin-top: 50px;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -9,6 +39,7 @@ body {
   width: 100%;
   background-color: #f5f5f5;
   color: #333;
+  font-family: 'Poppins', sans-serif;
 }
 
 header {

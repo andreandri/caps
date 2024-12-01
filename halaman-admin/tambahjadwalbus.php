@@ -97,46 +97,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <header class="dashboard">
     <div class="navbar">
-        <h1>Dashboard Admin</h1>
+        <h1 tabindex="0" >Dashboard Admin</h1>
         <ul class="menu">
-            <li><a href="adminrute.php">Rute</a></li>
-            <li><a href="adminjadwal.php" style="background-color: #C8ACD6;">Jadwal</a></li>
-            <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
-            <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+            <li><a tabindex="0" href="adminrute.php">Rute</a></li>
+            <li><a tabindex="0" href="adminjadwal.php" style="background-color: #C8ACD6;">Jadwal</a></li>
+            <li><a tabindex="0" href="adminpesanan.php">Daftar Pesanan</a></li>
+            <li><a tabindex="0" href="adminrekap.php">Rekap Pendapatan</a></li>
         </ul> 
-        <img src="img/EasyBusTix.png" alt=""> 
+        <img tabindex="0" src="../img/EasyBusTix.png" alt="Logo EasyBusTix"> 
     </div>
     <div>
-        <a href="../fungsi/logout.php" class="logout">Logout</a>
+        <a tabindex="0" href="../fungsi/logout.php" class="logout">Logout</a>
     </div>
 </header>
     
 <main class="main-content">
-    <h1>Tambah Jadwal Bus</h1>
+    <h1 tabindex="0">Tambah Jadwal Bus</h1>
     <div class="form-container">
         <form method="POST">
-            <label for="id_bus">Id Bus</label>
+            <label tabindex="0" for="id_bus">Id Bus</label>
             <select id="id_bus" name="id_bus" required>
-                <option value="">-- Pilih Bus --</option>
+                <option tabindex="0" value="">-- Pilih Bus --</option>
                 <?php while ($busRow = $busResult->fetch_assoc()): ?>
-                    <option value="<?= $busRow['id_bus'] ?>">
+                    <option tabindex="0" value="<?= $busRow['id_bus'] ?>">
                         <?= $busRow['id_bus'] ?> 
                     </option>
                 <?php endwhile; ?>
             </select>
 
-            <label for="id_jadwal">Id Jadwal</label>
-            <select id="id_jadwal" name="id_jadwal" required>
-                <option value="">-- Pilih Jadwal --</option>
+            <label tabindex="0" for="id_jadwal">Id Jadwal</label>
+            <select tabindex="0" id="id_jadwal" name="id_jadwal" required>
+                <option tabindex="0" value="">-- Pilih Jadwal --</option>
                 <?php while ($jadwalRow = $jadwalResult->fetch_assoc()): ?>
-                    <option value="<?= $jadwalRow['id_jadwal'] ?>">
+                    <option tabindex="0" value="<?= $jadwalRow['id_jadwal'] ?>">
                         <?= $jadwalRow['id_jadwal'] ?> 
                     </option>
                 <?php endwhile; ?>
             </select>
 
-            <a href="adminjadwal.php">Kembali</a>
-            <button type="submit">Tambah Jadwal</button>
+            <a tabindex="0" href="adminjadwal.php">Kembali</a>
+            <button tabindex="0" type="submit">Tambah Jadwal</button>
         </form>
     </div>
 </main>
@@ -146,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id="popup-success" class="popup">
         <div class="popup-content">
             <h3><?= $success_message ?></h3>
-            <button onclick="redirectToSchedule()">Tutup</button>
+            <button tabindex="0" onclick="redirectToSchedule()">Tutup</button>
         </div>
     </div>
 <?php endif; ?>
@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id="popup-error" class="popup">
         <div class="popup-content">
             <h3><?= $error_message ?></h3>
-            <button onclick="closePopup()">Tutup</button>
+            <button tabindex="0" onclick="closePopup()">Tutup</button>
         </div>
     </div>
 <?php endif; ?>

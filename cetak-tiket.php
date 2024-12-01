@@ -55,8 +55,38 @@ if ($id_pemesanan) {
       box-sizing: border-box;
     }
 
+    [tabindex="0"]:focus {
+      outline: 2px solid #243642;
+      border-radius: 0.4rem;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 10px;
+      background-color: #bf1722;
+      color: white;
+      z-index: 100;
+      min-width: 44px;
+      min-height: 44px;
+      clip-path: inset(0 0 0 0); 
+    }
+
+    .skip-link:focus {
+      top: 20px;
+      left: 0;
+      outline: 4px dashed #243642;
+      background-color: #fff;
+      color: #bf1722;
+    }
+
+    h2[id] {
+      scroll-margin-top: 100px;
+    }
+
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
       height: 100%;
@@ -169,41 +199,42 @@ if ($id_pemesanan) {
   <script type="module" src="scripts/index.js"></script>
 </head>
 <body>
+  <a href="#home" class="skip-link">Skip To Content</a>
   <header>
     <bar-user-app></bar-user-app>
   </header>
 
   <main>
     <div class="card">
-        <h1>Detail Pemesanan</h1>
+        <h1 id="home" tabindex="0">Detail Pemesanan</h1>
         <table class="cetak">
             <tr>
-                <td>No. Kursi</td>
-                <td> : <?= !empty($kursi_list) ? implode(", ", $kursi_list) : '-' ?></td>
+                <td tabindex="0">No. Kursi</td>
+                <td tabindex="0"> : <?= !empty($kursi_list) ? implode(", ", $kursi_list) : '-' ?></td>
             </tr>
             <tr>
-                <td>Nama</td>
-                <td> : <?= htmlspecialchars($data['nama_penumpang'] ?? '-') ?></td>
+                <td tabindex="0">Nama</td>
+                <td tabindex="0"> : <?= htmlspecialchars($data['nama_penumpang'] ?? '-') ?></td>
             </tr>
             <tr>
-                <td>No HP</td>
-                <td> : <?= htmlspecialchars($data['no_wa'] ?? '-') ?></td>
+                <td tabindex="0">No HP</td>
+                <td tabindex="0"> : <?= htmlspecialchars($data['no_wa'] ?? '-') ?></td>
             </tr>
             <tr>
-                <td>Tiket</td>
-                <td> : <?= $jumlah_tiket ?? '-' ?></td>
+                <td tabindex="0">Tiket</td>
+                <td tabindex="0"> : <?= $jumlah_tiket ?? '-' ?></td>
             </tr>
             <tr>
-                <td>Tujuan:</td>
-                <td> : <?= htmlspecialchars($data['kota_asal'] ?? '-') . ' - ' . htmlspecialchars($data['kota_tujuan'] ?? '-') ?></td>
+                <td tabindex="0">Tujuan:</td>
+                <td tabindex="0"> : <?= htmlspecialchars($data['kota_asal'] ?? '-') . ' - ' . htmlspecialchars($data['kota_tujuan'] ?? '-') ?></td>
             </tr>
             <tr>
-                <td>Keberangkatan</td>
-                <td> : <?= htmlspecialchars($data['tgl_keberangkatan'] ?? '-') . ', ' . htmlspecialchars($data['jam_keberangkatan'] ?? '-') ?></td>
+                <td tabindex="0">Keberangkatan</td>
+                <td tabindex="0"> : <?= htmlspecialchars($data['tgl_keberangkatan'] ?? '-') . ', ' . htmlspecialchars($data['jam_keberangkatan'] ?? '-') ?></td>
             </tr>
         </table>
-        <p class="total">Total: Rp <?= number_format($data['total'] ?? 0, 0, ',', '.') ?></p>
-        <button onclick="window.location.href='./midtrans/examples/snap/checkout-process-simple-version.php?id_pemesanan=<?= $id_pemesanan ?>'">Bayar</button>
+        <p tabindex="0" class="total">Total: Rp <?= number_format($data['total'] ?? 0, 0, ',', '.') ?></p>
+        <button tabindex="0" onclick="window.location.href='./midtrans/examples/snap/checkout-process-simple-version.php?id_pemesanan=<?= $id_pemesanan ?>'">Bayar</button>
     </div>
 </main>
 

@@ -6,6 +6,11 @@
   font-family: "Poppins", sans-serif;
 }
 
+[tabindex="0"]:focus {
+  outline: 2px solid #243642;
+  border-radius: 0.4rem;
+}
+
 body {
   display: flex;
   justify-content: center;

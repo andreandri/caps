@@ -55,8 +55,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pilih Kursi</title>
     <style>
+        [tabindex="0"]:focus {
+          outline: 2px solid #243642;
+          padding: 2px;
+        }
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 20px;
             text-align: center;
         }
@@ -121,21 +125,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
     </style>
 </head>
 <body>
-    <h2>Pilih Kursi</h2>
+    <h2 tabindex="0">Pilih Kursi</h2>
     <form action="" method="POST" id="seatForm">
         <input type="hidden" name="kursi_terpilih" id="kursiTerpilih">
         <div class="seat-container">
             <?php
-            // PHP Loop untuk menampilkan kursi
             foreach ($kursi_posisi as $baris) {
                 foreach ($baris as $posisi) {
-                    // Mengambil status kursi dari database
                     $status_class = '';
                     $kursi_id = null;
                     $kursi_nomor = $posisi;
 
                     if ($posisi != "" && $posisi != "SOPIR") {
-                        // Cek jika kursi ada di database
                         $sql_kursi = "SELECT id_kursi, status FROM tb_kursi WHERE nomor_kursi = ? AND id_bus = (SELECT id_bus FROM tb_busjadwal WHERE id_busjadwal = ?)";
                         $stmt_kursi = $koneksi->prepare($sql_kursi);
                         $stmt_kursi->bind_param("si", $posisi, $id_busjadwal);
@@ -149,18 +150,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
                         }
                     }
 
-                    // Tampilkan kursi jika ada
                     if ($posisi != "SOPIR") {
                         echo "<div class='seat $status_class' data-id='$kursi_id' data-nomor='$kursi_nomor'>$kursi_nomor</div>";
                     } else {
-                        // Tampilkan "SOPIR" jika posisi adalah sopir
                         echo "<div class='seat sopir'>$posisi</div>";
                     }
                 }
             }
             ?>
         </div>
-        <button type="submit">Konfirmasi</button>
+        <button tabindex="0" type="submit">Konfirmasi</button>
     </form>
 
     <script>

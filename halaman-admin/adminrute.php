@@ -93,32 +93,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id']) &&
 
 <header class="dashboard">
     <div class="navbar">
-        <h1>Dashboard Admin</h1>
+        <h1 tabindex="0">Dashboard Admin</h1>
         <ul class="menu">
-            <li><a href="adminrute.php" style="background-color: #C8ACD6;">Rute</a></li>
-            <li><a href="adminjadwal.php">Jadwal</a></li>
-            <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
-            <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+            <li><a tabindex="0" href="adminrute.php" style="background-color: #C8ACD6;">Rute</a></li>
+            <li><a tabindex="0" href="adminjadwal.php">Jadwal</a></li>
+            <li><a tabindex="0" href="adminpesanan.php">Daftar Pesanan</a></li>
+            <li><a tabindex="0" href="adminrekap.php">Rekap Pendapatan</a></li>
         </ul>
-        <img src="img/EasyBusTix.png" alt="">
+        <img tabindex="0" src="../img/EasyBusTix.png" alt="Logo EasyBusTix">
     </div>
     <div>
-        <a href="../fungsi/logout.php" class="logout">Logout</a>
+        <a tabindex="0" href="../fungsi/logout.php" class="logout">Logout</a>
     </div>
 </header>
 
 <main class="main-content">
     <!-- Tabel Bus -->
     <div>
-        <h1>Data Bus</h1>
+        <h1 tabindex="0">Data Bus</h1>
         <table>
             <thead>
                 <tr>
-                    <th>Id Bus</th>
-                    <th>No Plat</th>
-                    <th>Nama Sopir</th>
-                    <th>Kapasitas</th>
-                    <th>Aksi</th>
+                    <th tabindex="0">Id Bus</th>
+                    <th tabindex="0">No Plat</th>
+                    <th tabindex="0">Nama Sopir</th>
+                    <th tabindex="0">Kapasitas</th>
+                    <th tabindex="0">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -129,13 +129,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id']) &&
             if ($bus_result) {
                 while ($row = mysqli_fetch_assoc($bus_result)) { ?>
                     <tr>
-                        <td><?= $row['id_bus']; ?></td>
-                        <td><?= $row['no_plat']; ?></td>
-                        <td><?= $row['nama_sopir']; ?></td>
-                        <td><?= $row['kapasitas']; ?></td>
-                        <td>
-                            <a href="edit_bus.php?id_bus=<?= $row['id_bus']; ?>"><button class="edit">Edit</button></a>
-                            <button class="hapus" onclick="showDeletePopup('bus', <?= $row['id_bus']; ?>)">Hapus</button>
+                        <td tabindex="0"><?= $row['id_bus']; ?></td>
+                        <td tabindex="0"><?= $row['no_plat']; ?></td>
+                        <td tabindex="0"><?= $row['nama_sopir']; ?></td>
+                        <td tabindex="0"><?= $row['kapasitas']; ?></td>
+                        <td tabindex="0">
+                            <a tabindex="0" href="edit_bus.php?id_bus=<?= $row['id_bus']; ?>"><button class="edit">Edit</button></a>
+                            <button tabindex="0" class="hapus" onclick="showDeletePopup('bus', <?= $row['id_bus']; ?>)">Hapus</button>
                         </td>
                     </tr>
                 <?php }
@@ -145,19 +145,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id']) &&
             ?>
             </tbody>
         </table>
-        <a href="tambah_bus.php" class="tambah-rute">Tambah Bus</a>
+        <a tabindex="0" href="tambah_bus.php" class="tambah-rute">Tambah Bus</a>
     </div>
 
     <!-- Tabel Rute -->
     <div class="table-section">
-        <h1>Data Rute</h1>
+        <h1 tabindex="0">Data Rute</h1>
         <table>
             <thead>
                 <tr>
-                    <th>Id Rute</th>
-                    <th>Asal</th>
-                    <th>Tujuan</th>
-                    <th>Aksi</th>
+                    <th tabindex="0">Id Rute</th>
+                    <th tabindex="0">Asal</th>
+                    <th tabindex="0">Tujuan</th>
+                    <th tabindex="0">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -168,12 +168,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id']) &&
             if ($route_result) {
                 while ($row = mysqli_fetch_assoc($route_result)) { ?>
                     <tr>
-                        <td><?= $row['id_rute']; ?></td>
-                        <td><?= $row['kota_asal']; ?></td>
-                        <td><?= $row['kota_tujuan']; ?></td>
-                        <td>
-                            <a href="edit_rute.php?id_rute=<?= $row['id_rute']; ?>"><button class="edit">Edit</button></a>
-                            <button class="hapus" onclick="showDeletePopup('route', <?= $row['id_rute']; ?>)">Hapus</button>
+                        <td tabindex="0"><?= $row['id_rute']; ?></td>
+                        <td tabindex="0"><?= $row['kota_asal']; ?></td>
+                        <td tabindex="0"><?= $row['kota_tujuan']; ?></td>
+                        <td tabindex="0">
+                            <a tabindex="0" href="edit_rute.php?id_rute=<?= $row['id_rute']; ?>"><button class="edit">Edit</button></a>
+                            <button tabindex="0" class="hapus" onclick="showDeletePopup('route', <?= $row['id_rute']; ?>)">Hapus</button>
                         </td>
                     </tr>
                 <?php }
@@ -183,21 +183,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id']) &&
             ?>
             </tbody>
         </table>
-        <a href="tambah_rute.php" class="tambah-rute">Tambah Rute</a>
+        <a tabindex="0" href="tambah_rute.php" class="tambah-rute">Tambah Rute</a>
     </div>
 </main>
 
 <!-- Pop-up konfirmasi hapus -->
 <div id="popup-delete" class="popup">
     <div class="popup-content popup-danger">
-        <h3 id="popup-message">Apakah Anda yakin ingin menghapus?</h3>
+        <h3 tabindex="0" id="popup-message">Apakah Anda yakin ingin menghapus?</h3>
         <form method="POST" id="delete-form" style="display: inline;">
             <!-- Input untuk ID Bus atau Rute -->
-            <input type="hidden" name="delete_bus_id" id="delete_bus_id" value="">
-            <input type="hidden" name="delete_route_id" id="delete_route_id" value="">
-            <button type="submit" id="confirm-delete">Ya, Hapus</button>
+            <input tabindex="0" type="hidden" name="delete_bus_id" id="delete_bus_id" value="">
+            <input tabindex="0" type="hidden" name="delete_route_id" id="delete_route_id" value="">
+            <button tabindex="0" type="submit" id="confirm-delete">Ya, Hapus</button>
         </form>
-        <button onclick="closePopup()">Tidak, Kembali</button>
+        <button tabindex="0" onclick="closePopup()">Tidak, Kembali</button>
     </div>
 </div>
 

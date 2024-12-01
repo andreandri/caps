@@ -26,37 +26,37 @@ $result = mysqli_query($koneksi, $query);
 <body>
   <header class="dashboard">
     <div class="navbar">
-      <h1>Dashboard Admin</h1>
+      <h1 tabindex="0">Dashboard Admin</h1>
         <ul class="menu">
-          <li><a href="adminrute.php">Rute</a></li>
-          <li><a href="adminjadwal.php">Jadwal</a></li>
-          <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
-          <li><a href="adminrekap.php" style="background-color: #C8ACD6;">Rekap Pendapatan</a></li>
+          <li><a tabindex="0" href="adminrute.php">Rute</a></li>
+          <li><a tabindex="0" href="adminjadwal.php">Jadwal</a></li>
+          <li><a tabindex="0" href="adminpesanan.php">Daftar Pesanan</a></li>
+          <li><a tabindex="0" href="adminrekap.php" style="background-color: #C8ACD6;">Rekap Pendapatan</a></li>
         </ul> 
-      <img src="img/EasyBusTix.png" alt=""> 
+      <img tabindex="0" src="../img/EasyBusTix.png" alt="Logo EasyBusTix"> 
     </div>
     <div>
-      <a href="../fungsi/logout.php" class="logout">Logout</a>
+      <a tabindex="0" href="../fungsi/logout.php" class="logout">Logout</a>
     </div>
   </header>
 
     <main class="main-content">
-        <h1>Rekap Pendapatan Bulanan</h1>
+        <h1 tabindex="0">Rekap Pendapatan Bulanan</h1>
         <table border="1">
             <thead>
                 <tr>
-                    <th>Bulan</th>
-                    <th>Pendapatan</th>
-                    <th>Detail</th>
+                    <th tabindex="0">Bulan</th>
+                    <th tabindex="0">Pendapatan</th>
+                    <th tabindex="0">Detail</th>
                 </tr>
             </thead>
             <tbody>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                     <tr>
-                        <td><?php echo $row['bulan']; ?></td>
-                        <td><?php echo number_format($row['pendapatan'], 0, ',', '.'); ?></td>
-                        <td class="rekap">
-                            <a href="detailrekap.php?bulan=<?php echo $row['bulan']; ?>">Detail</a>
+                        <td tabindex="0"><?php echo $row['bulan']; ?></td>
+                        <td tabindex="0"><?php echo number_format($row['pendapatan'], 0, ',', '.'); ?></td>
+                        <td tabindex="0" class="rekap">
+                            <a tabindex="0" href="detailrekap.php?bulan=<?php echo $row['bulan']; ?>">Detail</a>
                         </td>
                     </tr>
                 <?php endwhile; ?>

@@ -3,6 +3,11 @@
   box-sizing: border-box;
 }
 
+[tabindex="0"]:focus {
+  outline: 2px solid #243642;
+  border-radius: 0.4rem;
+}
+
 body {
   margin: 0;
   padding: 0;

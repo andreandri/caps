@@ -2,18 +2,15 @@
 session_start();
 include 'koneksi.php';
 
-// Ambil data pengguna dari session
 $username = $_SESSION['username'];
 $email = $_SESSION['email'];
 
-// Pesan sukses atau error
 $message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $old_password = $_POST['old_password'];
     $new_password = $_POST['new_password'];
 
-    // Query untuk mencari pengguna berdasarkan username
     $sql = "SELECT * FROM tb_users WHERE username = ?";
     $stmt = $koneksi->prepare($sql);
     $stmt->bind_param("s", $username);
@@ -22,9 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $row = $result->fetch_assoc();
 
     if ($row) {
-        // Verifikasi password lama
-        if ($old_password === $row['sandi']) { // Ganti dengan sandi_verify jika password di-hash
-            // Update password baru
+        if ($old_password === $row['sandi']) {
             $update_query = "UPDATE tb_users SET sandi = ? WHERE username = ?";
             $stmt_update = $koneksi->prepare($update_query);
             $stmt_update->bind_param("ss", $new_password, $username);
@@ -62,16 +57,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <main>
         <section class="reset-password">
-            <h2>Ganti Password</h2>
-            <form action="reset_password.php" method="post">
+            <h2 tabindex="0">Ganti Password</h2>
+            <form tabindex="0" action="reset_password.php" method="post">
 
-                <label for="old_password">Password Lama</label>
-                <input type="password" id="old_password" name="old_password" placeholder="Password Lama" required>
+                <label tabindex="0" for="old_password">Password Lama</label>
+                <input tabindex="0" type="password" id="old_password" name="old_password" placeholder="Password Lama" required>
 
-                <label for="new_password">Password Baru</label>
-                <input type="password" id="new_password" name="new_password" placeholder="Password Baru" required>
+                <label tabindex="0" for="new_password">Password Baru</label>
+                <input tabindex="0" type="password" id="new_password" name="new_password" placeholder="Password Baru" required>
                 
-            <button type="submit" class="btn">Ganti Password</button>
+            <button tabindex="0" type="submit" class="btn">Ganti Password</button>
         </form>
         <?php
         if ($message) {

@@ -9,14 +9,14 @@
 <body>
   <header class="dashboard">
     <div class="navbar">
-      <h1>Dashboard Admin</h1>
+      <h1 tabindex="0">Dashboard Admin</h1>
         <ul class="menu">
-          <li><a href="adminrute.php">Rute</a></li>
-          <li><a href="adminjadwal.php">Jadwal</a></li>
-          <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
-          <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+          <li><a tabindex="0" href="adminrute.php">Rute</a></li>
+          <li><a tabindex="0" href="adminjadwal.php">Jadwal</a></li>
+          <li><a tabindex="0" href="adminpesanan.php">Daftar Pesanan</a></li>
+          <li><a tabindex="0" href="adminrekap.php">Rekap Pendapatan</a></li>
         </ul> 
-      <img src="img/EasyBusTix.png" alt=""> 
+      <img src="../img/EasyBusTix.png" alt="Logo EasyBusTix"> 
     </div>
     <div>
       <a href="../fungsi/logout.php" class="logout">Logout</a>

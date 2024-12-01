@@ -79,42 +79,42 @@ if (!$routeResult) {
 <body>
 <header class="dashboard">
     <div class="navbar">
-        <h1>Dashboard Admin</h1>
+        <h1 tabindex="0">Dashboard Admin</h1>
         <ul class="menu">
-            <li><a href="adminrute.php">Rute</a></li>
-            <li><a href="adminjadwal.php">Jadwal</a></li>
-            <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
-            <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+            <li><a tabindex="0" href="adminrute.php">Rute</a></li>
+            <li><a tabindex="0" href="adminjadwal.php" style="background-color: #C8ACD6;">Jadwal</a></li>
+            <li><a tabindex="0" href="adminpesanan.php">Daftar Pesanan</a></li>
+            <li><a tabindex="0" href="adminrekap.php">Rekap Pendapatan</a></li>
         </ul> 
-        <img src="img/EasyBusTix.png" alt=""> 
+        <img tabindex="0" src="../img/EasyBusTix.png" alt="Logo EasyBusTix"> 
     </div>
     <div>
-        <a href="../fungsi/logout.php" class="logout">Logout</a>
+        <a tabindex="0" href="../fungsi/logout.php" class="logout">Logout</a>
     </div>
 </header>
 
 <main class="add">
-    <h1>Tambah Jadwal Keberangkatan</h1>
+    <h1 tabindex="0">Tambah Jadwal Keberangkatan</h1>
     <form method="POST">
-        <label for="id_rute">Rute:</label>
+        <label tabindex="0" for="id_rute">Rute:</label>
         <select id="id_rute" name="id_rute" required>
-            <option value="">Pilih Rute</option>
+            <option tabindex="0" value="">Pilih Rute</option>
             <?php while($row = $routeResult->fetch_assoc()) { ?>
-                <option value="<?= $row['id_rute']; ?>"><?= $row['kota_asal']; ?> - <?= $row['kota_tujuan']; ?></option>
+                <option tabindex="0" value="<?= $row['id_rute']; ?>"><?= $row['kota_asal']; ?> - <?= $row['kota_tujuan']; ?></option>
             <?php } ?>
         </select>
 
-        <label for="tgl_keberangkatan">Tanggal Keberangkatan:</label>
-        <input type="date" id="tgl_keberangkatan" name="tgl_keberangkatan" required>
+        <label tabindex="0" for="tgl_keberangkatan">Tanggal Keberangkatan:</label>
+        <input tabindex="0" type="date" id="tgl_keberangkatan" name="tgl_keberangkatan" required>
 
-        <label for="jam_keberangkatan">Jam Keberangkatan:</label>
-        <input type="time" id="jam_keberangkatan" name="jam_keberangkatan" required>
+        <label tabindex="0" for="jam_keberangkatan">Jam Keberangkatan:</label>
+        <input tabindex="0" type="time" id="jam_keberangkatan" name="jam_keberangkatan" required>
 
-        <label for="harga">Harga:</label>
-        <input type="number" id="harga" name="harga" required>
+        <label tabindex="0" for="harga">Harga:</label>
+        <input tabindex="0" type="number" id="harga" name="harga" required>
 
-        <a href="adminjadwal.php">Kembali</a>
-        <button type="submit">Tambah Jadwal</button>
+        <a tabindex="0" href="adminjadwal.php">Kembali</a>
+        <button tabindex="0" type="submit">Tambah Jadwal</button>
     </form>
 </main>
 
@@ -123,7 +123,7 @@ if (!$routeResult) {
     <div id="popup-success" class="popup">
         <div class="popup-content">
             <h3><?= $success_message ?></h3>
-            <button onclick="redirectToSchedule()">Tutup</button>
+            <button tabindex="0" onclick="redirectToSchedule()">Tutup</button>
         </div>
     </div>
 <?php endif; ?>
@@ -133,7 +133,7 @@ if (!$routeResult) {
     <div id="popup-error" class="popup">
         <div class="popup-content">
             <h3><?= $error_message ?></h3>
-            <button onclick="closePopup()">Tutup</button>
+            <button tabindex="0" onclick="closePopup()">Tutup</button>
         </div>
     </div>
 <?php endif; ?>

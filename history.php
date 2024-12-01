@@ -46,46 +46,46 @@ $result = mysqli_query($koneksi, $query);
 
   <main>
     <div class="container">
-      <h2>History Pemesanan</h2>
+      <h2 tabindex="0">History Pemesanan</h2>
       <?php if (mysqli_num_rows($result) > 0): ?>
         <?php while ($row = mysqli_fetch_assoc($result)): ?>
           <div class="detail">
           <div class="detail-item">
             <table>
               <tr>
-                <th>Rute</th>
-                <td>: <?= htmlspecialchars($row['kota_asal'] . " - " . $row['kota_tujuan']); ?></td>
+                <th tabindex="0">Rute</th>
+                <td tabindex="0">: <?= htmlspecialchars($row['kota_asal'] . " - " . $row['kota_tujuan']); ?></td>
               </tr>
               <tr>
-                <th>Nama</th>
-                <td>: <?= htmlspecialchars($row['nama_penumpang']); ?></td>
+                <th tabindex="0">Nama</th>
+                <td tabindex="0">: <?= htmlspecialchars($row['nama_penumpang']); ?></td>
               </tr>
               <tr>
-                <th>No WA</th>
-                <td>: <?= htmlspecialchars($row['no_wa']); ?></td>
+                <th tabindex="0">No WA</th>
+                <td tabindex="0">: <?= htmlspecialchars($row['no_wa']); ?></td>
               </tr>
               <tr>
-                <th>Jumlah Tiket</th>
-                <td>: <?= htmlspecialchars($row['jumlah_tiket']); ?></td>
+                <th tabindex="0">Jumlah Tiket</th>
+                <td tabindex="0">: <?= htmlspecialchars($row['jumlah_tiket']); ?></td>
               </tr>
               <tr>
-                <th>Nomor Kursi</th>
-                <td>: <?= htmlspecialchars($row['nomor_kursi']); ?></td>
+                <th tabindex="0">Nomor Kursi</th>
+                <td tabindex="0">: <?= htmlspecialchars($row['nomor_kursi']); ?></td>
               </tr>
               <tr>
-                <th>Status Kursi</th>
-                <td>: <?= htmlspecialchars($row['status_kursi']); ?></td>
+                <th tabindex="0">Status Kursi</th>
+                <td tabindex="0">: <?= htmlspecialchars($row['status_kursi']); ?></td>
               </tr>
               <tr>
-                <th>Total</th>
-                <td>: Rp <?= number_format($row['total'], 0, ',', '.'); ?></td>
+                <th tabindex="0">Total</th>
+                <td tabindex="0">: Rp <?= number_format($row['total'], 0, ',', '.'); ?></td>
               </tr>
             </table>
-            <div class="status berhasil">BERHASIL</div>
+            <div tabindex="0" class="status berhasil">BERHASIL</div>
           </div>
             <?php endwhile; ?>
       <?php else: ?>
-      <p>Tidak ada data pemesanan.</p>
+      <p tabindex="0">Tidak ada data pemesanan.</p>
       <?php endif; ?>
     </div>
     </div>

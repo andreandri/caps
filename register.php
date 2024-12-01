@@ -53,30 +53,30 @@ if (isset($_POST['register'])) {
 </head>
 <body>
     <div class="wrapper">
-        <h1>Create your account</h1>
-        <h2>Start your journey with us</h2>
+        <h1 tabindex="0">Create your account</h1>
+        <h2 tabindex="0">Start your journey with us</h2>
         <div class="image">
-            <img src="img/EasyBusTix.png" alt="logo aplikasi">
+            <img tabindex="0" src="img/EasyBusTix.png" alt="logo aplikasi">
         </div>
-        <form action="register.php" method="post">
+        <form tabindex="0" action="register.php" method="post">
             <?php
             if (isset($error_message)) {
                 echo "<div class='error'>$error_message</div>";
             }
             ?>
             <div class="input-box">
-                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                <input tabindex="0" type="text" id="username" name="username" placeholder="Enter your username" required>
             </div>
             <div class="input-box">
-                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                <input tabindex="0" type="email" id="email" name="email" placeholder="Enter your email address" required>
             </div>
             <div class="input-box">
-                <input type="sandi" id="sandi" name="sandi" placeholder="Enter your password" required>
+                <input tabindex="0" type="sandi" id="sandi" name="sandi" placeholder="Enter your password" required>
             </div>
-            <button type="submit" class="btn" name="register">Register</button>
+            <button tabindex="0" type="submit" class="btn" name="register">Register</button>
         </form>
         <div class="register-link">
-            <p>Already have an account? <a href="login.php">Login</a></p>
+            <p tabindex="0">Already have an account? <a tabindex="0" href="login.php">Login</a></p>
         </div>
     </div>
 

@@ -101,84 +101,84 @@ if (!$result) {
 
 <header class="dashboard">
     <div class="navbar">
-        <h1>Dashboard Admin</h1>
+        <h1 tabindex="0">Dashboard Admin</h1>
         <ul class="menu">
-            <li><a href="adminrute.php">Rute</a></li>
-            <li><a href="adminjadwal.php" style="background-color: #C8ACD6;">Jadwal</a></li>
-            <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
-            <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+            <li><a tabindex="0" href="adminrute.php">Rute</a></li>
+            <li><a tabindex="0" href="adminjadwal.php" style="background-color: #C8ACD6;">Jadwal</a></li>
+            <li><a tabindex="0" href="adminpesanan.php">Daftar Pesanan</a></li>
+            <li><a tabindex="0" href="adminrekap.php">Rekap Pendapatan</a></li>
         </ul> 
-        <img src="img/EasyBusTix.png" alt=""> 
+        <img tabindex="0" src="../img/EasyBusTix.png" alt="Logo EasyBusTix"> 
     </div>
     <div>
-        <a href="../fungsi/logout.php" class="logout">Logout</a>
+        <a tabindex="0" href="../fungsi/logout.php" class="logout">Logout</a>
     </div>
 </header>
     
 <main class="main-content">
     <div>
-        <h1>Data Jadwal</h1>
+        <h1 tabindex="0">Data Jadwal</h1>
         <table>
             <thead>
                 <tr>
-                    <th>Id Jadwal</th>
-                    <th>Kota Asal</th>
-                    <th>Kota Tujuan</th>
-                    <th>Tanggal Keberangkatan</th>
-                    <th>Jam Keberangkatan</th>
-                    <th>Harga</th>
-                    <th>Status Jadwal</th>
-                    <th>Aksi</th>
+                    <th tabindex="0">Id Jadwal</th>
+                    <th tabindex="0">Kota Asal</th>
+                    <th tabindex="0">Kota Tujuan</th>
+                    <th tabindex="0">Tanggal Keberangkatan</th>
+                    <th tabindex="0">Jam Keberangkatan</th>
+                    <th tabindex="0">Harga</th>
+                    <th tabindex="0">Status Jadwal</th>
+                    <th tabindex="0">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 <?php while($row = $result->fetch_assoc()) { ?>
                     <tr>
-                        <td><?= $row['id_jadwal']; ?></td>
-                        <td><?= $row['kota_asal']; ?></td>
-                        <td><?= $row['kota_tujuan']; ?></td>
-                        <td><?= $row['tgl_keberangkatan']; ?></td>
-                        <td><?= $row['jam_keberangkatan']; ?></td>
-                        <td><?= $row['harga']; ?></td>
-                        <td>
+                        <td tabindex="0"><?= $row['id_jadwal']; ?></td>
+                        <td tabindex="0"><?= $row['kota_asal']; ?></td>
+                        <td tabindex="0"><?= $row['kota_tujuan']; ?></td>
+                        <td tabindex="0"><?= $row['tgl_keberangkatan']; ?></td>
+                        <td tabindex="0"><?= $row['jam_keberangkatan']; ?></td>
+                        <td tabindex="0"><?= $row['harga']; ?></td>
+                        <td tabindex="0">
                         <?php if ($row['status_jadwal'] == 'aktif') { ?>
-                            <span style="color: green; font-weight: bold;">Aktif</span>
+                            <span tabindex="0" style="color: green; font-weight: bold;">Aktif</span>
                         <?php } else { ?>
-                            <span style="color: red; font-weight: bold;">Tidak Aktif</span>
+                            <span tabindex="0" style="color: red; font-weight: bold;">Tidak Aktif</span>
                         <?php } ?>
                     </td>
-                        <td class="action-buttons">
-                            <a href="editjadwal.php?id_jadwal=<?= $row['id_jadwal']; ?>" class="edit-button">Edit</a>
-                            <button class="delete-button" onclick="showDeletePopup(<?= $row['id_jadwal']; ?>)">Hapus</button>
+                        <td tabindex="0" class="action-buttons">
+                            <a tabindex="0" href="editjadwal.php?id_jadwal=<?= $row['id_jadwal']; ?>" class="edit-button">Edit</a>
+                            <button tabindex="0" class="delete-button" onclick="showDeletePopup(<?= $row['id_jadwal']; ?>)">Hapus</button>
                         </td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
-        <a href="tambahjadwal.php" class="tambah-rute">Tambah Jadwal</a>
+        <a tabindex="0" href="tambahjadwal.php" class="tambah-rute">Tambah Jadwal</a>
 
         <!-- Pop-up konfirmasi hapus Jadwal -->
         <div id="popup-delete" class="popup">
             <div class="popup-content popup-danger">
-                <h3>Apakah Anda yakin ingin menghapus jadwal ini?</h3>
+                <h3 tabindex="0">Apakah Anda yakin ingin menghapus jadwal ini?</h3>
                 <form method="POST" id="delete-form">
                     <input type="hidden" name="delete_id" id="delete_id" value="">
-                    <button type="submit">Ya, Hapus</button>
+                    <button tabindex="0" type="submit">Ya, Hapus</button>
                 </form>
-                <button onclick="closePopup()">Tidak, Kembali</button>
+                <button tabindex="0" onclick="closePopup()">Tidak, Kembali</button>
             </div>
         </div>
     </div>
 
     <div>
-        <h1>Data Bus Jadwal</h1>
+        <h1 tabindex="0">Data Bus Jadwal</h1>
         <table border="1">
             <thead>
                 <tr>
-                    <th>Id Bus Jadwal</th>
-                    <th>Id Bus</th>
-                    <th>Id Jadwal</th>
-                    <th>Aksi</th>
+                    <th tabindex="0">Id Bus Jadwal</th>
+                    <th tabindex="0">Id Bus</th>
+                    <th tabindex="0">Id Jadwal</th>
+                    <th tabindex="0">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -189,29 +189,29 @@ if (!$result) {
             if ($bus_schedule_result) {
                 while ($row = mysqli_fetch_assoc($bus_schedule_result)) { ?>
                     <tr>
-                        <td><?= $row['id_busjadwal']; ?></td>
-                        <td><?= $row['id_bus']; ?></td>
-                        <td><?= $row['id_jadwal']; ?></td>
-                        <td class="action-buttons">
-                            <a href="editjadwalbus.php?id_busjadwal=<?= $row['id_busjadwal']; ?>" class="edit-button">Edit</a>
-                            <button class="delete-button" onclick="showDeleteBusPopup(<?= $row['id_busjadwal']; ?>)">Hapus</button>
+                        <td tabindex="0"><?= $row['id_busjadwal']; ?></td>
+                        <td tabindex="0"><?= $row['id_bus']; ?></td>
+                        <td tabindex="0"><?= $row['id_jadwal']; ?></td>
+                        <td tabindex="0" class="action-buttons">
+                            <a tabindex="0" href="editjadwalbus.php?id_busjadwal=<?= $row['id_busjadwal']; ?>" class="edit-button">Edit</a>
+                            <button tabindex="0" class="delete-button" onclick="showDeleteBusPopup(<?= $row['id_busjadwal']; ?>)">Hapus</button>
                         </td>
                     </tr>
                 <?php }
             } ?>
             </tbody>
         </table>
-        <a href="tambahjadwalbus.php" class="tambah-rute">Tambah Jadwal</a>
+        <a tabindex="0" href="tambahjadwalbus.php" class="tambah-rute">Tambah Jadwal</a>
 
         <!-- Pop-up konfirmasi hapus Bus Jadwal -->
         <div id="popup-delete-bus" class="popup">
             <div class="popup-content popup-danger">
-                <h3>Apakah Anda yakin ingin menghapus data bus jadwal ini?</h3>
+                <h3 tabindex="0">Apakah Anda yakin ingin menghapus data bus jadwal ini?</h3>
                 <form method="POST" id="delete-bus-form">
                     <input type="hidden" name="delete_bus_schedule_id" id="delete_bus_schedule_id" value="">
-                    <button type="submit">Ya, Hapus</button>
+                    <button tabindex="0" type="submit">Ya, Hapus</button>
                 </form>
-                <button onclick="closeBusPopup()">Tidak, Kembali</button>
+                <button tabindex="0" onclick="closeBusPopup()">Tidak, Kembali</button>
             </div>
         </div>
     </div>

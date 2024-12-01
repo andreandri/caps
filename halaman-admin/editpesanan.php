@@ -128,45 +128,45 @@ $koneksi->close();
     <div class="navbar">
         <h1>Dashboard Admin</h1>
         <ul class="menu">
-          <li><a href="adminrute.php">Rute</a></li>
-          <li><a href="adminjadwal.php">Jadwal</a></li>
-          <li><a href="adminpesanan.php" style="background-color: #C8ACD6;">Daftar Pesanan</a></li>
-          <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+          <li><a tabindex="0" href="adminrute.php">Rute</a></li>
+          <li><a tabindex="0" href="adminjadwal.php">Jadwal</a></li>
+          <li><a tabindex="0" href="adminpesanan.php" style="background-color: #C8ACD6;">Daftar Pesanan</a></li>
+          <li><a tabindex="0" href="adminrekap.php">Rekap Pendapatan</a></li>
         </ul>
-      <img src="img/EasyBusTix.png" alt=""> 
+      <img tabindex="0" src="../img/EasyBusTix.png" alt="Logo EasyBusTix"> 
     </div>
     <div>
-        <a href="../fungsi/logout.php" class="logout">Logout</a>
+        <a tabindex="0" href="../fungsi/logout.php" class="logout">Logout</a>
     </div>
 </header>
 
 <main class="main-content">
-<h1>Edit Pesanan</h1>
+<h1 tabindex="0">Edit Pesanan</h1>
     <div class="form-container">
         <form action="editpesanan.php?id_pemesanan=<?= $row['id_pemesanan']; ?>" method="POST">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" value="<?= $row['username']; ?>" required><br>
+            <label tabindex="0" for="username">Username:</label>
+            <input tabindex="0" type="text" id="username" name="username" value="<?= $row['username']; ?>" required><br>
 
-            <label for="nama_penumpang">Nama Penumpang:</label>
-            <input type="text" id="nama_penumpang" name="nama_penumpang" value="<?= $row['nama_penumpang']; ?>" required><br>
+            <label tabindex="0" for="nama_penumpang">Nama Penumpang:</label>
+            <input tabindex="0" type="text" id="nama_penumpang" name="nama_penumpang" value="<?= $row['nama_penumpang']; ?>" required><br>
 
-            <label for="jumlah_tiket">Jumlah Tiket:</label>
-            <input type="number" id="jumlah_tiket" name="jumlah_tiket" value="<?= $row['jumlah_tiket']; ?>" required><br>
+            <label tabindex="0" for="jumlah_tiket">Jumlah Tiket:</label>
+            <input tabindex="0" type="number" id="jumlah_tiket" name="jumlah_tiket" value="<?= $row['jumlah_tiket']; ?>" required><br>
 
-            <label for="total">Total:</label>
-            <input type="number" id="total" name="total" value="<?= $row['total']; ?>" required><br>
+            <label tabindex="0" for="total">Total:</label>
+            <input tabindex="0" type="number" id="total" name="total" value="<?= $row['total']; ?>" required><br>
 
-            <label for="id_busjadwal">ID Bus Jadwal:</label>
+            <label tabindex="0" for="id_busjadwal">ID Bus Jadwal:</label>
             <select id="id_busjadwal" name="id_busjadwal" required>
                 <?php while ($busjadwal = $busjadwal_result->fetch_assoc()) { ?>
-                    <option value="<?= $busjadwal['id_busjadwal']; ?>"
+                    <option tabindex="0" value="<?= $busjadwal['id_busjadwal']; ?>"
                         <?= $row['id_busjadwal'] == $busjadwal['id_busjadwal'] ? 'selected' : ''; ?>>
                         <?= $busjadwal['tgl_keberangkatan'] . ' - ' . $busjadwal['jam_keberangkatan']; ?>
                     </option>
                 <?php } ?>
             </select><br>
 
-            <button type="submit">Update Pesanan</button>
+            <button tabindex="0" type="submit">Update Pesanan</button>
         </form>
     </div>
 </main>
@@ -176,7 +176,7 @@ $koneksi->close();
     <div id="popup-success" class="popup">
         <div class="popup-content">
             <h3><?= $success_message ?></h3>
-            <button onclick="redirectToOrders()">Tutup</button>
+            <button tabindex="0" onclick="redirectToOrders()">Tutup</button>
         </div>
     </div>
 <?php endif; ?>
@@ -186,7 +186,7 @@ $koneksi->close();
     <div id="popup-error" class="popup">
         <div class="popup-content">
             <h3><?= $error_message ?></h3>
-            <button onclick="closePopup()">Tutup</button>
+            <button tabindex="0" onclick="closePopup()">Tutup</button>
         </div>
     </div>
 <?php endif; ?>

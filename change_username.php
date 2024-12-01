@@ -8,8 +8,7 @@ $username = $_SESSION['username'];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $new_username = $_POST['new_username'];
     $sandi = $_POST['sandi'];
-    
-    // Query to retrieve the current password
+
     $query = "SELECT sandi FROM tb_users WHERE username = ?";
     $stmt = $koneksi->prepare($query);
     $stmt->bind_param("s", $username);
@@ -18,15 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->fetch();
     $stmt->close();
 
-    // Verify the password
-    if ($sandi === $stored_password) {  // Direct comparison without hashing
-        // Update username in the database
+    if ($sandi === $stored_password) { 
         $update_query = "UPDATE tb_users SET username = ? WHERE username = ?";
         $stmt = $koneksi->prepare($update_query);
         $stmt->bind_param("ss", $new_username, $username);
         
         if ($stmt->execute()) {
-            // Update session username to reflect the change
             $_SESSION['username'] = $new_username;
             echo "Username berhasil diperbarui!";
         } else {
@@ -55,19 +51,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </header>
 
     <section class="Kembali">
-      <a href="profile.php">Kembali</a>
+      <a tabindex="0" href="profile.php">Kembali</a>
     </section>
 
     <main>
-        <h2>Ganti Username</h2>
+        <h2 tabindex="0">Ganti Username</h2>
         <form method="POST" action="change_username.php">
-            <label for="new_username">Username Baru:</label>
-            <input type="text" id="new_username" name="new_username" placeholder="Masukkan Username Baru" required>
+            <label tabindex="0" for="new_username">Username Baru:</label>
+            <input tabindex="0" type="text" id="new_username" name="new_username" placeholder="Masukkan Username Baru" required>
 
-            <label for="sandi">Sandi Saat Ini:</label>
-            <input type="password" id="sandi" name="sandi" placeholder="Sandi Username Baru" required>
+            <label tabindex="0" for="sandi">Sandi Saat Ini:</label>
+            <input tabindex="0" type="password" id="sandi" name="sandi" placeholder="Sandi Username Baru" required>
 
-            <button type="submit">Ganti Username</button>
+            <button tabindex="0" type="submit">Ganti Username</button>
         </form>
     </main>
 </body>

@@ -35,42 +35,42 @@ $result = mysqli_query($koneksi, $query);
 
 <header class="dashboard">
     <div class="navbar">
-      <h1>Dashboard Admin</h1>
+      <h1 tabindex="0">Dashboard Admin</h1>
         <ul class="menu">
-          <li><a href="adminrute.php">Rute</a></li>
-          <li><a href="adminjadwal.php">Jadwal</a></li>
-          <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
-          <li><a href="adminrekap.php" style="background-color: #C8ACD6;">Rekap Pendapatan</a></li>
+          <li><a tabindex="0" href="adminrute.php">Rute</a></li>
+          <li><a tabindex="0" href="adminjadwal.php">Jadwal</a></li>
+          <li><a tabindex="0" href="adminpesanan.php">Daftar Pesanan</a></li>
+          <li><a tabindex="0" href="adminrekap.php" style="background-color: #C8ACD6;">Rekap Pendapatan</a></li>
         </ul> 
-      <img src="img/EasyBusTix.png" alt=""> 
+      <img tabindex="0" src="../img/EasyBusTix.png" alt="Logo EasyBusTix"> 
     </div>
     <div>
-      <a href="../fungsi/logout.php" class="logout">Logout</a>
+      <a tabindex="0" href="../fungsi/logout.php" class="logout">Logout</a>
     </div>
   </header>
 
   <main class="detail-rekap">
     <div>
-    <h1>Detail Pesanan</h1>
+    <h1 tabindex="0">Detail Pesanan</h1>
 
     <section class="Kembali">
-      <a href="adminrekap.php">Kembali</a>
+      <a tabindex="0" href="adminrekap.php">Kembali</a>
     </section>
         
         <table border="1">
           <thead>
             <tr>
-              <th>Tanggal Keberangkatan</th>
-              <th>Rute</th>
-              <th>Pendapatan</th>
+              <th tabindex="0">Tanggal Keberangkatan</th>
+              <th tabindex="0">Rute</th>
+              <th tabindex="0">Pendapatan</th>
             </tr>
           </thead>
             <tbody>
               <?php while ($row = mysqli_fetch_assoc($result)): ?>
                 <tr>
-                  <td><?php echo $row['tgl_keberangkatan']; ?></td>
-                  <td><?php echo $row['kota_asal'] . ' - ' . $row['kota_tujuan']; ?></td>
-                  <td><?php echo number_format($row['pendapatan'], 0, ',', '.'); ?></td>
+                  <td tabindex="0"><?php echo $row['tgl_keberangkatan']; ?></td>
+                  <td tabindex="0"><?php echo $row['kota_asal'] . ' - ' . $row['kota_tujuan']; ?></td>
+                  <td tabindex="0"><?php echo number_format($row['pendapatan'], 0, ',', '.'); ?></td>
                 </tr>
             <?php endwhile; ?>
           </tbody>

@@ -74,35 +74,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 <header class="dashboard">
     <div class="navbar">
-        <h1>Dashboard Admin</h1>
+        <h1 tabindex="0">Dashboard Admin</h1>
         <ul class="menu">
-            <li><a href="adminrute.php">Rute</a></li>
-            <li><a href="adminjadwal.php">Jadwal</a></li>
-            <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
-            <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+            <li><a tabindex="0" href="adminrute.php" style="background-color: #C8ACD6;">Rute</a></li>
+            <li><a tabindex="0" href="adminjadwal.php">Jadwal</a></li>
+            <li><a tabindex="0" href="adminpesanan.php">Daftar Pesanan</a></li>
+            <li><a tabindex="0" href="adminrekap.php">Rekap Pendapatan</a></li>
         </ul>
-        <img src="img/EasyBusTix.png" alt="">
+        <img tabindex="0" src="../img/EasyBusTix.png" alt="Logo EasyBusTix">
     </div>
     <div>
-        <a href="../fungsi/logout.php" class="logout">Logout</a>
+        <a tabindex="0" href="../fungsi/logout.php" class="logout">Logout</a>
     </div>
 </header>
 
 <main class="add">
-    <h1>Tambah Bus Baru</h1>
+    <h1 tabindex="0">Tambah Bus Baru</h1>
     <form action="tambah_bus.php" method="POST">
-        <label for="no_plat">No. Plat</label>
-        <input type="text" id="no_plat" name="no_plat" placeholder="Masukan Nomor Kendaraan Bus" required>
+        <label tabindex="0" for="no_plat">No. Plat</label>
+        <input tabindex="0" type="text" id="no_plat" name="no_plat" placeholder="Masukan Nomor Kendaraan Bus" required>
 
-        <label for="nama_sopir">Nama Sopir</label>
-        <input type="text" id="nama_sopir" name="nama_sopir" placeholder="Masukan Nama Sopir" required>
+        <label tabindex="0" for="nama_sopir">Nama Sopir</label>
+        <input tabindex="0" type="text" id="nama_sopir" name="nama_sopir" placeholder="Masukan Nama Sopir" required>
 
-        <label for="kapasitas">Kapasitas</label>
-        <input type="number" id="kapasitas" name="kapasitas" placeholder="Masukan Kapasitas Bus" required>
+        <label tabindex="0" for="kapasitas">Kapasitas</label>
+        <input tabindex="0" type="number" id="kapasitas" name="kapasitas" placeholder="Masukan Kapasitas Bus" required>
 
         <div class="tombol">
-            <a href="adminrute.php">Kembali</a>
-            <button type="submit">Tambah Bus</button>
+            <a tabindex="0" href="adminrute.php">Kembali</a>
+            <button tabindex="0" type="submit">Tambah Bus</button>
         </div>
     </form>
 </main>
@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id="popup-success" class="popup">
         <div class="popup-content">
             <h3><?= $success_message ?></h3>
-            <button onclick="redirectToRoute()">Tutup</button>
+            <button tabindex="0" onclick="redirectToRoute()">Tutup</button>
         </div>
     </div>
 <?php endif; ?>
@@ -122,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id="popup-error" class="popup">
         <div class="popup-content">
             <h3><?= $error_message ?></h3>
-            <button onclick="closePopup()">Tutup</button>
+            <button tabindex="0" onclick="closePopup()">Tutup</button>
         </div>
     </div>
 <?php endif; ?>

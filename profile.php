@@ -113,20 +113,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
     </header>
     <main>
         <section class="profile">
-            <h2>Informasi Pribadi</h2>
+            <h2 tabindex="0">Informasi Pribadi</h2>
             <form id="profileForm" action="" method="post" enctype="multipart/form-data">
                 <div class="foto">
                 <div class="avatar-wrapper">
-                    <div class="avatar" id="avatarPreview" style="background-image: url('uploads/<?php echo htmlspecialchars($image); ?>'); place-self: center"></div>
-                    <button type="button" class="camera-button" id="cameraButton"><img src="img/kamera.png" alt=""></button>
+                    <div tabindex="0" class="avatar" id="avatarPreview" style="background-image: url('uploads/<?php echo htmlspecialchars($image); ?>'); place-self: center" alt="Foto Profile"></div>
+                    <button tabindex="0" type="button" class="camera-button" id="cameraButton"><img src="img/kamera.png" alt="Ganti Foto Profile"></button>
                 </div>
                 </div>
-                <input type="file" id="fileInput" name="image" accept="image/*" style="display: none;">
+                <input tabindex="0" type="file" id="fileInput" name="image" accept="image/*" style="display: none;">
                 <div class="popup" id="popup" style="display: none;">
                   <div class="popup-content">
-                    <p>Apakah Anda ingin mengganti foto?</p>
-                    <button type="button" id="changeButton">Ganti Foto</button>
-                    <button type="button" id="cancelButton">Batalkan</button>
+                    <p tabindex="0">Apakah Anda ingin mengganti foto?</p>
+                    <button tabindex="0" type="button" id="changeButton">Ganti Foto</button>
+                    <button tabindex="0" type="button" id="cancelButton">Batalkan</button>
                   </div>
                 </div>
             </form>
@@ -135,25 +135,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
             <?php endif; ?>
             <div class="data">
               <div class="isi">
-                <h3>Username</h3>
-                <p>&#x1F464; <?php echo htmlspecialchars($username); ?> <a href="change_username.php">&#x270E;</a></p>
+                <h3 tabindex="0">Username</h3>
+                <p tabindex="0">&#x1F464; <?php echo htmlspecialchars($username); ?> <a tabindex="0" href="change_username.php">&#x270E;</a></p>
               </div>
               <div class="isi">
-                <h3>Email</h3>
-                <p>&#x1F4E7; <?php echo htmlspecialchars($email); ?></p>
+                <h3 tabindex="0">Email</h3>
+                <p tabindex="0">&#x1F4E7; <?php echo htmlspecialchars($email); ?></p>
               </div>
             </div>
         </section>
         <section class="security">
-            <h3>Keamanan</h3>
-            <p><a href="reset_password.php">&#x1F512; Ganti Password</a></p>
+            <h3 tabindex="0">Keamanan</h3>
+            <p tabindex="0"><a tabindex="0" href="reset_password.php">&#x1F512; Ganti Password</a></p>
         </section>
         <section class="support">
-            <h3>Bantuan</h3>
-            <p><a href="https://wa.me/6281254986462" target="_blank" rel="noopener noreferrer">&#x1F4AC; Pertanyaan</a></p>
-            <p><a href="kebijakan.php">&#x1F4D3; Kebijakan Privasi</a></p>
+            <h3 tabindex="0">Bantuan</h3>
+            <p tabindex="0"><a tabindex="0" href="https://wa.me/6281254986462" target="_blank" rel="noopener noreferrer">&#x1F4AC; Pertanyaan</a></p>
+            <p tabindex="0"><a tabindex="0" href="kebijakan.php">&#x1F4D3; Kebijakan Privasi</a></p>
         </section>
-        <button class="logout" onclick="window.location.href='fungsi/logout.php'">Logout</button>
+        <button tabindex="0" class="logout" onclick="window.location.href='fungsi/logout.php'">Logout</button>
     </main>
 
     <footer>

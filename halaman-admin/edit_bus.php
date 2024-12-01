@@ -93,35 +93,35 @@ if (isset($_GET['id_bus'])) {
 <body>
 <header class="dashboard">
     <div class="navbar">
-        <h1>Dashboard Admin</h1>
+        <h1 tabindex="0">Dashboard Admin</h1>
         <ul class="menu">
-            <li><a href="adminrute.php" style="background-color: #C8ACD6;">Rute</a></li>
-            <li><a href="adminjadwal.php">Jadwal</a></li>
-            <li><a href="adminpesanan.php">Daftar Pesanan</a></li>
-            <li><a href="adminrekap.php">Rekap Pendapatan</a></li>
+            <li><a tabindex="0" href="adminrute.php" style="background-color: #C8ACD6;">Rute</a></li>
+            <li><a tabindex="0" href="adminjadwal.php">Jadwal</a></li>
+            <li><a tabindex="0" href="adminpesanan.php">Daftar Pesanan</a></li>
+            <li><a tabindex="0" href="adminrekap.php">Rekap Pendapatan</a></li>
         </ul>
-        <img src="img/EasyBusTix.png" alt="">
+        <img tabindex="0" src="../img/EasyBusTix.png" alt="Logo EasyBusTix">
     </div>
     <div>
-        <a href="../fungsi/logout.php" class="logout">Logout</a>
+        <a tabindex="0" href="../fungsi/logout.php" class="logout">Logout</a>
     </div>
 </header>
 
 <main class="main-content">
-    <h1>Edit Bus</h1>
+    <h1 tabindex="0">Edit Bus</h1>
     <div class="form-container">
         <form action="edit_bus.php?id_bus=<?= $id_bus ?>" method="POST">
-            <label for="no_plat">No. Plat</label>
-            <input type="text" id="no_plat" name="no_plat" value="<?= $bus['no_plat'] ?? '' ?>" required>
+            <label tabindex="0" for="no_plat">No. Plat</label>
+            <input tabindex="0" type="text" id="no_plat" name="no_plat" value="<?= $bus['no_plat'] ?? '' ?>" required>
 
-            <label for="nama_sopir">Nama Sopir</label>
-            <input type="text" id="nama_sopir" name="nama_sopir" value="<?= $bus['nama_sopir'] ?? '' ?>" required>
+            <label tabindex="0" for="nama_sopir">Nama Sopir</label>
+            <input tabindex="0" type="text" id="nama_sopir" name="nama_sopir" value="<?= $bus['nama_sopir'] ?? '' ?>" required>
 
-            <label for="kapasitas">Kapasitas</label>
-            <input type="number" id="kapasitas" name="kapasitas" value="<?= $bus['kapasitas'] ?? '' ?>" required>
+            <label tabindex="0" for="kapasitas">Kapasitas</label>
+            <input tabindex="0" type="number" id="kapasitas" name="kapasitas" value="<?= $bus['kapasitas'] ?? '' ?>" required>
             
-            <a href="adminrute.php">Kembali</a>
-            <button type="submit">Edit Bus</button>
+            <a tabindex="0" href="adminrute.php">Kembali</a>
+            <button tabindex="0" type="submit">Edit Bus</button>
         </form>
     </div>
 </main>
@@ -131,7 +131,7 @@ if (isset($_GET['id_bus'])) {
     <div id="popup-success" class="popup">
         <div class="popup-content">
             <h3><?= $success_message ?></h3>
-            <button onclick="redirectToRoute()">Tutup</button>
+            <button tabindex="0" onclick="redirectToRoute()">Tutup</button>
         </div>
     </div>
 <?php endif; ?>
@@ -141,7 +141,7 @@ if (isset($_GET['id_bus'])) {
     <div id="popup-error" class="popup">
         <div class="popup-content">
             <h3><?= $error_message ?></h3>
-            <button onclick="closePopup()">Tutup</button>
+            <button tabindex="0" onclick="closePopup()">Tutup</button>
         </div>
     </div>
 <?php endif; ?>

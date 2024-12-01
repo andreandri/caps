@@ -13,42 +13,43 @@ class BarApp extends HTMLElement {
 
   updateStyle() {
     this._style.textContent = `
-     .navbar{ 
-        background-color: rgba(83, 144, 166, 0.8);
-
+     .navbar { 
+        background-color: #5390a6;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0 1.5rem;
+        padding: 0.3rem 1rem;
+        font-family: 'Poppins', sans-serif;
       }
 
-      .link:hover{
+      .link:hover {
         font-weight: bold;
       }
 
-      .navlogo{
+      .navlogo {
         display: flex;
+        align-items: center;
       }
 
-      .navlogo img{
-        width: 5rem;
+      .navlogo img {
+        width: 4rem;
       }
 
-      .navbar .logo{
-        font-size: 1.5em;
+      .navbar .logo {
+        font-size: 1.4em;
       }
 
-      .navbar .navbar-nav{
+      .navbar .navbar-nav {
         list-style-type: none;
         padding-inline: 0;
         display: flex;
-        font-size: 1.5em;
-
-        gap: 3rem;
+        font-size: 1.4em;
+        gap: 1.5rem;
       }
 
-      .navbar :focus{
-        outline: 4px dashed #243642;
+      .navbar :focus {
+        outline: 1px solid #243642;
+        border-radius: 0.4rem;
       }
 
       a {
@@ -58,7 +59,7 @@ class BarApp extends HTMLElement {
         padding: 1rem 0;
       }
 
-      .navbar , .logo, .link{
+      .navbar, .logo, .link {
         color: #021526;
       }
 
@@ -80,7 +81,7 @@ class BarApp extends HTMLElement {
           gap: 1rem;
           background-color: #fff;
           position: absolute;
-          top: 50px;
+          top: 43px;
           right: 0;
           width: 100%;
           padding: 1rem;
@@ -90,9 +91,47 @@ class BarApp extends HTMLElement {
         .navbar .navbar-nav.open {
           display: flex;
         }
-          
+
         .header__menu {
           display: block;
+        }
+
+        .navbar .logo {
+          font-size: 1.2em;
+        }
+
+        .navbar .navbar-nav {
+          font-size: 1.2em;
+        }
+      }
+
+      /* Additional styles for max-width: 550px */
+      @media screen and (max-width: 550px) {
+        .navlogo img {
+          width: 3rem;
+        }
+
+        .navbar .logo {
+          font-size: 1em;
+        }
+
+        .navbar .navbar-nav {
+          font-size: 1em;
+          gap: 1rem;
+          top: 38px;
+        }
+
+        .header__menu {
+          font-size: 1.8rem;
+        }
+
+        a {
+          font-size: 0.9rem;
+          padding: 0.8rem 0;
+        }
+
+        .navbar {
+          padding: 0 0.5rem;
         }
       }
     `;
@@ -105,7 +144,7 @@ class BarApp extends HTMLElement {
       ${this._style.outerHTML}
       <nav class="navbar">
         <div class="navlogo">
-        <img src="img/EasyBusTix.png" alt="Logo EasyBusTix" >
+        <img tabindex="0" src="img/EasyBusTix.png" alt="Logo EasyBusTix" >
         <h3 class="logo" tabindex="0">EasyBusTix</h3>
         </div>
         <button id="menu" class="header__menu" aria-label="Menu Navigasi" tabindex="0">☰</button>

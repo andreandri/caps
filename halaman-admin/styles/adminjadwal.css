@@ -4,14 +4,18 @@
   box-sizing: border-box;
 }
 
+[tabindex="0"]:focus {
+  outline: 2px solid #243642;
+  border-radius: 0.4rem;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   display: flex;
   height: 100vh;
   background-color: #C4E1F6;
 }
 
-/* Container layout */
 header, main {
   display: flex;
   height: 100vh;
@@ -23,14 +27,14 @@ header {
   top: 0;
   width: 100%;
   display: flex;
-  z-index: 1000; /* Agar header tetap di atas elemen lain */
-  height: 120px; /* Sesuaikan dengan tinggi header */
+  z-index: 1000; 
+  height: 120px; 
 }
 
 main {
-  margin-left: 16%; /* Sesuaikan dengan lebar sidebar */
-  padding-top: 120px; /* Sesuaikan dengan tinggi header */
-  width: 84%; /* Sisa ruang setelah dikurangi sidebar */
+  margin-left: 16%; 
+  padding-top: 120px;
+  width: 84%;
 }
 
 .dashboard {
@@ -46,7 +50,7 @@ main {
 .navbar h1 {
   text-align: center;
   font-size: 2.5rem;
-  color: #000000; /* Teks hitam */
+  color: #000000;
   margin-bottom: 30px;
 }
 
@@ -85,7 +89,7 @@ main {
 .menu li a {
   display: block;
   text-decoration: none;
-  background-color: #f0e8ff; /* Ungu muda */
+  background-color: #f0e8ff;
   color: #333333;
   padding: 10px;
   border-radius: 10px;
@@ -94,7 +98,7 @@ main {
 }
 
 .menu li a:hover {
-  background-color: #e0d6f0; /* Hover lebih gelap */
+  background-color: #e0d6f0;
 }
 
 .logout-container {
@@ -120,7 +124,6 @@ main {
   background-color: #503030; 
 }
 
-/* Main content styling */
 .main-content {
   flex-grow: 1;
   flex-direction: column;
@@ -129,7 +132,6 @@ main {
   gap: 2rem;
 }
 
-/* Table styling */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -178,16 +180,13 @@ td .hapus:hover {
   background-color: #c9302c; 
 }
 
-/* Action buttons styling */
-/* Action buttons container */
 .action-buttons {
   display: flex;
   justify-content: center;  
   align-items: center;
-  gap: 5px; /* Jarak antar tombol */
+  gap: 5px;
 }
 
-/* Style for action buttons */
 .action-buttons button {
     padding: 8px 12px;
     border: none;
@@ -198,9 +197,8 @@ td .hapus:hover {
     transition: background-color 0.3s ease;
 }
 
-/* Edit button style */
 .action-buttons a {
-    background-color: #5bc0de; /* Biru muda */
+    background-color: #5bc0de;
     padding: 8px 12px;
     border: none;
     border-radius: 5px;
@@ -209,20 +207,19 @@ td .hapus:hover {
   }
 
 .action-buttons a:hover {
-    background-color: #31b0d5; /* Biru muda lebih gelap saat hover */
+    background-color: #31b0d5;
 }
 
-/* Delete button style */
 .delete-button {
-    background-color: #d9534f; /* Merah */
+    background-color: #d9534f;
 }
 
 .delete-button:hover {
-    background-color: #c9302c; /* Merah lebih gelap saat hover */
+    background-color: #c9302c; 
 }
 
 .rekap a{
-  background-color: #5bc0de; /* Biru muda */
+  background-color: #5bc0de;
     padding: 8px 12px;
     border: none;
     border-radius: 5px;
@@ -231,11 +228,9 @@ td .hapus:hover {
 }
 
 .rekap a:hover {
-  background-color: #31b0d5; /* Biru muda lebih gelap saat hover */
+  background-color: #31b0d5; 
 }
 
-
-/* Add Schedule button styling */
 button.add-schedule {
     padding: 10px 15px;
     background-color: #5cb85c;
