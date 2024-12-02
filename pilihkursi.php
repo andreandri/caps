@@ -54,10 +54,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pilih Kursi</title>
+    <script type="module" src="scripts/index.js"></script>
     <style>
         [tabindex="0"]:focus {
           outline: 2px solid #243642;
-          padding: 2px;
+          border-radius: 0.4rem;
+
         }
         body {
             font-family: 'Poppins', sans-serif;
@@ -125,6 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
     </style>
 </head>
 <body>
+    <ind-loading-main></ind-loading-main>
     <h2 tabindex="0">Pilih Kursi</h2>
     <form action="" method="POST" id="seatForm">
         <input type="hidden" name="kursi_terpilih" id="kursiTerpilih">
