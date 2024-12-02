@@ -9,17 +9,42 @@ class BarUserApp extends HTMLElement {
   connectedCallback() {
     this.render();
     this.addEventListener();
+
+    const navbar = this.shadowRoot.querySelector(".navbar");
+    navbar.style.opacity = 0; 
+
+    navbar.classList.add("skeleton");
+
+    setTimeout(() => {
+      navbar.classList.remove("skeleton"); 
+      navbar.style.opacity = 1; 
+    }, 1000); 
   }
 
   updateStyle() {
     this._style.textContent = `
-     .navbar { 
+      .navbar { 
         background-color: #5390a6;
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 0.3rem 1rem;
         font-family: 'Poppins', sans-serif;
+        transition: opacity 0.3s ease-in-out; 
+      }
+
+      .navbar.skeleton {
+        position: relative;
+        background: linear-gradient(90deg, #e0e0e0 25%, #fff 50%, #e0e0e0 75%);
+        background-size: 200% 100%;
+        animation: skeleton-loading 1.5s infinite;
+      }
+
+      .navbar.skeleton::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.7);
       }
 
       .link:hover {
@@ -105,7 +130,6 @@ class BarUserApp extends HTMLElement {
         }
       }
 
-      /* Additional styles for max-width: 550px */
       @media screen and (max-width: 550px) {
         .navlogo img {
           width: 3rem;
@@ -142,7 +166,7 @@ class BarUserApp extends HTMLElement {
 
     this.shadowRoot.innerHTML = `
       ${this._style.outerHTML}
-      <nav class="navbar">
+      <nav class="navbar skeleton">
         <div class="navlogo">
         <img tabindex="0" src="img/EasyBusTix.png" alt="Logo EasyBusTix" tabindex="0">
         <h3 class="logo" tabindex="0">EasyBusTix</h3>

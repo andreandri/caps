@@ -15,6 +15,7 @@
   </header>
 
   <main>
+    <ind-loading-main></ind-loading-main>
     <section id="about" class="about-us">
         <div>
           <img src="img/EasyBusTix.png" alt="EasyBusTix Logo">

@@ -45,6 +45,7 @@ $result = mysqli_query($koneksi, $query);
   </header>
 
   <main>
+    <ind-loading-main></ind-loading-main>
     <div class="container">
       <h2 tabindex="0">History Pemesanan</h2>
       <?php if (mysqli_num_rows($result) > 0): ?>

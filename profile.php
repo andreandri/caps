@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
             const changeButton = document.getElementById('changeButton');
             const avatarPreview = document.getElementById('avatarPreview');
             const form = document.getElementById('profileForm');
-            const loadingElement = document.createElement('ind-loading');
+            const loadingElement = document.createElement('ind-loading-profil');
 
             // Tambahkan custom element loading ke body tetapi sembunyikan
             document.body.appendChild(loadingElement);
@@ -112,6 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
         <bar-app></bar-app>
     </header>
     <main>
+    <ind-loading-main></ind-loading-main>
         <section class="profile">
             <h2 tabindex="0">Informasi Pribadi</h2>
             <form id="profileForm" action="" method="post" enctype="multipart/form-data">

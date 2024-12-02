@@ -1,4 +1,4 @@
-class IndLoading extends HTMLElement {
+class IndLoadingProfil extends HTMLElement {
   constructor() {
     super();
 
@@ -58,4 +58,4 @@ class IndLoading extends HTMLElement {
   }
 }
 
-customElements.define("ind-loading", IndLoading);
+customElements.define("ind-loading-profil", IndLoadingProfil);

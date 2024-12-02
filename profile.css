@@ -4,6 +4,11 @@
   padding: 0;
 }
 
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
 [tabindex="0"]:focus {
   outline: 2px solid #243642;
   border-radius: 0.4rem;
@@ -24,6 +29,8 @@ main {
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   place-self: center;
+  position: relative;
+  overflow: hidden; 
 }
 
 header {

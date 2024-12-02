@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tiket User</title>
   <link rel="stylesheet" href="pesantiket-jadwal.css">
+  <script type="module" src="scripts/index.js"></script>
 </head>
 <body>
   <main>
+    <ind-loading-main></ind-loading-main>
     <div class="Kembali">
       <a tabindex="0" href="tampilan.php">Back</a>
     </div>

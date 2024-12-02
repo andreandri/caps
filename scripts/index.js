@@ -1,4 +1,7 @@
-import './loading.js';
+import './loading-main-awal.js';
+import './loading-awal.js';
+import './loading-main.js';
+import './loading-profil.js';
 import './home-user/bar.js';
 import './home-user/footer.js';
 import './home-awal/footer-awal.js';
@@ -8,27 +11,72 @@ import './home-awal/bar-awal-kebijakan.js';
 import './home-user/bar-user.js';
 
 document.addEventListener("DOMContentLoaded", () => {
-  const loadingIndicator = document.querySelector("ind-loading");
+  const loadingElement = document.querySelector("ind-loading-awal");
+  const mainContent = document.getElementById("main-content");
 
   setTimeout(() => {
+    if (loadingElement) {
+      loadingElement.style.opacity = "0";
+      setTimeout(() => {
+        loadingElement.remove();
+        if (mainContent) {
+          mainContent.style.display = "block";
+        }
+      }, 500);
+    }
+  }, 2000);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const loadingIndicator = document.querySelector("ind-loading-main-awal");
+  const body = document.body;
+
+  if (loadingIndicator) {
+    body.classList.add("no-scroll");
+  }
+
+  const simulateDataLoad = new Promise((resolve) => {
+    setTimeout(() => resolve(), 4000);
+  });
+
+  simulateDataLoad.then(() => {
+    if (loadingIndicator) {
+      loadingIndicator.style.display = "none";
+      body.classList.remove("no-scroll");
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const loadingIndicator = document.querySelector("ind-loading-main");
+  const body = document.body;
+
+  if (loadingIndicator) {
+    body.classList.add("no-scroll");
+  }
+
+  const simulateDataLoad = new Promise((resolve) => {
+    setTimeout(() => resolve(), 1000);
+  });
+
+  simulateDataLoad.then(() => {
+    if (loadingIndicator) {
+      loadingIndicator.style.display = "none";
+      body.classList.remove("no-scroll");
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const loadingIndicator = document.querySelector("ind-loading-profil");
+
+  const simulateDataLoad = new Promise((resolve) => {
+    setTimeout(() => resolve(), 1000);
+  });
+
+  simulateDataLoad.then(() => {
     if (loadingIndicator) {
       loadingIndicator.style.display = "none";
     }
-  }, 1000); 
-});
-
-document.addEventListener('DOMContentLoaded', async () => {
-  const skeleton = document.querySelector('.skeleton');
-  const content = document.querySelector('.real-content'); // Elemen asli
-
-  // Tampilkan Skeleton
-  skeleton.style.display = 'block';
-  content.style.display = 'none';
-
-  // Simulasi Fetch Data
-  await new Promise((resolve) => setTimeout(resolve, 2000)); // Delay 2 detik
-
-  // Sembunyikan Skeleton dan Tampilkan Konten Asli
-  skeleton.style.display = 'none';
-  content.style.display = 'block';
+  });
 });
