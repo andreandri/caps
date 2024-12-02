@@ -57,6 +57,7 @@ h2, h3 {
   background-color: #D7D3BF;
   border-radius: 50%;
   margin: 1rem auto;
+  border: 2px solid #000;
 }
 
 .profile h2 {
