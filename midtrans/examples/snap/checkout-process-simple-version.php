@@ -232,7 +232,6 @@ if ($id_pemesanan) {
     <bar-user-app></bar-user-app>
   </header>
   <main>
-  <ind-loading-main></ind-loading-main>
     <div class="container mt-5">
       <div class="card">
         <div class="card-body">
