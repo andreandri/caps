@@ -192,10 +192,10 @@ class FooterAwalKebijakanApp extends HTMLElement {
             </div>
             <div class="social-media">
               <h4 tabindex="0">Sosial Media Kami:</h4>
-              <a tabindex="0" href="https://facebook.com/easybustix" target="_blank" aria-label="Facebook">
+              <a tabindex="0" href="https://www.facebook.com/profile.php?id=61569945569552" target="_blank" aria-label="Facebook">
                 <img src="img/fb.png" alt="Facebook">
               </a>
-              <a tabindex="0" href="https://twitter.com/easybustix" target="_blank" aria-label="Twitter">
+              <a tabindex="0" href="https://x.com/easybustix" target="_blank" aria-label="Twitter">
                 <img src="img/tw.png" alt="Twitter">
               </a>
               <a tabindex="0" href="https://instagram.com/easybustix" target="_blank" aria-label="Instagram">
