@@ -104,6 +104,24 @@ h2 {
   color: #721c24;
 }
 
+.error {
+  color: #d9534f;
+  font-size: 16px;
+  font-weight: bold; 
+  text-align: center; 
+  padding: 10px;
+  border: 1px solid #d9534f;
+  background-color: #f8d7da;
+  border-radius: 5px;
+  margin: 20px auto; 
+  width: 80%;
+}
+
+.error:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(217, 83, 79, 0.5); 
+}
+
 @media (max-width: 1190px) {
   .detail-item {
     width: 55%;

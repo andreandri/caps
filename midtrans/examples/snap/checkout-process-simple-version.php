@@ -112,11 +112,17 @@ if ($id_pemesanan) {
   <title>Checkout Pembayaran</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
   <script type="module" src="bar.js"></script>
+  <script type="module" src="../../../scripts/index.js"></script>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    .no-scroll {
+      overflow: hidden;
+      height: 100vh;
     }
 
     body {
@@ -225,6 +231,7 @@ if ($id_pemesanan) {
     <bar-user-app></bar-user-app>
   </header>
   <main>
+  <ind-loading-main></ind-loading-main>
     <div class="container mt-5">
       <div class="card">
         <div class="card-body">

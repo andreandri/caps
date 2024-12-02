@@ -207,7 +207,7 @@ class FooterAwalApp extends HTMLElement {
           <div class="footer-box2">
             <div class="contact">
               <h4 tabindex="0">Contact:</h4>
-              <p tabindex="0">Email: <a tabindex="0" href="mailto:support@easybustix.com">support@easybustix.com</a></p>
+              <p tabindex="0">Email: <a tabindex="0" href="https://mail.google.com/mail/?view=cm&fs=1&to=easybustix@gmail.com" target="_blank">easybustix@gmail.com</a></p>
               <p tabindex="0">No kontak: <a tabindex="0" href="https://wa.me/6281254986462" target="_blank" rel="noopener noreferrer">+62 812-5498-6462</a></p>
             </div>
             <div class="manage">

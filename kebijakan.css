@@ -7,6 +7,11 @@
   border-radius: 0.4rem;
 }
 
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
 .skip-link {
   position: absolute;
   top: -47px;

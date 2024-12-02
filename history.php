@@ -132,7 +132,7 @@ $result = $stmt->get_result();
           </div>
         <?php endwhile; ?>
       <?php else: ?>
-        <p tabindex="0">Tidak ada data pemesanan.</p>
+        <p class="error" tabindex="0">Tidak ada data pemesanan.</p>
       <?php endif; ?>
     </div>
   </main>
