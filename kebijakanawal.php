@@ -8,7 +8,6 @@
     <script type="module" src="scripts/index.js"></script>
 </head>
 <body>
-
     <a href="#privacy" class="skip-link">Skip To Content</a>
     <header>
       <bar-awal-kebijakan-app></bar-awal-kebijakan-app>

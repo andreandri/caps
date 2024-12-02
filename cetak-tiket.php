@@ -60,27 +60,6 @@ if ($id_pemesanan) {
       border-radius: 0.4rem;
     }
 
-    .skip-link {
-      position: absolute;
-      top: 0;
-      left: 0;
-      padding: 10px;
-      background-color: #bf1722;
-      color: white;
-      z-index: 100;
-      min-width: 44px;
-      min-height: 44px;
-      clip-path: inset(0 0 0 0); 
-    }
-
-    .skip-link:focus {
-      top: 20px;
-      left: 0;
-      outline: 4px dashed #243642;
-      background-color: #fff;
-      color: #bf1722;
-    }
-
     h2[id] {
       scroll-margin-top: 100px;
     }
@@ -199,12 +178,12 @@ if ($id_pemesanan) {
   <script type="module" src="scripts/index.js"></script>
 </head>
 <body>
-  <a href="#home" class="skip-link">Skip To Content</a>
   <header>
     <bar-user-app></bar-user-app>
   </header>
 
   <main>
+    <ind-loading-main></ind-loading-main>
     <div class="card">
         <h1 id="home" tabindex="0">Detail Pemesanan</h1>
         <table class="cetak">

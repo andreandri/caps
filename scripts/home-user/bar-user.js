@@ -168,12 +168,15 @@ class BarUserApp extends HTMLElement {
       ${this._style.outerHTML}
       <nav class="navbar skeleton">
         <div class="navlogo">
-        <img tabindex="0" src="img/EasyBusTix.png" alt="Logo EasyBusTix" tabindex="0">
+        <img tabindex="0" src="img/EasyBusTix.png" alt="Logo EasyBusTix" >
         <h3 class="logo" tabindex="0">EasyBusTix</h3>
+        </div>
       </nav>
     `;
   }
 
+  addEventListener() {  
+  }
 }
 
 customElements.define("bar-user-app", BarUserApp);

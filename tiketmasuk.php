@@ -74,12 +74,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <link rel="stylesheet" href="tiketmasuk.css">
 </head>
 <body>
-  <a href="#home" class="skip-link">Skip To Content</a>
   <header>
     <bar-user-app></bar-user-app>
   </header>
 
   <main id="home">
+    <ind-loading-main></ind-loading-main>
     <h1 tabindex="0">Pesan Kursi</h1>
     
     <form action="tiketmasuk.php" method="POST" class="form">
