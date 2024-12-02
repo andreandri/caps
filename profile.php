@@ -21,7 +21,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
     $imageName = basename($_FILES['image']['name']);
     $targetPath = $targetFolder . $imageName;
 
+    // Dapatkan gambar lama dari database sebelum mengganti
+    $queryOldImage = "SELECT image FROM tb_users WHERE username = ?";
+    $stmtOldImage = $koneksi->prepare($queryOldImage);
+    $stmtOldImage->bind_param("s", $username);
+    $stmtOldImage->execute();
+    $resultOldImage = $stmtOldImage->get_result();
+    $oldImage = $resultOldImage->fetch_assoc()['image'];
+
+    // Proses unggah file baru
     if (move_uploaded_file($_FILES['image']['tmp_name'], $targetPath)) {
+        // Hapus gambar lama jika bukan default-avatar
+        if ($oldImage && $oldImage !== 'default-avatar.png' && file_exists($targetFolder . $oldImage)) {
+            unlink($targetFolder . $oldImage); // Hapus file lama
+        }
+
         // Update path gambar di database
         $updateQuery = "UPDATE tb_users SET image = ? WHERE username = ?";
         $updateStmt = $koneksi->prepare($updateQuery);
@@ -36,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
         $_SESSION['error'] = "Gagal mengunggah file.";
     }
 }
+
 ?>
 
 <!DOCTYPE html>
