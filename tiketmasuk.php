@@ -70,6 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pemesanan Tiket</title>
+  <link rel="icon" href="favicon.png" type="image/png">
   <script type="module" src="scripts/index.js"></script>
   <link rel="stylesheet" href="tiketmasuk.css">
 </head>

@@ -67,6 +67,7 @@ $result = $stmt->get_result();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>History Pemesanan</title>
   <link rel="stylesheet" href="history.css">
+  <link rel="icon" href="favicon.png" type="image/png">
   <script type="module" src="scripts/index.js"></script>
 </head>
 

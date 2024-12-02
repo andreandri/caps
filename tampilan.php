@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home User</title>
-
+  <link rel="icon" href="favicon.png" type="image/png">
   <script type="module" src="scripts/index.js"></script>
   <link rel="stylesheet" href="tampilan.css">
 </head>
