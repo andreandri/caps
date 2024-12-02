@@ -58,8 +58,8 @@ class IndLoadingAwal extends HTMLElement {
       ${this._style.outerHTML}
       <div id="loading-indicator">
         <img src="img/EasyBusTix.png" alt="EasyBusTix Logo" />
-        <h1>Welcome To</h1>
-        <p>EasyBusTix</p>
+        <p>Welcome To</p>
+        <h1>EasyBusTix</h1>
       </div>
     `;
   }

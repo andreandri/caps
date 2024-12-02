@@ -14,6 +14,7 @@
     </header>
 
     <main>
+    <ind-loading-main></ind-loading-main>
         <section id="privacy">
             <h2 tabindex="0">Kebijakan Privasi</h2>
             <p tabindex="0">Kami di EasyBusTix menghormati privasi Anda dan berkomitmen untuk melindungi data pribadi Anda. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi Anda saat Anda menggunakan situs web atau aplikasi kami.</p>

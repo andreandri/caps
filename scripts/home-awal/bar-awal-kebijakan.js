@@ -173,7 +173,7 @@ class BarAwalKebijakanApp extends HTMLElement {
         </div>
         <button id="menu" class="header__menu" aria-label="Menu Navigasi" tabindex="0">☰</button>
         <ul class="navbar-nav">
-          <li><a href="tampilanawal.php" class="link" tabindex="0">Home</a></li>
+          <li><a href="index.php" class="link" tabindex="0">Home</a></li>
           <li><a href="#privacy" class="link" tabindex="0">Kebijakan Privasi</a></li>
           <li><a href="#syarat" class="link" tabindex="0">Syarat dan Ketentuan</a></li>
         </ul>
