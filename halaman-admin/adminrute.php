@@ -46,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id']) &&
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Admin</title>
+    <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="styles/adminjadwal.css">
 
     <style>

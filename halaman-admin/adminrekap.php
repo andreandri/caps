@@ -19,6 +19,7 @@ $result = mysqli_query($koneksi, $query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.png" type="image/png">
     <title>Admin Rekap Pendapatan</title>
 
     <link rel="stylesheet" href="styles/adminjadwal.css">

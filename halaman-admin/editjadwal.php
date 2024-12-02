@@ -68,6 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Edit Jadwal</title>
+        <link rel="icon" href="favicon.png" type="image/png">
         <link rel="stylesheet" href="styles/admin-edit-detail.css">
         <style>
             /* Style untuk pop-up */
