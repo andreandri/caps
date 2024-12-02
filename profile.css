@@ -54,9 +54,10 @@ h2, h3 {
 .profile .avatar {
   width: 100px;
   height: 100px;
-  background-color: #;
+  background-color: #D7D3BF;
   border-radius: 50%;
   margin: 1rem auto;
+  border: 2px solid #000;
 }
 
 .profile h2 {
@@ -78,8 +79,25 @@ h2, h3 {
   text-decoration: underline;
 }
 
-.isi p{
+.isi1 p {
+  display: flex; 
+  align-items: center;
   margin-left: 0.5rem;
+}
+
+.isi1 p a {
+  font-size: 2rem;
+  margin-left: auto;
+}
+
+.data .isi1 {
+  border-bottom: 1px solid #ccc; 
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.data .isi:last-child {
+  border-bottom: none; 
 }
 
 .logout {
@@ -158,6 +176,13 @@ h2, h3 {
   text-align: center;
   justify-content: center;
   align-item: center;
+  width: 500px;
+}
+
+.popup-content p {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #fff;
 }
 
 .popup-content button {
@@ -187,4 +212,28 @@ h2, h3 {
 
 .popup-content button#cancelButton:hover {
   background-color: #c82333;
+}
+
+@media (max-width: 680px) {
+  .popup-content {
+    width: 70%;
+  }
+}
+
+@media (max-width: 400px) {
+  .popup-content {
+    width: 90%;
+  }
+
+  .profile h2 {
+    font-size: 1.2rem;
+  }
+
+  .isi h3, .security h3, .support h3 {
+    font-size: 0.9rem;
+  }
+
+  .isi p, .security p a, .support p a{
+    font-size: 0.83rem;
+  }
 }

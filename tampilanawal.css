@@ -104,7 +104,7 @@ section[id] {
 }
 
 .btn-secondary:hover {
-  background-color: #007bff;
+  background-color: #2870BF;
   color: #fff;
 }
 
@@ -369,6 +369,11 @@ section[id] {
   .team-member p {
     font-size: 0.85rem;
   }
+
+  .image-container img {
+    max-width: 150px;
+    place-self: center;
+  }
 }
 
 @media (max-width: 490px) {
@@ -380,6 +385,7 @@ section[id] {
 }
 
 @media (max-width: 370px) {
+  
   .hero-text h1 {
     font-size: 1.2rem;
   }
@@ -394,5 +400,10 @@ section[id] {
 
   .team-member p {
     font-size: 0.7rem;
+  }
+
+  .image-container img {
+    max-width: 130px;
+    place-self: center;
   }
 }

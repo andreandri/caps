@@ -72,6 +72,7 @@ $result = $stmt->get_result();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>History Pemesanan</title>
   <link rel="stylesheet" href="history.css">
+  <link rel="icon" href="favicon.png" type="image/png">
   <script type="module" src="scripts/index.js"></script>
 </head>
 
@@ -81,7 +82,6 @@ $result = $stmt->get_result();
   </header>
 
   <main>
-    <ind-loading-main></ind-loading-main>
     <div class="container">
       <h2 tabindex="0">History Pemesanan</h2>
       <?php if ($result->num_rows > 0): ?>

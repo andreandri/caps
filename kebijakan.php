@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EasyBusTix - Kebijakan Privasi & Syarat dan Ketentuan</title>
     <link rel="stylesheet" href="kebijakan.css">
+    <link rel="icon" href="favicon.png" type="image/png">
     <script type="module" src="scripts/index.js"></script>
 </head>
 <body>

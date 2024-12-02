@@ -41,20 +41,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ganti Username</title>
+    <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="change_username.css">
     <script type="module" src="scripts/index.js"></script>
 
 </head>
 <body>
     <header>
-        <bar-app></bar-app>
+        <bar-user-app></bar-user-app>
     </header>
 
     <section class="Kembali">
-      <a tabindex="0" href="profile.php">Kembali</a>
+      <a tabindex="0" href="profile.php">Back</a>
     </section>
 
     <main>
+    <ind-loading-main></ind-loading-main>
         <h2 tabindex="0">Ganti Username</h2>
         <form method="POST" action="change_username.php">
             <label tabindex="0" for="new_username">Username Baru:</label>

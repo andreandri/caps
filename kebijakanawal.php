@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EasyBusTix - Kebijakan Privasi & Syarat dan Ketentuan</title>
     <link rel="stylesheet" href="kebijakan.css">
+    <link rel="icon" href="favicon.png" type="image/png">
     <script type="module" src="scripts/index.js"></script>
 </head>
 <body>
@@ -14,6 +15,7 @@
     </header>
 
     <main>
+    <ind-loading-main></ind-loading-main>
         <section id="privacy">
             <h2 tabindex="0">Kebijakan Privasi</h2>
             <p tabindex="0">Kami di EasyBusTix menghormati privasi Anda dan berkomitmen untuk melindungi data pribadi Anda. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi Anda saat Anda menggunakan situs web atau aplikasi kami.</p>
