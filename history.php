@@ -18,9 +18,14 @@ function getPaymentStatus($order_id) {
     ));
 
     $response = curl_exec($curl);
+    $err = curl_error($curl);
     curl_close($curl);
 
-    return json_decode($response, true);
+    if ($err) {
+        return ['transaction_status' => 'error', 'message' => 'Error: ' . $err];
+    } else {
+        return json_decode($response, true);
+    }
 }
 
 // Mulai sesi untuk mengambil username
