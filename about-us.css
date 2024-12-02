@@ -244,6 +244,11 @@ header {
   .team-member p {
     font-size: 0.85rem;
   }
+
+  .image-container img {
+    max-width: 150px;
+    place-self: center;
+  }
 }
 
 @media (max-width: 490px) {
@@ -251,6 +256,11 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .feature-item {
+    width: 80%;
+    place-self: center;
   }
 }
 
@@ -265,5 +275,10 @@ header {
 
   .team-member p {
     font-size: 0.7rem;
+  }
+
+  .image-container img {
+    max-width: 130px;
+    place-self: center;
   }
 }

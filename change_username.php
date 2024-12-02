@@ -47,14 +47,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <header>
-        <bar-app></bar-app>
+        <bar-user-app></bar-user-app>
     </header>
 
     <section class="Kembali">
-      <a tabindex="0" href="profile.php">Kembali</a>
+      <a tabindex="0" href="profile.php">Back</a>
     </section>
 
     <main>
+    <ind-loading-main></ind-loading-main>
         <h2 tabindex="0">Ganti Username</h2>
         <form method="POST" action="change_username.php">
             <label tabindex="0" for="new_username">Username Baru:</label>

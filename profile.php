@@ -208,11 +208,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p style="color: red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></p>
             <?php endif; ?>
             <div class="data">
-              <div class="isi">
+              <div class="isi1">
                 <h3 tabindex="0">Username</h3>
                 <p tabindex="0">&#x1F464; <?php echo htmlspecialchars($username); ?> <a tabindex="0" href="change_username.php">&#x270E;</a></p>
               </div>
-              <div class="isi">
+              <div class="isi2">
                 <h3 tabindex="0">Email</h3>
                 <p tabindex="0">&#x1F4E7; <?php echo htmlspecialchars($email); ?></p>
               </div>

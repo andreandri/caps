@@ -67,8 +67,8 @@
                 </a>
               </div>
             </div>
-            <h3 tabindex="0">UI/UX Designer Amelia Frenety Perdi</h3>
-            <p tabindex="0">Developer</p>
+            <h3 tabindex="0">Amelia Frenety Perdi</h3>
+            <p tabindex="0">UI/UX Designer Developer</p>
           </div>
           <div class="team-member">
             <div class="image-container">
@@ -82,8 +82,8 @@
                 </a>
               </div>
             </div>
-            <h3 tabindex="0">Back-end Andre Andrianus</h3>
-            <p tabindex="0">Developer</p>
+            <h3 tabindex="0">Andre Andrianus</h3>
+            <p tabindex="0">Back-end Developer</p>
           </div>
         </div>
 

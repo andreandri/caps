@@ -82,7 +82,7 @@
                 </div>
               </div>
               <h3 tabindex="0">Amelia Frenety Perdi</h3>
-              <p tabindex="0">Developer</p>
+              <p tabindex="0">UI/UX Designer Developer</p>
             </div>
             <div class="team-member">
               <div class="image-container">
@@ -97,7 +97,7 @@
                 </div>
               </div>
               <h3 tabindex="0">Andre Andrianus</h3>
-              <p tabindex="0">Developer</p>
+              <p tabindex="0">Back-end Developer</p>
             </div>
           </div>
 
@@ -115,7 +115,7 @@
                 </div>
               </div>
               <h3 tabindex="0">Imam Syahrohim</h3>
-              <p tabindex="0">Developer</p>
+              <p tabindex="0">Back-end Developer</p>
             </div>
             <div class="team-member">
               <div class="image-container">
@@ -130,7 +130,7 @@
                 </div>
               </div>
               <h3 tabindex="0">Natalio Valentino</h3>
-              <p tabindex="0">Developer</p>
+              <p tabindex="0">Front-end Developer</p>
             </div>
           </div>
       </section>
