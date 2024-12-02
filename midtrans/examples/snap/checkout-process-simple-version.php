@@ -248,23 +248,25 @@ if ($id_pemesanan) {
     <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<?= Config::$clientKey; ?>"></script>
     <script type="text/javascript">
       document.getElementById('pay-button').onclick = function () {
-        const snapToken = '<?= $snap_token; ?>'; // Snap Token dari server PHP
+    const snapToken = '<?= $snap_token; ?>'; // Snap Token dari server PHP
 
-        snap.pay(snapToken, {
-          onSuccess: function (result) {
+    snap.pay(snapToken, {
+        onSuccess: function (result) {
             console.log("Payment Success:", result);
-          },
-          onPending: function (result) {
+            // Redirect ke halaman success setelah pembayaran berhasil
+            window.location.href = "../../../tampilan.php";
+        },
+        onPending: function (result) {
             console.log("Payment Pending:", result);
-          },
-          onError: function (result) {
+        },
+        onError: function (result) {
             console.log("Payment Error:", result);
-          },
-          onClose: function () {
+        },
+        onClose: function () {
             console.log("Payment popup closed");
-          },
-        });
-      };
+        },
+    });
+};
     </script>
   </main>
 </body>
