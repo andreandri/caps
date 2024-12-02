@@ -86,6 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <link rel="stylesheet" href="profile.css">
+    <link rel="icon" href="favicon.png" type="image/png">
     <script type="module" src="scripts/index.js"></script>
 
     <script>

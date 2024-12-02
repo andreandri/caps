@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ganti Password</title>
     <link rel="stylesheet" href="style.css">
-
+    <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="change_username.css">
     <script type="module" src="scripts/index.js"></script>
 </head>

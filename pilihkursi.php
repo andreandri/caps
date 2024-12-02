@@ -54,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pilih Kursi</title>
+    <link rel="icon" href="favicon.png" type="image/png">
     <script type="module" src="scripts/index.js"></script>
     <style>
         [tabindex="0"]:focus {
