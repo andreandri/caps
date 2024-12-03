@@ -2,32 +2,6 @@
 // Koneksi ke database
 include 'koneksi.php';
 
-// Fungsi untuk mendapatkan status pembayaran dari Midtrans
-function getPaymentStatus($order_id) {
-    $serverKey = 'SB-Mid-server-ZwVxKRABKeqWj-jebaE_OvA3'; // Ganti dengan Server Key Anda
-    $url = "https://api.sandbox.midtrans.com/v2/{$order_id}/status";
-
-    $curl = curl_init();
-    curl_setopt_array($curl, array(
-        CURLOPT_URL => $url,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_HTTPHEADER => array(
-            "Authorization: Basic " . base64_encode($serverKey . ":"),
-            "Content-Type: application/json"
-        ),
-    ));
-
-    $response = curl_exec($curl);
-    $err = curl_error($curl);
-    curl_close($curl);
-
-    if ($err) {
-        return ['transaction_status' => 'error', 'message' => 'Error: ' . $err];
-    } else {
-        return json_decode($response, true);
-    }
-}
-
 // Mulai sesi untuk mengambil username
 session_start();
 $username = $_SESSION['username'] ?? null; // Ambil username dari sesi login
@@ -49,7 +23,8 @@ $query = "
         p.total, 
         r.kota_asal, 
         r.kota_tujuan, 
-        GROUP_CONCAT(k.nomor_kursi SEPARATOR ', ') AS nomor_kursi
+        GROUP_CONCAT(k.nomor_kursi SEPARATOR ', ') AS nomor_kursi,
+        p.status_pembayaran
     FROM tb_pemesanan p
     INNER JOIN tb_busjadwal b ON p.id_busjadwal = b.id_busjadwal
     INNER JOIN tb_jadwal j ON b.id_jadwal = j.id_jadwal
@@ -75,59 +50,59 @@ $result = $stmt->get_result();
   <link rel="icon" href="favicon.png" type="image/png">
   <script type="module" src="scripts/index.js"></script>
 </head>
-
 <body>
   <header>
     <bar-app></bar-app>
   </header>
-
   <main>
+    <h2 tabindex="0">History Pemesanan</h2>
     <div class="container">
-      <h2 tabindex="0">History Pemesanan</h2>
       <?php if ($result->num_rows > 0): ?>
         <?php while ($row = $result->fetch_assoc()): ?>
           <?php
-          // Ambil order_id untuk Midtrans
-          $order_id = 'ORDER_' . $row['id_pemesanan'];
+// Mapping status pembayaran ke label
+switch ($row['status_pembayaran']) {
+    case 'lunas':
+        $status_label = 'BERHASIL';
+        break;
+    case 'pending':
+        $status_label = 'MENUNGGU PEMBAYARAN';
+        break;
+    case 'dibatalkan':
+        $status_label = 'GAGAL';
+        break;
+    default:
+        $status_label = 'STATUS TIDAK DIKENAL';
+        break;
+}
+?>
 
-          // Ambil status pembayaran dari Midtrans
-          $payment_status = getPaymentStatus($order_id);
-          $status_pembayaran = $payment_status['transaction_status'] ?? 'unknown';
-
-          // Mapping status pembayaran ke label
-          $status_label = match ($status_pembayaran) {
-              'capture', 'settlement' => 'BERHASIL',
-              'pending' => 'MENUNGGU PEMBAYARAN',
-              'deny', 'expire', 'cancel' => 'GAGAL',
-              default => 'STATUS TIDAK DIKENAL',
-          };
-          ?>
           <div class="detail">
             <div class="detail-item">
               <table>
                 <tr>
                   <th tabindex="0">Rute</th>
-                  <td tabindex="0">: <?= htmlspecialchars($row['kota_asal'] . " - " . $row['kota_tujuan']); ?></td>
+                  <td tabindex="0"><?= htmlspecialchars($row['kota_asal'] . " - " . $row['kota_tujuan']); ?></td>
                 </tr>
                 <tr>
-                  <th tabindex="0">Nama</th>
-                  <td tabindex="0">: <?= htmlspecialchars($row['nama_penumpang']); ?></td>
+                  <th tabindex="0">Nama Penumpang</th>
+                  <td tabindex="0"><?= htmlspecialchars($row['nama_penumpang']); ?></td>
                 </tr>
                 <tr>
                   <th tabindex="0">No WA</th>
-                  <td tabindex="0">: <?= htmlspecialchars($row['no_wa']); ?></td>
+                  <td tabindex="0"><?= htmlspecialchars($row['no_wa']); ?></td>
                 </tr>
                 <tr>
                   <th tabindex="0">Jumlah Tiket</th>
-                  <td tabindex="0">: <?= htmlspecialchars($row['jumlah_tiket']); ?></td>
+                  <td tabindex="0"><?= htmlspecialchars($row['jumlah_tiket']); ?></td>
                 </tr>
                 <tr>
                   <th tabindex="0">Nomor Kursi</th>
-                  <td tabindex="0">: <?= htmlspecialchars($row['nomor_kursi']); ?></td>
+                  <td tabindex="0"><?= htmlspecialchars($row['nomor_kursi']); ?></td>
                 </tr>
                 <tr>
                   <th tabindex="0">Total</th>
-                  <td tabindex="0">: Rp <?= number_format($row['total'], 0, ',', '.'); ?></td>
+                  <td tabindex="0">Rp <?= number_format($row['total'], 0, ',', '.'); ?></td>
                 </tr>
               </table>
               <div tabindex="0" class="status <?= strtolower($status_label); ?>">
@@ -141,5 +116,8 @@ $result = $stmt->get_result();
       <?php endif; ?>
     </div>
   </main>
+  <footer>
+    <footer-app></footer-app>
+  </footer>
 </body>
 </html>
