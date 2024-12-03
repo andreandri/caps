@@ -36,7 +36,7 @@ try {
 
 // Ambil data notifikasi
 $transaction = $notif->transaction_status;
-$order_id = $notif->order_id; // Pastikan order_id sesuai dengan id_pemesanan
+$order_id = $notif->order_id; // Gunakan order_id langsung dari notifikasi
 $type = $notif->payment_type;
 $fraud = $notif->fraud_status;
 
@@ -48,28 +48,25 @@ echo "<pre>";
 print_r($notif);
 echo "</pre>";
 
-// Pastikan `order_id` sesuai dengan format `id_pemesanan`
-$id_pemesanan = preg_replace('/[^0-9]/', '', $order_id); // Hanya ambil angka dari order_id
-
-// Debugging: Tampilkan id_pemesanan
-echo "ID Pemesanan: " . $id_pemesanan . "<br>";  // Untuk debugging
+// Debugging: Tampilkan order_id
+echo "Order ID: " . $order_id . "<br>";  // Untuk debugging
 
 // Update status pembayaran berdasarkan notifikasi
 if ($transaction == 'settlement') {
     // Pembayaran sukses, ubah status menjadi "lunas"
-    $sql = "UPDATE tb_pemesanan SET status_pembayaran='lunas' WHERE id_pemesanan='$id_pemesanan'";
+    $sql = "UPDATE tb_pemesanan SET status_pembayaran='lunas' WHERE order_id='$order_id'";
 } else if ($transaction == 'pending') {
     // Pembayaran menunggu, ubah status menjadi "pending"
-    $sql = "UPDATE tb_pemesanan SET status_pembayaran='pending' WHERE id_pemesanan='$id_pemesanan'";
+    $sql = "UPDATE tb_pemesanan SET status_pembayaran='pending' WHERE order_id='$order_id'";
 } else if ($transaction == 'deny') {
     // Pembayaran ditolak, ubah status menjadi "dibatalkan"
-    $sql = "UPDATE tb_pemesanan SET status_pembayaran='dibatalkan' WHERE id_pemesanan='$id_pemesanan'";
+    $sql = "UPDATE tb_pemesanan SET status_pembayaran='dibatalkan' WHERE order_id='$order_id'";
 } else if ($transaction == 'expire') {
     // Pembayaran kedaluwarsa, ubah status menjadi "dibatalkan"
-    $sql = "UPDATE tb_pemesanan SET status_pembayaran='dibatalkan' WHERE id_pemesanan='$id_pemesanan'";
+    $sql = "UPDATE tb_pemesanan SET status_pembayaran='dibatalkan' WHERE order_id='$order_id'";
 } else if ($transaction == 'cancel') {
     // Pembayaran dibatalkan oleh pengguna, ubah status menjadi "dibatalkan"
-    $sql = "UPDATE tb_pemesanan SET status_pembayaran='dibatalkan' WHERE id_pemesanan='$id_pemesanan'";
+    $sql = "UPDATE tb_pemesanan SET status_pembayaran='dibatalkan' WHERE order_id='$order_id'";
 }
 
 // Debugging: Tampilkan query SQL yang dijalankan
@@ -77,7 +74,7 @@ echo "SQL Query: " . $sql . "<br>";  // Untuk debugging
 
 // Jalankan query untuk memperbarui status pembayaran
 if (mysqli_query($koneksi, $sql)) {
-    echo "Status pembayaran berhasil diperbarui untuk id_pemesanan: $id_pemesanan";
+    echo "Status pembayaran berhasil diperbarui untuk order_id: $order_id";
 } else {
     echo "Gagal memperbarui status pembayaran: " . mysqli_error($koneksi);
 }
