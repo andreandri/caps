@@ -9,12 +9,12 @@
   <script type="module" src="scripts/index.js"></script>
 </head>
 <body>
+  <header>
+    <bar-tiket-app></bar-tiket-app>
+  </header>
+  
   <main>
     <ind-loading-main></ind-loading-main>
-    <div class="Kembali">
-      <a tabindex="0" href="tampilan.php">Back</a>
-    </div>
-
     <form action="pesantiket.php" method="POST">
         <div class="opsi">
             <div class="form-asal">
@@ -91,8 +91,8 @@
                 echo "<a href='pilihkursi.php?id_busjadwal={$id_jadwal}' class='card'>
                         <div class='card-content'>
                             <h2>{$row['kota_asal']} - {$row['kota_tujuan']}</h2>
-                            <p>Tanggal Keberangkatan: " . date("d F Y", strtotime($row['tgl_keberangkatan'])) . "</p>
-                            <p>Jam Keberangkatan: " . date("H.i", strtotime($row['jam_keberangkatan'])) . " WIB</p>
+                            <p>Tanggal Keberangkatan : " . date("d F Y", strtotime($row['tgl_keberangkatan'])) . "</p>
+                            <p>Jam Keberangkatan : " . date("H.i", strtotime($row['jam_keberangkatan'])) . " WIB</p>
                             <p>Nomor Plat Bus: {$row['no_plat']}</p>
                             <span class='harga'>IDR " . number_format($row['harga'], 0, ',', '.') . "</span>
                         </div>

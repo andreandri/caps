@@ -10,6 +10,30 @@ session_start();
     <title>Login Form</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="login.css">
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('sandi');
+            const toggleIcon = document.getElementById('toggle-icon');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.src = 'img/buka.png';
+                toggleIcon.alt = 'Hide Password';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.src = 'img/tutup.png';
+                toggleIcon.alt = 'Show Password';
+            }
+        }
+
+        function validateForm(event) {
+            const passwordInput = document.getElementById('sandi');
+            if (passwordInput.value.length < 8) {
+                alert('Password must be at least 8 characters long.');
+                event.preventDefault();
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="wrapper">
@@ -18,7 +42,7 @@ session_start();
         <div class="image">
             <img tabindex="0" src="img/EasyBusTix.png" alt="illustration" />
         </div>
-        <form tabindex="0" action="fungsi/login_check.php" method="post">
+        <form tabindex="0" action="fungsi/login_check.php" method="post" onsubmit="validateForm(event)">
             <?php
             if (isset($_SESSION['loginMessage'])) {
                 echo $_SESSION['loginMessage'];
@@ -26,10 +50,13 @@ session_start();
             }
             ?>
             <div class="input-box">
-                <input tabindex="0" type="text" id="username" name="username_or_email" placeholder="Enter your username or email " reuired>
+                <input tabindex="0" type="text" id="username" name="username_or_email" placeholder="Enter your username or email" required>
             </div>
             <div class="input-box">
-                <input tabindex="0" type="sandi" id="sandi" name="sandi" placeholder="Enter your password" required>
+                <input tabindex="0" type="password" id="sandi" name="sandi" placeholder="Enter your password" minlength="8" required>
+                <span tabindex="0" class="toggle-password" onclick="togglePasswordVisibility()">
+                    <img id="toggle-icon" src="img/tutup.png" alt="Show Password" />
+                </span>
             </div>
             <button tabindex="0" type="submit" class="btn" name="login">Login</button>
             <div class="register-link">
@@ -39,4 +66,3 @@ session_start();
     </div>
 </body>
 </html>
-

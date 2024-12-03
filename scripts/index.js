@@ -3,6 +3,8 @@ import './loading-awal.js';
 import './loading-main.js';
 import './loading-profil.js';
 import './home-user/bar.js';
+import './home-user/bar-change.js';
+import './home-user/bar-tiket.js';
 import './home-user/footer.js';
 import './home-awal/footer-awal.js';
 import './home-awal/bar-awal.js';
@@ -22,9 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (mainContent) {
           mainContent.style.display = "block";
         }
-      }, 500);
+      }, 400);
     }
-  }, 2000);
+  }, 1000);
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -36,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const simulateDataLoad = new Promise((resolve) => {
-    setTimeout(() => resolve(), 4000);
+    setTimeout(() => resolve(), 2700);
   });
 
   simulateDataLoad.then(() => {
@@ -56,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const simulateDataLoad = new Promise((resolve) => {
-    setTimeout(() => resolve(), 1000);
+    setTimeout(() => resolve(), 800);
   });
 
   simulateDataLoad.then(() => {
@@ -71,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const loadingIndicator = document.querySelector("ind-loading-profil");
 
   const simulateDataLoad = new Promise((resolve) => {
-    setTimeout(() => resolve(), 1000);
+    setTimeout(() => resolve(), 800);
   });
 
   simulateDataLoad.then(() => {

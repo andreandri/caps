@@ -13,10 +13,9 @@
   <script type="module" src="scripts/index.js"></script>
 </head>
 <body>
-    <section class="Kembali">
-      <a tabindex="0" href="tampilan.php">Back</a>
-    </section>
-
+  <header>
+    <bar-tiket-app></bar-tiket-app>
+  </header>
     <!-- Container -->
     <main>
       <ind-loading-main></ind-loading-main>
