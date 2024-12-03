@@ -63,7 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -96,9 +95,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
 
       <div class="label">
-        <label tabindex="0" for="nomor">No HP</label>
-        <input tabindex="0" type="number" id="nomor" name="nomor" placeholder="Masukkan Nomor Hp Anda" required>
-      </div>
+  <label tabindex="0" for="nomor">No HP</label>
+  <input 
+    tabindex="0" 
+    type="text" 
+    id="nomor" 
+    name="nomor" 
+    placeholder="Masukkan Nomor Hp Anda" 
+    required 
+    value="+62" 
+    maxlength="16" 
+    oninput="validatePhoneNumber(this)"
+  >
+</div>
+
+<script>
+    function validatePhoneNumber(input) {
+      // Pastikan input selalu diawali dengan +62
+      if (!input.value.startsWith('+62')) {
+        input.value = '+62';
+      }
+      // Hapus karakter selain angka setelah +62
+      input.value = input.value.replace(/(\+62)[^0-9]+/g, '$1').substring(0, 16);
+    }
+  </script>
+
 
       <!-- Menampilkan kursi yang dipilih -->
       <h3 tabindex="0">Nomor Kursi yang Dipilih:</h3>
