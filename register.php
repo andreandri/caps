@@ -56,6 +56,23 @@ if (isset($_POST['register'])) {
     <title>Register Form</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="login.css">
+    <script type="module" src="scripts/index.js"></script>
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('sandi');
+            const toggleIcon = document.getElementById('toggle-icon');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.src = 'img/buka.png';
+                toggleIcon.alt = 'Show Password';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.src = 'img/tutup.png';
+                toggleIcon.alt = 'Hide Password';
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="wrapper">
@@ -78,6 +95,9 @@ if (isset($_POST['register'])) {
             </div>
             <div class="input-box">
                 <input tabindex="0" type="password" id="sandi" name="sandi" placeholder="Enter your password" minlength="8" required>
+                <span tabindex="0" class="toggle-password" onclick="togglePasswordVisibility()">
+                    <img id="toggle-icon" src="img/tutup.png" alt="Hide Password" />
+                </span>
             </div>
             <button tabindex="0" type="submit" class="btn" name="register">Register</button>
         </form>

@@ -72,13 +72,13 @@
           <div class="team-grid">
             <div class="team-member">
               <div class="image-container">
-                <img tabindex="0" src="img/amel.jpg" alt="Amelia Frenety Perdi">
+                <img tabindex="0" src="img/amel.jpg" alt="Foto Amelia Frenety Perdi">
                 <div class="overlay">
                   <a tabindex="0" href="https://github.com/ameliafrty28" target="_blank">
-                    <img tabindex="0" src="img/github.png" alt="GitHub">
+                    <img tabindex="0" src="img/github.png" alt="Gambar GitHub">
                   </a>
                   <a tabindex="0" href="https://www.linkedin.com/in/Amelia-FrenetyPerdi/" target="_blank">
-                    <img tabindex="0" src="img/linkedin.png" alt="Personal Link">
+                    <img tabindex="0" src="img/linkedin.png" alt="Gambar linkedin">
                   </a>
                 </div>
               </div>
@@ -87,13 +87,13 @@
             </div>
             <div class="team-member">
               <div class="image-container">
-                <img tabindex="0" src="img/andre.png" alt="Andre Andrianus">
+                <img tabindex="0" src="img/andre.png" alt="Foto Andre Andrianus">
                 <div class="overlay">
                   <a tabindex="0" href="https://github.com/andreandri" target="_blank">
-                    <img tabindex="0" src="img/github.png" alt="GitHub">
+                    <img tabindex="0" src="img/github.png" alt="Gambar GitHub">
                   </a>
                   <a tabindex="0" href="https://www.linkedin.com/in/andre-andrianus02/" target="_blank">
-                    <img tabindex="0" src="img/linkedin.png" alt="Personal Link">
+                    <img tabindex="0" src="img/linkedin.png" alt="Gambar linkedin">
                   </a>
                 </div>
               </div>
@@ -105,13 +105,13 @@
           <div class="team-grid">
             <div class="team-member">
               <div class="image-container">
-                <img tabindex="0" src="img/imam.png" alt="Imam Syahrohim">
+                <img tabindex="0" src="img/imam.png" alt="Foto Imam Syahrohim">
                 <div class="overlay">
                   <a tabindex="0" href="https://github.com/Malter17" target="_blank">
-                    <img tabindex="0" src="img/github.png" alt="GitHub">
+                    <img tabindex="0" src="img/github.png" alt="Gambar GitHub">
                   </a>
                   <a tabindex="0" href="https://www.linkedin.com/in/imam-syahrohim/" target="_blank">
-                    <img tabindex="0" src="img/linkedin.png" alt="Personal Link">
+                    <img tabindex="0" src="img/linkedin.png" alt="Gambar linkedin">
                   </a>
                 </div>
               </div>
@@ -120,13 +120,13 @@
             </div>
             <div class="team-member">
               <div class="image-container">
-                <img tabindex="0" src="img/oyong.png" alt="Natalio Valentino">
+                <img tabindex="0" src="img/oyong.png" alt="Foto Natalio Valentino">
                 <div class="overlay">
                   <a tabindex="0" href="https://github.com/Natalio2512" target="_blank">
-                    <img tabindex="0" src="img/github.png" alt="GitHub">
+                    <img tabindex="0" src="img/github.png" alt="Gambar GitHub">
                   </a>
                   <a tabindex="0" href="https://www.linkedin.com/in/natalio-valentino-a87818312/" target="_blank">
-                    <img tabindex="0" src="img/linkedin.png" alt="Personal Link">
+                    <img tabindex="0" src="img/linkedin.png" alt="Gambar linkedin">
                   </a>
                 </div>
               </div>

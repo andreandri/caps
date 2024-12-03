@@ -135,7 +135,7 @@ main {
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  margin: 1rem 0 2rem;
 }
 
 table th, table td {

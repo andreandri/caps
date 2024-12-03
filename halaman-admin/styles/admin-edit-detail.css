@@ -16,7 +16,6 @@ body {
   background-color: #C4E1F6;
 }
 
-/* Container layout */
 header, main {
   display: flex;
   height: 100vh;
@@ -28,14 +27,14 @@ header {
   top: 0;
   width: 100%;
   display: flex;
-  z-index: 1000; /* Agar header tetap di atas elemen lain */
-  height: 120px; /* Sesuaikan dengan tinggi header */
+  z-index: 1000;
+  height: 120px;
 }
 
 main {
-  margin-left: 16%; /* Sesuaikan dengan lebar sidebar */
-  padding-top: 120px; /* Sesuaikan dengan tinggi header */
-  width: 84%; /* Sisa ruang setelah dikurangi sidebar */
+  margin-left: 16%;
+  padding-top: 120px;
+  width: 84%; 
 }
 
 .dashboard {
@@ -51,8 +50,26 @@ main {
 .navbar h1 {
   text-align: center;
   font-size: 2.5rem;
-  color: #000000; /* Teks hitam */
+  color: #000000;
   margin-bottom: 30px;
+}
+
+@media (max-width: 1500px) {
+  .navbar h1 {
+    font-size: 2rem;
+  }
+  .menu li a {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .navbar h1 {
+    font-size: 1.5rem;
+  }
+  .menu li a {
+    font-size: 1rem;
+  }
 }
 
 .navbar img {
@@ -72,7 +89,7 @@ main {
 .menu li a {
   display: block;
   text-decoration: none;
-  background-color: #f0e8ff; /* Ungu muda */
+  background-color: #f0e8ff;
   color: #333333;
   padding: 10px;
   border-radius: 10px;
@@ -81,7 +98,7 @@ main {
 }
 
 .menu li a:hover {
-  background-color: #e0d6f0; /* Hover lebih gelap */
+  background-color: #e0d6f0;
 }
 
 .logout-container {
@@ -118,86 +135,80 @@ main {
 .main-content h1 {
   text-align: center;
 }
-/* Styling untuk container form */
+
 .form-container {
-  background-color: #ffffff; /* Latar belakang putih untuk form */
-  padding: 20px; /* Padding dalam form */
-  border-radius: 8px; /* Sudut membulat */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Bayangan untuk memberi efek 3D */
+  background-color: #ffffff; 
+  padding: 20px; 
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
   width: 100%;
-  max-width: 500px; /* Lebar maksimal form */
-  margin: 5px auto; /* Pusatkan form secara horizontal */
+  max-width: 500px;
+  margin: 5px auto;
 }
 
-/* Styling untuk label form */
 label {
-  display: block; /* Agar label tampil di atas input */
-  font-weight: bold; /* Tebalkan teks label */
-  margin-bottom: 5px; /* Jarak bawah label ke input */
-  color: #333333; /* Warna teks label */
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333333; 
 }
 
-/* Styling untuk input form */
 input[type="text"],
 input[type="date"],
 input[type="time"],
 input[type="number"] {
-  width: 100%; /* Input selebar container */
-  padding: 10px; /* Padding dalam input */
-  margin-bottom: 15px; /* Jarak antar input */
-  border: 1px solid #ccc; /* Border abu-abu terang */
-  border-radius: 5px; /* Sudut input membulat */
-  font-size: 1rem; /* Ukuran font input */
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  font-size: 1rem; 
 }
 
-/* Styling untuk tombol */
 button[type="submit"] {
-  background-color: #4CAF50; /* Warna hijau untuk tombol submit */
-  color: white; /* Warna teks putih */
-  border: none; /* Hilangkan border */
-  padding: 10px 20px; /* Padding tombol */
-  font-size: 1rem; /* Ukuran font tombol */
-  border-radius: 5px; /* Sudut tombol membulat */
-  cursor: pointer; /* Pointer saat hover */
-  width: 100%; /* Tombol memenuhi lebar container */
-  max-width: 200px; /* Lebar maksimal tombol */
-  margin: 10px 0; /* Jarak vertikal tombol */
+  background-color: #4CAF50;
+  color: white; 
+  border: none; 
+  padding: 10px 20px;
+  font-size: 1rem; 
+  border-radius: 5px; 
+  cursor: pointer;
+  width: 100%; 
+  max-width: 200px; 
+  margin: 10px 0;
 }
 
-/* Hover effect pada tombol */
 button[type="submit"]:hover {
-  background-color: #45a049; /* Warna hijau lebih gelap saat hover */
+  background-color: #45a049; 
 }
 
-/* Styling untuk link 'Kembali' */
 a {
-  display: inline-block; /* Agar tampil seperti tombol */
-  text-decoration: none; /* Hilangkan garis bawah */
-  background-color: #6a5acd; /* Warna biru-ungu */
-  color: white; /* Teks putih */
-  padding: 10px 20px; /* Padding dalam tombol */
-  border-radius: 5px; /* Sudut tombol membulat */
-  font-size: 1rem; /* Ukuran font */
-  text-align: center; /* Teks rata tengah */
-  margin: 10px 0; /* Jarak vertikal tombol */
+  display: inline-block; 
+  text-decoration: none;
+  background-color: #6a5acd;
+  color: white; 
+  padding: 10px 20px; 
+  border-radius: 5px;
+  font-size: 1rem; 
+  text-align: center; 
+  margin: 10px 0; 
 }
 
 a:hover {
-  background-color: #5a4bbd; /* Warna lebih gelap saat hover */
+  background-color: #5a4bbd;
 }
 
 select {
-  width: 100%; /* Select selebar container */
-  padding: 10px; /* Padding dalam select */
-  margin-bottom: 15px; /* Jarak antar input */
-  border: 1px solid #ccc; /* Border abu-abu terang */
-  border-radius: 5px; /* Sudut select membulat */
-  font-size: 1rem; /* Ukuran font select */
-  background-color: #f9f9f9; /* Warna latar belakang select */
-  cursor: pointer; /* Tampilkan pointer saat hover */
+  width: 100%;
+  padding: 10px; 
+  margin-bottom: 15px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px;
+  font-size: 1rem; 
+  background-color: #f9f9f9;
+  cursor: pointer; 
 }
 
-/* Hover effect untuk select */
 select:hover {
-  border-color: #888; /* Ubah warna border saat hover */
+  border-color: #888; 
 }
