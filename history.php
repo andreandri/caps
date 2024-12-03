@@ -60,14 +60,23 @@ $result = $stmt->get_result();
       <?php if ($result->num_rows > 0): ?>
         <?php while ($row = $result->fetch_assoc()): ?>
           <?php
-          // Mapping status pembayaran ke label
-          $status_label = match ($row['status_pembayaran']) {
-              'lunas' => 'BERHASIL',
-              'pending' => 'MENUNGGU PEMBAYARAN',
-              'dibatalkan' => 'GAGAL',
-              default => 'STATUS TIDAK DIKENAL',
-          };
-          ?>
+// Mapping status pembayaran ke label
+switch ($row['status_pembayaran']) {
+    case 'lunas':
+        $status_label = 'BERHASIL';
+        break;
+    case 'pending':
+        $status_label = 'MENUNGGU PEMBAYARAN';
+        break;
+    case 'dibatalkan':
+        $status_label = 'GAGAL';
+        break;
+    default:
+        $status_label = 'STATUS TIDAK DIKENAL';
+        break;
+}
+?>
+
           <div class="detail">
             <div class="detail-item">
               <table>

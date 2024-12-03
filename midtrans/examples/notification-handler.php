@@ -1,62 +1,84 @@
 <?php
-// This is just for very basic implementation reference, in production, you should validate the incoming requests and implement your backend more securely.
-// Please refer to this docs for sample HTTP notifications:
-// https://docs.midtrans.com/en/after-payment/http-notification?id=sample-of-different-payment-channels
-
+// Import Midtrans library
 namespace Midtrans;
 
 require_once dirname(__FILE__) . '/../Midtrans.php';
-Config::$isProduction = false;
+
+// Konfigurasi Midtrans
+Config::$isProduction = false; // Ubah ke true jika sudah dalam mode produksi
 Config::$serverKey = 'SB-Mid-server-ZwVxKRABKeqWj-jebaE_OvA3';
 
-// non-relevant function only used for demo/example purpose
+// Fungsi untuk menampilkan pesan peringatan jika diakses langsung
+function printExampleWarningMessage() {
+    if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+        echo 'Notification-handler hanya untuk menangani notifikasi Midtrans via HTTP POST, bukan untuk diakses langsung via browser.';
+        exit;
+    }
+    if (strpos(Config::$serverKey, 'your ') !== false) {
+        echo "<code>";
+        echo "<h4>Silakan atur server key dari sandbox</h4>";
+        echo "Di file: " . __FILE__;
+        echo "<br>";
+        echo htmlspecialchars('Config::$serverKey = \'<Server Key>\';');
+        die();
+    }
+}
+
+// Pastikan script hanya dijalankan melalui HTTP POST
 printExampleWarningMessage();
 
 try {
+    // Tangkap notifikasi dari Midtrans
     $notif = new Notification();
 } catch (\Exception $e) {
     exit($e->getMessage());
 }
 
-$notif = $notif->getResponse();
+// Ambil data notifikasi
 $transaction = $notif->transaction_status;
-$transaction_id = $notif->transaction_id;
-
+$order_id = $notif->order_id; // Pastikan order_id sesuai dengan id_pemesanan
 $type = $notif->payment_type;
-$order_id = $notif->order_id;
 $fraud = $notif->fraud_status;
 
+// Koneksi ke database
 include "koneksi.php";
 
-// Adjusting the SQL queries to match your `tb_pemesanan` table
+// Debugging: Tampilkan data notifikasi untuk memverifikasi
+echo "<pre>";
+print_r($notif);
+echo "</pre>";
+
+// Pastikan `order_id` sesuai dengan format `id_pemesanan`
+$id_pemesanan = preg_replace('/[^0-9]/', '', $order_id); // Hanya ambil angka dari order_id
+
+// Debugging: Tampilkan id_pemesanan
+echo "ID Pemesanan: " . $id_pemesanan . "<br>";  // Untuk debugging
+
+// Update status pembayaran berdasarkan notifikasi
 if ($transaction == 'settlement') {
-    // Update status to 'lunas' (paid) for the given order
-    mysqli_query($koneksi, "UPDATE tb_pemesanan SET status_pembayaran='lunas', transaction_id='$transaction_id' WHERE id_pemesanan='$order_id'");
+    // Pembayaran sukses, ubah status menjadi "lunas"
+    $sql = "UPDATE tb_pemesanan SET status_pembayaran='lunas' WHERE id_pemesanan='$id_pemesanan'";
 } else if ($transaction == 'pending') {
-    // Update status to 'pending' for the given order
-    mysqli_query($koneksi, "UPDATE tb_pemesanan SET status_pembayaran='pending' WHERE id_pemesanan='$order_id'");
+    // Pembayaran menunggu, ubah status menjadi "pending"
+    $sql = "UPDATE tb_pemesanan SET status_pembayaran='pending' WHERE id_pemesanan='$id_pemesanan'";
 } else if ($transaction == 'deny') {
-    // Update status to 'dibatalkan' (canceled) for the given order
-    mysqli_query($koneksi, "UPDATE tb_pemesanan SET status_pembayaran='dibatalkan' WHERE id_pemesanan='$order_id'");
+    // Pembayaran ditolak, ubah status menjadi "dibatalkan"
+    $sql = "UPDATE tb_pemesanan SET status_pembayaran='dibatalkan' WHERE id_pemesanan='$id_pemesanan'";
 } else if ($transaction == 'expire') {
-    // Update status to 'dibatalkan' (canceled) for the given order due to expiration
-    mysqli_query($koneksi, "UPDATE tb_pemesanan SET status_pembayaran='dibatalkan' WHERE id_pemesanan='$order_id'");
+    // Pembayaran kedaluwarsa, ubah status menjadi "dibatalkan"
+    $sql = "UPDATE tb_pemesanan SET status_pembayaran='dibatalkan' WHERE id_pemesanan='$id_pemesanan'";
 } else if ($transaction == 'cancel') {
-    // Update status to 'dibatalkan' (canceled) for the given order due to user cancellation
-    mysqli_query($koneksi, "UPDATE tb_pemesanan SET status_pembayaran='dibatalkan' WHERE id_pemesanan='$order_id'");
+    // Pembayaran dibatalkan oleh pengguna, ubah status menjadi "dibatalkan"
+    $sql = "UPDATE tb_pemesanan SET status_pembayaran='dibatalkan' WHERE id_pemesanan='$id_pemesanan'";
 }
 
-function printExampleWarningMessage() {
-    if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-        echo 'Notification-handler are not meant to be opened via browser / GET HTTP method. It is used to handle Midtrans HTTP POST notification / webhook.';
-    }
-    if (strpos(Config::$serverKey, 'your ') !== false) {
-        echo "<code>";
-        echo "<h4>Please set your server key from sandbox</h4>";
-        echo "In file: " . __FILE__;
-        echo "<br>";
-        echo "<br>";
-        echo htmlspecialchars('Config::$serverKey = \'<Server Key>\';');
-        die();
-    }   
+// Debugging: Tampilkan query SQL yang dijalankan
+echo "SQL Query: " . $sql . "<br>";  // Untuk debugging
+
+// Jalankan query untuk memperbarui status pembayaran
+if (mysqli_query($koneksi, $sql)) {
+    echo "Status pembayaran berhasil diperbarui untuk id_pemesanan: $id_pemesanan";
+} else {
+    echo "Gagal memperbarui status pembayaran: " . mysqli_error($koneksi);
 }
+?>
