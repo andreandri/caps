@@ -54,12 +54,25 @@ h2 {
 
 .input-box input {
   width: 100%;
-  padding: 12px 20px;
+  padding: 12px 40px 12px 20px; /* Tambahkan ruang untuk ikon */
   border: 1px solid #ddd;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 16px;
   color: #333;
   outline: none;
+}
+
+.input-box .toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.input-box .toggle-password img {
+  width: 25px;
+  height: 25px;
 }
 
 .input-box input:focus {

@@ -10,6 +10,22 @@ session_start();
     <title>Login Form</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="login.css">
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('sandi');
+            const toggleIcon = document.getElementById('toggle-icon');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.src = 'img/buka.png';
+                toggleIcon.alt = 'Hide Password';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.src = 'img/tutup.png';
+                toggleIcon.alt = 'Show Password';
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="wrapper">
@@ -30,6 +46,9 @@ session_start();
             </div>
             <div class="input-box">
                 <input tabindex="0" type="sandi" id="sandi" name="sandi" placeholder="Enter your password" required>
+                <span tabindex="0" class="toggle-password" onclick="togglePasswordVisibility()">
+                    <img id="toggle-icon" src="img/tutup.png" alt="Show Password" />
+                </span>
             </div>
             <button tabindex="0" type="submit" class="btn" name="login">Login</button>
             <div class="register-link">
