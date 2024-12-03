@@ -48,6 +48,20 @@ if ($id_pemesanan) {
             // Generate order_id
             $order_id = 'ORDER_' . $id_pemesanan . '_' . bin2hex(random_bytes(5)) . time();
 
+            // Update kolom order_id di tb_pemesanan
+            $update_order_query = $koneksi->prepare("
+                UPDATE tb_pemesanan 
+                SET order_id = ? 
+                WHERE id_pemesanan = ?
+            ");
+            $update_order_query->bind_param("si", $order_id, $id_pemesanan);
+            $update_order_query->execute();
+
+            if ($update_order_query->affected_rows === 0) {
+                echo "Gagal memperbarui order_id.";
+                exit;
+            }
+
             // Detail transaksi
             $transaction_details = array(
                 'order_id' => $order_id,
@@ -265,15 +279,25 @@ if ($id_pemesanan) {
         },
         onPending: function (result) {
             console.log("Payment Pending:", result);
+            // Redirect ke history jika pembayaran tidak selesai
+            alert("Pembayaran sedang dalam status pending. Silakan cek kembali riwayat pemesanan.");
+            window.location.href = "../../../history.php";
         },
         onError: function (result) {
             console.log("Payment Error:", result);
+            // Redirect ke history jika pembayaran gagal
+            alert("Terjadi kesalahan pada pembayaran. Silakan coba lagi.");
+            window.location.href = "../../../history.php";
         },
         onClose: function () {
             console.log("Payment popup closed");
+            // Redirect ke history jika pengguna menutup popup pembayaran
+            alert("Anda menutup proses pembayaran sebelum selesai. Silakan cek riwayat pemesanan Anda.");
+            window.location.href = "../../../history.php";
         },
     });
 };
+
     </script>
   </main>
 </body>
