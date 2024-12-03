@@ -18,7 +18,7 @@ class BarUserApp extends HTMLElement {
     setTimeout(() => {
       navbar.classList.remove("skeleton"); 
       navbar.style.opacity = 1; 
-    }, 1000); 
+    }, 800); 
   }
 
   updateStyle() {
