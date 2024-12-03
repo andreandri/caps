@@ -12,18 +12,18 @@
   <ind-loading-awal></ind-loading-awal>
 
   <div id="main-content" style="display: none;">
-    <a href="#home" class="skip-link">Skip To Content</a>
+    <a href="#hero" class="skip-link">Skip To Content</a>
     <header>
       <bar-awal-app></bar-awal-app>
     </header>
 
     <main>
     <ind-loading-main-awal ></ind-loading-main-awal>
-      <section class="hero">
+      <section id="home" class="hero">
         <div class="hero-text">
           <h1 tabindex="0">Pesan Tiket Bus dengan Mudah dan Cepat</h1>
           <p tabindex="0">EasyBusTix membantu Anda menemukan tiket bus terbaik untuk perjalanan Anda. Aman, cepat, dan nyaman!</p>
-          <a tabindex="0" id="home" href="register.php" class="btn-primary">Daftar Sekarang</a>
+          <a tabindex="0" id="hero" href="register.php" class="btn-primary">Daftar Sekarang</a>
           <a tabindex="0" href="login.php" class="btn-secondary">Login</a>
         </div>
         <div class="hero-image">
@@ -83,7 +83,7 @@
                 </div>
               </div>
               <h3 tabindex="0">Amelia Frenety Perdi</h3>
-              <p tabindex="0">UI/UX Designer Developer</p>
+              <p tabindex="0">UI/UX Designer</p>
             </div>
             <div class="team-member">
               <div class="image-container">

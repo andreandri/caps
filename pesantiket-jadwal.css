@@ -21,33 +21,13 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-.Kembali {
-  margin: 1rem;
+main {
+  padding-top: 1.6rem;
 }
-
-/* Back Button Styling */
-.Kembali a {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background-color: #007bff;
-  color: white;
-  border-radius: 3rem;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-
-  min-width: 44px;
-  min-height: 44px;
-}
-
-.Kembali a:hover {
-  background-color: #0056b3;
-}
-
-
-/* Container styling */
 
 .jadwal h2{
   text-align: center;
+  margin-bottom: 1rem;
 }
 
 .container {
@@ -70,6 +50,7 @@ body {
   padding: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
 }
 
 .schedule-item h3 {
@@ -91,7 +72,6 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsiveness */
 @media (max-width: 768px) {
   .schedule-item {
     padding: 10px;
@@ -99,12 +79,45 @@ body {
     place-self: center;
   }
 
-  h2 {
+  .jadwal h2 {
     font-size: 1.5rem;
   }
 }
 
-/* Form Styling */
+@media (max-width: 558px) {
+  .jadwal h2 {
+    font-size: 1.2rem;
+  }
+}
+
+
+@media (max-width: 390px) {
+  .schedule-item {
+    padding: 8px;
+  }
+
+  .schedule-item h3 {
+    font-size: 0.9rem;
+  }
+
+  .schedule-item p {
+    font-size: 0.85rem;
+  }
+
+  .schedule-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .jadwal h2{
+    font-size: 1rem;
+  }
+
+  .price {
+    font-size: 0.8rem;
+  }
+}
+
+
 form {
   background-color: #B9E5E8;
   width: 60%;
@@ -155,7 +168,7 @@ button:hover {
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   margin: 2rem;
   line-height: 1.5;
@@ -173,6 +186,7 @@ button:hover {
   color: inherit;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  max-width: 1200px;
 }
 
 .card:hover {
@@ -266,5 +280,11 @@ button:hover {
 
   .map-item {
     max-width: 100%;
+  }
+}
+
+@media (max-width: 390px) {
+  .map-item h3 {
+    font-size: 1rem;
   }
 }

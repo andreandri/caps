@@ -68,7 +68,7 @@
               </div>
             </div>
             <h3 tabindex="0">Amelia Frenety Perdi</h3>
-            <p tabindex="0">UI/UX Designer Developer</p>
+            <p tabindex="0">UI/UX Designer</p>
           </div>
           <div class="team-member">
             <div class="image-container">

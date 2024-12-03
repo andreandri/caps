@@ -48,12 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <header>
-        <bar-user-app></bar-user-app>
+        <bar-ganti-app></bar-ganti-app>
     </header>
-
-    <section class="Kembali">
-      <a tabindex="0" href="profile.php">Back</a>
-    </section>
 
     <main>
     <ind-loading-main></ind-loading-main>
