@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id']) &&
 
 <main class="main-content">
 <ind-loading-admin></ind-loading-admin>
-    <div>
+    <div class="content">
         <h1 tabindex="0">Data Bus</h1>
         <table>
             <thead>
@@ -146,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id']) &&
         <a tabindex="0" href="tambah_bus.php" class="tambah-rute">Tambah Bus</a>
     </div>
 
-    <div class="table-section">
+    <div class="content">
         <h1 tabindex="0">Data Rute</h1>
         <table>
             <thead>

@@ -13,19 +13,16 @@ $stmt->bind_param("s", $username);
 $stmt->execute();
 $result = $stmt->get_result();
 $userData = $result->fetch_assoc();
-$image = $userData['image'] ?? 'default-avatar.png'; // Jika tidak ada, gunakan avatar default
+$image = $userData['image'] ?? 'default-avatar.png';
 
-// Periksa apakah gambar bukan default-avatar
 $isCustomImage = $image !== 'default-avatar.png';
 
-// Proses unggah atau hapus foto profil
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_FILES['image'])) { // Proses unggah foto baru
+    if (isset($_FILES['image'])) {
         $targetFolder = "uploads/";
         $imageName = basename($_FILES['image']['name']);
         $targetPath = $targetFolder . $imageName;
 
-        // Dapatkan gambar lama dari database sebelum mengganti
         $queryOldImage = "SELECT image FROM tb_users WHERE username = ?";
         $stmtOldImage = $koneksi->prepare($queryOldImage);
         $stmtOldImage->bind_param("s", $username);
@@ -33,20 +30,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $resultOldImage = $stmtOldImage->get_result();
         $oldImage = $resultOldImage->fetch_assoc()['image'];
 
-        // Proses unggah file baru
         if (move_uploaded_file($_FILES['image']['tmp_name'], $targetPath)) {
-            // Hapus gambar lama jika bukan default-avatar
             if ($oldImage && $oldImage !== 'default-avatar.png' && file_exists($targetFolder . $oldImage)) {
-                unlink($targetFolder . $oldImage); // Hapus file lama
+                unlink($targetFolder . $oldImage);
             }
 
-            // Update path gambar di database
             $updateQuery = "UPDATE tb_users SET image = ? WHERE username = ?";
             $updateStmt = $koneksi->prepare($updateQuery);
             $updateStmt->bind_param("ss", $imageName, $username);
             if ($updateStmt->execute()) {
-                $image = $imageName; // Update gambar pada halaman
-                $isCustomImage = true; // Update status
+                $image = $imageName;
+                $isCustomImage = true;
                 echo "<script>alert('Foto berhasil diunggah.');</script>";
             } else {
                 $_SESSION['error'] = "Gagal menyimpan ke database.";
@@ -54,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $_SESSION['error'] = "Gagal mengunggah file.";
         }
-    } // Proses hapus foto
+    } 
     if (isset($_POST['deleteImage'])) {
         $queryOldImage = "SELECT image FROM tb_users WHERE username = ?";
         $stmtOldImage = $koneksi->prepare($queryOldImage);
@@ -62,13 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmtOldImage->execute();
         $resultOldImage = $stmtOldImage->get_result();
         $oldImage = $resultOldImage->fetch_assoc()['image'];
-    
-        // Hapus gambar lama jika bukan default-avatar
+
         if ($oldImage && $oldImage !== 'default-avatar.png' && file_exists("uploads/" . $oldImage)) {
             unlink("uploads/" . $oldImage);
         }
-    
-        // Set gambar kembali ke default-avatar
+
         $defaultAvatar = 'default-avatar.png';
         $updateQuery = "UPDATE tb_users SET image = ? WHERE username = ?";
         $updateStmt = $koneksi->prepare($updateQuery);
@@ -104,34 +96,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         const avatarPreview = document.getElementById('avatarPreview');
         const loadingElement = document.createElement('ind-loading-profil');
 
-        // Tambahkan custom element loading ke body tetapi sembunyikan
         document.body.appendChild(loadingElement);
         loadingElement.style.display = 'none';
 
-        // Tampilkan pop-up saat tombol kamera ditekan
         cameraButton.addEventListener('click', () => {
-            popup.style.display = 'block'; // Tampilkan pop-up
+            popup.style.display = 'block';
         });
 
-        // Tampilkan preview gambar dan sembunyikan pop-up saat file dipilih
         fileInput.addEventListener('change', (e) => {
             if (e.target.files.length > 0) {
                 const file = e.target.files[0];
                 const reader = new FileReader();
 
-                loadingElement.style.display = 'block'; // Tampilkan loading sebelum preview
+                loadingElement.style.display = 'block';
 
                 reader.onload = function (event) {
                     setTimeout(() => {
                         avatarPreview.style.backgroundImage = `url(${event.target.result})`;
-                        loadingElement.style.display = 'none'; // Sembunyikan loading
-                        popup.style.display = 'none'; // Sembunyikan pop-up setelah preview
-                    }, 1000); // Simulasi waktu loading
+                        loadingElement.style.display = 'none';
+                        popup.style.display = 'none';
+                    }, 1000);
                 };
 
                 reader.readAsDataURL(file);
 
-                // Unggah file secara otomatis
                 const formData = new FormData();
                 formData.append('image', file);
 
@@ -141,11 +129,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 })
                 .then(response => response.text())
                 .then(() => {
-                    // Tutup pop-up jika unggah berhasil
                     popup.style.display = 'none';
                     loadingElement.style.display = 'none';
                     alert('Foto berhasil diunggah!');
-                    window.location.reload(); // Refresh halaman setelah unggah berhasil
+                    window.location.reload();
                 })
                 .catch(error => {
                     alert('Gagal mengunggah foto. Silakan coba lagi.');
@@ -153,21 +140,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         });
 
-        // Batalkan pop-up saat tombol Batalkan ditekan
         cancelButton.addEventListener('click', () => {
             popup.style.display = 'none';
         });
 
-        // Pilih file baru saat tombol Ganti Foto ditekan
         changeButton.addEventListener('click', () => {
             fileInput.click();
         });
 
-        // Hapus foto saat tombol Hapus Foto ditekan
         if (deleteButton) {
             deleteButton.addEventListener('click', () => {
             popup.style.display = 'none';
-            loadingElement.style.display = 'block'; // Tampilkan loading sebelum form dikirim
+            loadingElement.style.display = 'block';
 
         setTimeout(() => {
         const formData = new FormData();
@@ -179,20 +163,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         })
         .then(response => response.json())
         .then(data => {
-            loadingElement.style.display = 'none'; // Sembunyikan loading
-
+            loadingElement.style.display = 'none';
             if (data.success) {
                         alert('Foto berhasil dihapus!');
-                        window.location.reload(); // Refresh halaman setelah foto dihapus
+                        window.location.reload(); 
                     } else {
                         alert(data.message || 'Gagal menghapus foto. Silakan coba lagi.');
                     }
                 })
         .catch(error => {
-            loadingElement.style.display = 'none'; // Sembunyikan loading
+            loadingElement.style.display = 'none';
             alert('Terjadi kesalahan saat menghapus foto. Silakan coba lagi.');
         });
-    }, 1000); // Simulasi waktu loading
+    }, 1000); 
 });
 
         }
