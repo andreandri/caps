@@ -222,7 +222,6 @@ $koneksi->close();
 
                     // Tampilkan pesan sukses/gagal
                     if (result.includes("Data jadwal bus berhasil ditambahkan")) {
-                        alert("Data jadwal bus berhasil ditambahkan!");
                         window.location.href = "adminpesanan.php";
                     } else {
                         alert("Terjadi kesalahan: " + result);
@@ -234,7 +233,6 @@ $koneksi->close();
                     document.body.classList.remove("no-scroll");
 
                     // Tampilkan pesan error
-                    alert("Gagal mengirim data. Silakan coba lagi.");
                     console.error("Error:", error);
                 });
         });
