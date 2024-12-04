@@ -214,7 +214,8 @@ if ($id_pemesanan) {
             </tr>
         </table>
         <p tabindex="0" class="total">Total: Rp <?= number_format($data['total'] ?? 0, 0, ',', '.') ?></p>
-        <button tabindex="0" onclick="window.location.href='./midtrans/examples/snap/checkout-process-simple-version.php?id_pemesanan=<?= $id_pemesanan ?>'">Bayar</button>
+        <a tabindex="0" href="./midtrans/examples/snap/checkout-process-simple-version.php?id_pemesanan=<?= $id_pemesanan ?>" 
+   class="pay-link">Bayar</a>
     </div>
 </main>
 

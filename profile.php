@@ -228,7 +228,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p><a tabindex="0" href="https://wa.me/6281254986462" target="_blank" rel="noopener noreferrer">&#x1F4AC; Pertanyaan</a></p>
             <p><a tabindex="0" href="kebijakan.php">&#x1F4D3; Kebijakan Privasi</a></p>
         </section>
-        <button tabindex="0" class="logout" onclick="window.location.href='fungsi/logout.php'">Logout</button>
+        <a tabindex="0" href="fungsi/logout.php" class="logout-link">Logout</a>
     </main>
 
     <footer>
