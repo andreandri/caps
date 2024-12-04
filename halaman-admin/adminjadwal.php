@@ -240,7 +240,6 @@ if (!$result) {
         document.getElementById('popup-delete-bus').style.display = 'none';
     }
 
-    // Tangani form penghapusan jadwal
     document.getElementById("delete-form").addEventListener("submit", function (e) {
         e.preventDefault();
         showLoading();
@@ -265,7 +264,6 @@ if (!$result) {
             });
     });
 
-    // Tangani form penghapusan jadwal bus
     document.getElementById("delete-bus-form").addEventListener("submit", function (e) {
         e.preventDefault();
         showLoading();
