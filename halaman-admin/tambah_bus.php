@@ -4,15 +4,12 @@ include("../koneksi.php");
 $success_message = "";
 $error_message = "";
 
-// Proses penyimpanan data jika form disubmit
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $no_plat = $_POST['no_plat'];
     $nama_sopir = $_POST['nama_sopir'];
     $kapasitas = $_POST['kapasitas'];
 
-    // Validasi input
     if (!empty($no_plat) && !empty($nama_sopir) && !empty($kapasitas)) {
-        // Query untuk menyimpan data ke tabel tb_bus
         $sql = "INSERT INTO tb_bus (no_plat, nama_sopir, kapasitas) VALUES (?, ?, ?)";
         $stmt = $koneksi->prepare($sql);
         $stmt->bind_param("ssi", $no_plat, $nama_sopir, $kapasitas);
@@ -38,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Tambah Bus</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="styles/tambah.css">
+    <script type="module" src="../scripts/index.js"></script>
     <style>
         .popup {
             display: none;
@@ -108,7 +106,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 </main>
 
-<!-- Pop-up untuk sukses -->
 <?php if (!empty($success_message)): ?>
     <div id="popup-success" class="popup">
         <div class="popup-content">
@@ -118,7 +115,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 <?php endif; ?>
 
-<!-- Pop-up untuk error -->
 <?php if (!empty($error_message)): ?>
     <div id="popup-error" class="popup">
         <div class="popup-content">
@@ -134,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     function redirectToRoute() {
-        window.location.href = 'adminrute.php'; // Redirect ke halaman adminrute
+        window.location.href = 'adminrute.php';
     }
 
     <?php if (!empty($success_message)): ?>

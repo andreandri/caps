@@ -1,12 +1,9 @@
 <?php
-// Include the database connection
 require '../koneksi.php';
 
-// Variable to store pop-up messages
 $success_message = '';
 $error_message = '';
 
-// Handle form submission for adding a new schedule
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_rute = $_POST['id_rute'];
     $tgl_keberangkatan = $_POST['tgl_keberangkatan'];
@@ -26,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// Fetch available routes from tb_rute for the dropdown menu
 $routeQuery = "SELECT id_rute, kota_asal, kota_tujuan FROM tb_rute";
 $routeResult = $koneksi->query($routeQuery);
 
@@ -43,6 +39,7 @@ if (!$routeResult) {
     <title>Tambah Jadwal</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="styles/tambah.css">
+    <script type="module" src="../scripts/index.js"></script>
     <style>
         .popup {
             display: none;
@@ -119,7 +116,6 @@ if (!$routeResult) {
     </form>
 </main>
 
-<!-- Pop-up for success -->
 <?php if (!empty($success_message)): ?>
     <div id="popup-success" class="popup">
         <div class="popup-content">
@@ -129,7 +125,6 @@ if (!$routeResult) {
     </div>
 <?php endif; ?>
 
-<!-- Pop-up for error -->
 <?php if (!empty($error_message)): ?>
     <div id="popup-error" class="popup">
         <div class="popup-content">

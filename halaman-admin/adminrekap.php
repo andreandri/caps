@@ -1,13 +1,11 @@
 <?php
-// Koneksi ke database
 include '../koneksi.php';
 
-// Query untuk mengambil bulan dan total pendapatan
 $query = "SELECT DATE_FORMAT(j.tgl_keberangkatan, '%Y-%m') AS bulan, SUM(p.total) AS pendapatan
           FROM tb_pemesanan p
           JOIN tb_busjadwal bj ON p.id_busjadwal = bj.id_busjadwal
           JOIN tb_jadwal j ON bj.id_jadwal = j.id_jadwal
-          WHERE p.status_pembayaran = 'lunas'  -- Filter untuk status lunas
+          WHERE p.status_pembayaran = 'lunas'
           GROUP BY bulan
           ORDER BY bulan DESC";
 
@@ -23,6 +21,7 @@ $result = mysqli_query($koneksi, $query);
     <title>Admin Rekap Pendapatan</title>
 
     <link rel="stylesheet" href="styles/adminjadwal.css">
+    <script type="module" src="../scripts/index.js"></script>
 </head>
 <body>
   <header class="dashboard">

@@ -2,6 +2,7 @@ import './loading-main-awal.js';
 import './loading-awal.js';
 import './loading-main.js';
 import './loading-profil.js';
+import './loading-admin.js';
 import './home-user/bar.js';
 import './home-user/bar-change.js';
 import './home-user/bar-tiket.js';
@@ -80,6 +81,26 @@ document.addEventListener("DOMContentLoaded", () => {
   simulateDataLoad.then(() => {
     if (loadingIndicator) {
       loadingIndicator.style.display = "none";
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const loadingIndicator = document.querySelector("ind-loading-admin");
+  const body = document.body;
+
+  if (loadingIndicator) {
+    body.classList.add("no-scroll");
+  }
+
+  const simulateDataLoad = new Promise((resolve) => {
+    setTimeout(() => resolve(), 800);
+  });
+
+  simulateDataLoad.then(() => {
+    if (loadingIndicator) {
+      loadingIndicator.style.display = "none";
+      body.classList.remove("no-scroll");
     }
   });
 });

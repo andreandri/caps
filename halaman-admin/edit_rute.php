@@ -1,11 +1,9 @@
 <?php
 include("../koneksi.php");
 
-// Pastikan id_rute ada dalam URL
 if (isset($_GET['id_rute'])) {
     $id_rute = $_GET['id_rute'];
 
-    // Query untuk mengambil data rute berdasarkan id_rute
     $query = "SELECT * FROM tb_rute WHERE id_rute = ?";
     $stmt = $koneksi->prepare($query);
     $stmt->bind_param("i", $id_rute);
@@ -14,33 +12,29 @@ if (isset($_GET['id_rute'])) {
     $rute = $result->fetch_assoc();
     $stmt->close();
 
-    // Jika rute tidak ditemukan
     if (!$rute) {
         echo "<script>alert('Rute tidak ditemukan.'); window.location.href = 'adminrute.php';</script>";
         exit;
     }
 
-    // Proses update data jika form disubmit
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $kota_asal = $_POST['kota_asal'];
         $kota_tujuan = $_POST['kota_tujuan'];
 
-        // Validasi input
         if (!empty($kota_asal) && !empty($kota_tujuan)) {
-            // Query untuk update data ke tabel tb_rute
             $sql = "UPDATE tb_rute SET kota_asal = ?, kota_tujuan = ? WHERE id_rute = ?";
             $stmt = $koneksi->prepare($sql);
             $stmt->bind_param("ssi", $kota_asal, $kota_tujuan, $id_rute);
 
             if ($stmt->execute()) {
-                $success_message = "Rute berhasil diperbarui."; // Pesan sukses
+                $success_message = "Rute berhasil diperbarui.";
             } else {
-                $error_message = "Gagal memperbarui rute: " . $stmt->error; // Pesan error
+                $error_message = "Gagal memperbarui rute: " . $stmt->error;
             }
 
             $stmt->close();
         } else {
-            $error_message = "Harap isi semua field."; // Pesan error jika form kosong
+            $error_message = "Harap isi semua field.";
         }
     }
 } else {
@@ -48,7 +42,6 @@ if (isset($_GET['id_rute'])) {
     exit;
 }
 
-// Query untuk mengambil nilai ENUM dari tabel rute untuk opsi kota asal dan tujuan
 $kota_query = "SHOW COLUMNS FROM tb_rute LIKE 'kota_asal'";
 $result = mysqli_query($koneksi, $kota_query);
 $kota_asal_enum = '';
@@ -77,6 +70,7 @@ if ($result_tujuan) {
 
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="styles/admin-edit-detail.css">
+    <script type="module" src="../scripts/index.js"></script>
     <style>
         .popup {
             display: none;
@@ -157,7 +151,6 @@ if ($result_tujuan) {
     </div>
 </main>
 
-<!-- Pop-up untuk sukses -->
 <?php if (isset($success_message)): ?>
     <div id="popup-success" class="popup">
         <div class="popup-content">
@@ -167,7 +160,6 @@ if ($result_tujuan) {
     </div>
 <?php endif; ?>
 
-<!-- Pop-up untuk error -->
 <?php if (isset($error_message)): ?>
     <div id="popup-error" class="popup">
         <div class="popup-content">

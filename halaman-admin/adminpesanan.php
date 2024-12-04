@@ -1,12 +1,9 @@
 <?php
-// Include the database connection
 require '../koneksi.php';
 
-// Handle delete request
 if (isset($_POST['delete_id'])) {
     $delete_id = $_POST['delete_id'];
 
-    // Panggil stored procedure untuk menghapus pemesanan
     $delete_query = "CALL hapusPemesanan(?)";
     $stmt = $koneksi->prepare($delete_query);
     $stmt->bind_param("i", $delete_id);
@@ -22,7 +19,6 @@ if (isset($_POST['delete_id'])) {
 }
 
 
-// Fetch the orders data from tb_pemesanan, along with related schedule and user data
 $query = "SELECT p.id_pemesanan, p.username, p.nama_penumpang, p.jumlah_tiket, p.total, p.status_pembayaran, j.tgl_keberangkatan, j.jam_keberangkatan, r.kota_asal, r.kota_tujuan
           FROM tb_pemesanan p
           JOIN tb_busjadwal bj ON p.id_busjadwal = bj.id_busjadwal
@@ -44,8 +40,8 @@ if (!$result) {
     <title>Daftar Pesanan - Dashboard Admin</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="styles/adminjadwal.css">
+    <script type="module" src="../scripts/index.js"></script>
     <style>
-        /* Style for pop-up confirmation */
         .popup {
             display: none;
             position: fixed;
@@ -141,7 +137,6 @@ if (!$result) {
         </table>
     </main>
 
-    <!-- Pop-up konfirmasi hapus -->
     <div id="popup-delete" class="popup">
         <div class="popup-content popup-danger">
             <h3 tabindex="0">Apakah Anda yakin ingin menghapus pesanan ini?</h3>
@@ -154,13 +149,11 @@ if (!$result) {
     </div>
 
     <script>
-        // Fungsi untuk menampilkan pop-up
         function showDeletePopup(id_pemesanan) {
             document.getElementById('delete_id').value = id_pemesanan;
             document.getElementById('popup-delete').style.display = 'flex';
         }
 
-        // Fungsi untuk menutup pop-up
         function closePopup() {
             document.getElementById('popup-delete').style.display = 'none';
         }
@@ -170,6 +163,5 @@ if (!$result) {
 </html>
 
 <?php
-// Close the database connection
 $koneksi->close();
 ?>

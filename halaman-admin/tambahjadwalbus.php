@@ -1,33 +1,24 @@
 <?php
-// Include the database connection
 require '../koneksi.php';
 
-// Periksa apakah koneksi berhasil
 if ($koneksi->connect_error) {
     die("Koneksi ke database gagal: " . $koneksi->connect_error);
 }
 
-// Ambil data `id_bus` untuk dropdown
 $busQuery = "SELECT id_bus FROM tb_bus";
 $busResult = $koneksi->query($busQuery);
 
-// Ambil data `id_jadwal` untuk dropdown
 $jadwalQuery = "SELECT id_jadwal FROM tb_jadwal";
 $jadwalResult = $koneksi->query($jadwalQuery);
 
-// Variable untuk pesan
 $success_message = "";
 $error_message = "";
 
-// Periksa apakah form telah disubmit
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Ambil data dari form
     $id_bus = $_POST['id_bus'];
     $id_jadwal = $_POST['id_jadwal'];
 
-    // Validasi data
     if (!empty($id_bus) && !empty($id_jadwal)) {
-        // Query untuk insert data baru
         $insertQuery = "INSERT INTO tb_busjadwal (id_bus, id_jadwal) VALUES (?, ?)";
         $stmt = $koneksi->prepare($insertQuery);
         $stmt->bind_param("ii", $id_bus, $id_jadwal);
@@ -53,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Dashboard Admin</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="styles/admin-edit-detail.css">
+    <script type="module" src="../scripts/index.js"></script>
     <style>
-        /* Style for pop-up confirmation */
         .popup {
             display: none;
             position: fixed;
@@ -95,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
-
+<ind-loading-admin></ind-loading-admin>
 <header class="dashboard">
     <div class="navbar">
         <h1 tabindex="0" >Dashboard Admin</h1>
@@ -142,7 +133,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </main>
 
-<!-- Pop-up sukses -->
 <?php if (!empty($success_message)): ?>
     <div id="popup-success" class="popup">
         <div class="popup-content">
@@ -152,7 +142,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 <?php endif; ?>
 
-<!-- Pop-up error -->
 <?php if (!empty($error_message)): ?>
     <div id="popup-error" class="popup">
         <div class="popup-content">
@@ -163,18 +152,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php endif; ?>
 
 <script>
-    // Fungsi untuk menutup pop-up
     function closePopup() {
         document.getElementById('popup-error').style.display = 'none';
     }
 
-    // Fungsi untuk redirect setelah pop-up sukses ditutup
     function redirectToSchedule() {
         document.getElementById('popup-success').style.display = 'none';
-        window.location.href = 'adminjadwal.php'; // Redirect ke halaman jadwal
+        window.location.href = 'adminjadwal.php'; 
     }
 
-    // Tampilkan pop-up jika ada pesan
     <?php if (!empty($success_message)): ?>
         document.getElementById('popup-success').style.display = 'flex';
     <?php endif; ?>
@@ -182,11 +168,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if (!empty($error_message)): ?>
         document.getElementById('popup-error').style.display = 'flex';
     <?php endif; ?>
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.querySelector("form");
+        const loadingIndicator = document.querySelector("ind-loading-admin");
+
+        form.addEventListener("submit", (event) => {
+            // Mencegah form dari reload halaman secara default
+            event.preventDefault();
+
+            // Tampilkan indikator loading
+            loadingIndicator.style.display = "flex";
+            document.body.classList.add("no-scroll");
+
+            // Lakukan pengiriman data ke server
+            const formData = new FormData(form);
+            fetch(form.action, {
+                method: "POST",
+                body: formData,
+            })
+                .then((response) => response.text())
+                .then((result) => {
+                    // Sembunyikan indikator loading
+                    loadingIndicator.style.display = "none";
+                    document.body.classList.remove("no-scroll");
+
+                    // Tampilkan pesan sukses/gagal
+                    if (result.includes("Data jadwal bus berhasil ditambahkan")) {
+                        alert("Data jadwal bus berhasil ditambahkan!");
+                        window.location.href = "adminjadwal.php";
+                    } else {
+                        alert("Terjadi kesalahan: " + result);
+                    }
+                })
+                .catch((error) => {
+                    // Sembunyikan indikator loading
+                    loadingIndicator.style.display = "none";
+                    document.body.classList.remove("no-scroll");
+
+                    // Tampilkan pesan error
+                    alert("Gagal mengirim data. Silakan coba lagi.");
+                    console.error("Error:", error);
+                });
+        });
+    });
 </script>
 </body>
 </html>
 
 <?php
-// Close the database connection
 $koneksi->close();
 ?>

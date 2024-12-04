@@ -42,7 +42,7 @@ main {
   flex-direction: column;
   width: 16%;
   padding: 20px;
-  background-color: rgba(83, 144, 166, 0.8);
+  background-color: #5390a6;
   height: 100vh;
   justify-content: space-between;
 }

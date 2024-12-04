@@ -1,13 +1,10 @@
 <?php
-include '../koneksi.php'; // memastikan koneksi ke database
+include '../koneksi.php';
 
-// Memastikan id_bus ada dalam URL
 if (isset($_GET['id_bus'])) {
     $id_bus = $_GET['id_bus'];
 
-    // Cek apakah koneksi berhasil
     if ($koneksi) {
-        // Mengambil data bus berdasarkan id_bus
         $query = "SELECT * FROM tb_bus WHERE id_bus = ?";
         $stmt = $koneksi->prepare($query);
         $stmt->bind_param("i", $id_bus);
@@ -15,32 +12,27 @@ if (isset($_GET['id_bus'])) {
         $result = $stmt->get_result();
         $bus = $result->fetch_assoc();
 
-        // Menutup statement setelah selesai digunakan
         $stmt->close();
     } else {
         echo "Koneksi database gagal.";
         exit;
     }
 
-    // Menangani data yang diubah ketika form disubmit
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $no_plat = $_POST['no_plat'];
         $nama_sopir = $_POST['nama_sopir'];
         $kapasitas = $_POST['kapasitas'];
 
-        // Update query untuk menyimpan perubahan
         $update_query = "UPDATE tb_bus SET no_plat = ?, nama_sopir = ?, kapasitas = ? WHERE id_bus = ?";
         $update_stmt = $koneksi->prepare($update_query);
         $update_stmt->bind_param("ssii", $no_plat, $nama_sopir, $kapasitas, $id_bus);
 
-        // Eksekusi query update
         if ($update_stmt->execute()) {
-            $success_message = "Data bus berhasil diperbarui."; // Pesan keberhasilan
+            $success_message = "Data bus berhasil diperbarui."; 
         } else {
-            $error_message = "Gagal memperbarui data bus."; // Pesan kesalahan
+            $error_message = "Gagal memperbarui data bus.";
         }
 
-        // Menutup statement setelah digunakan
         $update_stmt->close();
     }
 } else {
@@ -57,6 +49,7 @@ if (isset($_GET['id_bus'])) {
     <title>Edit Bus</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="styles/admin-edit-detail.css">
+    <script type="module" src="../scripts/index.js"></script>
     <style>
         .popup {
             display: none;
@@ -127,7 +120,6 @@ if (isset($_GET['id_bus'])) {
     </div>
 </main>
 
-<!-- Pop-up untuk sukses -->
 <?php if (isset($success_message)): ?>
     <div id="popup-success" class="popup">
         <div class="popup-content">
@@ -137,7 +129,6 @@ if (isset($_GET['id_bus'])) {
     </div>
 <?php endif; ?>
 
-<!-- Pop-up untuk error -->
 <?php if (isset($error_message)): ?>
     <div id="popup-error" class="popup">
         <div class="popup-content">
@@ -153,7 +144,7 @@ if (isset($_GET['id_bus'])) {
     }
 
     function redirectToRoute() {
-        window.location.href = 'adminrute.php'; // Redirect ke halaman adminrute
+        window.location.href = 'adminrute.php';
     }
 
     <?php if (isset($success_message)): ?>
