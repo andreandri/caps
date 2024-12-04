@@ -142,6 +142,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
         button:hover {
             background-color: #0033cc;
         }
+        .legend {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            border: 1px solid #000;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 150px;
+            place-self: center;
+        }
+
+        .legend div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .legend .color-box {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+
+        .color-available {
+            background-color: gray;
+        }
+
+        .color-booked {
+            background-color: red;
+        }
     </style>
 </head>
 <body>
@@ -152,6 +184,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
     <main>
         <ind-loading-main></ind-loading-main>
         <h2 tabindex="0">Pilih Kursi</h2>
+        <div class="legend">
+            <div><div class="color-box color-available"></div>Belum Terisi</div>
+            <div><div class="color-box color-booked"></div>Sudah Terisi</div>
+        </div>
         <form action="" method="POST" id="seatForm">
             <input type="hidden" name="kursi_terpilih" id="kursiTerpilih">
             <div class="seat-container">
