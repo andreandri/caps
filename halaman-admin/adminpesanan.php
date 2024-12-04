@@ -129,7 +129,6 @@ if (!$result) {
                         <td tabindex="0"><?= $row['jam_keberangkatan']; ?></td>
                         <td tabindex="0"><?= $row['status_pembayaran']; ?></td>
                         <td tabindex="0" class="action-buttons">
-                            <a tabindex="0" href="editpesanan.php?id_pemesanan=<?= $row['id_pemesanan']; ?>">Edit</a>
                             <button tabindex="0" class="delete-button" onclick="showDeletePopup(<?= $row['id_pemesanan']; ?>)">Hapus</button>
                         </td>
                     </tr>
