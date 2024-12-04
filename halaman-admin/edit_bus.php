@@ -82,6 +82,17 @@ if (isset($_GET['id_bus'])) {
         .popup button:hover {
             background-color: #45a049;
         }
+        ind-loading-admin {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -161,9 +172,6 @@ if (isset($_GET['id_bus'])) {
         const loadingIndicator = document.querySelector("ind-loading-admin");
 
         form.addEventListener("submit", (event) => {
-            // Mencegah form dari reload halaman secara default
-            event.preventDefault();
-
             // Tampilkan indikator loading
             loadingIndicator.style.display = "flex";
             document.body.classList.add("no-scroll");
@@ -180,12 +188,11 @@ if (isset($_GET['id_bus'])) {
                     loadingIndicator.style.display = "none";
                     document.body.classList.remove("no-scroll");
 
-                    // Tampilkan pesan sukses/gagal
-                    if (result.includes("Data jadwal bus berhasil ditambahkan")) {
-                        alert("Data jadwal bus berhasil ditambahkan!");
-                        window.location.href = "adminrute.php";
+                    // Perbarui tampilan berdasarkan hasil
+                    if (result.includes("Data bus berhasil diperbarui")) {
+                        document.getElementById('popup-success').style.display = 'flex';
                     } else {
-                        alert("Terjadi kesalahan: " + result);
+                        document.getElementById('popup-error').style.display = 'flex';
                     }
                 })
                 .catch((error) => {
@@ -193,8 +200,8 @@ if (isset($_GET['id_bus'])) {
                     loadingIndicator.style.display = "none";
                     document.body.classList.remove("no-scroll");
 
-                    // Tampilkan pesan error
-                    alert("Gagal mengirim data. Silakan coba lagi.");
+                    // Tampilkan popup error
+                    document.getElementById('popup-error').style.display = 'flex';
                     console.error("Error:", error);
                 });
         });
@@ -202,3 +209,4 @@ if (isset($_GET['id_bus'])) {
 </script>
 </body>
 </html>
+
