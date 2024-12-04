@@ -195,10 +195,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     // Tampilkan pesan sukses/gagal
                     if (result.includes("Data jadwal bus berhasil ditambahkan")) {
-                        alert("Data jadwal bus berhasil ditambahkan!");
                         window.location.href = "adminjadwal.php";
                     } else {
-                        alert("Terjadi kesalahan: " + result);
                     }
                 })
                 .catch((error) => {
@@ -206,8 +204,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     loadingIndicator.style.display = "none";
                     document.body.classList.remove("no-scroll");
 
-                    // Tampilkan pesan error
-                    alert("Gagal mengirim data. Silakan coba lagi.");
                     console.error("Error:", error);
                 });
         });
