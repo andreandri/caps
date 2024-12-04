@@ -211,12 +211,50 @@ if ($result_tujuan) {
                     loadingIndicator.style.display = "none";
                     document.body.classList.remove("no-scroll");
 
-                    // Tampilkan pesan sukses/gagal
+                    // Tampilkan pesan sukses/gagal dalam popup
                     if (result.includes("Data jadwal bus berhasil ditambahkan")) {
-                        alert("Data jadwal bus berhasil ditambahkan!");
-                        window.location.href = "adminrute.php";
+                        const popup = document.createElement("div");
+                        popup.className = "popup";
+                        popup.style.display = "flex";
+
+                        const popupContent = document.createElement("div");
+                        popupContent.className = "popup-content";
+
+                        const message = document.createElement("h3");
+                        message.textContent = "Data jadwal bus berhasil ditambahkan!";
+
+                        const closeButton = document.createElement("button");
+                        closeButton.textContent = "Tutup";
+                        closeButton.addEventListener("click", () => {
+                            popup.style.display = "none";
+                            window.location.href = "adminrute.php";
+                        });
+
+                        popupContent.appendChild(message);
+                        popupContent.appendChild(closeButton);
+                        popup.appendChild(popupContent);
+                        document.body.appendChild(popup);
                     } else {
-                        alert("Terjadi kesalahan: " + result);
+                        const popup = document.createElement("div");
+                        popup.className = "popup";
+                        popup.style.display = "flex";
+
+                        const popupContent = document.createElement("div");
+                        popupContent.className = "popup-content";
+
+                        const message = document.createElement("h3");
+                        message.textContent = "Terjadi kesalahan. Silakan coba lagi.";
+
+                        const closeButton = document.createElement("button");
+                        closeButton.textContent = "Tutup";
+                        closeButton.addEventListener("click", () => {
+                            popup.style.display = "none";
+                        });
+
+                        popupContent.appendChild(message);
+                        popupContent.appendChild(closeButton);
+                        popup.appendChild(popupContent);
+                        document.body.appendChild(popup);
                     }
                 })
                 .catch((error) => {
@@ -224,8 +262,28 @@ if ($result_tujuan) {
                     loadingIndicator.style.display = "none";
                     document.body.classList.remove("no-scroll");
 
-                    // Tampilkan pesan error
-                    alert("Gagal mengirim data. Silakan coba lagi.");
+                    // Tampilkan pesan error dalam popup
+                    const popup = document.createElement("div");
+                    popup.className = "popup";
+                    popup.style.display = "flex";
+
+                    const popupContent = document.createElement("div");
+                    popupContent.className = "popup-content";
+
+                    const message = document.createElement("h3");
+                    message.textContent = "Gagal mengirim data. Silakan coba lagi.";
+
+                    const closeButton = document.createElement("button");
+                    closeButton.textContent = "Tutup";
+                    closeButton.addEventListener("click", () => {
+                        popup.style.display = "none";
+                    });
+
+                    popupContent.appendChild(message);
+                    popupContent.appendChild(closeButton);
+                    popup.appendChild(popupContent);
+                    document.body.appendChild(popup);
+
                     console.error("Error:", error);
                 });
         });
