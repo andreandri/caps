@@ -145,6 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     popup.style.display = 'none';
                     loadingElement.style.display = 'none';
                     alert('Foto berhasil diunggah!');
+                    window.location.reload(); // Refresh halaman setelah unggah berhasil
                 })
                 .catch(error => {
                     alert('Gagal mengunggah foto. Silakan coba lagi.');
@@ -165,10 +166,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Hapus foto saat tombol Hapus Foto ditekan
         if (deleteButton) {
             deleteButton.addEventListener('click', () => {
-    popup.style.display = 'none';
-    loadingElement.style.display = 'block'; // Tampilkan loading sebelum form dikirim
+            popup.style.display = 'none';
+            loadingElement.style.display = 'block'; // Tampilkan loading sebelum form dikirim
 
-    setTimeout(() => {
+        setTimeout(() => {
         const formData = new FormData();
         formData.append('deleteImage', true);
 
@@ -181,16 +182,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             loadingElement.style.display = 'none'; // Sembunyikan loading
 
             if (data.success) {
-                // Perbarui gambar avatar menjadi default-avatar
-                avatarPreview.style.backgroundImage = `url('uploads/${data.image}')`;
-
-                // Sembunyikan tombol "Hapus Foto" karena sudah default-avatar
-                deleteButton.style.display = 'none';
-                alert('Foto berhasil dihapus!');
-            } else {
-                alert(data.message || 'Gagal menghapus foto. Silakan coba lagi.');
-            }
-        })
+                        alert('Foto berhasil dihapus!');
+                        window.location.reload(); // Refresh halaman setelah foto dihapus
+                    } else {
+                        alert(data.message || 'Gagal menghapus foto. Silakan coba lagi.');
+                    }
+                })
         .catch(error => {
             loadingElement.style.display = 'none'; // Sembunyikan loading
             alert('Terjadi kesalahan saat menghapus foto. Silakan coba lagi.');
