@@ -104,20 +104,30 @@ h2, h3 {
   border-bottom: none; 
 }
 
-.logout {
-  width: 100%;
+.logout-link {
+  display: block; /* Agar memanjang sesuai kontainer */
+  width: 100%; 
+  text-align: center; 
   padding: 0.75rem;
-  background-color: #d9534f;
+  background-color: #dc3545; /* Warna merah */
   color: #fff;
+  font-size: 1rem;
   border: none;
   border-radius: 4px;
-  font-size: 1rem;
+  text-decoration: none;
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Tambahkan transisi */
+  margin-top: 1.5rem; /* Jarak atas */
 }
 
-.logout:hover {
-  background-color: #c9302c;
+.logout-link:hover {
+  background-color: #c82333; /* Warna merah lebih gelap untuk hover */
+  transform: scale(1.02); /* Efek sedikit membesar */
+}
+
+.logout-link:focus {
+  outline: 2px solid #ffc107; /* Fokus dengan warna kuning */
 }
 
 .foto {
