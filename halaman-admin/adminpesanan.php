@@ -99,6 +99,7 @@ if (!$result) {
     </header>
 
     <main class="main-content">
+    <ind-loading-admin></ind-loading-admin>
         <h1 tabindex="0">Daftar Pesanan</h1>
         <table>
             <thead>
@@ -149,6 +150,14 @@ if (!$result) {
     </div>
 
     <script>
+        const deleteForm = document.getElementById('delete-form');
+        const loadingIndicator = document.querySelector('ind-loading-admin');
+
+        deleteForm.addEventListener('submit', function () {
+            // Tampilkan elemen loading
+            loadingIndicator.style.display = 'block';
+        });
+
         function showDeletePopup(id_pemesanan) {
             document.getElementById('delete_id').value = id_pemesanan;
             document.getElementById('popup-delete').style.display = 'flex';
@@ -158,6 +167,7 @@ if (!$result) {
             document.getElementById('popup-delete').style.display = 'none';
         }
     </script>
+
 
 </body>
 </html>

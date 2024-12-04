@@ -167,5 +167,17 @@ table tr:hover {
   background-color: #f1f1f1;
 }
 
+@media (max-width: 1500px) {
+  .navbar h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .navbar h1 {
+    font-size: 1.5rem;
+  }
+}
+
 
 

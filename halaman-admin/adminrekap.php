@@ -41,6 +41,7 @@ $result = mysqli_query($koneksi, $query);
   </header>
 
     <main class="main-content">
+    <ind-loading-admin></ind-loading-admin>
         <h1 tabindex="0">Rekap Pendapatan Bulanan</h1>
         <table border="1">
             <thead>
