@@ -92,10 +92,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         const changeButton = document.getElementById('changeButton');
         const deleteButton = document.getElementById('deleteButton');
         const avatarPreview = document.getElementById('avatarPreview');
-        const loadingElement = document.createElement('ind-loading-profil');
-
-        document.body.appendChild(loadingElement);
-        loadingElement.style.display = 'none';
 
         cameraButton.addEventListener('click', () => {
             popup.style.display = 'block';
@@ -106,14 +102,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 const file = e.target.files[0];
                 const reader = new FileReader();
 
-                loadingElement.style.display = 'block';
-
                 reader.onload = function (event) {
-                    setTimeout(() => {
-                        avatarPreview.style.backgroundImage = `url(${event.target.result})`;
-                        loadingElement.style.display = 'none';
-                        popup.style.display = 'none';
-                    }, 1000);
+                    avatarPreview.style.backgroundImage = `url(${event.target.result})`;
+                    popup.style.display = 'none';
                 };
 
                 reader.readAsDataURL(file);
@@ -123,18 +114,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 fetch('', {
                     method: 'POST',
-                    body: formData
+                    body: formData,
                 })
-                .then(response => response.text())
-                .then(() => {
-                    popup.style.display = 'none';
-                    loadingElement.style.display = 'none';
-                    alert('Foto berhasil diunggah!');
-                    window.location.reload();
-                })
-                .catch(error => {
-                    alert('Gagal mengunggah foto. Silakan coba lagi.');
-                });
+                    .then(response => response.text())
+                    .then(() => {
+                        window.location.reload();
+                    })
+                    .catch(error => {
+                        console.error('Gagal mengunggah foto. Silakan coba lagi.', error);
+                    });
             }
         });
 
@@ -148,34 +136,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (deleteButton) {
             deleteButton.addEventListener('click', () => {
-            popup.style.display = 'none';
-            loadingElement.style.display = 'block';
+                popup.style.display = 'none';
 
-        setTimeout(() => {
-        const formData = new FormData();
-        formData.append('deleteImage', true);
+                const formData = new FormData();
+                formData.append('deleteImage', true);
 
-        fetch('', {
-            method: 'POST',
-            body: formData,
-        })
-        .then(response => response.json())
-        .then(data => {
-            loadingElement.style.display = 'none';
-            if (data.success) {
-                        alert('Foto berhasil dihapus!');
-                        window.location.reload(); 
-                    } else {
-                        alert(data.message || 'Gagal menghapus foto. Silakan coba lagi.');
-                    }
+                fetch('', {
+                    method: 'POST',
+                    body: formData,
                 })
-        .catch(error => {
-            loadingElement.style.display = 'none';
-            alert('Terjadi kesalahan saat menghapus foto. Silakan coba lagi.');
-        });
-    }, 1000); 
-});
-
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            window.location.reload();
+                        } else {
+                            console.error(data.message || 'Gagal menghapus foto. Silakan coba lagi.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Terjadi kesalahan saat menghapus foto. Silakan coba lagi.', error);
+                    });
+            });
         }
     });
     </script>
