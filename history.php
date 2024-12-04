@@ -49,6 +49,26 @@ $result = $stmt->get_result();
   <link rel="stylesheet" href="history.css">
   <link rel="icon" href="favicon.png" type="image/png">
   <script type="module" src="scripts/index.js"></script>
+  <style>
+    .pay-link {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        background-color: #4caf50;
+        padding: 5px 10px;
+        border-radius: 5px;
+        display: inline-block;
+    }
+
+    .pay-link:hover {
+        background-color: #45a049;
+    }
+
+    .status {
+        margin-top: 10px;
+        font-weight: bold;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -106,7 +126,13 @@ switch ($row['status_pembayaran']) {
                 </tr>
               </table>
               <div tabindex="0" class="status <?= strtolower($status_label); ?>">
-                <?= htmlspecialchars($status_label); ?>
+                <?php if ($row['status_pembayaran'] === 'pending'): ?>
+                  <a href="midtrans/examples/snap/checkout-process-simple-version.php?id_pemesanan=<?= htmlspecialchars($row['id_pemesanan']); ?>" class="pay-link">
+                    <?= htmlspecialchars($status_label); ?> - Klik untuk bayar
+                  </a>
+                <?php else: ?>
+                  <?= htmlspecialchars($status_label); ?>
+                <?php endif; ?>
               </div>
             </div>
           </div>
