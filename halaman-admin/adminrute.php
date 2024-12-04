@@ -106,6 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id']) &&
 </header>
 
 <main class="main-content">
+<ind-loading-admin></ind-loading-admin>
     <div>
         <h1 tabindex="0">Data Bus</h1>
         <table>

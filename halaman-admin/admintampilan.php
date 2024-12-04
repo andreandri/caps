@@ -24,7 +24,9 @@
       <a href="../fungsi/logout.php" class="logout">Logout</a>
     </div>
   </header>
-  <div class="main-content">
-  </div>
+  <main>
+  <ind-loading-admin></ind-loading-admin>
+    <div class="main-content"></div>
+  </main>
 </body>
 </html>

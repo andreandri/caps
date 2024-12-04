@@ -48,6 +48,7 @@ $result = mysqli_query($koneksi, $query);
   </header>
 
   <main class="detail-rekap">
+  <ind-loading-admin></ind-loading-admin>
     <div>
     <h1 tabindex="0">Detail Pesanan</h1>
 
