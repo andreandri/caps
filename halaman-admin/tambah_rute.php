@@ -1,14 +1,11 @@
 <?php
 include("../koneksi.php");
 
-// Proses penyimpanan data jika form disubmit
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $kota_asal = $_POST['kota_asal'];
     $kota_tujuan = $_POST['kota_tujuan'];
 
-    // Validasi input
     if (!empty($kota_asal) && !empty($kota_tujuan)) {
-        // Query untuk menyimpan data ke tabel tb_rute
         $sql = "INSERT INTO tb_rute (kota_asal, kota_tujuan) VALUES (?, ?)";
         $stmt = $koneksi->prepare($sql);
         $stmt->bind_param("ss", $kota_asal, $kota_tujuan);
@@ -25,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Query untuk mengambil nilai ENUM dari tabel rute untuk opsi kota asal dan tujuan
 $kota_query = "SHOW COLUMNS FROM tb_rute LIKE 'kota_asal'";
 $result = mysqli_query($koneksi, $kota_query);
 $kota_asal_enum = '';
@@ -53,6 +49,7 @@ if ($result_tujuan) {
     <title>Tambah Rute</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="styles/tambah.css">
+    <script type="module" src="../scripts/index.js"></script>
     <style>
         .popup {
             display: none;
@@ -133,7 +130,6 @@ if ($result_tujuan) {
     </form>
 </main>
 
-<!-- Pop-up untuk sukses -->
 <?php if (isset($success_message)): ?>
     <div id="popup-success" class="popup">
         <div class="popup-content">
@@ -143,7 +139,6 @@ if ($result_tujuan) {
     </div>
 <?php endif; ?>
 
-<!-- Pop-up untuk error -->
 <?php if (isset($error_message)): ?>
     <div id="popup-error" class="popup">
         <div class="popup-content">

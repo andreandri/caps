@@ -1,15 +1,12 @@
 <?php
-// Include the database connection
 require '../koneksi.php';
 
-// Handle delete request for Jadwal
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
     $delete_id = $_POST['delete_id'];
     $deleteQuery = "DELETE FROM tb_jadwal WHERE id_jadwal = ?";
     $stmt = $koneksi->prepare($deleteQuery);
     $stmt->bind_param("i", $delete_id);
     if ($stmt->execute()) {
-        // Redirect to the same page after delete without showing alert
         header("Location: adminjadwal.php");
         exit;
     } else {
@@ -17,7 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
     }
 }
 
-// Handle delete request for Bus Jadwal
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_bus_schedule_id']) && !empty($_POST['delete_bus_schedule_id'])) {
     $id_busjadwal = $_POST['delete_bus_schedule_id'];
 
@@ -36,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_bus_schedule_i
     $stmt->close();
 }
 
-// Query for Jadwal
 $query = "SELECT j.id_jadwal, r.kota_asal, r.kota_tujuan, j.tgl_keberangkatan, j.jam_keberangkatan, j.harga, j.status_jadwal
           FROM tb_jadwal j
           JOIN tb_rute r ON j.id_rute = r.id_rute
@@ -57,8 +52,8 @@ if (!$result) {
     <title>Dashboard Admin</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="styles/adminjadwal.css">
+    <script type="module" src="../scripts/index.js"></script>
     <style>
-        /* Style for pop-up confirmation */
         .popup {
             display: none;
             position: fixed;
@@ -99,7 +94,6 @@ if (!$result) {
     </style>
 </head>
 <body>
-
 <header class="dashboard">
     <div class="navbar">
         <h1 tabindex="0">Dashboard Admin</h1>
@@ -117,6 +111,7 @@ if (!$result) {
 </header>
     
 <main class="main-content">
+<ind-loading-admin></ind-loading-admin>
     <div>
         <h1 tabindex="0">Data Jadwal</h1>
         <table>
@@ -158,7 +153,6 @@ if (!$result) {
         </table>
         <a tabindex="0" href="tambahjadwal.php" class="tambah-rute">Tambah Jadwal</a>
 
-        <!-- Pop-up konfirmasi hapus Jadwal -->
         <div id="popup-delete" class="popup">
             <div class="popup-content popup-danger">
                 <h3 tabindex="0">Apakah Anda yakin ingin menghapus jadwal ini?</h3>
@@ -204,7 +198,6 @@ if (!$result) {
         </table>
         <a tabindex="0" href="tambahjadwalbus.php" class="tambah-rute">Tambah Jadwal</a>
 
-        <!-- Pop-up konfirmasi hapus Bus Jadwal -->
         <div id="popup-delete-bus" class="popup">
             <div class="popup-content popup-danger">
                 <h3 tabindex="0">Apakah Anda yakin ingin menghapus data bus jadwal ini?</h3>
@@ -219,27 +212,83 @@ if (!$result) {
 </main>
 
 <script>
-    // Fungsi untuk menampilkan pop-up Jadwal
+    const loadingIndicator = document.querySelector("ind-loading-admin");
+
+    function showLoading() {
+        loadingIndicator.style.display = "flex";
+    }
+
+    function hideLoading() {
+        loadingIndicator.style.display = "none";
+    }
+
     function showDeletePopup(id_jadwal) {
         document.getElementById('delete_id').value = id_jadwal;
         document.getElementById('popup-delete').style.display = 'flex';
     }
 
-    // Fungsi untuk menutup pop-up Jadwal
     function closePopup() {
         document.getElementById('popup-delete').style.display = 'none';
     }
 
-    // Fungsi untuk menampilkan pop-up Bus Jadwal
     function showDeleteBusPopup(id_busjadwal) {
         document.getElementById('delete_bus_schedule_id').value = id_busjadwal;
         document.getElementById('popup-delete-bus').style.display = 'flex';
     }
 
-    // Fungsi untuk menutup pop-up Bus Jadwal
     function closeBusPopup() {
         document.getElementById('popup-delete-bus').style.display = 'none';
     }
+
+    // Tangani form penghapusan jadwal
+    document.getElementById("delete-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        showLoading();
+
+        const formData = new FormData(this);
+        fetch("adminjadwal.php", {
+            method: "POST",
+            body: formData,
+        })
+            .then((response) => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert("Gagal menghapus jadwal");
+                }
+            })
+            .catch(() => {
+                alert("Terjadi kesalahan saat menghapus jadwal");
+            })
+            .finally(() => {
+                hideLoading();
+            });
+    });
+
+    // Tangani form penghapusan jadwal bus
+    document.getElementById("delete-bus-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        showLoading();
+
+        const formData = new FormData(this);
+        fetch("adminjadwal.php", {
+            method: "POST",
+            body: formData,
+        })
+            .then((response) => {
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert("Gagal menghapus bus jadwal");
+                }
+            })
+            .catch(() => {
+                alert("Terjadi kesalahan saat menghapus bus jadwal");
+            })
+            .finally(() => {
+                hideLoading();
+            });
+    });
 </script>
 </body>
 </html>

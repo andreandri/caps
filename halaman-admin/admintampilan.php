@@ -6,6 +6,7 @@
     <title>Dashboard Admin</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="styles/adminjadwal.css">
+    <script type="module" src="../scripts/index.js"></script>
 </head>
 <body>
   <header class="dashboard">
@@ -24,7 +25,6 @@
     </div>
   </header>
   <div class="main-content">
-    <!-- Konten utama akan ditampilkan di sini -->
   </div>
 </body>
 </html>

@@ -1,8 +1,6 @@
 <?php
-// Menghubungkan ke database
 include("../koneksi.php");
 
-// Logika untuk Hapus Bus
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_bus_id']) && !empty($_POST['delete_bus_id'])) {
     $id_bus = $_POST['delete_bus_id'];
 
@@ -21,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_bus_id']) && !
     $stmt->close();
 }
 
-// Logika untuk Hapus Rute
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id']) && !empty($_POST['delete_route_id'])) {
     $id_rute = $_POST['delete_route_id'];
 
@@ -48,9 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id']) &&
     <title>Dashboard Admin</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="styles/adminjadwal.css">
+    <script type="module" src="../scripts/index.js"></script>
 
     <style>
-        /* Style untuk Pop-up */
         .popup {
             display: none;
             position: fixed;
@@ -109,7 +106,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id']) &&
 </header>
 
 <main class="main-content">
-    <!-- Tabel Bus -->
     <div>
         <h1 tabindex="0">Data Bus</h1>
         <table>
@@ -149,7 +145,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id']) &&
         <a tabindex="0" href="tambah_bus.php" class="tambah-rute">Tambah Bus</a>
     </div>
 
-    <!-- Tabel Rute -->
     <div class="table-section">
         <h1 tabindex="0">Data Rute</h1>
         <table>
@@ -188,7 +183,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id']) &&
     </div>
 </main>
 
-<!-- Pop-up konfirmasi hapus -->
 <div id="popup-delete" class="popup">
     <div class="popup-content popup-danger">
         <h3 tabindex="0" id="popup-message">Apakah Anda yakin ingin menghapus?</h3>
@@ -203,22 +197,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_route_id']) &&
 </div>
 
 <script>
-    // Menampilkan pop-up konfirmasi hapus
     function showDeletePopup(type, id) {
-        // Set ID yang sesuai berdasarkan tipe
         if (type === 'bus') {
             document.getElementById('delete_bus_id').value = id;
-            document.getElementById('delete_route_id').value = ''; // Kosongkan id_rute
+            document.getElementById('delete_route_id').value = '';
             document.getElementById('popup-message').innerText = 'Apakah Anda yakin ingin menghapus bus ini?';
         } else if (type === 'route') {
             document.getElementById('delete_route_id').value = id;
-            document.getElementById('delete_bus_id').value = ''; // Kosongkan id_bus
+            document.getElementById('delete_bus_id').value = '';
             document.getElementById('popup-message').innerText = 'Apakah Anda yakin ingin menghapus rute ini?';
         }
         document.getElementById('popup-delete').style.display = 'flex';
     }
 
-    // Menutup pop-up
     function closePopup() {
         document.getElementById('popup-delete').style.display = 'none';
     }

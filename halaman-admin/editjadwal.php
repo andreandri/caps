@@ -1,20 +1,16 @@
 <?php
-// Include the database connection
 require '../koneksi.php';
 
-// Periksa apakah koneksi berhasil
 if ($koneksi->connect_error) {
     die("Koneksi ke database gagal: " . $koneksi->connect_error);
 }
 
-// Check if `id_jadwal` is provided in the query string
 if (!isset($_GET['id_jadwal'])) {
     die("Id Jadwal tidak ditemukan!");
 }
 
 $id_jadwal = $_GET['id_jadwal'];
 
-// Fetch the schedule data for the given id_jadwal
 $query = "SELECT j.id_jadwal, r.id_rute, r.kota_asal, r.kota_tujuan, j.tgl_keberangkatan, j.jam_keberangkatan, j.harga
           FROM tb_jadwal j
           JOIN tb_rute r ON j.id_rute = r.id_rute
@@ -30,11 +26,9 @@ if ($result->num_rows === 0) {
 
 $row = $result->fetch_assoc();
 
-// Variable untuk pesan
 $success_message = "";
 $error_message = "";
 
-// Check if form is submitted to update data
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Ambil data dari form
     $id_rute = $_POST['id_rute'];
@@ -42,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $jam_keberangkatan = $_POST['jam_keberangkatan'];
     $harga = $_POST['harga'];
 
-    // Validasi data sebelum di-update
     if (!empty($id_rute) && !empty($tgl_keberangkatan) && !empty($jam_keberangkatan) && is_numeric($harga)) {
         // Update query
         $updateQuery = "UPDATE tb_jadwal 
@@ -70,8 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <title>Edit Jadwal</title>
         <link rel="icon" href="favicon.png" type="image/png">
         <link rel="stylesheet" href="styles/admin-edit-detail.css">
+        <script type="module" src="../scripts/index.js"></script>
         <style>
-            /* Style untuk pop-up */
             .popup {
                 display: none;
                 position: fixed;
@@ -145,7 +138,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </main>
 
-<!-- Pop-up sukses -->
 <?php if (!empty($success_message)): ?>
     <div id="popup-success" class="popup">
         <div class="popup-content">
@@ -155,7 +147,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 <?php endif; ?>
 
-<!-- Pop-up error -->
 <?php if (!empty($error_message)): ?>
     <div id="popup-error" class="popup">
         <div class="popup-content">
@@ -166,18 +157,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php endif; ?>
 
 <script>
-    // Fungsi untuk menutup pop-up
     function closePopup() {
         document.getElementById('popup-error').style.display = 'none';
     }
 
-    // Fungsi untuk redirect setelah pop-up sukses ditutup
     function redirectToSchedule() {
         document.getElementById('popup-success').style.display = 'none';
-        window.location.href = 'adminjadwal.php'; // Redirect ke halaman jadwal
+        window.location.href = 'adminjadwal.php';
     }
 
-    // Tampilkan pop-up jika ada pesan
     <?php if (!empty($success_message)): ?>
         document.getElementById('popup-success').style.display = 'flex';
     <?php endif; ?>
@@ -190,6 +178,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </html>
 
 <?php
-// Close the database connection
 $koneksi->close();
 ?>

@@ -1,11 +1,8 @@
 <?php
-// Koneksi ke database
 include '../koneksi.php';
 
-// Mendapatkan bulan dari URL
 $bulan = $_GET['bulan'];
 
-// Query untuk mengambil tanggal keberangkatan, rute, dan pendapatan pada bulan tersebut
 $query = "SELECT 
             j.tgl_keberangkatan, 
             r.kota_asal, 
@@ -30,6 +27,7 @@ $result = mysqli_query($koneksi, $query);
     <title>Detail Pemesanan - Bulan <?php echo $bulan; ?></title>
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="styles/detailrekap.css">
+    <script type="module" src="../scripts/index.js"></script>
 </head>
 <body>
 
