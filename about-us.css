@@ -159,7 +159,6 @@ header {
   margin: 0;
 }
 
-/* Features */
 .features {
   text-align: center;
   padding: 0 40px 40px;
@@ -190,7 +189,6 @@ header {
   font-size: 1.2rem;
 }
 
-/* Mobile-first responsive styling */
 @media (max-width: 1300px) {
   .about-us img{
     width: 65%;

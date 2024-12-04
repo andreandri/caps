@@ -85,7 +85,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form action="tiketmasuk.php" method="POST" class="form">
       <h2 tabindex="0">Informasi Penumpang</h2>
       
-      <!-- Input hidden untuk menyimpan id_busjadwal dan kursi yang dipilih -->
       <input tabindex="0" type="hidden" name="id_busjadwal" value="<?php echo htmlspecialchars($id_busjadwal); ?>">
       <input tabindex="0" type="hidden" name="kursi[]" value="<?php echo implode(',', $kursi); ?>"> <!-- Menyimpan kursi yang dipilih dalam form -->
 
@@ -111,23 +110,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <script>
     function validatePhoneNumber(input) {
-      // Pastikan input selalu diawali dengan +62
       if (!input.value.startsWith('+62')) {
         input.value = '+62';
       }
-      // Hapus karakter selain angka setelah +62
       input.value = input.value.replace(/(\+62)[^0-9]+/g, '$1').substring(0, 16);
     }
   </script>
 
-
-      <!-- Menampilkan kursi yang dipilih -->
       <h3 tabindex="0">Nomor Kursi yang Dipilih:</h3>
       <ul tabindex="0">
         <?php
           if (!empty($kursi)) {
             foreach ($kursi as $k) {
-              // Mengambil nomor kursi berdasarkan ID kursi yang dipilih
               $sql_kursi = $koneksi->prepare("SELECT nomor_kursi FROM tb_kursi WHERE id_kursi = ?");
               $sql_kursi->bind_param("i", $k);
               $sql_kursi->execute();

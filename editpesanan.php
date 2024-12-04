@@ -1,12 +1,9 @@
 <?php
-// Include the database connection
 require '../koneksi.php';
 
-// Check if the 'id_pemesanan' is passed in the URL
 if (isset($_GET['id_pemesanan'])) {
     $id_pemesanan = $_GET['id_pemesanan'];
 
-    // Fetch the current data for the booking to be edited
     $query = "SELECT p.id_pemesanan, p.username, p.nama_penumpang, p.jumlah_tiket, p.total, 
                      j.tgl_keberangkatan, j.jam_keberangkatan, r.kota_asal, r.kota_tujuan, bj.id_busjadwal
               FROM tb_pemesanan p
@@ -15,13 +12,11 @@ if (isset($_GET['id_pemesanan'])) {
               JOIN tb_rute r ON j.id_rute = r.id_rute
               WHERE p.id_pemesanan = ?";
     
-    // Prepare statement to avoid SQL injection
     if ($stmt = $koneksi->prepare($query)) {
         $stmt->bind_param("i", $id_pemesanan);
         $stmt->execute();
         $result = $stmt->get_result();
         
-        // Fetch the result
         $row = $result->fetch_assoc();
         
         if (!$row) {
@@ -32,11 +27,9 @@ if (isset($_GET['id_pemesanan'])) {
     }
 }
 
-// Initialize messages
 $success_message = "";
 $error_message = "";
 
-// Handle the form submission for editing the booking
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $nama_penumpang = $_POST['nama_penumpang'];
@@ -44,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $total = $_POST['total'];
     $id_busjadwal = $_POST['id_busjadwal'];
 
-    // Update the booking details in the database
     $update_query = "UPDATE tb_pemesanan SET 
                          username = ?, 
                          nama_penumpang = ?, 
@@ -67,7 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Fetch the list of available bus schedules for the dropdown
 $busjadwal_query = "SELECT bj.id_busjadwal, j.tgl_keberangkatan, j.jam_keberangkatan 
                     FROM tb_busjadwal bj
                     JOIN tb_jadwal j ON bj.id_jadwal = j.id_jadwal";
@@ -77,7 +68,6 @@ if (!$busjadwal_result) {
     die("Query Error: " . $koneksi->error);
 }
 
-// Close the database connection
 $koneksi->close();
 ?>
 
@@ -90,7 +80,6 @@ $koneksi->close();
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="styles/admin-edit-detail.css">
     <style>
-        /* Pop-up styling */
         .popup {
             display: none;
             position: fixed;
@@ -172,7 +161,6 @@ $koneksi->close();
     </div>
 </main>
 
-<!-- Pop-up sukses -->
 <?php if (!empty($success_message)): ?>
     <div id="popup-success" class="popup">
         <div class="popup-content">
@@ -182,7 +170,6 @@ $koneksi->close();
     </div>
 <?php endif; ?>
 
-<!-- Pop-up error -->
 <?php if (!empty($error_message)): ?>
     <div id="popup-error" class="popup">
         <div class="popup-content">

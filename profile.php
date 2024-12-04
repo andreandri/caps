@@ -2,11 +2,9 @@
 session_start();
 include 'koneksi.php';
 
-// Ambil data pengguna dari session
 $username = $_SESSION['username'];
 $email = $_SESSION['email'];
 
-// Ambil data gambar dari database
 $query = "SELECT image FROM tb_users WHERE username = ?";
 $stmt = $koneksi->prepare($query);
 $stmt->bind_param("s", $username);

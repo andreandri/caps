@@ -193,6 +193,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if (!empty($error_message)): ?>
         document.getElementById('popup-error').style.display = 'flex';
     <?php endif; ?>
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.querySelector("form");
+        const loadingIndicator = document.querySelector("ind-loading-admin");
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            loadingIndicator.style.display = "flex";
+            document.body.classList.add("no-scroll");
+
+            const formData = new FormData(form);
+            fetch(form.action, {
+                method: "POST",
+                body: formData,
+            })
+                .then((response) => response.text())
+                .then((result) => {
+                    loadingIndicator.style.display = "none";
+                    document.body.classList.remove("no-scroll");
+
+                    if (result.includes("Data jadwal bus berhasil diperbarui")) {
+                        window.location.href = "adminjadwal.php";
+                    } else {
+                        alert("Terjadi kesalahan: " + result);
+                    }
+                })
+                .catch((error) => {
+                    loadingIndicator.style.display = "none";
+                    document.body.classList.remove("no-scroll");
+
+                    console.error("Error:", error);
+                });
+        });
+    });
 </script>
 
 </body>

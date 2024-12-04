@@ -37,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $harga = $_POST['harga'];
 
     if (!empty($id_rute) && !empty($tgl_keberangkatan) && !empty($jam_keberangkatan) && is_numeric($harga)) {
-        // Update query
         $updateQuery = "UPDATE tb_jadwal 
                         SET id_rute = ?, tgl_keberangkatan = ?, jam_keberangkatan = ?, harga = ? 
                         WHERE id_jadwal = ?";
@@ -180,14 +179,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         const loadingIndicator = document.querySelector("ind-loading-admin");
 
         form.addEventListener("submit", (event) => {
-            // Mencegah form dari reload halaman secara default
             event.preventDefault();
 
-            // Tampilkan indikator loading
             loadingIndicator.style.display = "flex";
             document.body.classList.add("no-scroll");
 
-            // Lakukan pengiriman data ke server
             const formData = new FormData(form);
             fetch(form.action, {
                 method: "POST",
@@ -195,23 +191,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             })
                 .then((response) => response.text())
                 .then((result) => {
-                    // Sembunyikan indikator loading
                     loadingIndicator.style.display = "none";
                     document.body.classList.remove("no-scroll");
 
-                    // Tampilkan pesan sukses/gagal
-                    if (result.includes("Data jadwal bus berhasil ditambahkan")) {
+                    if (result.includes("Data jadwal bus berhasil diperbarui")) {
                         window.location.href = "adminjadwal.php";
                     } else {
                         alert("Terjadi kesalahan: " + result);
                     }
                 })
                 .catch((error) => {
-                    // Sembunyikan indikator loading
                     loadingIndicator.style.display = "none";
                     document.body.classList.remove("no-scroll");
 
-                    // Tampilkan pesan error
                     console.error("Error:", error);
                 });
         });

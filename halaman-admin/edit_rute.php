@@ -192,14 +192,11 @@ if ($result_tujuan) {
         const loadingIndicator = document.querySelector("ind-loading-admin");
 
         form.addEventListener("submit", (event) => {
-            // Mencegah form dari reload halaman secara default
             event.preventDefault();
 
-            // Tampilkan indikator loading
             loadingIndicator.style.display = "flex";
             document.body.classList.add("no-scroll");
 
-            // Lakukan pengiriman data ke server
             const formData = new FormData(form);
             fetch(form.action, {
                 method: "POST",
@@ -207,12 +204,10 @@ if ($result_tujuan) {
             })
                 .then((response) => response.text())
                 .then((result) => {
-                    // Sembunyikan indikator loading
                     loadingIndicator.style.display = "none";
                     document.body.classList.remove("no-scroll");
 
-                    // Tampilkan pesan sukses/gagal dalam popup
-                    if (result.includes("Data jadwal bus berhasil ditambahkan")) {
+                    if (result.includes("Data jadwal bus berhasil diperbarui")) {
                         const popup = document.createElement("div");
                         popup.className = "popup";
                         popup.style.display = "flex";
@@ -221,7 +216,7 @@ if ($result_tujuan) {
                         popupContent.className = "popup-content";
 
                         const message = document.createElement("h3");
-                        message.textContent = "Data jadwal bus berhasil ditambahkan!";
+                        message.textContent = "Data jadwal bus berhasil diperbarui!";
 
                         const closeButton = document.createElement("button");
                         closeButton.textContent = "Tutup";
@@ -258,11 +253,9 @@ if ($result_tujuan) {
                     }
                 })
                 .catch((error) => {
-                    // Sembunyikan indikator loading
                     loadingIndicator.style.display = "none";
                     document.body.classList.remove("no-scroll");
 
-                    // Tampilkan pesan error dalam popup
                     const popup = document.createElement("div");
                     popup.className = "popup";
                     popup.style.display = "flex";

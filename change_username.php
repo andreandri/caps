@@ -2,7 +2,6 @@
 session_start();
 include 'koneksi.php';
 
-// Retrieve current username from session
 $username = $_SESSION['username'];
 $message = "";
 
@@ -10,7 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $new_username = $_POST['new_username'];
     $sandi = $_POST['sandi'];
 
-    // Periksa sandi pengguna
     $query = "SELECT sandi FROM tb_users WHERE username = ?";
     $stmt = $koneksi->prepare($query);
     $stmt->bind_param("s", $username);
@@ -20,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->close();
 
     if ($sandi === $stored_password) {
-        // Update username
         $update_query = "UPDATE tb_users SET username = ? WHERE username = ?";
         $stmt = $koneksi->prepare($update_query);
         $stmt->bind_param("ss", $new_username, $username);
@@ -53,11 +50,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             const toggleIcon = document.getElementById('toggle-password-icon');
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                toggleIcon.src = 'img/buka.png'; // Ganti dengan ikon "lihat"
+                toggleIcon.src = 'img/buka.png';
                 toggleIcon.alt = 'Sembunyikan Sandi';
             } else {
                 passwordInput.type = 'password';
-                toggleIcon.src = 'img/tutup.png'; // Ganti dengan ikon "tutup"
+                toggleIcon.src = 'img/tutup.png';
                 toggleIcon.alt = 'Lihat Sandi';
             }
         }

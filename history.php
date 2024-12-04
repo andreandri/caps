@@ -1,18 +1,14 @@
 <?php
-// Koneksi ke database
 include 'koneksi.php';
 
-// Mulai sesi untuk mengambil username
 session_start();
-$username = $_SESSION['username'] ?? null; // Ambil username dari sesi login
+$username = $_SESSION['username'] ?? null;
 
-// Periksa apakah user sudah login
 if (!$username) {
     echo "Anda harus login terlebih dahulu.";
     exit;
 }
 
-// Query untuk mengambil data pemesanan
 $query = "
     SELECT 
         p.id_pemesanan, 

@@ -27,22 +27,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
     $kursi = json_decode($_POST['kursi_terpilih'], true);
     $update_kursi = $koneksi->prepare("UPDATE tb_kursi SET status = 'selected' WHERE id_kursi = ?");
 
-    $koneksi->begin_transaction(); // Mulai transaksi
+    $koneksi->begin_transaction();
     try {
         foreach ($kursi as $k) {
             $update_kursi->bind_param("i", $k);
             $update_kursi->execute();
         }
-        $koneksi->commit(); // Komit transaksi
+        $koneksi->commit();
 
-        // Simpan kursi yang dipilih ke dalam session
         $_SESSION['kursi_terpilih'] = $kursi;
 
-        // Redirect ke halaman tiketmasuk.php
         header("Location: tiketmasuk.php?id_busjadwal=$id_busjadwal");
         exit();
     } catch (Exception $e) {
-        $koneksi->rollback(); // Batalkan transaksi jika terjadi kesalahan
+        $koneksi->rollback(); 
         echo "Terjadi kesalahan: " . $e->getMessage();
     }
 }
@@ -175,7 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
             background-color: red;
         }
         .popup {
-            display: none; /* Default tidak terlihat */
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -188,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
         }
 
         .popup.show {
-            display: flex; /* Tampilkan popup saat dibutuhkan */
+            display: flex;
         }
 
         .popup-content {
@@ -230,6 +228,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
     </style>
 </head>
 <body>
+    <header>
+        <bar-pesan-app></bar-pesan-app>
+    </header>
     <main>
         <ind-loading-main></ind-loading-main>
         <h2 tabindex="0">Pilih Kursi</h2>
@@ -272,7 +273,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
             </div>
             <button tabindex="0" type="submit">Konfirmasi</button>
         </form>
-        <!-- Popup untuk konfirmasi -->
         <div class="popup" id="confirmationPopup">
                     <div class="popup-content">
                         <h2>Apakah Anda yakin dengan pilihan Anda?</h2>
@@ -308,18 +308,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
                 });
 
                 confirmButton.addEventListener('click', (e) => {
-                    e.preventDefault(); // Mencegah form dikirim langsung
-                    confirmationPopup.style.display = 'flex'; // Menampilkan popup
+                    e.preventDefault(); 
+                    confirmationPopup.style.display = 'flex';
                 });
 
                 cancelPopup.addEventListener('click', () => {
-                    confirmationPopup.style.display = 'none'; // Menutup popup
+                    confirmationPopup.style.display = 'none'; 
                 });
 
                 confirmSubmit.addEventListener('click', () => {
-                    confirmationPopup.style.display = 'none'; // Menutup popup sebelum submit
-                    kursiTerpilih.value = JSON.stringify([...selectedSeats]); // Set data kursi yang dipilih
-                    seatForm.submit(); // Submit form setelah konfirmasi
+                    confirmationPopup.style.display = 'none';
+                    kursiTerpilih.value = JSON.stringify([...selectedSeats]);
+                    seatForm.submit();
                 });
             });
         </script>

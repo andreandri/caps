@@ -135,10 +135,8 @@
             </div>
           </div>
       </section>
-
       </main>
 
-      <!-- Footer -->
       <footer>
         <footerawal-app></footerawal-app>
       </footer>

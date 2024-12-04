@@ -112,7 +112,6 @@ section {
   padding-left: 15px;
 }
 
-/* Mobile Styles */
 @media screen and (max-width: 768px) {
   main {
     margin: 10px;

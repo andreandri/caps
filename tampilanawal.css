@@ -230,7 +230,6 @@ section[id] {
   margin: 0;
 }
 
-/* Features */
 .features {
   text-align: center;
   padding: 0 40px 40px;
@@ -261,7 +260,6 @@ section[id] {
   font-size: 1.2rem;
 }
 
-/* Mobile-first responsive styling */
 @media (max-width: 1300px) {
   .hero-image img {
     max-width: 500px;

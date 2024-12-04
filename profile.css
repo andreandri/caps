@@ -105,11 +105,11 @@ h2, h3 {
 }
 
 .logout-link {
-  display: block; /* Agar memanjang sesuai kontainer */
+  display: block;
   width: 100%; 
   text-align: center; 
   padding: 0.75rem;
-  background-color: #dc3545; /* Warna merah */
+  background-color: #dc3545;
   color: #fff;
   font-size: 1rem;
   border: none;
@@ -117,17 +117,17 @@ h2, h3 {
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Tambahkan transisi */
-  margin-top: 1.5rem; /* Jarak atas */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 1.5rem;
 }
 
 .logout-link:hover {
-  background-color: #c82333; /* Warna merah lebih gelap untuk hover */
-  transform: scale(1.02); /* Efek sedikit membesar */
+  background-color: #c82333;
+  transform: scale(1.02);
 }
 
 .logout-link:focus {
-  outline: 2px solid #ffc107; /* Fokus dengan warna kuning */
+  outline: 2px solid #ffc107;
 }
 
 .foto {

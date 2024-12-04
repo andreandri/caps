@@ -157,14 +157,11 @@ if (!$routeResult) {
         const loadingIndicator = document.querySelector("ind-loading-admin");
 
         form.addEventListener("submit", (event) => {
-            // Mencegah form dari reload halaman secara default
             event.preventDefault();
 
-            // Tampilkan indikator loading
             loadingIndicator.style.display = "flex";
             document.body.classList.add("no-scroll");
 
-            // Lakukan pengiriman data ke server
             const formData = new FormData(form);
             fetch(form.action, {
                 method: "POST",
@@ -175,14 +172,12 @@ if (!$routeResult) {
                     loadingIndicator.style.display = "none";
                     document.body.classList.remove("no-scroll");
 
-                    // Tampilkan pesan sukses/gagal
                     if (result.includes("Data jadwal bus berhasil ditambahkan")) {
                         window.location.href = "adminjadwal.php";
                     } else {
                     }
                 })
                 .catch((error) => {
-                    // Sembunyikan indikator loading
                     loadingIndicator.style.display = "none";
                     document.body.classList.remove("no-scroll");
 

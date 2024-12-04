@@ -16,7 +16,6 @@
   <header>
     <bar-tiket-app></bar-tiket-app>
   </header>
-    <!-- Container -->
     <main>
       <ind-loading-main></ind-loading-main>
       <section class="jadwal">
@@ -45,7 +44,6 @@
 
               $result = $koneksi->query($sql);
 
-              // Loop untuk menampilkan data dari hasil query
               if ($result->num_rows > 0) {
                   while ($row = $result->fetch_assoc()) {
                       echo '<div class="schedule-item">';
@@ -59,7 +57,6 @@
                   echo "<p style='color: red; text-align: center; padding: 2rem; margin: 1rem 0; font-weight: bold;' tabindex='0'>Tidak ada jadwal keberangkatan tersedia.</p>";
               }
 
-              // Menutup koneksi
               $koneksi->close();
               ?>
           </div>

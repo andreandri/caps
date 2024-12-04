@@ -172,11 +172,9 @@ if (isset($_GET['id_bus'])) {
         const loadingIndicator = document.querySelector("ind-loading-admin");
 
         form.addEventListener("submit", (event) => {
-            // Tampilkan indikator loading
             loadingIndicator.style.display = "flex";
             document.body.classList.add("no-scroll");
 
-            // Lakukan pengiriman data ke server
             const formData = new FormData(form);
             fetch(form.action, {
                 method: "POST",
@@ -184,11 +182,9 @@ if (isset($_GET['id_bus'])) {
             })
                 .then((response) => response.text())
                 .then((result) => {
-                    // Sembunyikan indikator loading
                     loadingIndicator.style.display = "none";
                     document.body.classList.remove("no-scroll");
 
-                    // Perbarui tampilan berdasarkan hasil
                     if (result.includes("Data bus berhasil diperbarui")) {
                         document.getElementById('popup-success').style.display = 'flex';
                     } else {
@@ -196,11 +192,9 @@ if (isset($_GET['id_bus'])) {
                     }
                 })
                 .catch((error) => {
-                    // Sembunyikan indikator loading
                     loadingIndicator.style.display = "none";
                     document.body.classList.remove("no-scroll");
 
-                    // Tampilkan popup error
                     document.getElementById('popup-error').style.display = 'flex';
                     console.error("Error:", error);
                 });

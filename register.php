@@ -2,7 +2,7 @@
 session_start();
 include("koneksi.php");
 
-$success_message = ""; // Variabel untuk pesan sukses
+$success_message = "";
 
 if (isset($_POST['register'])) {
     $username = $_POST['username'];
