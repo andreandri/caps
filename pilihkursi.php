@@ -142,59 +142,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
         button:hover {
             background-color: #0033cc;
         }
-
-        .popup {
-            display: none; /* Default tidak terlihat */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .popup.show {
-            display: flex; /* Tampilkan popup saat dibutuhkan */
-        }
-
-        .popup-content {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            text-align: center;
-            max-width: 400px;
-            width: 100%;
-        }
-
-        .popup-content h2 {
-            margin-bottom: 20px;
-            font-size: 20px;
-        }
-
-        .popup-content button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 16px;
-            margin: 5px;
-        }
-
-        .popup-content button:hover {
-            background-color: #45a049;
-        }
-
-        .popup-content .cancel-btn {
-            background-color: #ff4d4d;
-        }
-
-        .popup-content .cancel-btn:hover {
-            background-color: #d11a2a;
-        }
     </style>
 </head>
 <body>
@@ -240,57 +187,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
             </div>
             <button tabindex="0" type="submit">Konfirmasi</button>
         </form>
-        <!-- Popup untuk konfirmasi -->
-        <div class="popup" id="confirmationPopup">
-                    <div class="popup-content">
-                        <h2>Apakah Anda yakin dengan pilihan Anda?</h2>
-                        <button id="confirmSubmit">Ya</button>
-                        <button class="cancel-btn" id="cancelPopup">Tidak</button>
-                    </div>
-                </div>
+
         <script>
             document.addEventListener('DOMContentLoaded', () => {
-            const selectedSeats = new Set();
-            const seatElements = document.querySelectorAll('.seat.available');
-            const seatForm = document.getElementById('seatForm');
-            const kursiTerpilih = document.getElementById('kursiTerpilih');
-            const confirmationPopup = document.getElementById('confirmationPopup');
-            const confirmSubmit = document.getElementById('confirmSubmit');
-            const cancelPopup = document.getElementById('cancelPopup');
-            const confirmButton = document.querySelector('button[type="submit"]');
+                const selectedSeats = new Set();
+                const seatElements = document.querySelectorAll('.seat.available');
+                const seatForm = document.getElementById('seatForm');
+                const kursiTerpilih = document.getElementById('kursiTerpilih');
 
-            seatElements.forEach(seat => {
-                seat.addEventListener('click', () => {
-                    const seatId = seat.dataset.id;
+                seatElements.forEach(seat => {
+                    seat.addEventListener('click', () => {
+                        const seatId = seat.dataset.id;
 
-                    if (selectedSeats.has(seatId)) {
-                        selectedSeats.delete(seatId);
-                        seat.classList.remove('selected');
-                        seat.classList.add('available');
-                    } else {
-                        selectedSeats.add(seatId);
-                        seat.classList.remove('available');
-                        seat.classList.add('selected');
-                    }
+                        if (selectedSeats.has(seatId)) {
+                            selectedSeats.delete(seatId);
+                            seat.classList.remove('selected');
+                            seat.classList.add('available');
+                        } else {
+                            selectedSeats.add(seatId);
+                            seat.classList.remove('available');
+                            seat.classList.add('selected');
+                        }
+                    });
+                });
+
+                seatForm.addEventListener('submit', (e) => {
+                    kursiTerpilih.value = JSON.stringify([...selectedSeats]);
                 });
             });
-
-            confirmButton.addEventListener('click', (e) => {
-                e.preventDefault(); // Mencegah form dikirim langsung
-                confirmationPopup.style.display = 'flex'; // Menampilkan popup
-            });
-
-            cancelPopup.addEventListener('click', () => {
-                confirmationPopup.style.display = 'none'; // Menutup popup
-            });
-
-            confirmSubmit.addEventListener('click', () => {
-                confirmationPopup.style.display = 'none'; // Menutup popup sebelum submit
-                kursiTerpilih.value = JSON.stringify([...selectedSeats]); // Set data kursi yang dipilih
-                seatForm.submit(); // Submit form setelah konfirmasi
-            });
-        });
-
         </script>
     </main>
 </body>

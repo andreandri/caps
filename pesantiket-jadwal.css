@@ -183,6 +183,8 @@ button:hover {
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 20px;
   margin: 2rem 0;
+  width: 100%;
+  place-self: center;  
 }
 
 .card {
@@ -197,6 +199,9 @@ button:hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   line-height: 1.4;
+  place-self: center;
+  max-width: 400px;
+  width : 100%;
 }
 
 .card:hover {
@@ -208,7 +213,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  width: 100%;
 }
 
 .card-content h3 {
@@ -222,13 +227,6 @@ button:hover {
 .card-content .harga {
   font-weight: bold;
   color: #28A745;
-}
-
-@media (max-width: 768px) {
-  .card-container {
-    width: 93%;
-    place-self: center;
-  }
 }
 
 .card a {
@@ -304,11 +302,25 @@ button:hover {
   .card {
     padding: 1rem;
   }
+
+  button {
+    background-color: #007bff;
+    font-size: 1.1rem;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    min-width: 44px;
+    min-height: 44px;
+  }
 }
 
 @media (max-width: 450px) {
   .map-item h3 {
     font-size: 1rem;
+  }
+
+  .card-conta{
+    margin: 0 auto;
   }
 
   .card-container {
@@ -330,7 +342,7 @@ button:hover {
   }
 }
 
-@media (max-width: 365px) {
+@media (max-width: 320px) {
   .map-item h3 {
     font-size: 0.8rem;
   }
@@ -340,7 +352,7 @@ button:hover {
   }
 
   .card-container {
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 
   .card-content h3 {

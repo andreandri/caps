@@ -75,12 +75,12 @@ $result = $stmt->get_result();
     <bar-app></bar-app>
   </header>
   <main>
+  <ind-loading-main></ind-loading-main>
     <h2 tabindex="0">History Pemesanan</h2>
     <div class="container">
       <?php if ($result->num_rows > 0): ?>
         <?php while ($row = $result->fetch_assoc()): ?>
           <?php
-// Mapping status pembayaran ke label
 switch ($row['status_pembayaran']) {
     case 'lunas':
         $status_label = 'BERHASIL';
@@ -127,7 +127,7 @@ switch ($row['status_pembayaran']) {
               </table>
               <div tabindex="0" class="status <?= strtolower($status_label); ?>">
                 <?php if ($row['status_pembayaran'] === 'pending'): ?>
-                  <a href="midtrans/examples/snap/checkout-process-simple-version.php?id_pemesanan=<?= htmlspecialchars($row['id_pemesanan']); ?>" class="pay-link">
+                  <a tabindex="0" href="midtrans/examples/snap/checkout-process-simple-version.php?id_pemesanan=<?= htmlspecialchars($row['id_pemesanan']); ?>" class="pay-link">
                     <?= htmlspecialchars($status_label); ?> - Klik untuk bayar
                   </a>
                 <?php else: ?>

@@ -134,7 +134,10 @@ main {
   flex-direction: column;
   padding: 20px;
   box-sizing: border-box;
-  gap: 2rem;
+}
+
+.content {
+  padding-bottom: 2rem;
 }
 
 table {
