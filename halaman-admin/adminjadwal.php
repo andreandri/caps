@@ -112,7 +112,7 @@ if (!$result) {
     
 <main class="main-content">
 <ind-loading-admin></ind-loading-admin>
-    <div>
+    <div class="content">
         <h1 tabindex="0">Data Jadwal</h1>
         <table>
             <thead>
@@ -165,7 +165,7 @@ if (!$result) {
         </div>
     </div>
 
-    <div>
+    <div class="content">
         <h1 tabindex="0">Data Bus Jadwal</h1>
         <table border="1">
             <thead>
@@ -196,7 +196,7 @@ if (!$result) {
             } ?>
             </tbody>
         </table>
-        <a tabindex="0" href="tambahjadwalbus.php" class="tambah-rute">Tambah Jadwal</a>
+        <a tabindex="0" href="tambahjadwalbus.php" class="tambah-rute">Tambah Jadwal Bus</a>
 
         <div id="popup-delete-bus" class="popup">
             <div class="popup-content popup-danger">
