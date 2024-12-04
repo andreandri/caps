@@ -132,6 +132,24 @@ if ($id_pemesanan) {
       border-bottom: 1px solid #ddd;
     }
 
+    .pay-link {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #4caf50;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.pay-link:hover {
+  background-color: #45a049;
+}
+
+
     @media (max-width: 1100px) {
       .card {
         padding: 15px;
@@ -215,7 +233,7 @@ if ($id_pemesanan) {
         </table>
         <p tabindex="0" class="total">Total: Rp <?= number_format($data['total'] ?? 0, 0, ',', '.') ?></p>
         <a tabindex="0" href="./midtrans/examples/snap/checkout-process-simple-version.php?id_pemesanan=<?= $id_pemesanan ?>" 
-   class="pay-link">Bayar</a>
+        class="pay-link">Bayar</a>
     </div>
 </main>
 
