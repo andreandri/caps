@@ -132,6 +132,7 @@ $koneksi->close();
 </header>
 
 <main class="main-content">
+<ind-loading-admin></ind-loading-admin>
 <h1 tabindex="0">Edit Pesanan</h1>
     <div class="form-container">
         <form action="editpesanan.php?id_pemesanan=<?= $row['id_pemesanan']; ?>" method="POST">
@@ -194,6 +195,50 @@ $koneksi->close();
     <?php if (!empty($error_message)): ?>
         document.getElementById('popup-error').style.display = 'flex';
     <?php endif; ?>
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.querySelector("form");
+        const loadingIndicator = document.querySelector("ind-loading-admin");
+
+        form.addEventListener("submit", (event) => {
+            // Mencegah form dari reload halaman secara default
+            event.preventDefault();
+
+            // Tampilkan indikator loading
+            loadingIndicator.style.display = "flex";
+            document.body.classList.add("no-scroll");
+
+            // Lakukan pengiriman data ke server
+            const formData = new FormData(form);
+            fetch(form.action, {
+                method: "POST",
+                body: formData,
+            })
+                .then((response) => response.text())
+                .then((result) => {
+                    // Sembunyikan indikator loading
+                    loadingIndicator.style.display = "none";
+                    document.body.classList.remove("no-scroll");
+
+                    // Tampilkan pesan sukses/gagal
+                    if (result.includes("Data jadwal bus berhasil ditambahkan")) {
+                        alert("Data jadwal bus berhasil ditambahkan!");
+                        window.location.href = "adminpesanan.php";
+                    } else {
+                        alert("Terjadi kesalahan: " + result);
+                    }
+                })
+                .catch((error) => {
+                    // Sembunyikan indikator loading
+                    loadingIndicator.style.display = "none";
+                    document.body.classList.remove("no-scroll");
+
+                    // Tampilkan pesan error
+                    alert("Gagal mengirim data. Silakan coba lagi.");
+                    console.error("Error:", error);
+                });
+        });
+    });
 </script>
 </body>
 </html>
