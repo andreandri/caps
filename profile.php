@@ -15,6 +15,9 @@ $result = $stmt->get_result();
 $userData = $result->fetch_assoc();
 $image = $userData['image'] ?? 'default-avatar.png'; // Jika tidak ada, gunakan avatar default
 
+// Periksa apakah gambar bukan default-avatar
+$isCustomImage = $image !== 'default-avatar.png';
+
 // Proses unggah atau hapus foto profil
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_FILES['image'])) { // Proses unggah foto baru
@@ -43,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $updateStmt->bind_param("ss", $imageName, $username);
             if ($updateStmt->execute()) {
                 $image = $imageName; // Update gambar pada halaman
+                $isCustomImage = true; // Update status
                 echo "<script>alert('Foto berhasil diunggah.');</script>";
             } else {
                 $_SESSION['error'] = "Gagal menyimpan ke database.";
@@ -50,34 +54,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $_SESSION['error'] = "Gagal mengunggah file.";
         }
-    } elseif (isset($_POST['deleteImage'])) { // Proses hapus foto
+    } // Proses hapus foto
+    if (isset($_POST['deleteImage'])) {
         $queryOldImage = "SELECT image FROM tb_users WHERE username = ?";
         $stmtOldImage = $koneksi->prepare($queryOldImage);
         $stmtOldImage->bind_param("s", $username);
         $stmtOldImage->execute();
         $resultOldImage = $stmtOldImage->get_result();
         $oldImage = $resultOldImage->fetch_assoc()['image'];
-
+    
         // Hapus gambar lama jika bukan default-avatar
         if ($oldImage && $oldImage !== 'default-avatar.png' && file_exists("uploads/" . $oldImage)) {
             unlink("uploads/" . $oldImage);
         }
-
+    
         // Set gambar kembali ke default-avatar
         $defaultAvatar = 'default-avatar.png';
         $updateQuery = "UPDATE tb_users SET image = ? WHERE username = ?";
         $updateStmt = $koneksi->prepare($updateQuery);
         $updateStmt->bind_param("ss", $defaultAvatar, $username);
         if ($updateStmt->execute()) {
-            $image = $defaultAvatar; // Update gambar pada halaman
-            echo "<script>alert('Foto berhasil dihapus.');</script>";
+            echo json_encode(['success' => true, 'image' => $defaultAvatar]);
         } else {
-            $_SESSION['error'] = "Gagal menyimpan perubahan.";
+            echo json_encode(['success' => false, 'message' => 'Gagal menyimpan perubahan.']);
         }
-    }
+        exit;
+    }    
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -159,26 +163,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         });
 
         // Hapus foto saat tombol Hapus Foto ditekan
-        deleteButton.addEventListener('click', () => {
-            popup.style.display = 'none';
-            loadingElement.style.display = 'block'; // Tampilkan loading sebelum form dikirim
+        if (deleteButton) {
+            deleteButton.addEventListener('click', () => {
+    popup.style.display = 'none';
+    loadingElement.style.display = 'block'; // Tampilkan loading sebelum form dikirim
 
-            setTimeout(() => {
-                const deleteForm = document.createElement('form');
-                deleteForm.method = 'post';
-                deleteForm.action = '';
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = 'deleteImage';
-                deleteForm.appendChild(input);
-                document.body.appendChild(deleteForm);
-                deleteForm.submit();
-            }, 1000); // Simulasi waktu loading
+    setTimeout(() => {
+        const formData = new FormData();
+        formData.append('deleteImage', true);
+
+        fetch('', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            loadingElement.style.display = 'none'; // Sembunyikan loading
+
+            if (data.success) {
+                // Perbarui gambar avatar menjadi default-avatar
+                avatarPreview.style.backgroundImage = `url('uploads/${data.image}')`;
+
+                // Sembunyikan tombol "Hapus Foto" karena sudah default-avatar
+                deleteButton.style.display = 'none';
+                alert('Foto berhasil dihapus!');
+            } else {
+                alert(data.message || 'Gagal menghapus foto. Silakan coba lagi.');
+            }
+        })
+        .catch(error => {
+            loadingElement.style.display = 'none'; // Sembunyikan loading
+            alert('Terjadi kesalahan saat menghapus foto. Silakan coba lagi.');
         });
+    }, 1000); // Simulasi waktu loading
+});
+
+        }
     });
-</script>
-
-
+    </script>
 </head>
 <body>
     <header>
@@ -200,7 +222,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   <div class="popup-content">
                     <p tabindex="0">Apakah Anda ingin mengganti foto?</p>
                     <button tabindex="0" type="button" id="changeButton">Ganti Foto</button>
-                    <button tabindex="0" type="button" id="deleteButton">Hapus Foto</button>
+                    <?php if ($isCustomImage): ?>
+                        <button tabindex="0" type="button" id="deleteButton">Hapus Foto</button>
+                    <?php endif; ?>
                     <button tabindex="0" type="button" id="cancelButton">Batalkan</button>
                   </div>
                 </div>
@@ -221,7 +245,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </section>
         <section class="security">
             <h3 tabindex="0">Keamanan</h3>
-            <p  ><a tabindex="0" href="reset_password.php">&#x1F512; Ganti Password</a></p>
+            <p><a tabindex="0" href="reset_password.php">&#x1F512; Ganti Password</a></p>
         </section>
         <section class="support">
             <h3 tabindex="0">Bantuan</h3>
