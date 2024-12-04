@@ -5,6 +5,7 @@ import './loading-profil.js';
 import './home-user/bar.js';
 import './home-user/bar-change.js';
 import './home-user/bar-tiket.js';
+import './home-user/bar-pesan.js';
 import './home-user/footer.js';
 import './home-awal/footer-awal.js';
 import './home-awal/bar-awal.js';

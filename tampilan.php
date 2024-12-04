@@ -37,7 +37,7 @@
         <div class="bussart">
           <article class="buss">
             <h1 id="home" tabindex="0">Bersama EasyBusTix Mempermudah Urusan Perjalananmu!</h1>
-            <a tabindex="0" href="pesantiket.php">Cek Tiket</a>
+            <a tabindex="0" href="pesantiket.php">Pesan Tiket</a>
           </article>
         </div>
                 

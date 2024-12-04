@@ -4,11 +4,13 @@ include 'koneksi.php';
 
 // Retrieve current username from session
 $username = $_SESSION['username'];
+$message = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $new_username = $_POST['new_username'];
     $sandi = $_POST['sandi'];
 
+    // Periksa sandi pengguna
     $query = "SELECT sandi FROM tb_users WHERE username = ?";
     $stmt = $koneksi->prepare($query);
     $stmt->bind_param("s", $username);
@@ -17,20 +19,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->fetch();
     $stmt->close();
 
-    if ($sandi === $stored_password) { 
+    if ($sandi === $stored_password) {
+        // Update username
         $update_query = "UPDATE tb_users SET username = ? WHERE username = ?";
         $stmt = $koneksi->prepare($update_query);
         $stmt->bind_param("ss", $new_username, $username);
-        
+
         if ($stmt->execute()) {
             $_SESSION['username'] = $new_username;
-            echo "Username berhasil diperbarui!";
+            $message = "Username berhasil diperbarui!";
         } else {
-            echo "Gagal memperbarui username.";
+            $message = "Gagal memperbarui username.";
         }
         $stmt->close();
     } else {
-        echo "Sandi yang Anda masukkan salah.";
+        $message = "Sandi yang Anda masukkan salah.";
     }
 }
 ?>
@@ -44,7 +47,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="change_username.css">
     <script type="module" src="scripts/index.js"></script>
-
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('sandi');
+            const toggleIcon = document.getElementById('toggle-password-icon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.src = 'img/buka.png'; // Ganti dengan ikon "lihat"
+                toggleIcon.alt = 'Sembunyikan Sandi';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.src = 'img/tutup.png'; // Ganti dengan ikon "tutup"
+                toggleIcon.alt = 'Lihat Sandi';
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -52,14 +69,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </header>
 
     <main>
-    <ind-loading-main></ind-loading-main>
+        <ind-loading-main></ind-loading-main>
         <h2 tabindex="0">Ganti Username</h2>
+        <?php
+        if ($message) {
+            echo "<div class='message'>$message</div>";
+        }
+        ?>
         <form method="POST" action="change_username.php">
             <label tabindex="0" for="new_username">Username Baru:</label>
-            <input tabindex="0" type="text" id="new_username" name="new_username" placeholder="Masukkan Username Baru" required>
-
+            <div class="input-box">
+                <input tabindex="0" type="text" id="new_username" name="new_username" placeholder="Masukkan Username Baru" required>
+            </div>
             <label tabindex="0" for="sandi">Sandi Saat Ini:</label>
-            <input tabindex="0" type="password" id="sandi" name="sandi" placeholder="Sandi Username Baru" required>
+            <div class="input-box">
+                <input tabindex="0" type="password" id="sandi" name="sandi" placeholder="Sandi Username Baru" required>
+                <span tabindex="0" class="toggle-password" onclick="togglePasswordVisibility()">
+                    <img id="toggle-password-icon" src="img/tutup.png" alt="Lihat Sandi">
+                </span>
+            </div>
 
             <button tabindex="0" type="submit">Ganti Username</button>
         </form>

@@ -75,6 +75,7 @@ if (isset($_POST['register'])) {
     </script>
 </head>
 <body>
+<ind-loading-main></ind-loading-main>
     <div class="wrapper">
         <h1 tabindex="0">Create your account</h1>
         <h2 tabindex="0">Start your journey with us</h2>

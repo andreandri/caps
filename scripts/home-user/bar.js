@@ -104,12 +104,12 @@ class BarApp extends HTMLElement {
           display: none;
           flex-direction: column;
           gap: 1rem;
-          background-color: #fff;
+          background-color: #5390a6;
           position: absolute;
-          top: 43px;
+          top: 48px;
           right: 0;
           width: 100%;
-          padding: 1rem;
+          padding: 0.7rem 0;
           text-align: center;
         }
 
@@ -142,11 +142,11 @@ class BarApp extends HTMLElement {
         .navbar .navbar-nav {
           font-size: 1em;
           gap: 1rem;
-          top: 38px;
+          top: 33px;
         }
 
         .header__menu {
-          font-size: 1.8rem;
+          font-size: 1.4rem;
         }
 
         a {

@@ -88,39 +88,7 @@ class BarUserApp extends HTMLElement {
         color: #021526;
       }
 
-      .header__menu {
-        font-size: 2rem;
-        display: none;
-        cursor: pointer;
-        background: none;
-        border: none;
-        min-width: 44px;
-        min-height: 44px;
-        padding: 0.5rem 0.7rem;
-      }
-
       @media screen and (max-width: 768px) {
-        .navbar .navbar-nav {
-          display: none;
-          flex-direction: column;
-          gap: 1rem;
-          background-color: #fff;
-          position: absolute;
-          top: 43px;
-          right: 0;
-          width: 100%;
-          padding: 1rem;
-          text-align: center;
-        }
-
-        .navbar .navbar-nav.open {
-          display: flex;
-        }
-
-        .header__menu {
-          display: block;
-        }
-
         .navbar .logo {
           font-size: 1.2em;
         }
@@ -137,12 +105,6 @@ class BarUserApp extends HTMLElement {
 
         .navbar .logo {
           font-size: 1em;
-        }
-
-        .navbar .navbar-nav {
-          font-size: 1em;
-          gap: 1rem;
-          top: 38px;
         }
 
         .header__menu {

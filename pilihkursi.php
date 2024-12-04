@@ -57,15 +57,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
     <link rel="icon" href="favicon.png" type="image/png">
     <script type="module" src="scripts/index.js"></script>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+
         [tabindex="0"]:focus {
-          outline: 2px solid #243642;
-          border-radius: 0.4rem;
+            outline: 2px solid #243642;
+            border-radius: 0.4rem;
 
         }
         body {
             font-family: 'Poppins', sans-serif;
-            margin: 20px;
             text-align: center;
+        }
+
+        main {
+            padding-top: 1rem;
         }
 
         .seat-container {
@@ -128,71 +145,77 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
     </style>
 </head>
 <body>
-    <ind-loading-main></ind-loading-main>
-    <h2 tabindex="0">Pilih Kursi</h2>
-    <form action="" method="POST" id="seatForm">
-        <input type="hidden" name="kursi_terpilih" id="kursiTerpilih">
-        <div class="seat-container">
-            <?php
-            foreach ($kursi_posisi as $baris) {
-                foreach ($baris as $posisi) {
-                    $status_class = '';
-                    $kursi_id = null;
-                    $kursi_nomor = $posisi;
+    <header>
+        <bar-pesan-app></bar-pesan-app>
+    </header>
 
-                    if ($posisi != "" && $posisi != "SOPIR") {
-                        $sql_kursi = "SELECT id_kursi, status FROM tb_kursi WHERE nomor_kursi = ? AND id_bus = (SELECT id_bus FROM tb_busjadwal WHERE id_busjadwal = ?)";
-                        $stmt_kursi = $koneksi->prepare($sql_kursi);
-                        $stmt_kursi->bind_param("si", $posisi, $id_busjadwal);
-                        $stmt_kursi->execute();
-                        $result_kursi = $stmt_kursi->get_result();
-                        $row = $result_kursi->fetch_assoc();
+    <main>
+        <ind-loading-main></ind-loading-main>
+        <h2 tabindex="0">Pilih Kursi</h2>
+        <form action="" method="POST" id="seatForm">
+            <input type="hidden" name="kursi_terpilih" id="kursiTerpilih">
+            <div class="seat-container">
+                <?php
+                foreach ($kursi_posisi as $baris) {
+                    foreach ($baris as $posisi) {
+                        $status_class = '';
+                        $kursi_id = null;
+                        $kursi_nomor = $posisi;
 
-                        if ($row) {
-                            $kursi_id = $row['id_kursi'];
-                            $status_class = $row['status'] === 'booked' || $row['status'] === 'selected' ? 'booked' : 'available';
+                        if ($posisi != "" && $posisi != "SOPIR") {
+                            $sql_kursi = "SELECT id_kursi, status FROM tb_kursi WHERE nomor_kursi = ? AND id_bus = (SELECT id_bus FROM tb_busjadwal WHERE id_busjadwal = ?)";
+                            $stmt_kursi = $koneksi->prepare($sql_kursi);
+                            $stmt_kursi->bind_param("si", $posisi, $id_busjadwal);
+                            $stmt_kursi->execute();
+                            $result_kursi = $stmt_kursi->get_result();
+                            $row = $result_kursi->fetch_assoc();
+
+                            if ($row) {
+                                $kursi_id = $row['id_kursi'];
+                                $status_class = $row['status'] === 'booked' || $row['status'] === 'selected' ? 'booked' : 'available';
+                            }
+                        }
+
+                        if ($posisi != "SOPIR") {
+                            echo "<div class='seat $status_class' data-id='$kursi_id' data-nomor='$kursi_nomor'>$kursi_nomor</div>";
+                        } else {
+                            echo "<div class='seat sopir'>$posisi</div>";
                         }
                     }
-
-                    if ($posisi != "SOPIR") {
-                        echo "<div class='seat $status_class' data-id='$kursi_id' data-nomor='$kursi_nomor'>$kursi_nomor</div>";
-                    } else {
-                        echo "<div class='seat sopir'>$posisi</div>";
-                    }
                 }
-            }
-            ?>
-        </div>
-        <button tabindex="0" type="submit">Konfirmasi</button>
-    </form>
+                ?>
+            </div>
+            <button tabindex="0" type="submit">Konfirmasi</button>
+        </form>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const selectedSeats = new Set();
-            const seatElements = document.querySelectorAll('.seat.available');
-            const seatForm = document.getElementById('seatForm');
-            const kursiTerpilih = document.getElementById('kursiTerpilih');
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const selectedSeats = new Set();
+                const seatElements = document.querySelectorAll('.seat.available');
+                const seatForm = document.getElementById('seatForm');
+                const kursiTerpilih = document.getElementById('kursiTerpilih');
 
-            seatElements.forEach(seat => {
-                seat.addEventListener('click', () => {
-                    const seatId = seat.dataset.id;
+                seatElements.forEach(seat => {
+                    seat.addEventListener('click', () => {
+                        const seatId = seat.dataset.id;
 
-                    if (selectedSeats.has(seatId)) {
-                        selectedSeats.delete(seatId);
-                        seat.classList.remove('selected');
-                        seat.classList.add('available');
-                    } else {
-                        selectedSeats.add(seatId);
-                        seat.classList.remove('available');
-                        seat.classList.add('selected');
-                    }
+                        if (selectedSeats.has(seatId)) {
+                            selectedSeats.delete(seatId);
+                            seat.classList.remove('selected');
+                            seat.classList.add('available');
+                        } else {
+                            selectedSeats.add(seatId);
+                            seat.classList.remove('available');
+                            seat.classList.add('selected');
+                        }
+                    });
+                });
+
+                seatForm.addEventListener('submit', (e) => {
+                    kursiTerpilih.value = JSON.stringify([...selectedSeats]);
                 });
             });
-
-            seatForm.addEventListener('submit', (e) => {
-                kursiTerpilih.value = JSON.stringify([...selectedSeats]);
-            });
-        });
-    </script>
+        </script>
+    </main>
 </body>
 </html>

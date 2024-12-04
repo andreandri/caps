@@ -212,8 +212,8 @@ class FooterApp extends HTMLElement {
             </div>
             <div class="manage">
               <h4 tabindex="0">Manage:</h4>
-              <p tabindex="0"><a href="kebijakan.php">Kebijakan Privasi</a></p>
-              <p tabindex="0"><a href="kebijakan.php">Syarat dan Ketentuan</a></p>
+              <p><a tabindex="0" href="kebijakan.php">Kebijakan Privasi</a></p>
+              <p><a tabindex="0" href="kebijakan.php">Syarat dan Ketentuan</a></p>
             </div>
           </div>
         </div>

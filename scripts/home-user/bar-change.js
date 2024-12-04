@@ -88,22 +88,7 @@ class BarGantiApp extends HTMLElement {
         color: #021526;
       }
 
-      .header__menu {
-        font-size: 2rem;
-        display: none;
-        cursor: pointer;
-        background: none;
-        border: none;
-        min-width: 44px;
-        min-height: 44px;
-        padding: 0.5rem 0.7rem;
-      }
-
       @media screen and (max-width: 768px) {
-        .header__menu {
-          display: block;
-        }
-
         .navbar .logo {
           font-size: 1.2em;
         }

@@ -1,4 +1,4 @@
-class BarTiketApp extends HTMLElement {
+class BarPesanApp extends HTMLElement {
   constructor() {
     super();
 
@@ -127,7 +127,7 @@ class BarTiketApp extends HTMLElement {
       ${this._style.outerHTML}
       <nav class="navbar skeleton">
       <div class="Kembali">
-          <a tabindex="0" href="tampilan.php"><img src="img/back.png" alt=""></a>
+          <a tabindex="0" href="pesantiket.php"><img src="img/back.png" alt=""></a>
         </div>
         <div class="navlogo">
           <img tabindex="0" src="img/EasyBusTix.png" alt="Logo EasyBusTix" >
@@ -141,4 +141,4 @@ class BarTiketApp extends HTMLElement {
   }
 }
 
-customElements.define("bar-tiket-app", BarTiketApp);
+customElements.define("bar-pesan-app", BarPesanApp);

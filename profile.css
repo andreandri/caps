@@ -37,9 +37,6 @@ main {
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   place-self: center;
-  position: relative;
-  overflow: hidden; 
-  flex: 1;
 }
 
 header {
@@ -80,7 +77,6 @@ h2, h3 {
 .profile p a, .security p a, .support p a {
   color: #333;
   text-decoration: none;
-  margin-left: 0.5rem;
   font-size: 0.9rem;
 }
 
@@ -91,7 +87,6 @@ h2, h3 {
 .isi1 p {
   display: flex; 
   align-items: center;
-  margin-left: 0.5rem;
 }
 
 .isi1 p a {
@@ -238,11 +233,11 @@ h2, h3 {
     font-size: 1.2rem;
   }
 
-  .isi h3, .security h3, .support h3 {
+  .isi1 h3, .isi2 h3, .security h3, .support h3 {
     font-size: 0.9rem;
   }
 
-  .isi p, .security p a, .support p a{
+  .isi1 p, .isi2 p, .security p a, .support p a{
     font-size: 0.83rem;
   }
 }

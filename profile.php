@@ -221,12 +221,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </section>
         <section class="security">
             <h3 tabindex="0">Keamanan</h3>
-            <p tabindex="0"><a tabindex="0" href="reset_password.php">&#x1F512; Ganti Password</a></p>
+            <p  ><a tabindex="0" href="reset_password.php">&#x1F512; Ganti Password</a></p>
         </section>
         <section class="support">
             <h3 tabindex="0">Bantuan</h3>
-            <p tabindex="0"><a tabindex="0" href="https://wa.me/6281254986462" target="_blank" rel="noopener noreferrer">&#x1F4AC; Pertanyaan</a></p>
-            <p tabindex="0"><a tabindex="0" href="kebijakan.php">&#x1F4D3; Kebijakan Privasi</a></p>
+            <p><a tabindex="0" href="https://wa.me/6281254986462" target="_blank" rel="noopener noreferrer">&#x1F4AC; Pertanyaan</a></p>
+            <p><a tabindex="0" href="kebijakan.php">&#x1F4D3; Kebijakan Privasi</a></p>
         </section>
         <button tabindex="0" class="logout" onclick="window.location.href='fungsi/logout.php'">Logout</button>
     </main>

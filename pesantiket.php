@@ -13,7 +13,7 @@
     <bar-tiket-app></bar-tiket-app>
   </header>
   
-  <main>
+  <main class="card-conta">
     <ind-loading-main></ind-loading-main>
     <form action="pesantiket.php" method="POST">
         <div class="opsi">
@@ -90,7 +90,7 @@
                 $id_bus = $row['id_bus'];
                 echo "<a href='pilihkursi.php?id_busjadwal={$id_jadwal}' class='card'>
                         <div class='card-content'>
-                            <h2>{$row['kota_asal']} - {$row['kota_tujuan']}</h2>
+                            <h3>{$row['kota_asal']} - {$row['kota_tujuan']}</h2>
                             <p>Tanggal Keberangkatan : " . date("d F Y", strtotime($row['tgl_keberangkatan'])) . "</p>
                             <p>Jam Keberangkatan : " . date("H.i", strtotime($row['jam_keberangkatan'])) . " WIB</p>
                             <p>Nomor Plat Bus: {$row['no_plat']}</p>

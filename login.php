@@ -37,6 +37,7 @@ session_start();
     </script>
 </head>
 <body>
+<ind-loading-main></ind-loading-main>
     <div class="wrapper">
         <h1 tabindex="0">Welcome Back</h1>
         <h2 tabindex="0">Log in now to continue</h2>
