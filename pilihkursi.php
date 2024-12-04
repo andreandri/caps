@@ -142,16 +142,101 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
         button:hover {
             background-color: #0033cc;
         }
+        .legend {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            border: 1px solid #000;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 150px;
+            place-self: center;
+        }
+
+        .legend div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .legend .color-box {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+
+        .color-available {
+            background-color: gray;
+        }
+
+        .color-booked {
+            background-color: red;
+        }
+        .popup {
+            display: none; /* Default tidak terlihat */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup.show {
+            display: flex; /* Tampilkan popup saat dibutuhkan */
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .popup-content h2 {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .popup-content button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+
+        .popup-content button:hover {
+            background-color: #45a049;
+        }
+
+        .popup-content .cancel-btn {
+            background-color: #ff4d4d;
+        }
+
+        .popup-content .cancel-btn:hover {
+            background-color: #d11a2a;
+        }
+
     </style>
 </head>
 <body>
-    <header>
-        <bar-pesan-app></bar-pesan-app>
-    </header>
-
     <main>
         <ind-loading-main></ind-loading-main>
         <h2 tabindex="0">Pilih Kursi</h2>
+        <div class="legend">
+            <div><div class="color-box color-available"></div>Belum Terisi</div>
+            <div><div class="color-box color-booked"></div>Sudah Terisi</div>
+        </div>
         <form action="" method="POST" id="seatForm">
             <input type="hidden" name="kursi_terpilih" id="kursiTerpilih">
             <div class="seat-container">
@@ -187,13 +272,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
             </div>
             <button tabindex="0" type="submit">Konfirmasi</button>
         </form>
-
+        <!-- Popup untuk konfirmasi -->
+        <div class="popup" id="confirmationPopup">
+                    <div class="popup-content">
+                        <h2>Apakah Anda yakin dengan pilihan Anda?</h2>
+                        <button id="confirmSubmit">Ya</button>
+                        <button class="cancel-btn" id="cancelPopup">Tidak</button>
+                    </div>
+                </div>
         <script>
-            document.addEventListener('DOMContentLoaded', () => {
+                document.addEventListener('DOMContentLoaded', () => {
                 const selectedSeats = new Set();
                 const seatElements = document.querySelectorAll('.seat.available');
                 const seatForm = document.getElementById('seatForm');
                 const kursiTerpilih = document.getElementById('kursiTerpilih');
+                const confirmationPopup = document.getElementById('confirmationPopup');
+                const confirmSubmit = document.getElementById('confirmSubmit');
+                const cancelPopup = document.getElementById('cancelPopup');
+                const confirmButton = document.querySelector('button[type="submit"]');
 
                 seatElements.forEach(seat => {
                     seat.addEventListener('click', () => {
@@ -211,8 +307,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
                     });
                 });
 
-                seatForm.addEventListener('submit', (e) => {
-                    kursiTerpilih.value = JSON.stringify([...selectedSeats]);
+                confirmButton.addEventListener('click', (e) => {
+                    e.preventDefault(); // Mencegah form dikirim langsung
+                    confirmationPopup.style.display = 'flex'; // Menampilkan popup
+                });
+
+                cancelPopup.addEventListener('click', () => {
+                    confirmationPopup.style.display = 'none'; // Menutup popup
+                });
+
+                confirmSubmit.addEventListener('click', () => {
+                    confirmationPopup.style.display = 'none'; // Menutup popup sebelum submit
+                    kursiTerpilih.value = JSON.stringify([...selectedSeats]); // Set data kursi yang dipilih
+                    seatForm.submit(); // Submit form setelah konfirmasi
                 });
             });
         </script>
