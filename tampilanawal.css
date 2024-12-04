@@ -260,7 +260,7 @@ section[id] {
   font-size: 1.2rem;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1350px) {
   .hero-image img {
     max-width: 500px;
   }
@@ -272,10 +272,6 @@ section[id] {
   .about-us {
     flex-direction: column;
     padding: 20px;
-  }
-
-  .about-us img{
-    width: 50%;
   }
 }
 

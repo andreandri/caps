@@ -189,7 +189,7 @@ header {
   font-size: 1.2rem;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1350px) {
   .about-us img{
     width: 65%;
   }
@@ -197,10 +197,6 @@ header {
   .about-us {
     flex-direction: column;
     padding: 20px;
-  }
-
-  .about-us img{
-    width: 50%;
   }
 }
 

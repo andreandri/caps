@@ -38,14 +38,11 @@
         <div>
           <h2 tabindex="0">Tentang EasyBusTix</h2>
           <p tabindex="0">
-            EasyBusTix adalah platform pemesanan tiket bus online yang memudahkan Anda menemukan dan memesan tiket dengan cepat dan aman. Kami menyediakan berbagai pilihan rute dan operator bus di seluruh Indonesia, sehingga Anda dapat merencanakan perjalanan dengan lebih fleksibel.
+            Easybustix adalah sebuah proyek aplikasi berbasis web yang bertujuan untuk menyediakan layanan pemesanan tiket bus secara online. Aplikasi ini dirancang untuk membantu pengguna, terutama di wilayah Kalimantan Tengah, agar penumpang dapat memesan tiket bus dengan cara yang lebih mudah, efisien, dan aman.
           </p>
           <p tabindex="0">
-            Dengan antarmuka yang ramah pengguna, proses pemesanan kami sangat sederhana dan efisien. Kami juga menawarkan berbagai metode pembayaran yang aman, mulai dari transfer bank, e-wallet, hingga kartu kredit. Selain itu, tim dukungan pelanggan kami siap membantu Anda 24/7 untuk memastikan pengalaman perjalanan Anda lancar.
+            Selain itu, Easybustix juga bertujuan mempermudah operator bus dalam mengelola jadwal, harga, dan ketersediaan kursi secara transparan, serta meningkatkan efisiensi dan kepercayaan dalam ekosistem transportasi publik. Dengan fitur-fitur unggulannya, Easybustix diharapkan menjadi solusi yang dapat mengurangi angka penipuan sekaligus meningkatkan kenyamanan pengguna dalam menggunakan transportasi bus.
           </p>
-          <p tabindex="0">
-            Nikmati fitur pencarian cepat, pelacakan bus real-time, informasi detail fasilitas bus, dan kemudahan pengelolaan tiket langsung melalui aplikasi kami. Terima kasih telah mempercayakan perjalanan Anda kepada EasyBusTix!
-          </p tabindex="0">
         </div>
       </section>
 
