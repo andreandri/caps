@@ -9,7 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $new_username = $_POST['new_username'];
   $sandi = $_POST['sandi'];
 
-  // Cek apakah username baru sudah digunakan
   $check_query = "SELECT username FROM tb_users WHERE username = ?";
   $stmt = $koneksi->prepare($check_query);
   $stmt->bind_param("s", $new_username);
@@ -19,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if ($stmt->num_rows > 0) {
     $message = "Username sudah tersedia.";
   } else {
-    // Ambil password yang tersimpan
     $stmt->close();
     $query = "SELECT sandi FROM tb_users WHERE username = ?";
     $stmt = $koneksi->prepare($query);
@@ -30,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->close();
 
     if ($sandi === $stored_password) {
-      // Update username
       $update_query = "UPDATE tb_users SET username = ? WHERE username = ?";
       $stmt = $koneksi->prepare($update_query);
       $stmt->bind_param("ss", $new_username, $username);
