@@ -76,7 +76,7 @@ h2 {
 
 .detail-item table {
   border-collapse: collapse;
-  margin-top: 2.1rem;
+  margin-top: 3.5rem;
 }
 
 .detail-item table th,
@@ -161,6 +161,18 @@ footer {
   }
 } 
 
+@media (max-width: 555px) {
+  .detail-item table {
+    border-collapse: collapse;
+    margin-top: 2.5rem;
+  }
+
+  main {
+    margin-top: 3rem;
+    padding-top: 1rem;
+  }
+}
+
 @media (max-width: 515px) {
   .detail-item {
     padding: 16px 0 7px 3px;
@@ -184,6 +196,13 @@ footer {
   }  
 }
 
+@media (max-width: 450px) {
+  .detail-item table {
+    border-collapse: collapse;
+    margin-top: 2rem;
+  }
+}
+
 @media (max-width: 425px) {
   .detail-item .status {
     font-size: 0.6rem;
@@ -191,7 +210,7 @@ footer {
 
   .detail-item table th,
   .detail-item table td {
-    padding: 3px;
+    padding: 5px;
   }
 
   .detail-item table th {
@@ -208,7 +227,11 @@ footer {
     width: 97%;
   }
 
+  .detail-item table th {
+    font-size: 11px;
+  }
+
   .detail-item table td {
-    font-size: 12px;
+    font-size: 10px;
   }
 }
