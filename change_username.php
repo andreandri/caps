@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $new_username = $_POST['new_username'];
   $sandi = $_POST['sandi'];
 
+<<<<<<< Updated upstream
   $query = "SELECT sandi FROM tb_users WHERE username = ?";
   $stmt = $koneksi->prepare($query);
   $stmt->bind_param("s", $username);
@@ -27,6 +28,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $message = "Username berhasil diperbarui!";
     } else {
       $message = "Gagal memperbarui username.";
+=======
+    // Cek apakah username baru sudah digunakan
+    $check_query = "SELECT username FROM tb_users WHERE username = ?";
+    $stmt = $koneksi->prepare($check_query);
+    $stmt->bind_param("s", $new_username);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        $message = "Username sudah tersedia.";
+    } else {
+        // Ambil password yang tersimpan
+        $stmt->close();
+        $query = "SELECT sandi FROM tb_users WHERE username = ?";
+        $stmt = $koneksi->prepare($query);
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $stmt->bind_result($stored_password);
+        $stmt->fetch();
+        $stmt->close();
+
+        if ($sandi === $stored_password) {
+            // Update username
+            $update_query = "UPDATE tb_users SET username = ? WHERE username = ?";
+            $stmt = $koneksi->prepare($update_query);
+            $stmt->bind_param("ss", $new_username, $username);
+
+            if ($stmt->execute()) {
+                $_SESSION['username'] = $new_username;
+                $message = "Username berhasil diperbarui!";
+            } else {
+                $message = "Gagal memperbarui username.";
+            }
+            $stmt->close();
+        } else {
+            $message = "Sandi yang Anda masukkan salah.";
+        }
+>>>>>>> Stashed changes
     }
     $stmt->close();
   } else {
