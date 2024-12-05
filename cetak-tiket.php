@@ -75,7 +75,7 @@ if ($id_pemesanan) {
     }
 
     header {
-      margin-bottom: 4rem;
+      margin-bottom: 2rem;
     }
 
     main {
@@ -136,6 +136,54 @@ if ($id_pemesanan) {
       background-color: #45a049;
     }
 
+    .catatan {
+      margin-top: 20px;
+      border-top: 1px solid #ddd;
+      padding-top: 15px;
+    }
+
+    .catatan h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .catatan .catat {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .catatan .catat td {
+      padding: 8px 0;
+      vertical-align: top;
+      text-align: justify;
+    }
+
+    .catatan .catat td:first-child {
+      width: 5%;
+      text-align: left;
+    }
+
+    .catatan .catat td:last-child {
+      width: 95%;
+      text-align: left;
+    }
+
+    @media (max-width: 450px) {
+      .catatan {
+        margin-top: 10px;
+        padding-top: 10px;
+      }
+
+      .catatan h2 {
+        font-size: 16px;
+      }
+
+      .catatan .catat td {
+        font-size: 14px;
+        padding: 6px 0;
+      }
+    }
 
     @media (max-width: 1100px) {
       .card {
@@ -198,6 +246,29 @@ if ($id_pemesanan) {
         font-size: 14px;
         padding: 8px;
       }
+
+      .catatan {
+        margin-top: 10px; 
+        padding-top: 10px;
+      }
+
+      .catatan h2 {
+        font-size: 14px; 
+        margin-bottom: 8px;
+      }
+
+      .catatan .catat td {
+        font-size: 12px; 
+        padding: 6px 0; 
+      }
+
+      .catatan .catat td:first-child {
+        width: 10%; 
+      }
+
+      .catatan .catat td:last-child {
+        width: 90%; 
+      }
     }
 
     @media (max-width: 323px) {
@@ -250,6 +321,25 @@ if ($id_pemesanan) {
             </tr>
         </table>
         <p tabindex="0" class="total">Total: Rp <?= number_format($data['total'] ?? 0, 0, ',', '.') ?></p>
+        <div class="catatan">
+          <h2>Catatan Penting</h2>
+          <table class="catat">
+            <tbody>
+              <tr>
+                <td>1.</td>
+                <td>Penumpang wajib datang 60 menit sebelum Keberangkatan</td>
+              </tr>
+              <tr>
+                <td>2.</td>
+                <td>Bagasi penumpang yang lebih dari 5kg akan dikenakan biaya tambahan</td>
+              </tr>
+              <tr>
+                <td>3.</td>
+                <td>Membawa kartu identitas asli</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <a tabindex="0" href="./midtrans/examples/snap/checkout-process-simple-version.php?id_pemesanan=<?= $id_pemesanan ?>" 
         class="pay-link">Bayar</a>
     </div>

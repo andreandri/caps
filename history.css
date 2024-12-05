@@ -196,8 +196,12 @@ footer {
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 350px) {
   .detail-item {
     width: 97%;
+  }
+
+  .detail-item table td {
+    font-size: 12px;
   }
 }

@@ -98,27 +98,27 @@ switch ($row['status_pembayaran']) {
               <table>
                 <tr>
                   <th tabindex="0">Rute</th>
-                  <td tabindex="0"><?= htmlspecialchars($row['kota_asal'] . " - " . $row['kota_tujuan']); ?></td>
+                  <td tabindex="0">: <?= htmlspecialchars($row['kota_asal'] . " - " . $row['kota_tujuan']); ?></td>
                 </tr>
                 <tr>
                   <th tabindex="0">Nama Penumpang</th>
-                  <td tabindex="0"><?= htmlspecialchars($row['nama_penumpang']); ?></td>
+                  <td tabindex="0">: <?= htmlspecialchars($row['nama_penumpang']); ?></td>
                 </tr>
                 <tr>
                   <th tabindex="0">No WA</th>
-                  <td tabindex="0"><?= htmlspecialchars($row['no_wa']); ?></td>
+                  <td tabindex="0">: <?= htmlspecialchars($row['no_wa']); ?></td>
                 </tr>
                 <tr>
                   <th tabindex="0">Jumlah Tiket</th>
-                  <td tabindex="0"><?= htmlspecialchars($row['jumlah_tiket']); ?></td>
+                  <td tabindex="0">: <?= htmlspecialchars($row['jumlah_tiket']); ?></td>
                 </tr>
                 <tr>
                   <th tabindex="0">Nomor Kursi</th>
-                  <td tabindex="0"><?= htmlspecialchars($row['nomor_kursi']); ?></td>
+                  <td tabindex="0">: <?= htmlspecialchars($row['nomor_kursi']); ?></td>
                 </tr>
                 <tr>
                   <th tabindex="0">Total</th>
-                  <td tabindex="0">Rp <?= number_format($row['total'], 0, ',', '.'); ?></td>
+                  <td tabindex="0">: Rp <?= number_format($row['total'], 0, ',', '.'); ?></td>
                 </tr>
               </table>
               <div tabindex="0" class="status <?= strtolower($status_label); ?>">
