@@ -52,8 +52,8 @@ $result = $stmt->get_result();
       text-decoration: none;
       font-weight: bold;
       background-color: #4caf50;
-      padding: 0.9rem 10px;
-      border-radius: 1rem;
+      padding: 5px 10px;
+      border-radius: 5px;
       display: inline-block;
     }
 
@@ -64,40 +64,6 @@ $result = $stmt->get_result();
     .status {
       margin-top: 10px;
       font-weight: bold;
-    }
-
-    @media (max-width: 1000px) {
-      .pay-link {
-        padding:  0.85rem 8px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .pay-link {
-        padding:  0.73rem 8px;
-      }
-
-      .status {
-        margin-top: 5px;
-      }
-    }
-
-    @media (max-width: 555px) {
-      .pay-link {
-        padding:  0.6rem 8px;
-      }
-    }
-
-    @media (max-width: 450px) {
-      .pay-link {
-        padding:  0.55rem 8px;
-      }
-    }
-
-    @media (max-width: 330px) {
-      .pay-link {
-        padding:  0.47rem 8px;
-      }
     }
   </style>
 </head>

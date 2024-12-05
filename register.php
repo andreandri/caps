@@ -10,34 +10,34 @@ if (isset($_POST['register'])) {
   $sandi = $_POST['sandi'];
   $role = 'user';
 
+  // Validasi panjang sandi di sisi server
   if (strlen($sandi) < 8) {
     $error_message = "Password harus minimal 8 karakter.";
   } else {
-    $check_email_query = "SELECT * FROM tb_users WHERE email = ?";
-    $stmt_email = $koneksi->prepare($check_email_query);
-    $stmt_email->bind_param("s", $email);
-    $stmt_email->execute();
-    $result_email = $stmt_email->get_result();
+    // Cek apakah kombinasi username dan email sudah terdaftar
+    $check_query = "SELECT * FROM tb_users WHERE username = ? OR email = ?";
+    $stmt_check = $koneksi->prepare($check_query);
+    $stmt_check->bind_param("ss", $username, $email);
+    $stmt_check->execute();
+    $result_check = $stmt_check->get_result();
 
-    if ($result_email->num_rows > 0) {
-      $error_message = "Email sudah terdaftar.";
-    } else {
-      $check_username_query = "SELECT * FROM tb_users WHERE username = ?";
-      $stmt_username = $koneksi->prepare($check_username_query);
-      $stmt_username->bind_param("s", $username);
-      $stmt_username->execute();
-      $result_username = $stmt_username->get_result();
-
-      if ($result_username->num_rows > 0) {
+    if ($result_check->num_rows > 0) {
+      $existing_user = $result_check->fetch_assoc();
+      if ($existing_user['username'] === $username && $existing_user['email'] === $email) {
+        $error_message = "Username dan email telah digunakan.";
+      } elseif ($existing_user['username'] === $username) {
         $error_message = "Username telah digunakan.";
-      } else {
-        $insert_query = "INSERT INTO tb_users (username, email, sandi, role) VALUES (?, ?, ?, ?)";
-        $stmt_insert = $koneksi->prepare($insert_query);
-        $stmt_insert->bind_param("ssss", $username, $email, $sandi, $role);
-        $stmt_insert->execute();
-
-        $success_message = "Registrasi berhasil! Anda akan diarahkan ke halaman login.";
+      } elseif ($existing_user['email'] === $email) {
+        $error_message = "Email sudah terdaftar.";
       }
+    } else {
+      // Menyimpan data pengguna baru ke database
+      $insert_query = "INSERT INTO tb_users (username, email, sandi, role) VALUES (?, ?, ?, ?)";
+      $stmt_insert = $koneksi->prepare($insert_query);
+      $stmt_insert->bind_param("ssss", $username, $email, $sandi, $role);
+      $stmt_insert->execute();
+
+      $success_message = "Registrasi berhasil! Anda akan diarahkan ke halaman login.";
     }
   }
 }
@@ -112,4 +112,5 @@ if (isset($_POST['register'])) {
     </script>
   <?php } ?>
 </body>
+
 </html>

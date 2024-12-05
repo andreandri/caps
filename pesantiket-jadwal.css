@@ -318,8 +318,8 @@ button:hover {
   }
 
   main.card-conta {
-    padding: 0; 
-    margin: 0;
+    padding: 0; /* Hilangkan padding */
+    margin: 0; /* Hilangkan margin */
   }
 
   .card-container {
@@ -329,10 +329,10 @@ button:hover {
   }
 
   .card {
-    max-width: 92%; 
-    box-shadow: none; 
-    border: 1px solid #ddd; 
-    border-radius: 8px;
+    max-width: 92%; /* Lebar penuh */
+    box-shadow: none; /* Hilangkan bayangan */
+    border: 1px solid #ddd; /* Tambahkan sedikit batas untuk definisi */
+    border-radius: 8px; /* Sedikit lengkung */
   }
 
   .card-content h3 {
@@ -348,12 +348,12 @@ button:hover {
   }
 
   form {
-    width: 100%;
-    border-radius: 0; 
-    box-shadow: none; 
-    padding: 1rem; 
+    width: 100%; /* Lebar penuh */
+    border-radius: 0; /* Hilangkan sudut melengkung */
+    box-shadow: none; /* Hilangkan bayangan */
+    padding: 1rem; /* Kurangi padding */
     margin: 0;
-    background-color: #b9e5e8;
+    background-color: #b9e5e8; /* Sesuaikan dengan latar body */
   }
 }
 

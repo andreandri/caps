@@ -169,14 +169,6 @@ section[id] {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.team-member p {
-  font-size: 1rem;
-  color: #777;
-  margin: 0;
-  border-bottom: 1px solid #333;
-  padding-bottom: 5px;
-}
-
 .image-container {
   position: relative;
   display: inline-block;

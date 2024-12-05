@@ -71,7 +71,7 @@
         </div>
         <div class="team-member">
           <div class="image-container">
-            <img tabindex="0" src="img/andre.jpg" alt="Foto Andre Andrianus">
+            <img tabindex="0" src="img/andre.png" alt="Foto Andre Andrianus">
             <div class="overlay">
               <a tabindex="0" href="https://github.com/andreandri" target="_blank">
                 <img tabindex="0" src="img/github.png" alt="GitHub Andre Andrianus">
@@ -89,7 +89,7 @@
       <div class="team-grid">
         <div class="team-member">
           <div class="image-container">
-            <img tabindex="0" src="img/imam.jpg" alt="Foto Imam Syahrohim">
+            <img tabindex="0" src="img/imam.png" alt="Foto Imam Syahrohim">
             <div class="overlay">
               <a tabindex="0" href="https://github.com/Malter17" target="_blank">
                 <img tabindex="0" src="img/github.png" alt="GitHub Imam Syahrohim">
@@ -104,7 +104,7 @@
         </div>
         <div class="team-member">
           <div class="image-container">
-            <img tabindex="0" src="img/oyong.jpg" alt="Foto Natalio Valentino">
+            <img tabindex="0" src="img/oyong.png" alt="Foto Natalio Valentino">
             <div class="overlay">
               <a tabindex="0" href="https://github.com/Natalio2512" target="_blank">
                 <img tabindex="0" src="img/github.png" alt="GitHub Natalio Valentino">
