@@ -63,12 +63,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['kursi_terpilih'])) {
     }
 
     header {
-      position: sticky;
+      position: fixed;
       top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      left: 0;
+      width: 100%;
+      z-index: 10; 
+      background-color: #ffffff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
-
 
     [tabindex="0"]:focus {
       outline: 2px solid #243642;

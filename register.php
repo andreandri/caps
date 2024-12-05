@@ -10,11 +10,9 @@ if (isset($_POST['register'])) {
   $sandi = $_POST['sandi'];
   $role = 'user';
 
-  // Validasi panjang sandi di sisi server
   if (strlen($sandi) < 8) {
     $error_message = "Password harus minimal 8 karakter.";
   } else {
-    // Cek apakah email sudah terdaftar
     $check_email_query = "SELECT * FROM tb_users WHERE email = ?";
     $stmt_email = $koneksi->prepare($check_email_query);
     $stmt_email->bind_param("s", $email);
@@ -24,7 +22,6 @@ if (isset($_POST['register'])) {
     if ($result_email->num_rows > 0) {
       $error_message = "Email sudah terdaftar.";
     } else {
-      // Cek apakah username sudah digunakan
       $check_username_query = "SELECT * FROM tb_users WHERE username = ?";
       $stmt_username = $koneksi->prepare($check_username_query);
       $stmt_username->bind_param("s", $username);
@@ -34,7 +31,6 @@ if (isset($_POST['register'])) {
       if ($result_username->num_rows > 0) {
         $error_message = "Username telah digunakan.";
       } else {
-        // Menyimpan data pengguna baru ke database
         $insert_query = "INSERT INTO tb_users (username, email, sandi, role) VALUES (?, ?, ?, ?)";
         $stmt_insert = $koneksi->prepare($insert_query);
         $stmt_insert->bind_param("ssss", $username, $email, $sandi, $role);
@@ -116,5 +112,4 @@ if (isset($_POST['register'])) {
     </script>
   <?php } ?>
 </body>
-
 </html>
