@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
   <link rel="stylesheet" href="tampilanawal.css">
   <script type="module" src="scripts/index.js"></script>
 </head>
+
 <body>
   <ind-loading-awal></ind-loading-awal>
 
@@ -18,7 +20,7 @@
     </header>
 
     <main>
-    <ind-loading-main-awal ></ind-loading-main-awal>
+      <ind-loading-main-awal></ind-loading-main-awal>
       <section id="home" class="hero">
         <div class="hero-text">
           <h1 tabindex="0">Pesan Tiket Bus dengan Mudah dan Cepat</h1>
@@ -50,7 +52,7 @@
         <h2 tabindex="0">Kenapa Memilih EasyBusTix?</h2>
         <div class="features-grid">
           <div class="feature-item">
-            <h3 tabindex="0" >Aman</h3>
+            <h3 tabindex="0">Aman</h3>
             <p tabindex="0">Data dan transaksi Anda selalu terlindungi.</p>
           </div>
           <div class="feature-item">
@@ -66,77 +68,78 @@
 
       <section id="team" class="team">
         <h2 tabindex="0">Tim Pengembang Kami</h2>
-          <div class="team-grid">
-            <div class="team-member">
-              <div class="image-container">
-                <img tabindex="0" src="img/amel.jpg" alt="Foto Amelia Frenety Perdi">
-                <div class="overlay">
-                  <a tabindex="0" href="https://github.com/ameliafrty28" target="_blank">
-                    <img tabindex="0" src="img/github.png" alt="Gambar GitHub">
-                  </a>
-                  <a tabindex="0" href="https://www.linkedin.com/in/Amelia-FrenetyPerdi/" target="_blank">
-                    <img tabindex="0" src="img/linkedin.png" alt="Gambar linkedin">
-                  </a>
-                </div>
+        <div class="team-grid">
+          <div class="team-member">
+            <div class="image-container">
+              <img tabindex="0" src="img/amel.jpg" alt="Foto Amelia Frenety Perdi">
+              <div class="overlay">
+                <a tabindex="0" href="https://github.com/ameliafrty28" target="_blank">
+                  <img tabindex="0" src="img/github.png" alt="Gambar GitHub">
+                </a>
+                <a tabindex="0" href="https://www.linkedin.com/in/Amelia-FrenetyPerdi/" target="_blank">
+                  <img tabindex="0" src="img/linkedin.png" alt="Gambar linkedin">
+                </a>
               </div>
-              <h3 tabindex="0">Amelia Frenety Perdi</h3>
-              <p tabindex="0">UI/UX Designer</p>
             </div>
-            <div class="team-member">
-              <div class="image-container">
-                <img tabindex="0" src="img/andre.png" alt="Foto Andre Andrianus">
-                <div class="overlay">
-                  <a tabindex="0" href="https://github.com/andreandri" target="_blank">
-                    <img tabindex="0" src="img/github.png" alt="Gambar GitHub">
-                  </a>
-                  <a tabindex="0" href="https://www.linkedin.com/in/andre-andrianus02/" target="_blank">
-                    <img tabindex="0" src="img/linkedin.png" alt="Gambar linkedin">
-                  </a>
-                </div>
-              </div>
-              <h3 tabindex="0">Andre Andrianus</h3>
-              <p tabindex="0">Back-end Developer</p>
-            </div>
+            <h3 tabindex="0">Amelia Frenety Perdi</h3>
+            <p tabindex="0">UI/UX Designer</p>
           </div>
+          <div class="team-member">
+            <div class="image-container">
+              <img tabindex="0" src="img/andre.png" alt="Foto Andre Andrianus">
+              <div class="overlay">
+                <a tabindex="0" href="https://github.com/andreandri" target="_blank">
+                  <img tabindex="0" src="img/github.png" alt="Gambar GitHub">
+                </a>
+                <a tabindex="0" href="https://www.linkedin.com/in/andre-andrianus02/" target="_blank">
+                  <img tabindex="0" src="img/linkedin.png" alt="Gambar linkedin">
+                </a>
+              </div>
+            </div>
+            <h3 tabindex="0">Andre Andrianus</h3>
+            <p tabindex="0">Back-end Developer</p>
+          </div>
+        </div>
 
-          <div class="team-grid">
-            <div class="team-member">
-              <div class="image-container">
-                <img tabindex="0" src="img/imam.png" alt="Foto Imam Syahrohim">
-                <div class="overlay">
-                  <a tabindex="0" href="https://github.com/Malter17" target="_blank">
-                    <img tabindex="0" src="img/github.png" alt="Gambar GitHub">
-                  </a>
-                  <a tabindex="0" href="https://www.linkedin.com/in/imam-syahrohim/" target="_blank">
-                    <img tabindex="0" src="img/linkedin.png" alt="Gambar linkedin">
-                  </a>
-                </div>
+        <div class="team-grid">
+          <div class="team-member">
+            <div class="image-container">
+              <img tabindex="0" src="img/imam.png" alt="Foto Imam Syahrohim">
+              <div class="overlay">
+                <a tabindex="0" href="https://github.com/Malter17" target="_blank">
+                  <img tabindex="0" src="img/github.png" alt="Gambar GitHub">
+                </a>
+                <a tabindex="0" href="https://www.linkedin.com/in/imam-syahrohim/" target="_blank">
+                  <img tabindex="0" src="img/linkedin.png" alt="Gambar linkedin">
+                </a>
               </div>
-              <h3 tabindex="0">Imam Syahrohim</h3>
-              <p tabindex="0">Back-end Developer</p>
             </div>
-            <div class="team-member">
-              <div class="image-container">
-                <img tabindex="0" src="img/oyong.png" alt="Foto Natalio Valentino">
-                <div class="overlay">
-                  <a tabindex="0" href="https://github.com/Natalio2512" target="_blank">
-                    <img tabindex="0" src="img/github.png" alt="Gambar GitHub">
-                  </a>
-                  <a tabindex="0" href="https://www.linkedin.com/in/natalio-valentino-a87818312/" target="_blank">
-                    <img tabindex="0" src="img/linkedin.png" alt="Gambar linkedin">
-                  </a>
-                </div>
-              </div>
-              <h3 tabindex="0">Natalio Valentino</h3>
-              <p tabindex="0">Front-end Developer</p>
-            </div>
+            <h3 tabindex="0">Imam Syahrohim</h3>
+            <p tabindex="0">Back-end Developer</p>
           </div>
+          <div class="team-member">
+            <div class="image-container">
+              <img tabindex="0" src="img/oyong.png" alt="Foto Natalio Valentino">
+              <div class="overlay">
+                <a tabindex="0" href="https://github.com/Natalio2512" target="_blank">
+                  <img tabindex="0" src="img/github.png" alt="Gambar GitHub">
+                </a>
+                <a tabindex="0" href="https://www.linkedin.com/in/natalio-valentino-a87818312/" target="_blank">
+                  <img tabindex="0" src="img/linkedin.png" alt="Gambar linkedin">
+                </a>
+              </div>
+            </div>
+            <h3 tabindex="0">Natalio Valentino</h3>
+            <p tabindex="0">Front-end Developer</p>
+          </div>
+        </div>
       </section>
-      </main>
+    </main>
 
-      <footer>
-        <footerawal-app></footerawal-app>
-      </footer>
-    </div>
+    <footer>
+      <footerawal-app></footerawal-app>
+    </footer>
+  </div>
 </body>
+
 </html>

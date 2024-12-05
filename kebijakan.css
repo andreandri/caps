@@ -31,7 +31,7 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #f5f5f5;
   color: #333;
   line-height: 1.6;
@@ -75,7 +75,8 @@ h3 {
   margin-top: 20px;
 }
 
-p, ul {
+p,
+ul {
   margin-bottom: 15px;
   text-align: justify;
 }
@@ -128,7 +129,8 @@ section {
     font-size: 1.2em;
   }
 
-  p, ul {
+  p,
+  ul {
     font-size: 0.95em;
   }
 
@@ -157,7 +159,8 @@ section {
     font-size: 1.1rem;
   }
 
-  p, ul {
+  p,
+  ul {
     font-size: 0.8rem;
   }
 

@@ -5,8 +5,8 @@ session_start();
 $username = $_SESSION['username'] ?? null;
 
 if (!$username) {
-    echo "Anda harus login terlebih dahulu.";
-    exit;
+  echo "Anda harus login terlebih dahulu.";
+  exit;
 }
 
 $query = "
@@ -38,6 +38,7 @@ $result = $stmt->get_result();
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,51 +48,52 @@ $result = $stmt->get_result();
   <script type="module" src="scripts/index.js"></script>
   <style>
     .pay-link {
-        color: white;
-        text-decoration: none;
-        font-weight: bold;
-        background-color: #4caf50;
-        padding: 5px 10px;
-        border-radius: 5px;
-        display: inline-block;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      background-color: #4caf50;
+      padding: 5px 10px;
+      border-radius: 5px;
+      display: inline-block;
     }
 
     .pay-link:hover {
-        background-color: #45a049;
+      background-color: #45a049;
     }
 
     .status {
-        margin-top: 10px;
-        font-weight: bold;
+      margin-top: 10px;
+      font-weight: bold;
     }
   </style>
 </head>
+
 <body>
   <header>
     <bar-app></bar-app>
   </header>
   <main>
-  <ind-loading-main></ind-loading-main>
+    <ind-loading-main></ind-loading-main>
     <h2 tabindex="0">History Pemesanan</h2>
     <div class="container">
       <?php if ($result->num_rows > 0): ?>
         <?php while ($row = $result->fetch_assoc()): ?>
           <?php
-switch ($row['status_pembayaran']) {
-    case 'lunas':
-        $status_label = 'BERHASIL';
-        break;
-    case 'pending':
-        $status_label = 'MENUNGGU PEMBAYARAN';
-        break;
-    case 'dibatalkan':
-        $status_label = 'GAGAL';
-        break;
-    default:
-        $status_label = 'STATUS TIDAK DIKENAL';
-        break;
-}
-?>
+          switch ($row['status_pembayaran']) {
+            case 'lunas':
+              $status_label = 'BERHASIL';
+              break;
+            case 'pending':
+              $status_label = 'MENUNGGU PEMBAYARAN';
+              break;
+            case 'dibatalkan':
+              $status_label = 'GAGAL';
+              break;
+            default:
+              $status_label = 'STATUS TIDAK DIKENAL';
+              break;
+          }
+          ?>
 
           <div class="detail">
             <div class="detail-item">
@@ -142,4 +144,5 @@ switch ($row['status_pembayaran']) {
     <footer-app></footer-app>
   </footer>
 </body>
+
 </html>

@@ -6,46 +6,47 @@ $username = $_SESSION['username'];
 $id_pemesanan = $_GET['id_pemesanan'] ?? null;
 
 if ($id_pemesanan) {
-    $sql = $koneksi->prepare("SELECT p.id_pemesanan, p.nama_penumpang, p.no_wa, p.total, j.harga, 
+  $sql = $koneksi->prepare("SELECT p.id_pemesanan, p.nama_penumpang, p.no_wa, p.total, j.harga, 
                                        r.kota_asal, r.kota_tujuan, j.tgl_keberangkatan, j.jam_keberangkatan
                               FROM tb_pemesanan p
                               JOIN tb_busjadwal bj ON p.id_busjadwal = bj.id_busjadwal  
                               JOIN tb_jadwal j ON bj.id_jadwal = j.id_jadwal  
                               JOIN tb_rute r ON j.id_rute = r.id_rute
                               WHERE p.id_pemesanan = ?");
-    $sql->bind_param("i", $id_pemesanan);  
-    $sql->execute();
-    $result = $sql->get_result();
+  $sql->bind_param("i", $id_pemesanan);
+  $sql->execute();
+  $result = $sql->get_result();
 
-    if ($result->num_rows > 0) {
-        $data = $result->fetch_assoc();
+  if ($result->num_rows > 0) {
+    $data = $result->fetch_assoc();
 
-        $kursi_sql = $koneksi->prepare("SELECT k.nomor_kursi
+    $kursi_sql = $koneksi->prepare("SELECT k.nomor_kursi
                                         FROM tb_pemesanan_kursi pk
                                         JOIN tb_kursi k ON pk.id_kursi = k.id_kursi
                                         WHERE pk.id_pemesanan = ?");
-        $kursi_sql->bind_param("i", $id_pemesanan); 
-        $kursi_sql->execute();
-        $kursi_result = $kursi_sql->get_result();
+    $kursi_sql->bind_param("i", $id_pemesanan);
+    $kursi_sql->execute();
+    $kursi_result = $kursi_sql->get_result();
 
-        $kursi_list = [];
-        while ($kursi = $kursi_result->fetch_assoc()) {
-            $kursi_list[] = $kursi['nomor_kursi'];
-        }
-
-        $jumlah_tiket = count($kursi_list);
-    } else {
-        echo "Pemesanan tidak ditemukan.";
-        exit;
+    $kursi_list = [];
+    while ($kursi = $kursi_result->fetch_assoc()) {
+      $kursi_list[] = $kursi['nomor_kursi'];
     }
-} else {
-    echo "ID Pemesanan tidak diberikan.";
+
+    $jumlah_tiket = count($kursi_list);
+  } else {
+    echo "Pemesanan tidak ditemukan.";
     exit;
+  }
+} else {
+  echo "ID Pemesanan tidak diberikan.";
+  exit;
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -94,15 +95,18 @@ if ($id_pemesanan) {
       width: 40%;
       font-size: 16px;
     }
+
     .card h1 {
       font-size: 20px;
       margin-bottom: 20px;
       text-align: center;
     }
+
     .card p {
       margin: 5px 0;
       text-align: right;
     }
+
     .card .total {
       font-weight: bold;
       font-size: 18px;
@@ -113,7 +117,7 @@ if ($id_pemesanan) {
     }
 
     .cetak td {
-      padding: 8px 2px 5px ;
+      padding: 8px 2px 5px;
       border-bottom: 1px solid #b3b5b5;
     }
 
@@ -191,6 +195,7 @@ if ($id_pemesanan) {
         width: 60%;
         font-size: 15px;
       }
+
       .card .total {
         font-size: 17px;
       }
@@ -202,6 +207,7 @@ if ($id_pemesanan) {
         width: 80%;
         font-size: 14px;
       }
+
       .card .total {
         font-size: 16px;
       }
@@ -212,6 +218,7 @@ if ($id_pemesanan) {
         width: 90%;
         font-size: 14px;
       }
+
       .card .total {
         font-size: 15px;
       }
@@ -221,7 +228,7 @@ if ($id_pemesanan) {
       header {
         margin-bottom: 0;
       }
-      
+
       main {
         margin: 0;
       }
@@ -229,45 +236,45 @@ if ($id_pemesanan) {
       .card h1 {
         margin-bottom: 5px;
       }
-        
+
       .card {
-        width: 100%; 
+        width: 100%;
         padding: 0 1rem;
         border-radius: 10px;
-        box-shadow: none; 
-        background: none; 
+        box-shadow: none;
+        background: none;
       }
-      
+
       .card h1 {
         font-size: 18px;
       }
-      
+
       .pay-link {
         font-size: 14px;
         padding: 8px;
       }
 
       .catatan {
-        margin-top: 10px; 
+        margin-top: 10px;
         padding-top: 10px;
       }
 
       .catatan h2 {
-        font-size: 14px; 
+        font-size: 14px;
         margin-bottom: 8px;
       }
 
       .catatan .catat td {
-        font-size: 12px; 
-        padding: 6px 0; 
+        font-size: 12px;
+        padding: 6px 0;
       }
 
       .catatan .catat td:first-child {
-        width: 10%; 
+        width: 10%;
       }
 
       .catatan .catat td:last-child {
-        width: 90%; 
+        width: 90%;
       }
     }
 
@@ -277,14 +284,15 @@ if ($id_pemesanan) {
         width: 95%;
         font-size: 12px;
       }
+
       .card .total {
         font-size: 14px;
       }
     }
-
   </style>
   <script type="module" src="scripts/index.js"></script>
 </head>
+
 <body>
   <header>
     <bar-user-app></bar-user-app>
@@ -293,59 +301,60 @@ if ($id_pemesanan) {
   <main>
     <ind-loading-main></ind-loading-main>
     <div class="card">
-        <h1 id="home" tabindex="0">Detail Pemesanan</h1>
-        <table class="cetak">
+      <h1 id="home" tabindex="0">Detail Pemesanan</h1>
+      <table class="cetak">
+        <tr>
+          <td tabindex="0">No. Kursi</td>
+          <td tabindex="0"> : <?= !empty($kursi_list) ? implode(", ", $kursi_list) : '-' ?></td>
+        </tr>
+        <tr>
+          <td tabindex="0">Nama</td>
+          <td tabindex="0"> : <?= htmlspecialchars($data['nama_penumpang'] ?? '-') ?></td>
+        </tr>
+        <tr>
+          <td tabindex="0">No HP</td>
+          <td tabindex="0"> : <?= htmlspecialchars($data['no_wa'] ?? '-') ?></td>
+        </tr>
+        <tr>
+          <td tabindex="0">Tiket</td>
+          <td tabindex="0"> : <?= $jumlah_tiket ?? '-' ?></td>
+        </tr>
+        <tr>
+          <td tabindex="0">Tujuan:</td>
+          <td tabindex="0"> : <?= htmlspecialchars($data['kota_asal'] ?? '-') . ' - ' . htmlspecialchars($data['kota_tujuan'] ?? '-') ?></td>
+        </tr>
+        <tr>
+          <td tabindex="0">Keberangkatan</td>
+          <td tabindex="0"> : <?= htmlspecialchars($data['tgl_keberangkatan'] ?? '-') . ', ' . htmlspecialchars($data['jam_keberangkatan'] ?? '-') ?></td>
+        </tr>
+      </table>
+      <p tabindex="0" class="total">Total: Rp <?= number_format($data['total'] ?? 0, 0, ',', '.') ?></p>
+      <div class="catatan">
+        <h2>Catatan Penting</h2>
+        <table class="catat">
+          <tbody>
             <tr>
-                <td tabindex="0">No. Kursi</td>
-                <td tabindex="0"> : <?= !empty($kursi_list) ? implode(", ", $kursi_list) : '-' ?></td>
+              <td>1.</td>
+              <td>Penumpang wajib datang 60 menit sebelum Keberangkatan</td>
             </tr>
             <tr>
-                <td tabindex="0">Nama</td>
-                <td tabindex="0"> : <?= htmlspecialchars($data['nama_penumpang'] ?? '-') ?></td>
+              <td>2.</td>
+              <td>Bagasi penumpang yang lebih dari 5kg akan dikenakan biaya tambahan</td>
             </tr>
             <tr>
-                <td tabindex="0">No HP</td>
-                <td tabindex="0"> : <?= htmlspecialchars($data['no_wa'] ?? '-') ?></td>
+              <td>3.</td>
+              <td>Membawa kartu identitas asli</td>
             </tr>
-            <tr>
-                <td tabindex="0">Tiket</td>
-                <td tabindex="0"> : <?= $jumlah_tiket ?? '-' ?></td>
-            </tr>
-            <tr>
-                <td tabindex="0">Tujuan:</td>
-                <td tabindex="0"> : <?= htmlspecialchars($data['kota_asal'] ?? '-') . ' - ' . htmlspecialchars($data['kota_tujuan'] ?? '-') ?></td>
-            </tr>
-            <tr>
-                <td tabindex="0">Keberangkatan</td>
-                <td tabindex="0"> : <?= htmlspecialchars($data['tgl_keberangkatan'] ?? '-') . ', ' . htmlspecialchars($data['jam_keberangkatan'] ?? '-') ?></td>
-            </tr>
+          </tbody>
         </table>
-        <p tabindex="0" class="total">Total: Rp <?= number_format($data['total'] ?? 0, 0, ',', '.') ?></p>
-        <div class="catatan">
-          <h2>Catatan Penting</h2>
-          <table class="catat">
-            <tbody>
-              <tr>
-                <td>1.</td>
-                <td>Penumpang wajib datang 60 menit sebelum Keberangkatan</td>
-              </tr>
-              <tr>
-                <td>2.</td>
-                <td>Bagasi penumpang yang lebih dari 5kg akan dikenakan biaya tambahan</td>
-              </tr>
-              <tr>
-                <td>3.</td>
-                <td>Membawa kartu identitas asli</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <a tabindex="0" href="./midtrans/examples/snap/checkout-process-simple-version.php?id_pemesanan=<?= $id_pemesanan ?>" 
+      </div>
+      <a tabindex="0" href="./midtrans/examples/snap/checkout-process-simple-version.php?id_pemesanan=<?= $id_pemesanan ?>"
         class="pay-link">Bayar</a>
     </div>
-</main>
+  </main>
 
 </body>
+
 </html>
 
 <?php

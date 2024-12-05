@@ -17,16 +17,16 @@
 body {
   background-color: #f5f5f5;
   color: #333;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   display: flex;
   flex-direction: column;
 }
-
 
 main {
   width: 90%;
@@ -46,12 +46,15 @@ header {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-h2, h3 {
+h2,
+h3 {
   color: #333;
   margin-bottom: 0.5rem;
 }
 
-.profile, .security, .support {
+.profile,
+.security,
+.support {
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid #ddd;
@@ -60,7 +63,7 @@ h2, h3 {
 .profile .avatar {
   width: 100px;
   height: 100px;
-  background-color: #D7D3BF;
+  background-color: #d7d3bf;
   border-radius: 50%;
   margin: 1rem auto;
   border: 2px solid #000;
@@ -70,22 +73,28 @@ h2, h3 {
   text-align: center;
 }
 
-.profile p, .security p, .support p {
+.profile p,
+.security p,
+.support p {
   margin-bottom: 0.5rem;
 }
 
-.profile p a, .security p a, .support p a {
+.profile p a,
+.security p a,
+.support p a {
   color: #333;
   text-decoration: none;
   font-size: 0.9rem;
 }
 
-.profile p a:hover, .security p a:hover, .support p a:hover {
+.profile p a:hover,
+.security p a:hover,
+.support p a:hover {
   text-decoration: underline;
 }
 
 .isi1 p {
-  display: flex; 
+  display: flex;
   align-items: center;
 }
 
@@ -97,20 +106,20 @@ h2, h3 {
 }
 
 .data .isi1 {
-  border-bottom: 1px solid #ccc; 
+  border-bottom: 1px solid #ccc;
   padding-bottom: 0.5rem;
   margin-bottom: 1rem;
 }
 
 .data .isi:last-child {
-  border-bottom: none; 
+  border-bottom: none;
 }
 
 .logout-link {
   display: block;
-  width: 100%; 
+  width: 100%;
   min-height: 44px;
-  text-align: center; 
+  text-align: center;
   padding: 0.75rem;
   background-color: #dc3545;
   color: #fff;
@@ -164,7 +173,7 @@ h2, h3 {
   min-height: 44px;
 }
 
-.camera-button img{
+.camera-button img {
   max-width: 20px;
 }
 
@@ -255,11 +264,17 @@ h2, h3 {
     font-size: 1.2rem;
   }
 
-  .isi1 h3, .isi2 h3, .security h3, .support h3 {
+  .isi1 h3,
+  .isi2 h3,
+  .security h3,
+  .support h3 {
     font-size: 0.9rem;
   }
 
-  .isi1 p, .isi2 p, .security p a, .support p a {
+  .isi1 p,
+  .isi2 p,
+  .security p a,
+  .support p a {
     font-size: 0.83rem;
   }
 
@@ -267,7 +282,6 @@ h2, h3 {
     margin-top: 1rem;
   }
 }
-
 
 @media (max-width: 400px) {
   .popup-content {
@@ -278,11 +292,17 @@ h2, h3 {
     font-size: 1.2rem;
   }
 
-  .isi1 h3, .isi2 h3, .security h3, .support h3 {
+  .isi1 h3,
+  .isi2 h3,
+  .security h3,
+  .support h3 {
     font-size: 0.9rem;
   }
 
-  .isi1 p, .isi2 p, .security p a, .support p a{
+  .isi1 p,
+  .isi2 p,
+  .security p a,
+  .support p a {
     font-size: 0.83rem;
   }
 }

@@ -40,17 +40,18 @@ body {
   height: 100%;
   width: 100%;
   background-color: #f5f5f5;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   transition: opacity 0.3s ease-in-out;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   display: flex;
   flex-direction: column;
 }
-  
+
 main {
   display: flex;
   flex-direction: column;
@@ -74,7 +75,7 @@ header {
 .bus {
   display: flex;
   flex-direction: column;
-  background-color: #B9E5E8;
+  background-color: #b9e5e8;
   width: 65%;
   padding: 2rem 3rem 0;
   border-radius: 1rem;
@@ -103,7 +104,7 @@ aside {
 }
 
 .buss {
-  background-color: #B9E5E8;
+  background-color: #b9e5e8;
   border-radius: 1rem;
 
   padding: 1px 1rem 1.2rem;
@@ -112,7 +113,7 @@ aside {
 
 .buss h1 {
   font-size: 20px;
-  color: #2C7873;
+  color: #2c7873;
 }
 
 .buss p {
@@ -124,7 +125,7 @@ aside {
   display: block;
   margin-top: 10px;
   padding: 10px 20px;
-  background-color: #2C7873;
+  background-color: #2c7873;
   color: #fff;
   border-radius: 1rem;
   text-decoration: none;
@@ -133,11 +134,11 @@ aside {
 }
 
 .buss a:hover {
-  background-color: #35A29F;
+  background-color: #35a29f;
 }
 
 .daftarbus {
-  background-color: #B9E5E8;
+  background-color: #b9e5e8;
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -200,7 +201,6 @@ aside {
   .bus img {
     max-width: 380px;
   }
-  
 }
 
 @media screen and (max-width: 1040px) {
@@ -220,17 +220,17 @@ aside {
     margin: 0;
     padding: 0;
   }
-  
+
   main {
     margin: 1rem;
     gap: 1.5rem;
   }
-  
+
   .tampilsatu {
     flex-direction: column;
     gap: 1.5rem;
   }
-  
+
   .bus {
     width: 100%;
     padding: 1.5rem 1.5rem 0;
@@ -239,49 +239,49 @@ aside {
   .bus h1 {
     font-size: 1.4rem;
   }
-  
+
   .bus img {
     width: 70%;
   }
-  
+
   aside {
     width: 100%;
   }
-  
+
   .buss {
     padding: 1rem;
   }
-  
+
   .buss h1 {
     font-size: 1.1rem;
   }
-  
+
   .buss p {
     font-size: 14px;
   }
-  
+
   .buss a {
     font-size: 14px;
     padding: 8px 16px;
   }
-  
+
   .daftarbus {
     padding: 1rem;
   }
-  
+
   .daftarbus h1 {
     font-size: 1.5rem;
   }
-  
+
   .tampildua {
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 0.5rem;
   }
-  
+
   .tampildua img {
     max-width: 100%;
   }
-  
+
   .tampildua h1 {
     font-size: 1rem;
   }
@@ -329,7 +329,7 @@ aside {
   }
 
   .buss {
-    background-color: B9E5E8; 
+    background-color: B9E5E8;
     padding: 0.5rem 1rem 1rem;
     margin: 0 0.8rem;
   }
@@ -343,7 +343,7 @@ aside {
 
   .tampildua img {
     max-width: 100%;
-    border-radius: 0; 
+    border-radius: 0;
   }
 
   .tampildua h1 {
@@ -351,15 +351,17 @@ aside {
     color: #333;
   }
 
-  .bus p, .buss p {
+  .bus p,
+  .buss p {
     font-size: 0.9rem;
   }
 
-  .bus h1, .buss h1, .daftarbus h1 {
+  .bus h1,
+  .buss h1,
+  .daftarbus h1 {
     font-size: 1rem;
   }
 }
-
 
 @media screen and (max-width: 378px) {
   .bus p {

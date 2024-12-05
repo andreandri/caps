@@ -53,18 +53,19 @@ body {
 
   form button {
     font-size: 0.9rem;
-    padding: 10px; 
+    padding: 10px;
   }
 
   form label {
-    font-size: 0.9rem; 
+    font-size: 0.9rem;
   }
 
   input {
-    font-size: 0.9rem; 
+    font-size: 0.9rem;
   }
 
-  .wrapper h2,  .wrapper h1 {
+  .wrapper h2,
+  .wrapper h1 {
     text-align: center;
   }
 
@@ -82,7 +83,7 @@ h1 {
 }
 h2 {
   font-size: 1rem;
-  color: #C9CBCB;
+  color: #c9cbcb;
   margin-bottom: 20px;
   text-align: left;
 }

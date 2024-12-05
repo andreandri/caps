@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,46 +9,47 @@
   <link rel="icon" href="favicon.png" type="image/png">
   <script type="module" src="scripts/index.js"></script>
 </head>
+
 <body>
   <header>
     <bar-tiket-app></bar-tiket-app>
   </header>
-  
+
   <main class="card-conta">
     <ind-loading-main></ind-loading-main>
     <form action="pesantiket.php" method="POST">
-        <div class="opsi">
-            <div class="form-asal">
-                <label tabindex="0" for="asal">Form/Asal</label>
-                <select id="asal" name="asal">
-                    <option tabindex="0" value="">Pilih Kota</option>
-                    <option tabindex="0" value="Palangka Raya">Palangka Raya</option>
-                    <option tabindex="0" value="Sampit">Sampit</option>
-                    <option tabindex="0" value="Pangkalan Bun">Pangkalan Bun</option>
-                </select>
-            </div>
-
-            <div class="to-tujuan">
-                <label tabindex="0" for="tujuan">To/Tujuan</label>
-                <select id="tujuan" name="tujuan">
-                    <option tabindex="0" value="">Pilih Kota</option>
-                    <option tabindex="0" value="Palangka Raya">Palangka Raya</option>
-                    <option tabindex="0" value="Sampit">Sampit</option>
-                    <option tabindex="0" value="Pangkalan Bun">Pangkalan Bun</option>
-                </select>
-            </div>
+      <div class="opsi">
+        <div class="form-asal">
+          <label tabindex="0" for="asal">Form/Asal</label>
+          <select id="asal" name="asal">
+            <option tabindex="0" value="">Pilih Kota</option>
+            <option tabindex="0" value="Palangka Raya">Palangka Raya</option>
+            <option tabindex="0" value="Sampit">Sampit</option>
+            <option tabindex="0" value="Pangkalan Bun">Pangkalan Bun</option>
+          </select>
         </div>
 
-        <div class="opsiopsi">
-            <div class="date">
-                <label tabindex="0" for="date">Pilih Tanggal</label>
-                <input tabindex="0" type="date" id="date" name="date">
-            </div>
-
-            <div class="search">
-                <button tabindex="0" type="submit" name="search">Search</button>
-            </div>
+        <div class="to-tujuan">
+          <label tabindex="0" for="tujuan">To/Tujuan</label>
+          <select id="tujuan" name="tujuan">
+            <option tabindex="0" value="">Pilih Kota</option>
+            <option tabindex="0" value="Palangka Raya">Palangka Raya</option>
+            <option tabindex="0" value="Sampit">Sampit</option>
+            <option tabindex="0" value="Pangkalan Bun">Pangkalan Bun</option>
+          </select>
         </div>
+      </div>
+
+      <div class="opsiopsi">
+        <div class="date">
+          <label tabindex="0" for="date">Pilih Tanggal</label>
+          <input tabindex="0" type="date" id="date" name="date">
+        </div>
+
+        <div class="search">
+          <button tabindex="0" type="submit" name="search">Search</button>
+        </div>
+      </div>
     </form>
 
     <?php
@@ -56,11 +58,11 @@
     $username = $_SESSION['username'];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
-        $asal = $_POST['asal'];
-        $tujuan = $_POST['tujuan'];
-        $tanggal = $_POST['date'];
+      $asal = $_POST['asal'];
+      $tujuan = $_POST['tujuan'];
+      $tanggal = $_POST['date'];
 
-        $sql = "SELECT r.kota_asal, r.kota_tujuan, j.id_jadwal, j.tgl_keberangkatan, 
+      $sql = "SELECT r.kota_asal, r.kota_tujuan, j.id_jadwal, j.tgl_keberangkatan, 
                     j.jam_keberangkatan, b.no_plat, b.id_bus, j.harga
                 FROM tb_busjadwal bj
                 JOIN tb_jadwal j ON bj.id_jadwal = j.id_jadwal
@@ -69,26 +71,26 @@
                 WHERE CONCAT(j.tgl_keberangkatan, ' ', j.jam_keberangkatan) >= NOW()";
 
 
-        $sql .= " AND CONCAT(j.tgl_keberangkatan, ' ', j.jam_keberangkatan) >= NOW()";
+      $sql .= " AND CONCAT(j.tgl_keberangkatan, ' ', j.jam_keberangkatan) >= NOW()";
 
-        if (!empty($asal)) {
-            $sql .= " AND r.kota_asal = '$asal'";
-        }
-        if (!empty($tujuan)) {
-            $sql .= " AND r.kota_tujuan = '$tujuan'";
-        }
-        if (!empty($tanggal)) {
-            $sql .= " AND j.tgl_keberangkatan = '$tanggal'";
-        }
+      if (!empty($asal)) {
+        $sql .= " AND r.kota_asal = '$asal'";
+      }
+      if (!empty($tujuan)) {
+        $sql .= " AND r.kota_tujuan = '$tujuan'";
+      }
+      if (!empty($tanggal)) {
+        $sql .= " AND j.tgl_keberangkatan = '$tanggal'";
+      }
 
 
-        $result = $koneksi->query($sql);
-        if ($result->num_rows > 0) {
-            echo "<div class='card-container'>";
-            while ($row = $result->fetch_assoc()) {
-                $id_jadwal = $row['id_jadwal'];
-                $id_bus = $row['id_bus'];
-                echo "<a href='pilihkursi.php?id_busjadwal={$id_jadwal}' class='card'>
+      $result = $koneksi->query($sql);
+      if ($result->num_rows > 0) {
+        echo "<div class='card-container'>";
+        while ($row = $result->fetch_assoc()) {
+          $id_jadwal = $row['id_jadwal'];
+          $id_bus = $row['id_bus'];
+          echo "<a href='pilihkursi.php?id_busjadwal={$id_jadwal}' class='card'>
                         <div class='card-content'>
                             <h3>{$row['kota_asal']} - {$row['kota_tujuan']}</h2>
                             <p>Tanggal Keberangkatan : " . date("d F Y", strtotime($row['tgl_keberangkatan'])) . "</p>
@@ -97,12 +99,12 @@
                             <span class='harga'>IDR " . number_format($row['harga'], 0, ',', '.') . "</span>
                         </div>
                       </a>";
-            }
-            echo "</div>";
-        } else {
-            echo "<p style='color: red; text-align: center; padding: 2rem; margin: 1rem 0; font-weight: bold;'>Keberangkatan bus tidak ada</p>";
         }
-        $koneksi->close();
+        echo "</div>";
+      } else {
+        echo "<p style='color: red; text-align: center; padding: 2rem; margin: 1rem 0; font-weight: bold;'>Keberangkatan bus tidak ada</p>";
+      }
+      $koneksi->close();
     }
     ?>
     <section class="map">
@@ -121,4 +123,5 @@
     </section>
   </main>
 </body>
+
 </html>

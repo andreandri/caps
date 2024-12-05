@@ -1,9 +1,10 @@
 <?php
-    include 'koneksi.php';
+include 'koneksi.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
   <script type="module" src="scripts/index.js"></script>
   <link rel="stylesheet" href="tampilan.css">
 </head>
+
 <body>
   <a href="#home" class="skip-link">Skip To Content</a>
   <header>
@@ -25,14 +27,14 @@
         <article>
           <img tabindex="0" src="img/bus.png" alt="">
           <p tabindex="0">"EasyBusTix - Pesan Mudah, Perjalanan Nyaman!"</p>
-        </article> 
+        </article>
 
         <article>
           <h1 tabindex="0">EasyBusTix</h1>
           <p tabindex="0">EasyBusTix adalah platform penjualan tiket bus online yang memudahkan Anda memesan tiket dengan cepat dan aman.</p>
         </article>
       </div>
-            
+
       <aside>
         <div class="bussart">
           <article class="buss">
@@ -40,7 +42,7 @@
             <a tabindex="0" href="pesantiket.php">Pesan Tiket</a>
           </article>
         </div>
-                
+
         <article class="buss" id="populer">
           <h1 tabindex="0">Rute Perjalanan Yang Tersedia :</h1>
           <p tabindex="0">Palangka Raya - Sampit</p>
@@ -79,4 +81,5 @@
     <footer-app></footer-app>
   </footer>
 </body>
+
 </html>

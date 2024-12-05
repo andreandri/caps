@@ -39,7 +39,7 @@ a[id] {
 body {
   height: 100%;
   width: 100%;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #f5f5f5;
 }
 
@@ -71,7 +71,7 @@ section[id] {
   max-width: 50%;
 }
 
-.hero-text a{
+.hero-text a {
   min-width: 44px;
   min-height: 44px;
 }
@@ -109,7 +109,7 @@ section[id] {
 }
 
 .btn-secondary:hover {
-  background-color: #2870BF;
+  background-color: #2870bf;
   color: #fff;
 }
 
@@ -121,7 +121,7 @@ section[id] {
   background-color: #f5f5f5;
 }
 
-.about-us img{
+.about-us img {
   width: 70%;
 }
 
@@ -179,7 +179,6 @@ section[id] {
   width: 100%;
   border-radius: 50%;
 }
-
 
 .image-container .overlay {
   position: absolute;
@@ -265,7 +264,7 @@ section[id] {
     max-width: 500px;
   }
 
-  .about-us img{
+  .about-us img {
     width: 65%;
   }
 
@@ -291,7 +290,7 @@ section[id] {
   }
 
   .about-us {
-    padding: 5px 20px;;
+    padding: 5px 20px;
   }
 }
 
@@ -384,12 +383,14 @@ section[id] {
 }
 
 @media (max-width: 370px) {
-  
   .hero-text h1 {
     font-size: 1.2rem;
   }
 
-  .about-us h2, .team h2, .features h2, .team h2 {
+  .about-us h2,
+  .team h2,
+  .features h2,
+  .team h2 {
     font-size: 1.1rem;
   }
 
