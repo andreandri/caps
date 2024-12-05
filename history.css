@@ -24,7 +24,7 @@ body {
   flex-direction: column;
 }
 
-html, body {
+html, main {
   height: 100%;
   margin: 0;
   display: flex;
@@ -32,7 +32,8 @@ html, body {
 }
 
 main {
-  padding-top: 1rem;
+  margin-top: 4rem;
+  padding-top: 2rem;
   flex: 1;
 }
 
@@ -158,7 +159,7 @@ footer {
   .detail-item {
     width: 95%;
   }
-}
+} 
 
 @media (max-width: 515px) {
   .detail-item {
