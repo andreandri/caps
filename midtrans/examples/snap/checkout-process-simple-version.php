@@ -134,6 +134,13 @@ if ($id_pemesanan) {
       font-family: 'Poppins', sans-serif;
     }
 
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
     .card {
       width: 100%;
       max-width: 400px;
