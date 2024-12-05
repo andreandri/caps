@@ -52,7 +52,7 @@ $result = $stmt->get_result();
       text-decoration: none;
       font-weight: bold;
       background-color: #4caf50;
-      padding: 0.9rem 10px;
+      padding: 0.85rem 10px;
       border-radius: 1rem;
       display: inline-block;
     }
@@ -64,12 +64,6 @@ $result = $stmt->get_result();
     .status {
       margin-top: 10px;
       font-weight: bold;
-    }
-
-    @media (max-width: 1000px) {
-      .pay-link {
-        padding:  0.85rem 8px;
-      }
     }
 
     @media (max-width: 768px) {
