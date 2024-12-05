@@ -15,14 +15,15 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   display: flex;
   height: 100vh;
-  background-color: #C4E1F6;
+  background-color: #c4e1f6;
   line-height: 1.6;
 }
 
-header, main {
+header,
+main {
   display: flex;
   height: 100vh;
   width: 100%;
@@ -34,13 +35,13 @@ header {
   width: 100%;
   display: flex;
   z-index: 1000;
-  height: 120px; 
+  height: 120px;
 }
 
 main {
-  margin-left: 16%; 
-  padding-top: 120px; 
-  width: 84%; 
+  margin-left: 16%;
+  padding-top: 120px;
+  width: 84%;
 }
 
 .dashboard {
@@ -109,7 +110,7 @@ main {
 }
 
 .logout:hover {
-  background-color: #503030; 
+  background-color: #503030;
 }
 
 .add {
@@ -180,7 +181,7 @@ form button[type="submit"]:hover {
 }
 
 form a {
-  background-color: #d9534f; 
+  background-color: #d9534f;
 }
 
 form a:hover {
@@ -250,4 +251,3 @@ button {
     width: 100%;
   }
 }
-

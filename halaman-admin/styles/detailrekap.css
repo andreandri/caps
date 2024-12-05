@@ -15,13 +15,14 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   display: flex;
   height: 100vh;
-  background-color: #C4E1F6;
+  background-color: #c4e1f6;
 }
 
-header, main {
+header,
+main {
   display: flex;
   height: 100vh;
   width: 100%;
@@ -32,7 +33,7 @@ header {
   top: 0;
   width: 100%;
   display: flex;
-  z-index: 1000; 
+  z-index: 1000;
   height: 120px;
 }
 
@@ -126,7 +127,7 @@ main {
 }
 
 .logout:hover {
-  background-color: #503030; 
+  background-color: #503030;
 }
 
 .detail-rekap {
@@ -178,6 +179,3 @@ table tr:hover {
     font-size: 1.5rem;
   }
 }
-
-
-

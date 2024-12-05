@@ -15,13 +15,14 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   display: flex;
   height: 100vh;
-  background-color: #C4E1F6;
+  background-color: #c4e1f6;
 }
 
-header, main {
+header,
+main {
   display: flex;
   height: 100vh;
   width: 100%;
@@ -39,7 +40,7 @@ header {
 main {
   margin-left: 16%;
   padding-top: 120px;
-  width: 84%; 
+  width: 84%;
 }
 
 .dashboard {
@@ -126,7 +127,7 @@ main {
 }
 
 .logout:hover {
-  background-color: #503030; 
+  background-color: #503030;
 }
 
 .main-content {
@@ -142,10 +143,10 @@ main {
 }
 
 .form-container {
-  background-color: #ffffff; 
-  padding: 20px; 
+  background-color: #ffffff;
+  padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 500px;
   margin: 5px auto;
@@ -155,7 +156,7 @@ label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
-  color: #333333; 
+  color: #333333;
 }
 
 input[type="text"],
@@ -164,39 +165,39 @@ input[type="time"],
 input[type="number"] {
   width: 100%;
   padding: 10px;
-  margin-bottom: 15px; 
-  border: 1px solid #ccc; 
-  border-radius: 5px; 
-  font-size: 1rem; 
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 button[type="submit"] {
-  background-color: #4CAF50;
-  color: white; 
-  border: none; 
+  background-color: #4caf50;
+  color: white;
+  border: none;
   padding: 10px 20px;
-  font-size: 1rem; 
-  border-radius: 5px; 
+  font-size: 1rem;
+  border-radius: 5px;
   cursor: pointer;
-  width: 100%; 
-  max-width: 200px; 
+  width: 100%;
+  max-width: 200px;
   margin: 10px 0;
 }
 
 button[type="submit"]:hover {
-  background-color: #45a049; 
+  background-color: #45a049;
 }
 
 a {
-  display: inline-block; 
+  display: inline-block;
   text-decoration: none;
   background-color: #6a5acd;
-  color: white; 
-  padding: 10px 20px; 
+  color: white;
+  padding: 10px 20px;
   border-radius: 5px;
-  font-size: 1rem; 
-  text-align: center; 
-  margin: 10px 0; 
+  font-size: 1rem;
+  text-align: center;
+  margin: 10px 0;
 }
 
 a:hover {
@@ -205,15 +206,15 @@ a:hover {
 
 select {
   width: 100%;
-  padding: 10px; 
-  margin-bottom: 15px; 
-  border: 1px solid #ccc; 
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 1rem; 
+  font-size: 1rem;
   background-color: #f9f9f9;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 select:hover {
-  border-color: #888; 
+  border-color: #888;
 }

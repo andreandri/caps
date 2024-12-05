@@ -1,8 +1,9 @@
 <?php
+
 namespace Midtrans;
 
 require_once dirname(__FILE__) . '/../../Midtrans.php';
-Config::$serverKey = 'SB-Mid-server-ZwVxKRABKeqWj-jebaE_OvA3'; 
+Config::$serverKey = 'SB-Mid-server-ZwVxKRABKeqWj-jebaE_OvA3';
 Config::$clientKey = 'SB-Mid-client-0EXZ4KcHAlgRlBle';
 Config::$isProduction = false; // Sandbox mode
 Config::$isSanitized = Config::$is3ds = true;
@@ -13,8 +14,8 @@ session_start();
 $id_pemesanan = $_GET['id_pemesanan'] ?? null;
 
 if ($id_pemesanan) {
-    if (!isset($_SESSION['pemesanan'][$id_pemesanan])) {
-        $query = $koneksi->prepare("
+  if (!isset($_SESSION['pemesanan'][$id_pemesanan])) {
+    $query = $koneksi->prepare("
             SELECT 
                 p.id_pemesanan, 
                 p.nama_penumpang, 
@@ -30,81 +31,82 @@ if ($id_pemesanan) {
             WHERE 
                 p.id_pemesanan = ?
         ");
-        $query->bind_param("i", $id_pemesanan);
-        $query->execute();
-        $result = $query->get_result();
+    $query->bind_param("i", $id_pemesanan);
+    $query->execute();
+    $result = $query->get_result();
 
-        if ($result->num_rows > 0) {
-            $data = $result->fetch_assoc();
+    if ($result->num_rows > 0) {
+      $data = $result->fetch_assoc();
 
-            $_SESSION['pemesanan'][$id_pemesanan] = $data;
+      $_SESSION['pemesanan'][$id_pemesanan] = $data;
 
-            $order_id = 'ORDER_' . $id_pemesanan . '_' . bin2hex(random_bytes(5)) . time();
+      $order_id = 'ORDER_' . $id_pemesanan . '_' . bin2hex(random_bytes(5)) . time();
 
-            $update_order_query = $koneksi->prepare("
+      $update_order_query = $koneksi->prepare("
                 UPDATE tb_pemesanan 
                 SET order_id = ? 
                 WHERE id_pemesanan = ?
             ");
-            $update_order_query->bind_param("si", $order_id, $id_pemesanan);
-            $update_order_query->execute();
+      $update_order_query->bind_param("si", $order_id, $id_pemesanan);
+      $update_order_query->execute();
 
-            if ($update_order_query->affected_rows === 0) {
-                echo "Gagal memperbarui order_id.";
-                exit;
-            }
+      if ($update_order_query->affected_rows === 0) {
+        echo "Gagal memperbarui order_id.";
+        exit;
+      }
 
-            $transaction_details = array(
-                'order_id' => $order_id,
-                'gross_amount' => $data['total'],
-            );
+      $transaction_details = array(
+        'order_id' => $order_id,
+        'gross_amount' => $data['total'],
+      );
 
-            $item_details = array(
-                array(
-                    'id' => 'TIKET_' . $id_pemesanan,
-                    'price' => $data['total'],
-                    'quantity' => 1,
-                    'name' => "Pembayaran Tiket",
-                ),
-            );
+      $item_details = array(
+        array(
+          'id' => 'TIKET_' . $id_pemesanan,
+          'price' => $data['total'],
+          'quantity' => 1,
+          'name' => "Pembayaran Tiket",
+        ),
+      );
 
-            $customer_details = array(
-                'first_name' => $data['nama_penumpang'],
-                'last_name' => '',
-                'email' => $data['email'],
-                'phone' => $data['no_wa'],
-            );
+      $customer_details = array(
+        'first_name' => $data['nama_penumpang'],
+        'last_name' => '',
+        'email' => $data['email'],
+        'phone' => $data['no_wa'],
+      );
 
-            $transaction = array(
-                'transaction_details' => $transaction_details,
-                'item_details' => $item_details,
-                'customer_details' => $customer_details,
-            );
+      $transaction = array(
+        'transaction_details' => $transaction_details,
+        'item_details' => $item_details,
+        'customer_details' => $customer_details,
+      );
 
-            try {
-                $snap_token = Snap::getSnapToken($transaction);
+      try {
+        $snap_token = Snap::getSnapToken($transaction);
 
-                $_SESSION['snap_token'][$id_pemesanan] = $snap_token;
-            } catch (\Exception $e) {
-                echo "Error: " . $e->getMessage();
-                exit;
-            }
-        } else {
-            echo "Pemesanan tidak ditemukan.";
-            exit;
-        }
+        $_SESSION['snap_token'][$id_pemesanan] = $snap_token;
+      } catch (\Exception $e) {
+        echo "Error: " . $e->getMessage();
+        exit;
+      }
     } else {
-        $data = $_SESSION['pemesanan'][$id_pemesanan];
-        $snap_token = $_SESSION['snap_token'][$id_pemesanan];
+      echo "Pemesanan tidak ditemukan.";
+      exit;
     }
+  } else {
+    $data = $_SESSION['pemesanan'][$id_pemesanan];
+    $snap_token = $_SESSION['snap_token'][$id_pemesanan];
+  }
 } else {
-    echo "Order ID tidak ditemukan.";
-    exit;
+  echo "Order ID tidak ditemukan.";
+  exit;
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -153,14 +155,15 @@ if ($id_pemesanan) {
       text-align: center;
     }
 
-    .pembayaran td, .pembayaran th {
+    .pembayaran td,
+    .pembayaran th {
       padding: 10px 5px 10px 0;
       font-size: 1rem;
     }
 
     .pembayaran tr {
       border-bottom: 1px solid #b3b5b5;
-      padding-bottom: 10px; 
+      padding-bottom: 10px;
     }
 
     .btn-primary {
@@ -196,7 +199,7 @@ if ($id_pemesanan) {
       .card-body h5 {
         font-size: 1.3rem;
         margin-bottom: 0;
-        
+
       }
 
       .btn-primary {
@@ -236,61 +239,63 @@ if ($id_pemesanan) {
         padding: 6px;
         font-size: 1rem;
       }
-        
-      .pembayaran td, .pembayaran th {
+
+      .pembayaran td,
+      .pembayaran th {
         font-size: 0.9rem;
       }
     }
   </style>
 </head>
+
 <body>
   <header>
     <bar-user-app></bar-user-app>
   </header>
   <main>
-      <div class="card">
-        <div class="card-body">
-          <h5>Detail Pemesanan</h5>
-          <table class="pembayaran">
-            <tr>
-              <td><strong>Nama Penumpang</strong></td>
-              <td> : <?= htmlspecialchars($data['nama_penumpang']); ?></td>
-            </tr>
-            <tr>
-              <td><strong>Total Pembayaran</strong></td>
-              <td> : Rp <?= number_format($data['total'], 0, ',', '.'); ?></td>
-            </tr>
-          </table>
-          <button id="pay-button" class="btn btn-primary">Bayar Sekarang</button>
-        </div>
+    <div class="card">
+      <div class="card-body">
+        <h5>Detail Pemesanan</h5>
+        <table class="pembayaran">
+          <tr>
+            <td><strong>Nama Penumpang</strong></td>
+            <td> : <?= htmlspecialchars($data['nama_penumpang']); ?></td>
+          </tr>
+          <tr>
+            <td><strong>Total Pembayaran</strong></td>
+            <td> : Rp <?= number_format($data['total'], 0, ',', '.'); ?></td>
+          </tr>
+        </table>
+        <button id="pay-button" class="btn btn-primary">Bayar Sekarang</button>
       </div>
+    </div>
 
     <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<?= Config::$clientKey; ?>"></script>
     <script type="text/javascript">
-      document.getElementById('pay-button').onclick = function () {
-    const snapToken = '<?= $snap_token; ?>';
+      document.getElementById('pay-button').onclick = function() {
+        const snapToken = '<?= $snap_token; ?>';
 
-    snap.pay(snapToken, {
-        onSuccess: function (result) {
+        snap.pay(snapToken, {
+          onSuccess: function(result) {
             console.log("Payment Success:", result);
             window.location.href = "../../../tampilan.php";
-        },
-        onPending: function (result) {
+          },
+          onPending: function(result) {
             console.log("Payment Pending:", result);
             window.location.href = "../../../history.php";
-        },
-        onError: function (result) {
+          },
+          onError: function(result) {
             console.log("Payment Error:", result);
             window.location.href = "../../../history.php";
-        },
-        onClose: function () {
+          },
+          onClose: function() {
             console.log("Payment popup closed");
             window.location.href = "../../../history.php";
-        },
-    });
-};
-
+          },
+        });
+      };
     </script>
   </main>
 </body>
+
 </html>

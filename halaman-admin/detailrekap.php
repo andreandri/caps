@@ -21,26 +21,28 @@ $result = mysqli_query($koneksi, $query);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Pemesanan - Bulan <?php echo $bulan; ?></title>
-    <link rel="icon" href="favicon.png" type="image/png">
-    <link rel="stylesheet" href="styles/detailrekap.css">
-    <script type="module" src="../scripts/index.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Pemesanan - Bulan <?php echo $bulan; ?></title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="stylesheet" href="styles/detailrekap.css">
+  <script type="module" src="../scripts/index.js"></script>
 </head>
+
 <body>
 
-<header class="dashboard">
+  <header class="dashboard">
     <div class="navbar">
       <h1 tabindex="0">Dashboard Admin</h1>
-        <ul class="menu">
-          <li><a tabindex="0" href="adminrute.php">Rute</a></li>
-          <li><a tabindex="0" href="adminjadwal.php">Jadwal</a></li>
-          <li><a tabindex="0" href="adminpesanan.php">Daftar Pesanan</a></li>
-          <li><a tabindex="0" href="adminrekap.php" style="background-color: #C8ACD6;">Rekap Pendapatan</a></li>
-        </ul> 
-      <img tabindex="0" src="../img/EasyBusTix.png" alt="Logo EasyBusTix"> 
+      <ul class="menu">
+        <li><a tabindex="0" href="adminrute.php">Rute</a></li>
+        <li><a tabindex="0" href="adminjadwal.php">Jadwal</a></li>
+        <li><a tabindex="0" href="adminpesanan.php">Daftar Pesanan</a></li>
+        <li><a tabindex="0" href="adminrekap.php" style="background-color: #C8ACD6;">Rekap Pendapatan</a></li>
+      </ul>
+      <img tabindex="0" src="../img/EasyBusTix.png" alt="Logo EasyBusTix">
     </div>
     <div>
       <a tabindex="0" href="../fungsi/logout.php" class="logout">Logout</a>
@@ -48,33 +50,33 @@ $result = mysqli_query($koneksi, $query);
   </header>
 
   <main class="detail-rekap">
-  <ind-loading-admin></ind-loading-admin>
+    <ind-loading-admin></ind-loading-admin>
     <div>
-    <h1 tabindex="0">Detail Pesanan</h1>
+      <h1 tabindex="0">Detail Pesanan</h1>
 
-    <section class="Kembali">
-      <a tabindex="0" href="adminrekap.php">Kembali</a>
-    </section>
-        
-        <table border="1">
-          <thead>
+      <section class="Kembali">
+        <a tabindex="0" href="adminrekap.php">Kembali</a>
+      </section>
+
+      <table border="1">
+        <thead>
+          <tr>
+            <th tabindex="0">Tanggal Keberangkatan</th>
+            <th tabindex="0">Rute</th>
+            <th tabindex="0">Pendapatan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php while ($row = mysqli_fetch_assoc($result)): ?>
             <tr>
-              <th tabindex="0">Tanggal Keberangkatan</th>
-              <th tabindex="0">Rute</th>
-              <th tabindex="0">Pendapatan</th>
+              <td tabindex="0"><?php echo $row['tgl_keberangkatan']; ?></td>
+              <td tabindex="0"><?php echo $row['kota_asal'] . ' - ' . $row['kota_tujuan']; ?></td>
+              <td tabindex="0"><?php echo number_format($row['pendapatan'], 0, ',', '.'); ?></td>
             </tr>
-          </thead>
-            <tbody>
-              <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                <tr>
-                  <td tabindex="0"><?php echo $row['tgl_keberangkatan']; ?></td>
-                  <td tabindex="0"><?php echo $row['kota_asal'] . ' - ' . $row['kota_tujuan']; ?></td>
-                  <td tabindex="0"><?php echo number_format($row['pendapatan'], 0, ',', '.'); ?></td>
-                </tr>
-            <?php endwhile; ?>
-          </tbody>
-        </table>
-      </div>
-    </main>
+          <?php endwhile; ?>
+        </tbody>
+      </table>
+    </div>
+  </main>
 </body>
 </html>
