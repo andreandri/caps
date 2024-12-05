@@ -314,19 +314,28 @@ button:hover {
   }
 }
 
+
 @media (max-width: 450px) {
   .map-item h3 {
     font-size: 1rem;
   }
 
-  .card-conta{
-    margin: 0 auto;
+  main.card-conta {
+    padding: 0; /* Hilangkan padding */
+    margin: 0; /* Hilangkan margin */
   }
 
   .card-container {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     margin: 1rem 0 0.3rem;
     gap: 10px;
+  }
+
+  .card {
+    max-width: 92%; /* Lebar penuh */
+    box-shadow: none; /* Hilangkan bayangan */
+    border: 1px solid #ddd; /* Tambahkan sedikit batas untuk definisi */
+    border-radius: 8px; /* Sedikit lengkung */
   }
 
   .card-content h3 {
@@ -339,6 +348,15 @@ button:hover {
   
   .card-content .harga {
     font-size: 0.8rem;
+  }
+
+  form {
+    width: 100%; /* Lebar penuh */
+    border-radius: 0; /* Hilangkan sudut melengkung */
+    box-shadow: none; /* Hilangkan bayangan */
+    padding: 1rem; /* Kurangi padding */
+    margin: 0;
+    background-color: #B9E5E8; /* Sesuaikan dengan latar body */
   }
 }
 

@@ -315,6 +315,52 @@ aside {
   }
 }
 
+@media screen and (max-width: 450px) {
+  main {
+    margin: 0;
+  }
+
+  .bus {
+    width: 100%;
+    padding: 1.5rem 1rem 0;
+    background-color: B9E5E8;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .buss {
+    background-color: B9E5E8; 
+    padding: 0.5rem 1rem 1rem;
+    margin: 0 0.8rem;
+  }
+
+  .daftarbus {
+    background-color: B9E5E8;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 1rem 0.5rem;
+  }
+
+  .tampildua img {
+    max-width: 100%;
+    border-radius: 0; 
+  }
+
+  .tampildua h1 {
+    font-size: 0.9rem;
+    color: #333;
+  }
+
+  .bus p, .buss p {
+    font-size: 0.9rem;
+  }
+
+  .bus h1, .buss h1, .daftarbus h1 {
+    font-size: 1rem;
+  }
+}
+
+
 @media screen and (max-width: 378px) {
   .bus p {
     font-size: 0.7rem;

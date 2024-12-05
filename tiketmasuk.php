@@ -89,12 +89,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <input tabindex="0" type="hidden" name="kursi[]" value="<?php echo implode(',', $kursi); ?>"> <!-- Menyimpan kursi yang dipilih dalam form -->
 
       <div class="label">
-        <label tabindex="0" for="name">Nama</label>
+        <label tabindex="0" for="name">Nama :</label>
         <input tabindex="0" type="text" id="name" name="name" placeholder="Masukkan Nama Anda" required>
       </div>
 
       <div class="label">
-      <label tabindex="0" for="nomor">No HP</label>
+      <label tabindex="0" for="nomor">No HP :</label>
       <input 
         tabindex="0" 
         type="text" 
@@ -113,17 +113,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script>
       function validatePhoneNumber(input) {
-        // Pastikan input selalu diawali dengan +62
         if (!input.value.startsWith('+62')) {
           input.value = '+62';
         }
-        // Hapus karakter selain angka setelah +62
         input.value = input.value.replace(/(\+62)[^0-9]+/g, '$1').substring(0, 16);
       }
     </script>
 
 
-      <h3 tabindex="0">Nomor Kursi yang Dipilih:</h3>
+      <h3 tabindex="0">Nomor Kursi yang Dipilih :</h3>
       <ul tabindex="0">
         <?php
           if (!empty($kursi)) {
@@ -141,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ?>
       </ul>
 
-      <h3 tabindex="0">Total Kursi yang Dipilih: <?php echo count($kursi); ?></h3>
+      <h3 tabindex="0">Total Kursi yang Dipilih : <?php echo count($kursi); ?></h3>
 
       <div class="search">
         <button tabindex="0" type="submit" class="lanjut">Lanjutkan</button>

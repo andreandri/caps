@@ -75,7 +75,7 @@ if ($id_pemesanan) {
     }
 
     header {
-       margin-bottom: 4rem;
+      margin-bottom: 4rem;
     }
 
     main {
@@ -111,43 +111,30 @@ if ($id_pemesanan) {
     .total {
       padding-top: 8px;
     }
-    .card button {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      margin-top: 20px;
-      background-color: #4caf50;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .card button:hover {
-      background-color: #45a049;
-    }
 
     .cetak td {
       padding: 8px 2px 5px ;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid #b3b5b5;
     }
 
     .pay-link {
-  display: block;
-  text-align: center;
-  padding: 10px;
-  margin-top: 20px;
-  background-color: #4caf50;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-}
+      display: block;
+      text-decoration: none;
+      text-align: center;
+      margin-top: 1rem;
+      padding: 0.8rem;
+      font-size: 16px;
+      color: white;
+      background-color: #4caf50;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-.pay-link:hover {
-  background-color: #45a049;
-}
+    .pay-link:hover {
+      background-color: #45a049;
+    }
 
 
     @media (max-width: 1100px) {
@@ -174,7 +161,6 @@ if ($id_pemesanan) {
 
     @media (max-width: 534px) {
       .card {
-        padding: 9px;
         width: 90%;
         font-size: 14px;
       }
@@ -183,9 +169,40 @@ if ($id_pemesanan) {
       }
     }
 
+    @media (max-width: 450px) {
+      header {
+        margin-bottom: 0;
+      }
+      
+      main {
+        margin: 0;
+      }
+
+      .card h1 {
+        margin-bottom: 5px;
+      }
+        
+      .card {
+        width: 100%; 
+        padding: 0 1rem;
+        border-radius: 10px;
+        box-shadow: none; 
+        background: none; 
+      }
+      
+      .card h1 {
+        font-size: 18px;
+      }
+      
+      .pay-link {
+        font-size: 14px;
+        padding: 8px;
+      }
+    }
+
     @media (max-width: 323px) {
       .card {
-        padding: 6px;
+        padding: 0 6px;
         width: 95%;
         font-size: 12px;
       }
@@ -193,6 +210,7 @@ if ($id_pemesanan) {
         font-size: 14px;
       }
     }
+
   </style>
   <script type="module" src="scripts/index.js"></script>
 </head>

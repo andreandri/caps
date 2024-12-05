@@ -39,7 +39,7 @@ session_start();
 <body>
 <ind-loading-main></ind-loading-main>
     <div class="wrapper">
-        <h1 tabindex="0">Welcome Back</h1>
+        <h1 tabindex="0">Welcome</h1>
         <h2 tabindex="0">Log in now to continue</h2>
         <div class="image">
             <img tabindex="0" src="img/EasyBusTix.png" alt="illustration" />

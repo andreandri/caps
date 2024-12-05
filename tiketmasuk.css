@@ -34,7 +34,9 @@ header {
 }
 
 main {
-  max-width: 800px;
+  background-color: #fff;
+  max-width: 600px;
+  width: 100%;
   margin: 20px auto;
   padding: 20px;
   background: white;
@@ -45,6 +47,11 @@ main {
 h2 {
   text-align: center;
 }
+
+main h1 {
+  margin-bottom: 1rem;
+}
+
 
 h1, h2, h3 {
   margin: 0;
@@ -74,7 +81,7 @@ h1, h2, h3 {
 }
 
 .label input:focus {
-  border-color: #4caf50;
+  border-color: #0056b3;
   outline: none;
 }
 
@@ -98,6 +105,8 @@ ul li {
 
 .search .lanjut {
   padding: 10px 20px;
+  min-width: 44px;
+  min-height: 44px;
   font-size: 16px;
   color: white;
   background-color: #4caf50;
@@ -111,12 +120,57 @@ ul li {
   background-color: #45a049;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 641px) {
+  main h1 {
+    font-size: 1.5rem;
+  }
+
+  form h2 {
+    font-size: 1.3rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
+
   main {
-      padding: 15px;
+    padding: 15px;
+    width: 95%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  main {
+    width: 100%;
+    padding: 15px;
+    margin: 0;
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .form {
+    gap: 8px;
   }
 
   .search .lanjut {
-      width: 100%;
+    padding: 8px 16px;
+  }
+
+  ul li {
+    background: #fff;
+    margin: 0;
+  }
+
+  main h1 {
+    font-size: 1.3rem;
+  }
+
+  form h2 {
+    font-size: 1.1rem;
+  }
+
+  h3 {
+    font-size: 0.9rem;
   }
 }

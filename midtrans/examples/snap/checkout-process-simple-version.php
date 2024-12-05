@@ -1,5 +1,4 @@
 <?php
-// Konfigurasi API Midtrans
 namespace Midtrans;
 
 require_once dirname(__FILE__) . '/../../Midtrans.php';
@@ -8,17 +7,13 @@ Config::$clientKey = 'SB-Mid-client-0EXZ4KcHAlgRlBle';
 Config::$isProduction = false; // Sandbox mode
 Config::$isSanitized = Config::$is3ds = true;
 
-// Include koneksi ke database
 include "../../../koneksi.php";
 session_start();
 
-// Validasi ID Pemesanan
 $id_pemesanan = $_GET['id_pemesanan'] ?? null;
 
 if ($id_pemesanan) {
-    // Cek apakah data pemesanan sudah ada di session
     if (!isset($_SESSION['pemesanan'][$id_pemesanan])) {
-        // Query untuk mendapatkan data pemesanan dan email pengguna
         $query = $koneksi->prepare("
             SELECT 
                 p.id_pemesanan, 
@@ -42,13 +37,10 @@ if ($id_pemesanan) {
         if ($result->num_rows > 0) {
             $data = $result->fetch_assoc();
 
-            // Simpan data pemesanan ke session
             $_SESSION['pemesanan'][$id_pemesanan] = $data;
 
-            // Generate order_id
             $order_id = 'ORDER_' . $id_pemesanan . '_' . bin2hex(random_bytes(5)) . time();
 
-            // Update kolom order_id di tb_pemesanan
             $update_order_query = $koneksi->prepare("
                 UPDATE tb_pemesanan 
                 SET order_id = ? 
@@ -62,13 +54,11 @@ if ($id_pemesanan) {
                 exit;
             }
 
-            // Detail transaksi
             $transaction_details = array(
                 'order_id' => $order_id,
                 'gross_amount' => $data['total'],
             );
 
-            // Detail item
             $item_details = array(
                 array(
                     'id' => 'TIKET_' . $id_pemesanan,
@@ -78,7 +68,6 @@ if ($id_pemesanan) {
                 ),
             );
 
-            // Informasi customer
             $customer_details = array(
                 'first_name' => $data['nama_penumpang'],
                 'last_name' => '',
@@ -86,7 +75,6 @@ if ($id_pemesanan) {
                 'phone' => $data['no_wa'],
             );
 
-            // Data transaksi ke Midtrans
             $transaction = array(
                 'transaction_details' => $transaction_details,
                 'item_details' => $item_details,
@@ -94,10 +82,8 @@ if ($id_pemesanan) {
             );
 
             try {
-                // Dapatkan Snap Token
                 $snap_token = Snap::getSnapToken($transaction);
 
-                // Simpan Snap Token ke session
                 $_SESSION['snap_token'][$id_pemesanan] = $snap_token;
             } catch (\Exception $e) {
                 echo "Error: " . $e->getMessage();
@@ -108,7 +94,6 @@ if ($id_pemesanan) {
             exit;
         }
     } else {
-        // Ambil data pemesanan dan Snap Token dari session
         $data = $_SESSION['pemesanan'][$id_pemesanan];
         $snap_token = $_SESSION['snap_token'][$id_pemesanan];
     }
@@ -147,15 +132,11 @@ if ($id_pemesanan) {
       font-family: 'Poppins', sans-serif;
     }
 
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
     .card {
       width: 100%;
       max-width: 400px;
+      place-self: center;
+      margin-top: 2rem;
       background-color: white;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -178,7 +159,7 @@ if ($id_pemesanan) {
     }
 
     .pembayaran tr {
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid #b3b5b5;
       padding-bottom: 10px; 
     }
 
@@ -203,7 +184,7 @@ if ($id_pemesanan) {
     @media (max-width: 576px) {
       .container {
         display: block;
-        height: 80vh;
+        height: 50vh;
       }
 
       .card {
@@ -213,7 +194,9 @@ if ($id_pemesanan) {
       }
 
       .card-body h5 {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
+        margin-bottom: 0;
+        
       }
 
       .btn-primary {
@@ -221,13 +204,32 @@ if ($id_pemesanan) {
       }
     }
 
+    @media (max-width: 450px) {
+      .card {
+        background-color: transparent;
+        box-shadow: none;
+        border: none;
+        margin-top: 1rem;
+      }
+
+      .card-body {
+        padding: 0 10px;
+      }
+
+      .btn-primary {
+        padding: 10px;
+        font-size: 1rem;
+      }
+
+      .pembayaran td,
+      .pembayaran th {
+        font-size: 0.9rem;
+      }
+    }
+
     @media (max-width: 350px) {
       .card {
         width: 98%;
-      }
-
-      .card-body h5 {
-        font-size: 1rem;
       }
 
       .btn-primary {
@@ -246,7 +248,6 @@ if ($id_pemesanan) {
     <bar-user-app></bar-user-app>
   </header>
   <main>
-    <div class="container mt-5">
       <div class="card">
         <div class="card-body">
           <h5>Detail Pemesanan</h5>
@@ -263,36 +264,27 @@ if ($id_pemesanan) {
           <button id="pay-button" class="btn btn-primary">Bayar Sekarang</button>
         </div>
       </div>
-    </div>
 
-    <!-- Snap JS -->
     <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<?= Config::$clientKey; ?>"></script>
     <script type="text/javascript">
       document.getElementById('pay-button').onclick = function () {
-    const snapToken = '<?= $snap_token; ?>'; // Snap Token dari server PHP
+    const snapToken = '<?= $snap_token; ?>';
 
     snap.pay(snapToken, {
         onSuccess: function (result) {
             console.log("Payment Success:", result);
-            // Redirect ke halaman success setelah pembayaran berhasil
             window.location.href = "../../../tampilan.php";
         },
         onPending: function (result) {
             console.log("Payment Pending:", result);
-            // Redirect ke history jika pembayaran tidak selesai
-            alert("Pembayaran sedang dalam status pending. Silakan cek kembali riwayat pemesanan.");
             window.location.href = "../../../history.php";
         },
         onError: function (result) {
             console.log("Payment Error:", result);
-            // Redirect ke history jika pembayaran gagal
-            alert("Terjadi kesalahan pada pembayaran. Silakan coba lagi.");
             window.location.href = "../../../history.php";
         },
         onClose: function () {
             console.log("Payment popup closed");
-            // Redirect ke history jika pengguna menutup popup pembayaran
-            alert("Anda menutup proses pembayaran sebelum selesai. Silakan cek riwayat pemesanan Anda.");
             window.location.href = "../../../history.php";
         },
     });
