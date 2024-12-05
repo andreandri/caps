@@ -5,6 +5,7 @@ include 'koneksi.php';
 $username = $_SESSION['username'];
 $email = $_SESSION['email'];
 
+// Ambil gambar saat ini dari database
 $query = "SELECT image FROM tb_users WHERE username = ?";
 $stmt = $koneksi->prepare($query);
 $stmt->bind_param("s", $username);
@@ -15,12 +16,14 @@ $image = $userData['image'] ?? 'default-avatar.png';
 
 $isCustomImage = $image !== 'default-avatar.png';
 
+// Jika ada request POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (isset($_FILES['image'])) {
     $targetFolder = "uploads/";
-    $imageName = basename($_FILES['image']['name']);
+    $imageName = time() . '_' . uniqid() . '_' . basename($_FILES['image']['name']); // Buat nama file unik
     $targetPath = $targetFolder . $imageName;
 
+    // Ambil gambar lama dari database
     $queryOldImage = "SELECT image FROM tb_users WHERE username = ?";
     $stmtOldImage = $koneksi->prepare($queryOldImage);
     $stmtOldImage->bind_param("s", $username);
@@ -28,11 +31,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $resultOldImage = $stmtOldImage->get_result();
     $oldImage = $resultOldImage->fetch_assoc()['image'];
 
+    // Upload file baru
     if (move_uploaded_file($_FILES['image']['tmp_name'], $targetPath)) {
+      // Hapus gambar lama jika ada dan bukan default
       if ($oldImage && $oldImage !== 'default-avatar.png' && file_exists($targetFolder . $oldImage)) {
         unlink($targetFolder . $oldImage);
       }
 
+      // Update database dengan nama file baru
       $updateQuery = "UPDATE tb_users SET image = ? WHERE username = ?";
       $updateStmt = $koneksi->prepare($updateQuery);
       $updateStmt->bind_param("ss", $imageName, $username);
@@ -47,7 +53,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $_SESSION['error'] = "Gagal mengunggah file.";
     }
   }
+
   if (isset($_POST['deleteImage'])) {
+    // Ambil gambar lama dari database
     $queryOldImage = "SELECT image FROM tb_users WHERE username = ?";
     $stmtOldImage = $koneksi->prepare($queryOldImage);
     $stmtOldImage->bind_param("s", $username);
@@ -55,10 +63,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $resultOldImage = $stmtOldImage->get_result();
     $oldImage = $resultOldImage->fetch_assoc()['image'];
 
+    // Hapus gambar lama jika ada
     if ($oldImage && $oldImage !== 'default-avatar.png' && file_exists("uploads/" . $oldImage)) {
       unlink("uploads/" . $oldImage);
     }
 
+    // Kembalikan ke default avatar
     $defaultAvatar = 'default-avatar.png';
     $updateQuery = "UPDATE tb_users SET image = ? WHERE username = ?";
     $updateStmt = $koneksi->prepare($updateQuery);
@@ -72,6 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -174,7 +185,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <form id="profileForm" action="" method="post" enctype="multipart/form-data">
         <div class="foto">
           <div class="avatar-wrapper">
-            <div tabindex="0" class="avatar" id="avatarPreview" style="background-image: url('uploads/<?php echo htmlspecialchars($image); ?>'); place-self: center" alt="Foto Profile"></div>
+          <div tabindex="0" class="avatar" id="avatarPreview" 
+            style="background-image: url('uploads/<?php echo htmlspecialchars($image); ?>?t=<?php echo time(); ?>'); 
+            place-self: center" 
+            alt="Foto Profile"></div>
             <button tabindex="0" type="button" class="camera-button" id="cameraButton"><img src="img/kamera.png" alt="Ganti Foto Profile"></button>
           </div>
         </div>
